@@ -1,0 +1,17 @@
+{
+	"out": "js/dist/",
+	"debug": false,
+	"name": "collections",
+	"src": "js/src/",
+	"code": {
+		"main": [
+			"js",
+			"dist",
+			"collections.js"
+		],
+		"test": [
+			"test",
+			"js"
+		]
+	}
+}
