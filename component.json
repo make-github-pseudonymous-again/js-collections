@@ -7,5 +7,5 @@
 	"main": "js/dist/collections.js",
 	"license": "AGPL-3.0",
 	"name": "aureooms-js-collections",
-	"version": "0.0.0"
+	"version": "0.0.1"
 }
