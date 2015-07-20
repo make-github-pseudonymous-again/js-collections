@@ -48,6 +48,8 @@ const _OrderedDict = function ( Dict , Map , DLL ) {
 
 		this.list.clear( ) ;
 
+		return this ;
+
 	} ;
 
 	OrderedDict.prototype.copy = function ( ) {
@@ -96,13 +98,13 @@ const _OrderedDict = function ( Dict , Map , DLL ) {
 
 	OrderedDict.prototype.values = function* ( ) {
 
-		for ( let key of this.keys( ) ) yield this.container[key] ;
+		for ( let key of this.keys( ) ) yield this.container.get( key ) ;
 
 	} ;
 
 	OrderedDict.prototype.items = function* ( ) {
 
-		for ( let key of this.keys( ) ) yield [ key , this.container[key] ] ;
+		for ( let key of this.keys( ) ) yield [ key , this.container.get( key ) ] ;
 
 	} ;
 

@@ -17,11 +17,11 @@ var mycollections = collections.compile( {
 
 } ) ;
 
-var Dict = mycollections.Dict ;
-
 var KeyError = mycollections.KeyError ;
 
-test( "Dict" , function ( ) {
+[ mycollections.Dict , mycollections.OrderedDict ].forEach( function ( Dict ) {
+
+test( Dict.name , function ( ) {
 
 	var d = new Dict( ) ;
 
@@ -144,5 +144,7 @@ test( "Dict" , function ( ) {
 	deepEqual( Dict.fromkeys( "abc" , -1 ).get( "b" ) , -1 , "fromkeys default -1" ) ;
 
 	deepEqual( Dict.fromkeys( "abc" ).get( "b" ) , null , "fromkeys default null" ) ;
+
+} ) ;
 
 } ) ;

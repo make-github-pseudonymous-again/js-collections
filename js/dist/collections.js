@@ -1161,6 +1161,8 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 				this.map.clear();
 
 				this.list.clear();
+
+				return this;
 			};
 
 			OrderedDict.prototype.copy = function () {
@@ -1286,7 +1288,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 							key = _step19.value;
 							context$4$0.next = 9;
-							return this.container[key];
+							return this.container.get(key);
 
 						case 9:
 							_iteratorNormalCompletion19 = true;
@@ -1354,7 +1356,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 							key = _step20.value;
 							context$4$0.next = 9;
-							return [key, this.container[key]];
+							return [key, this.container.get(key)];
 
 						case 9:
 							_iteratorNormalCompletion20 = true;
