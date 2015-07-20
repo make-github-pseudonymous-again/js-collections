@@ -1,51 +1,58 @@
 
-const Counter = function ( container , mapping , iterable ) {
+const Counter = function ( iterable ) {
 
-	this.container = container ;
+	this.container = new Map( ) ;
 
-	for ( let [ key , value ] of mapping ) this.container.set( key , value ) ;
-
-	for ( let key of iterable ) {
-
-		if ( !this.container.has( key ) ) this.container.set( key , 1 ) ;
-		else  this.container.set( key , this.container.get( key ) + 1 ) ;
-
-	}
+	this.update( iterable ) ;
 
 } ;
 
-Counter.prototype[Symbol.iterator] = function* ( ) {
-
-	yield* this.container ;
-
-} ;
+Counter.prototype = new Dict( ) ;
 
 Counter.prototype.get = function ( key ) {
 
-	if ( !this.container.has( key ) ) return 0 ;
-
-	return this.container.get( key ) ;
+	return this.getdefault( key , 0 ) ;
 
 } ;
 
 Counter.prototype.elements = function* ( ) {
 
-	for ( let [ key , count ] of this.container ) {
+	for ( let [ key , count ] of this ) {
 
-		while ( count-- ) yield key ;
+		while ( count --> 0 ) yield key ;
 
 	}
 
 } ;
 
+Counter.prototype.increment = function ( key , amount = 1 ) {
 
+	this.set( key , this.get( key ) + amount ) ;
 
+} ;
 
+Counter.prototype.decrement = function ( key , amount = 1 ) {
 
+	this.increment( key , -amount ) ;
 
+} ;
 
+Counter.prototype.update = function ( iterable ) {
 
+	for ( let key of iterable ) this.increment( key ) ;
 
+} ;
 
+Counter.prototype.add = function ( other ) {
 
+	for ( let [ key , count ] of other ) this.increment( key , count ) ;
 
+} ;
+
+Counter.prototype.subtract = function ( other ) {
+
+	for ( let [ key , count ] of other ) this.decrement( key , count ) ;
+
+} ;
+
+exports.Counter = Counter ;
