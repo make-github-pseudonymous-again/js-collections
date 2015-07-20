@@ -1,11 +1,11 @@
 
 const _Counter = function ( Map , Dict ) {
 
-	const Counter = function ( iterable ) {
+	const Counter = function ( iterable = null ) {
 
 		this.container = new Map( ) ;
 
-		this.update( iterable ) ;
+		if ( iterable !== null ) this.update( iterable ) ;
 
 	} ;
 

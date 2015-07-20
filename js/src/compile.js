@@ -17,13 +17,13 @@ const compile = function ( {
 		Set ,
 		Dict ,
 		OrderedDict ,
+		DefaultDict : exports._DefaultDict( Dict , Map ) ,
 		ChainMap : exports._ChainMap( Set ) ,
 		Counter : exports._Counter( Map , Dict ) ,
 		NamedTuple ,
 		namedtuple : exports._namedtuple( NamedTuple ) ,
-
 	} ;
 
-
-
 } ;
+
+exports.compile = compile ;

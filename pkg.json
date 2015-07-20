@@ -13,5 +13,8 @@
 			"test",
 			"js"
 		]
+	},
+	"babel" : {
+		"stage" : 0
 	}
 }

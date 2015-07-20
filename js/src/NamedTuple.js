@@ -29,7 +29,7 @@ const _NamedTuple = function ( OrderedDict ) {
 
 		const fields = tuple._fields ;
 
-		return new OrderedDict( [ for ( key in fields ) [ key , tuple[key] ] ] ) ;
+		return new OrderedDict( [ for ( key of fields ) [ key , tuple[key] ] ] ) ;
 
 	} ;
 

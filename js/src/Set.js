@@ -1,9 +1,9 @@
 
-const _Set = function ( Base ) {
+const _Set = function ( BaseSet ) {
 
-	const Set = function ( iterable ) {
+	const Set = function ( iterable = null ) {
 
-		this.container = new Base( iterable ) ;
+		this.container = new BaseSet( iterable ) ;
 
 	} ;
 

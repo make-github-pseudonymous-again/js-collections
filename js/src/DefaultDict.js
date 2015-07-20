@@ -1,7 +1,7 @@
 
 const _DefaultDict = function ( Dict , Map ) {
 
-	const DefaultDict = function ( default_factory = null , mapping = [ ] ) {
+	const DefaultDict = function ( default_factory = null , mapping = null ) {
 
 		this.container = new Map( mapping ) ;
 

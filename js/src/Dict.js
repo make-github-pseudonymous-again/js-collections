@@ -1,7 +1,7 @@
 
 const _Dict = function ( Map ) {
 
-	const Dict = function ( mapping ) {
+	const Dict = function ( mapping = null ) {
 
 		this.container = new Map( mapping ) ;
 
