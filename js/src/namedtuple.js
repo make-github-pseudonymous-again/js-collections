@@ -1,86 +1,61 @@
 
-const NamedTuple = function ( ) { } ;
+const _namedtuple = function ( NamedTuple ) {
 
-NamedTuple.prototype = [ ] ;
+	const namedtuple = function ( typename , field_names ) {
 
-NamedTuple.replace = function ( Constructor , tuple , dict ) {
+		const fields = [ ...field_names ] ;
 
-	const values = { } ;
+		let definition = "( function ( ) { var " + typename + " = function (" ;
 
-	const fields = tuple._fields ;
+		let fieldlist = "" ;
 
-	for ( let key of fields ) values[key] = tuple[key] ;
+		if ( fields.length > 0 ) {
 
-	for ( let [ key , value ] of dict ) values[key] = value ;
+			const [ first , ...others ] = fields ;
 
-	return new Constructor( ...[ for ( key of fields ) values[key] ] ) ;
+			fieldlist += first ;
 
-} ;
+			for ( let field of others ) fieldlist += " , " + field ;
 
-NamedTuple.asdict = function ( tuple ) {
+			definition += " " + fieldlist ;
 
-	const fields = tuple._fields ;
+		}
 
-	return new OrderedDict( [ for ( key in fields ) [ key , tuple[key] ] ] ) ;
+		definition += " )" ;
+		definition += " {\n\n" ;
 
-} ;
+		definition += "\t" + "this._fields = [ " + fieldlist + " ] ;\n" ;
 
-const namedtuple = function ( typename , field_names ) {
+		for ( let i = 0 ; i < fields.length ; ++i ) {
 
-	const fields = [ ...field_names ] ;
+			let field = fields[i] ;
 
-	let definition = "function " ;
+			definition += "\n" ;
+			definition += "\t" + "this[" + i + "] = this." + field + " = " + field + " ;" ;
 
-	definition += typename ;
-	definition += " (" ;
+		}
 
-	let fieldlist = "" ;
+		definition += "\n};\n\n" ;
 
-	if ( fields.length > 0 ) {
+		definition += typename + ".prototype = new NamedTuple( ) ;\n" ;
+		definition += typename + "._make = function ( iterable ) {\n" ;
+		definition += "\t" + "return NamedTuple.make( " + typename + " , iterable ) ;\n" ;
+		definition += "} ;\n" ;
+		definition += typename + ".prototype._replace = function ( dict ) {\n" ;
+		definition += "\t" + "return NamedTuple.replace( " + typename + " , this , dict ) ;\n" ;
+		definition += "} ;\n" ;
+		definition += typename + ".prototype._asdict = function ( ) {\n" ;
+		definition += "\t" + "return NamedTuple.asdict( this ) ;\n" ;
+		definition += "} ;\n" ;
 
-		const [ first , ...others ] = fields ;
+		console.log( definition ) ;
 
-		fieldlist += first ;
+		return eval( definition ) ;
 
-		for ( let field of others ) fieldlist += " , " + field ;
+	} ;
 
-		definition += " " + fieldlist ;
-
-	}
-
-	definition += " )" ;
-	definition += " {\n\n" ;
-
-	definition += "\t" + "this._fields = [ " + fieldlist + " ] ;\n" ;
-
-	for ( let i = 0 ; i < fields.length ; ++i ) {
-
-		let field = fields[i] ;
-
-		definition += "\n" ;
-		definition += "\t" + "this[" + i + "] = this." + field + " = " + field + " ;" ;
-
-	}
-
-	definition += "\n" ;
-	definition += "}" ;
-	definition += "\n" ;
-	definition += "\n" ;
-	definition += typename + ".prototype = new NamedTuple( ) ;\n" ;
-	definition += typename + "._make = function ( iterable ) {\n" ;
-	definition += "\t" + "return new " + typename + "( ...iterable ) ;\n" ;
-	definition += "} ;\n" ;
-	definition += typename + ".prototype._replace = function ( dict ) {\n" ;
-	definition += "\t" + "return NamedTuple.replace( " + typename + " , this , dict ) ;\n" ;
-	definition += "} ;\n" ;
-	definition += typename + ".prototype._asdict = function ( ) {\n" ;
-	definition += "\t" + "return NamedTuple.asdict( this ) ;\n" ;
-	definition += "} ;\n" ;
-
-	console.log( definition ) ;
-
-	return eval( definition ) ;
+	return namedtuple ;
 
 } ;
 
-exports.namedtuple = namedtuple ;
+exports._namedtuple = _namedtuple ;
