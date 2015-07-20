@@ -15,19 +15,25 @@ const _Dict = function ( Map ) {
 
 	Dict.prototype.get = function ( key ) {
 
+		if ( !this.container.has( key ) ) throw new KeyError( ) ;
+
 		return this.container.get( key ) ;
 
 	} ;
 
-	Dict.prototype.set = function ( key ) {
+	Dict.prototype.set = function ( key , value ) {
 
-		return this.container.set( key ) ;
+		this.container.set( key , value ) ;
+
+		return this ;
 
 	} ;
 
 	Dict.prototype.delete = function ( key ) {
 
-		return this.container.delete( key ) ;
+		if ( !this.container.delete( key ) ) throw new KeyError( ) ;
+
+		return this ;
 
 	} ;
 
@@ -51,7 +57,7 @@ const _Dict = function ( Map ) {
 
 	Dict.fromkeys = function ( seq , value = null ) {
 
-		for ( let key of seq ) this.set( key , value ) ;
+		return new Dict( Mapping.fromkeys( seq , value = null ) ) ;
 
 	} ;
 
