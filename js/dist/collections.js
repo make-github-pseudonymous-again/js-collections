@@ -16,7 +16,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 		/* js/src/ChainMap.js */
 
-		var _ChainMap = function _ChainMap(Set) {
+		var _ChainMap = function _ChainMap(Dict, Set) {
 
 			var ChainMap = function ChainMap() {
 				for (var _len = arguments.length, maps = Array(_len), _key = 0; _key < _len; _key++) {
@@ -25,25 +25,21 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 				this.maps = maps;
 
-				if (this.maps.length === 0) this.maps.push({});
+				if (this.maps.length === 0) this.maps.push(new Dict());
 			};
 
-			ChainMap.prototype.len = function () {
+			ChainMap.prototype._keys = function () {
 
-				return this.maps.length;
-			};
+				var keys = new Set();
 
-			ChainMap.prototype.get = function (key) {
 				var _iteratorNormalCompletion = true;
 				var _didIteratorError = false;
 				var _iteratorError = undefined;
 
 				try {
-
 					for (var _iterator = this.maps[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
 						var map = _step.value;
-
-						if (map.has(key)) return map.get(key);
+						keys.update(map.keys());
 					}
 				} catch (err) {
 					_didIteratorError = true;
@@ -59,19 +55,16 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 						}
 					}
 				}
+
+				return keys;
 			};
 
-			ChainMap.prototype.set = function (key) {
+			ChainMap.prototype.len = function () {
 
-				return this.maps[0].set(key);
+				return this._keys().len();
 			};
 
-			ChainMap.prototype["delete"] = function (key) {
-
-				return this.maps[0]["delete"](key);
-			};
-
-			ChainMap.prototype.has = function (key) {
+			ChainMap.prototype.get = function (key) {
 				var _iteratorNormalCompletion2 = true;
 				var _didIteratorError2 = false;
 				var _iteratorError2 = undefined;
@@ -81,7 +74,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 					for (var _iterator2 = this.maps[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
 						var map = _step2.value;
 
-						if (map.has(key)) return true;
+						if (map.has(key)) return map.get(key);
 					}
 				} catch (err) {
 					_didIteratorError2 = true;
@@ -98,30 +91,32 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 					}
 				}
 
-				return false;
+				throw new KeyError();
 			};
 
-			ChainMap.prototype.clear = function () {
+			ChainMap.prototype.set = function (key, value) {
 
-				this.container.clear();
+				return this.maps[0].set(key, value);
 			};
 
-			ChainMap.prototype.copy = function () {
+			ChainMap.prototype["delete"] = function (key) {
 
-				return new ChainMap(this.items());
+				this.maps[0]["delete"](key);
+
+				return this;
 			};
 
-			ChainMap.fromkeys = function (seq) {
-				var value = arguments.length <= 1 || arguments[1] === undefined ? null : arguments[1];
+			ChainMap.prototype.has = function (key) {
 				var _iteratorNormalCompletion3 = true;
 				var _didIteratorError3 = false;
 				var _iteratorError3 = undefined;
 
 				try {
 
-					for (var _iterator3 = seq[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-						var key = _step3.value;
-						this.set(key, value);
+					for (var _iterator3 = this.maps[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+						var map = _step3.value;
+
+						if (map.has(key)) return true;
 					}
 				} catch (err) {
 					_didIteratorError3 = true;
@@ -137,22 +132,32 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 						}
 					}
 				}
+
+				return false;
+			};
+
+			ChainMap.prototype.clear = function () {
+
+				this.maps[0].clear();
+
+				return this;
+			};
+
+			ChainMap.prototype.copy = function () {
+
+				return new ChainMap(this.items());
+			};
+
+			ChainMap.fromkeys = function (seq) {
+				var value = arguments.length <= 1 || arguments[1] === undefined ? null : arguments[1];
+
+				return new ChainMap(Dict.fromkeys(seq, value));
 			};
 
 			ChainMap.prototype.getdefault = function (key) {
 				var dflt = arguments.length <= 1 || arguments[1] === undefined ? null : arguments[1];
 
 				if (this.has(key)) return this.get(key);
-
-				return dflt;
-			};
-
-			ChainMap.prototype.setdefault = function (key) {
-				var dflt = arguments.length <= 1 || arguments[1] === undefined ? null : arguments[1];
-
-				if (this.has(key)) return this.get(key);
-
-				this.set(key, dflt);
 
 				return dflt;
 			};
@@ -285,7 +290,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 				return regeneratorRuntime.wrap(function callee$3$0$(context$4$0) {
 					while (1) switch (context$4$0.prev = context$4$0.next) {
 						case 0:
-							return context$4$0.delegateYield(this.container, "t0", 1);
+							return context$4$0.delegateYield(this._keys(), "t0", 1);
 
 						case 1:
 						case "end":
@@ -324,14 +329,10 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 				}
 			};
 
-			ChainMap.prototype[Symbol.iterator] = ChainMap.prototype.items;
-
-			return ChainMap;
-
 			ChainMap.prototype.new_child = function () {
 				var map = arguments.length <= 0 || arguments[0] === undefined ? null : arguments[0];
 
-				if (map === null) map = {};
+				if (map === null) map = new Dict();
 
 				return new (_bind.apply(ChainMap, [null].concat([map], _toConsumableArray(this.maps))))();
 			};
@@ -345,6 +346,8 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 				return new (_bind.apply(ChainMap, [null].concat(_toConsumableArray(parents))))();
 			};
+
+			ChainMap.prototype[Symbol.iterator] = ChainMap.prototype.items;
 
 			return ChainMap;
 		};
@@ -367,7 +370,9 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 			Counter.prototype.get = function (key) {
 
-				return this.getdefault(key, 0);
+				if (this.has(key)) return this.container.get(key);
+
+				return 0;
 			};
 
 			Counter.prototype.elements = regeneratorRuntime.mark(function callee$3$0() {
@@ -639,6 +644,8 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 			Dict.prototype.clear = function () {
 
 				this.container.clear();
+
+				return this;
 			};
 
 			Dict.prototype.copy = function () {
@@ -649,7 +656,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 			Dict.fromkeys = function (seq) {
 				var value = arguments.length <= 1 || arguments[1] === undefined ? null : arguments[1];
 
-				return new Dict(Mapping.fromkeys(seq, value = null));
+				return new Dict(Mapping.fromkeys(seq, value));
 			};
 
 			Dict.prototype.getdefault = function (key) {
@@ -697,35 +704,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 			};
 
 			Dict.prototype.keys = regeneratorRuntime.mark(function callee$3$0() {
-				var key;
-				return regeneratorRuntime.wrap(function callee$3$0$(context$4$0) {
-					while (1) switch (context$4$0.prev = context$4$0.next) {
-						case 0:
-							context$4$0.t0 = regeneratorRuntime.keys(this.container);
-
-						case 1:
-							if ((context$4$0.t1 = context$4$0.t0()).done) {
-								context$4$0.next = 7;
-								break;
-							}
-
-							key = context$4$0.t1.value;
-							context$4$0.next = 5;
-							return key;
-
-						case 5:
-							context$4$0.next = 1;
-							break;
-
-						case 7:
-						case "end":
-							return context$4$0.stop();
-					}
-				}, callee$3$0, this);
-			});
-
-			Dict.prototype.values = regeneratorRuntime.mark(function callee$3$0() {
-				var _iteratorNormalCompletion10, _didIteratorError10, _iteratorError10, _iterator10, _step10, _step10$value, key, value;
+				var _iteratorNormalCompletion10, _didIteratorError10, _iteratorError10, _iterator10, _step10, key;
 
 				return regeneratorRuntime.wrap(function callee$3$0$(context$4$0) {
 					while (1) switch (context$4$0.prev = context$4$0.next) {
@@ -734,22 +713,90 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 							_didIteratorError10 = false;
 							_iteratorError10 = undefined;
 							context$4$0.prev = 3;
-							_iterator10 = this.container[Symbol.iterator]();
+							_iterator10 = this.container.keys()[Symbol.iterator]();
 
 						case 5:
 							if (_iteratorNormalCompletion10 = (_step10 = _iterator10.next()).done) {
+								context$4$0.next = 12;
+								break;
+							}
+
+							key = _step10.value;
+							context$4$0.next = 9;
+							return key;
+
+						case 9:
+							_iteratorNormalCompletion10 = true;
+							context$4$0.next = 5;
+							break;
+
+						case 12:
+							context$4$0.next = 18;
+							break;
+
+						case 14:
+							context$4$0.prev = 14;
+							context$4$0.t0 = context$4$0["catch"](3);
+							_didIteratorError10 = true;
+							_iteratorError10 = context$4$0.t0;
+
+						case 18:
+							context$4$0.prev = 18;
+							context$4$0.prev = 19;
+
+							if (!_iteratorNormalCompletion10 && _iterator10["return"]) {
+								_iterator10["return"]();
+							}
+
+						case 21:
+							context$4$0.prev = 21;
+
+							if (!_didIteratorError10) {
+								context$4$0.next = 24;
+								break;
+							}
+
+							throw _iteratorError10;
+
+						case 24:
+							return context$4$0.finish(21);
+
+						case 25:
+							return context$4$0.finish(18);
+
+						case 26:
+						case "end":
+							return context$4$0.stop();
+					}
+				}, callee$3$0, this, [[3, 14, 18, 26], [19,, 21, 25]]);
+			});
+
+			Dict.prototype.values = regeneratorRuntime.mark(function callee$3$0() {
+				var _iteratorNormalCompletion11, _didIteratorError11, _iteratorError11, _iterator11, _step11, _step11$value, key, value;
+
+				return regeneratorRuntime.wrap(function callee$3$0$(context$4$0) {
+					while (1) switch (context$4$0.prev = context$4$0.next) {
+						case 0:
+							_iteratorNormalCompletion11 = true;
+							_didIteratorError11 = false;
+							_iteratorError11 = undefined;
+							context$4$0.prev = 3;
+							_iterator11 = this.container[Symbol.iterator]();
+
+						case 5:
+							if (_iteratorNormalCompletion11 = (_step11 = _iterator11.next()).done) {
 								context$4$0.next = 14;
 								break;
 							}
 
-							_step10$value = _slicedToArray(_step10.value, 2);
-							key = _step10$value[0];
-							value = _step10$value[1];
+							_step11$value = _slicedToArray(_step11.value, 2);
+							key = _step11$value[0];
+							value = _step11$value[1];
 							context$4$0.next = 11;
 							return value;
 
 						case 11:
-							_iteratorNormalCompletion10 = true;
+							_iteratorNormalCompletion11 = true;
 							context$4$0.next = 5;
 							break;
 
@@ -760,26 +807,26 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 						case 16:
 							context$4$0.prev = 16;
 							context$4$0.t0 = context$4$0["catch"](3);
-							_didIteratorError10 = true;
-							_iteratorError10 = context$4$0.t0;
+							_didIteratorError11 = true;
+							_iteratorError11 = context$4$0.t0;
 
 						case 20:
 							context$4$0.prev = 20;
 							context$4$0.prev = 21;
 
-							if (!_iteratorNormalCompletion10 && _iterator10["return"]) {
-								_iterator10["return"]();
+							if (!_iteratorNormalCompletion11 && _iterator11["return"]) {
+								_iterator11["return"]();
 							}
 
 						case 23:
 							context$4$0.prev = 23;
 
-							if (!_didIteratorError10) {
+							if (!_didIteratorError11) {
 								context$4$0.next = 26;
 								break;
 							}
 
-							throw _iteratorError10;
+							throw _iteratorError11;
 
 						case 26:
 							return context$4$0.finish(23);
@@ -808,30 +855,30 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 			});
 
 			Dict.prototype.update = function (mapping) {
-				var _iteratorNormalCompletion11 = true;
-				var _didIteratorError11 = false;
-				var _iteratorError11 = undefined;
+				var _iteratorNormalCompletion12 = true;
+				var _didIteratorError12 = false;
+				var _iteratorError12 = undefined;
 
 				try {
 
-					for (var _iterator11 = mapping[Symbol.iterator](), _step11; !(_iteratorNormalCompletion11 = (_step11 = _iterator11.next()).done); _iteratorNormalCompletion11 = true) {
-						var _step11$value = _slicedToArray(_step11.value, 2);
+					for (var _iterator12 = mapping[Symbol.iterator](), _step12; !(_iteratorNormalCompletion12 = (_step12 = _iterator12.next()).done); _iteratorNormalCompletion12 = true) {
+						var _step12$value = _slicedToArray(_step12.value, 2);
 
-						var key = _step11$value[0];
-						var value = _step11$value[1];
+						var key = _step12$value[0];
+						var value = _step12$value[1];
 						this.set(key, value);
 					}
 				} catch (err) {
-					_didIteratorError11 = true;
-					_iteratorError11 = err;
+					_didIteratorError12 = true;
+					_iteratorError12 = err;
 				} finally {
 					try {
-						if (!_iteratorNormalCompletion11 && _iterator11["return"]) {
-							_iterator11["return"]();
+						if (!_iteratorNormalCompletion12 && _iterator12["return"]) {
+							_iterator12["return"]();
 						}
 					} finally {
-						if (_didIteratorError11) {
-							throw _iteratorError11;
+						if (_didIteratorError12) {
+							throw _iteratorError12;
 						}
 					}
 				}
@@ -857,29 +904,29 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 		Mapping.fromkeys = regeneratorRuntime.mark(function callee$2$0(seq) {
 			var value = arguments.length <= 1 || arguments[1] === undefined ? null : arguments[1];
 
-			var _iteratorNormalCompletion12, _didIteratorError12, _iteratorError12, _iterator12, _step12, key;
+			var _iteratorNormalCompletion13, _didIteratorError13, _iteratorError13, _iterator13, _step13, key;
 
 			return regeneratorRuntime.wrap(function callee$2$0$(context$3$0) {
 				while (1) switch (context$3$0.prev = context$3$0.next) {
 					case 0:
-						_iteratorNormalCompletion12 = true;
-						_didIteratorError12 = false;
-						_iteratorError12 = undefined;
+						_iteratorNormalCompletion13 = true;
+						_didIteratorError13 = false;
+						_iteratorError13 = undefined;
 						context$3$0.prev = 3;
-						_iterator12 = seq[Symbol.iterator]();
+						_iterator13 = seq[Symbol.iterator]();
 
 					case 5:
-						if (_iteratorNormalCompletion12 = (_step12 = _iterator12.next()).done) {
+						if (_iteratorNormalCompletion13 = (_step13 = _iterator13.next()).done) {
 							context$3$0.next = 12;
 							break;
 						}
 
-						key = _step12.value;
+						key = _step13.value;
 						context$3$0.next = 9;
 						return [key, value];
 
 					case 9:
-						_iteratorNormalCompletion12 = true;
+						_iteratorNormalCompletion13 = true;
 						context$3$0.next = 5;
 						break;
 
@@ -890,26 +937,26 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 					case 14:
 						context$3$0.prev = 14;
 						context$3$0.t0 = context$3$0["catch"](3);
-						_didIteratorError12 = true;
-						_iteratorError12 = context$3$0.t0;
+						_didIteratorError13 = true;
+						_iteratorError13 = context$3$0.t0;
 
 					case 18:
 						context$3$0.prev = 18;
 						context$3$0.prev = 19;
 
-						if (!_iteratorNormalCompletion12 && _iterator12["return"]) {
-							_iterator12["return"]();
+						if (!_iteratorNormalCompletion13 && _iterator13["return"]) {
+							_iterator13["return"]();
 						}
 
 					case 21:
 						context$3$0.prev = 21;
 
-						if (!_didIteratorError12) {
+						if (!_didIteratorError13) {
 							context$3$0.next = 24;
 							break;
 						}
 
-						throw _iteratorError12;
+						throw _iteratorError13;
 
 					case 24:
 						return context$3$0.finish(21);
@@ -945,41 +992,14 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 				var fields = tuple._fields;
 
-				var _iteratorNormalCompletion13 = true;
-				var _didIteratorError13 = false;
-				var _iteratorError13 = undefined;
-
-				try {
-					for (var _iterator13 = fields[Symbol.iterator](), _step13; !(_iteratorNormalCompletion13 = (_step13 = _iterator13.next()).done); _iteratorNormalCompletion13 = true) {
-						var key = _step13.value;
-						values[key] = tuple[key];
-					}
-				} catch (err) {
-					_didIteratorError13 = true;
-					_iteratorError13 = err;
-				} finally {
-					try {
-						if (!_iteratorNormalCompletion13 && _iterator13["return"]) {
-							_iterator13["return"]();
-						}
-					} finally {
-						if (_didIteratorError13) {
-							throw _iteratorError13;
-						}
-					}
-				}
-
 				var _iteratorNormalCompletion14 = true;
 				var _didIteratorError14 = false;
 				var _iteratorError14 = undefined;
 
 				try {
-					for (var _iterator14 = dict[Symbol.iterator](), _step14; !(_iteratorNormalCompletion14 = (_step14 = _iterator14.next()).done); _iteratorNormalCompletion14 = true) {
-						var _step14$value = _slicedToArray(_step14.value, 2);
-
-						var key = _step14$value[0];
-						var value = _step14$value[1];
-						values[key] = value;
+					for (var _iterator14 = fields[Symbol.iterator](), _step14; !(_iteratorNormalCompletion14 = (_step14 = _iterator14.next()).done); _iteratorNormalCompletion14 = true) {
+						var key = _step14.value;
+						values[key] = tuple[key];
 					}
 				} catch (err) {
 					_didIteratorError14 = true;
@@ -996,29 +1016,56 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 					}
 				}
 
+				var _iteratorNormalCompletion15 = true;
+				var _didIteratorError15 = false;
+				var _iteratorError15 = undefined;
+
+				try {
+					for (var _iterator15 = dict[Symbol.iterator](), _step15; !(_iteratorNormalCompletion15 = (_step15 = _iterator15.next()).done); _iteratorNormalCompletion15 = true) {
+						var _step15$value = _slicedToArray(_step15.value, 2);
+
+						var key = _step15$value[0];
+						var value = _step15$value[1];
+						values[key] = value;
+					}
+				} catch (err) {
+					_didIteratorError15 = true;
+					_iteratorError15 = err;
+				} finally {
+					try {
+						if (!_iteratorNormalCompletion15 && _iterator15["return"]) {
+							_iterator15["return"]();
+						}
+					} finally {
+						if (_didIteratorError15) {
+							throw _iteratorError15;
+						}
+					}
+				}
+
 				return new (_bind.apply(Constructor, [null].concat(_toConsumableArray((function () {
 					var _ref = [];
-					var _iteratorNormalCompletion15 = true;
-					var _didIteratorError15 = false;
-					var _iteratorError15 = undefined;
+					var _iteratorNormalCompletion16 = true;
+					var _didIteratorError16 = false;
+					var _iteratorError16 = undefined;
 
 					try {
-						for (var _iterator15 = fields[Symbol.iterator](), _step15; !(_iteratorNormalCompletion15 = (_step15 = _iterator15.next()).done); _iteratorNormalCompletion15 = true) {
-							var key = _step15.value;
+						for (var _iterator16 = fields[Symbol.iterator](), _step16; !(_iteratorNormalCompletion16 = (_step16 = _iterator16.next()).done); _iteratorNormalCompletion16 = true) {
+							var key = _step16.value;
 
 							_ref.push(values[key]);
 						}
 					} catch (err) {
-						_didIteratorError15 = true;
-						_iteratorError15 = err;
+						_didIteratorError16 = true;
+						_iteratorError16 = err;
 					} finally {
 						try {
-							if (!_iteratorNormalCompletion15 && _iterator15["return"]) {
-								_iterator15["return"]();
+							if (!_iteratorNormalCompletion16 && _iterator16["return"]) {
+								_iterator16["return"]();
 							}
 						} finally {
-							if (_didIteratorError15) {
-								throw _iteratorError15;
+							if (_didIteratorError16) {
+								throw _iteratorError16;
 							}
 						}
 					}
@@ -1033,27 +1080,27 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 				return new OrderedDict((function () {
 					var _ref2 = [];
-					var _iteratorNormalCompletion16 = true;
-					var _didIteratorError16 = false;
-					var _iteratorError16 = undefined;
+					var _iteratorNormalCompletion17 = true;
+					var _didIteratorError17 = false;
+					var _iteratorError17 = undefined;
 
 					try {
-						for (var _iterator16 = fields[Symbol.iterator](), _step16; !(_iteratorNormalCompletion16 = (_step16 = _iterator16.next()).done); _iteratorNormalCompletion16 = true) {
-							var key = _step16.value;
+						for (var _iterator17 = fields[Symbol.iterator](), _step17; !(_iteratorNormalCompletion17 = (_step17 = _iterator17.next()).done); _iteratorNormalCompletion17 = true) {
+							var key = _step17.value;
 
 							_ref2.push([key, tuple[key]]);
 						}
 					} catch (err) {
-						_didIteratorError16 = true;
-						_iteratorError16 = err;
+						_didIteratorError17 = true;
+						_iteratorError17 = err;
 					} finally {
 						try {
-							if (!_iteratorNormalCompletion16 && _iterator16["return"]) {
-								_iterator16["return"]();
+							if (!_iteratorNormalCompletion17 && _iterator17["return"]) {
+								_iterator17["return"]();
 							}
 						} finally {
-							if (_didIteratorError16) {
-								throw _iteratorError16;
+							if (_didIteratorError17) {
+								throw _iteratorError17;
 							}
 						}
 					}
@@ -1152,74 +1199,6 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 			};
 
 			OrderedDict.prototype.keys = regeneratorRuntime.mark(function callee$3$0() {
-				var _iteratorNormalCompletion17, _didIteratorError17, _iteratorError17, _iterator17, _step17, key;
-
-				return regeneratorRuntime.wrap(function callee$3$0$(context$4$0) {
-					while (1) switch (context$4$0.prev = context$4$0.next) {
-						case 0:
-							_iteratorNormalCompletion17 = true;
-							_didIteratorError17 = false;
-							_iteratorError17 = undefined;
-							context$4$0.prev = 3;
-							_iterator17 = this.list[Symbol.iterator]();
-
-						case 5:
-							if (_iteratorNormalCompletion17 = (_step17 = _iterator17.next()).done) {
-								context$4$0.next = 12;
-								break;
-							}
-
-							key = _step17.value;
-							context$4$0.next = 9;
-							return key;
-
-						case 9:
-							_iteratorNormalCompletion17 = true;
-							context$4$0.next = 5;
-							break;
-
-						case 12:
-							context$4$0.next = 18;
-							break;
-
-						case 14:
-							context$4$0.prev = 14;
-							context$4$0.t0 = context$4$0["catch"](3);
-							_didIteratorError17 = true;
-							_iteratorError17 = context$4$0.t0;
-
-						case 18:
-							context$4$0.prev = 18;
-							context$4$0.prev = 19;
-
-							if (!_iteratorNormalCompletion17 && _iterator17["return"]) {
-								_iterator17["return"]();
-							}
-
-						case 21:
-							context$4$0.prev = 21;
-
-							if (!_didIteratorError17) {
-								context$4$0.next = 24;
-								break;
-							}
-
-							throw _iteratorError17;
-
-						case 24:
-							return context$4$0.finish(21);
-
-						case 25:
-							return context$4$0.finish(18);
-
-						case 26:
-						case "end":
-							return context$4$0.stop();
-					}
-				}, callee$3$0, this, [[3, 14, 18, 26], [19,, 21, 25]]);
-			});
-
-			OrderedDict.prototype.values = regeneratorRuntime.mark(function callee$3$0() {
 				var _iteratorNormalCompletion18, _didIteratorError18, _iteratorError18, _iterator18, _step18, key;
 
 				return regeneratorRuntime.wrap(function callee$3$0$(context$4$0) {
@@ -1229,7 +1208,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 							_didIteratorError18 = false;
 							_iteratorError18 = undefined;
 							context$4$0.prev = 3;
-							_iterator18 = this.keys()[Symbol.iterator]();
+							_iterator18 = this.list[Symbol.iterator]();
 
 						case 5:
 							if (_iteratorNormalCompletion18 = (_step18 = _iterator18.next()).done) {
@@ -1239,7 +1218,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 							key = _step18.value;
 							context$4$0.next = 9;
-							return this.container[key];
+							return key;
 
 						case 9:
 							_iteratorNormalCompletion18 = true;
@@ -1287,7 +1266,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 				}, callee$3$0, this, [[3, 14, 18, 26], [19,, 21, 25]]);
 			});
 
-			OrderedDict.prototype.items = regeneratorRuntime.mark(function callee$3$0() {
+			OrderedDict.prototype.values = regeneratorRuntime.mark(function callee$3$0() {
 				var _iteratorNormalCompletion19, _didIteratorError19, _iteratorError19, _iterator19, _step19, key;
 
 				return regeneratorRuntime.wrap(function callee$3$0$(context$4$0) {
@@ -1307,7 +1286,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 							key = _step19.value;
 							context$4$0.next = 9;
-							return [key, this.container[key]];
+							return this.container[key];
 
 						case 9:
 							_iteratorNormalCompletion19 = true;
@@ -1355,6 +1334,74 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 				}, callee$3$0, this, [[3, 14, 18, 26], [19,, 21, 25]]);
 			});
 
+			OrderedDict.prototype.items = regeneratorRuntime.mark(function callee$3$0() {
+				var _iteratorNormalCompletion20, _didIteratorError20, _iteratorError20, _iterator20, _step20, key;
+
+				return regeneratorRuntime.wrap(function callee$3$0$(context$4$0) {
+					while (1) switch (context$4$0.prev = context$4$0.next) {
+						case 0:
+							_iteratorNormalCompletion20 = true;
+							_didIteratorError20 = false;
+							_iteratorError20 = undefined;
+							context$4$0.prev = 3;
+							_iterator20 = this.keys()[Symbol.iterator]();
+
+						case 5:
+							if (_iteratorNormalCompletion20 = (_step20 = _iterator20.next()).done) {
+								context$4$0.next = 12;
+								break;
+							}
+
+							key = _step20.value;
+							context$4$0.next = 9;
+							return [key, this.container[key]];
+
+						case 9:
+							_iteratorNormalCompletion20 = true;
+							context$4$0.next = 5;
+							break;
+
+						case 12:
+							context$4$0.next = 18;
+							break;
+
+						case 14:
+							context$4$0.prev = 14;
+							context$4$0.t0 = context$4$0["catch"](3);
+							_didIteratorError20 = true;
+							_iteratorError20 = context$4$0.t0;
+
+						case 18:
+							context$4$0.prev = 18;
+							context$4$0.prev = 19;
+
+							if (!_iteratorNormalCompletion20 && _iterator20["return"]) {
+								_iterator20["return"]();
+							}
+
+						case 21:
+							context$4$0.prev = 21;
+
+							if (!_didIteratorError20) {
+								context$4$0.next = 24;
+								break;
+							}
+
+							throw _iteratorError20;
+
+						case 24:
+							return context$4$0.finish(21);
+
+						case 25:
+							return context$4$0.finish(18);
+
+						case 26:
+						case "end":
+							return context$4$0.stop();
+					}
+				}, callee$3$0, this, [[3, 14, 18, 26], [19,, 21, 25]]);
+			});
+
 			OrderedDict.prototype[Symbol.iterator] = OrderedDict.prototype.items;
 
 			return OrderedDict;
@@ -1383,10 +1430,10 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 				return regeneratorRuntime.wrap(function callee$3$0$(context$4$0) {
 					while (1) switch (context$4$0.prev = context$4$0.next) {
 						case 0:
-							return context$4$0.delegateYield(first, "t0", 1);
+							return context$4$0.delegateYield(first.keys(), "t0", 1);
 
 						case 1:
-							return context$4$0.delegateYield(second, "t1", 2);
+							return context$4$0.delegateYield(second.keys(), "t1", 2);
 
 						case 2:
 						case "end":
@@ -1437,26 +1484,26 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 				if (this.len() > other.len()) return false;
 
-				var _iteratorNormalCompletion20 = true;
-				var _didIteratorError20 = false;
-				var _iteratorError20 = undefined;
+				var _iteratorNormalCompletion21 = true;
+				var _didIteratorError21 = false;
+				var _iteratorError21 = undefined;
 
 				try {
-					for (var _iterator20 = this[Symbol.iterator](), _step20; !(_iteratorNormalCompletion20 = (_step20 = _iterator20.next()).done); _iteratorNormalCompletion20 = true) {
-						var key = _step20.value;
+					for (var _iterator21 = this[Symbol.iterator](), _step21; !(_iteratorNormalCompletion21 = (_step21 = _iterator21.next()).done); _iteratorNormalCompletion21 = true) {
+						var key = _step21.value;
 						if (!other.contains(key)) return false;
 					}
 				} catch (err) {
-					_didIteratorError20 = true;
-					_iteratorError20 = err;
+					_didIteratorError21 = true;
+					_iteratorError21 = err;
 				} finally {
 					try {
-						if (!_iteratorNormalCompletion20 && _iterator20["return"]) {
-							_iterator20["return"]();
+						if (!_iteratorNormalCompletion21 && _iterator21["return"]) {
+							_iterator21["return"]();
 						}
 					} finally {
-						if (_didIteratorError20) {
-							throw _iteratorError20;
+						if (_didIteratorError21) {
+							throw _iteratorError21;
 						}
 					}
 				}
@@ -1478,87 +1525,6 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 				return this.issuperset(other) && !this.issubset(other);
 			};
-
-			Set.prototype._union = regeneratorRuntime.mark(function callee$3$0(other) {
-				var _Set$_args, _Set$_args2, smallest, largest, _iteratorNormalCompletion21, _didIteratorError21, _iteratorError21, _iterator21, _step21, key;
-
-				return regeneratorRuntime.wrap(function callee$3$0$(context$4$0) {
-					while (1) switch (context$4$0.prev = context$4$0.next) {
-						case 0:
-							_Set$_args = Set._args(this, other);
-							_Set$_args2 = _slicedToArray(_Set$_args, 2);
-							smallest = _Set$_args2[0];
-							largest = _Set$_args2[1];
-							return context$4$0.delegateYield(largest, "t0", 5);
-
-						case 5:
-							_iteratorNormalCompletion21 = true;
-							_didIteratorError21 = false;
-							_iteratorError21 = undefined;
-							context$4$0.prev = 8;
-							_iterator21 = smallest[Symbol.iterator]();
-
-						case 10:
-							if (_iteratorNormalCompletion21 = (_step21 = _iterator21.next()).done) {
-								context$4$0.next = 18;
-								break;
-							}
-
-							key = _step21.value;
-
-							if (other.contains(key)) {
-								context$4$0.next = 15;
-								break;
-							}
-
-							context$4$0.next = 15;
-							return key;
-
-						case 15:
-							_iteratorNormalCompletion21 = true;
-							context$4$0.next = 10;
-							break;
-
-						case 18:
-							context$4$0.next = 24;
-							break;
-
-						case 20:
-							context$4$0.prev = 20;
-							context$4$0.t1 = context$4$0["catch"](8);
-							_didIteratorError21 = true;
-							_iteratorError21 = context$4$0.t1;
-
-						case 24:
-							context$4$0.prev = 24;
-							context$4$0.prev = 25;
-
-							if (!_iteratorNormalCompletion21 && _iterator21["return"]) {
-								_iterator21["return"]();
-							}
-
-						case 27:
-							context$4$0.prev = 27;
-
-							if (!_didIteratorError21) {
-								context$4$0.next = 30;
-								break;
-							}
-
-							throw _iteratorError21;
-
-						case 30:
-							return context$4$0.finish(27);
-
-						case 31:
-							return context$4$0.finish(24);
-
-						case 32:
-						case "end":
-							return context$4$0.stop();
-					}
-				}, callee$3$0, this, [[8, 20, 24, 32], [25,, 27, 31]]);
-			});
 
 			Set.prototype.union = function (other) {
 
@@ -1654,12 +1620,12 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 			};
 
 			Set.prototype.symmetric_difference = function (other) {
-				var _Set$_args3 = Set._args(this, other);
+				var _Set$_args = Set._args(this, other);
 
-				var _Set$_args32 = _slicedToArray(_Set$_args3, 2);
+				var _Set$_args2 = _slicedToArray(_Set$_args, 2);
 
-				var smallest = _Set$_args32[0];
-				var largest = _Set$_args32[1];
+				var smallest = _Set$_args2[0];
+				var largest = _Set$_args2[1];
 
 				return largest.copy().symmetric_difference_update(smallest);
 			};
@@ -1851,7 +1817,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 				Dict: Dict,
 				OrderedDict: OrderedDict,
 				DefaultDict: exports._DefaultDict(Dict, Map),
-				ChainMap: exports._ChainMap(Set),
+				ChainMap: exports._ChainMap(Dict, Set),
 				Counter: exports._Counter(Map, Dict),
 				NamedTuple: NamedTuple,
 				namedtuple: exports._namedtuple(NamedTuple)

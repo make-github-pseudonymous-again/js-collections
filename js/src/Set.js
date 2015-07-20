@@ -17,8 +17,8 @@ const _Set = function ( BaseSet ) {
 
 	Set._chain = function* ( first , second ) {
 
-		yield* first ;
-		yield* second ;
+		yield* first.keys( ) ;
+		yield* second.keys( ) ;
 
 	} ;
 
@@ -84,16 +84,6 @@ const _Set = function ( BaseSet ) {
 	Set.prototype.ispropersubset = function ( other ) {
 
 		return this.issuperset( other ) && !this.issubset( other ) ;
-
-	} ;
-
-	Set.prototype._union = function* ( other ) {
-
-		const [ smallest , largest ] = Set._args( this , other ) ;
-
-		yield* largest ;
-
-		for ( let key of smallest ) if ( !other.contains( key ) ) yield key ;
 
 	} ;
 

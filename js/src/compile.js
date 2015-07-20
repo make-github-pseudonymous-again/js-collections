@@ -18,7 +18,7 @@ const compile = function ( {
 		Dict ,
 		OrderedDict ,
 		DefaultDict : exports._DefaultDict( Dict , Map ) ,
-		ChainMap : exports._ChainMap( Set ) ,
+		ChainMap : exports._ChainMap( Dict , Set ) ,
 		Counter : exports._Counter( Map , Dict ) ,
 		NamedTuple ,
 		namedtuple : exports._namedtuple( NamedTuple ) ,

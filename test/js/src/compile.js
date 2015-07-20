@@ -1,15 +1,15 @@
 
 var dll = require( "aureooms-js-dll" ) ;
 
+var mycollections = collections.compile( {
+
+	BaseSet : Set ,
+	DLL : dll.DoublyLinkedList ,
+	Map : Map
+
+} ) ;
+
 test( "compile" , function ( ) {
-
-	var mycollections = collections.compile( {
-
-		BaseSet : Set ,
-		DLL : dll.DoublyLinkedList ,
-		Map : Map
-
-	} ) ;
 
 	ok( mycollections.KeyError ) ;
 	ok( mycollections.Mapping ) ;

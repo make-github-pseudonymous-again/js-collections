@@ -13,7 +13,9 @@ const _Counter = function ( Map , Dict ) {
 
 	Counter.prototype.get = function ( key ) {
 
-		return this.getdefault( key , 0 ) ;
+		if ( this.has( key ) ) return this.container.get( key ) ;
+
+		return 0 ;
 
 	} ;
 

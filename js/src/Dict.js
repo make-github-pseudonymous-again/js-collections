@@ -47,6 +47,8 @@ const _Dict = function ( Map ) {
 
 		this.container.clear( ) ;
 
+		return this ;
+
 	} ;
 
 	Dict.prototype.copy = function ( ) {
@@ -57,7 +59,7 @@ const _Dict = function ( Map ) {
 
 	Dict.fromkeys = function ( seq , value = null ) {
 
-		return new Dict( Mapping.fromkeys( seq , value = null ) ) ;
+		return new Dict( Mapping.fromkeys( seq , value ) ) ;
 
 	} ;
 
@@ -109,7 +111,7 @@ const _Dict = function ( Map ) {
 
 	Dict.prototype.keys = function* ( ) {
 
-		for ( let key in this.container ) yield key ;
+		for ( let key of this.container.keys( ) ) yield key ;
 
 	} ;
 

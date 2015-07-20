@@ -1,17 +1,27 @@
 
-const _ChainMap = function ( Set ) {
+const _ChainMap = function ( Dict , Set ) {
 
 	const ChainMap = function ( ...maps ) {
 
 		this.maps = maps ;
 
-		if ( this.maps.length === 0 ) this.maps.push( { } ) ;
+		if ( this.maps.length === 0 ) this.maps.push( new Dict( ) ) ;
+
+	} ;
+
+	ChainMap.prototype._keys = function ( ) {
+
+		let keys = new Set( ) ;
+
+		for ( let map of this.maps ) keys.update( map.keys( ) ) ;
+
+		return keys ;
 
 	} ;
 
 	ChainMap.prototype.len = function ( ) {
 
-		return this.maps.length ;
+		return this._keys( ).len( ) ;
 
 	} ;
 
@@ -23,17 +33,21 @@ const _ChainMap = function ( Set ) {
 
 		}
 
+		throw new KeyError( ) ;
+
 	} ;
 
-	ChainMap.prototype.set = function ( key ) {
+	ChainMap.prototype.set = function ( key , value ) {
 
-		return this.maps[0].set( key ) ;
+		return this.maps[0].set( key , value ) ;
 
 	} ;
 
 	ChainMap.prototype.delete = function ( key ) {
 
-		return this.maps[0].delete( key ) ;
+		this.maps[0].delete( key ) ;
+
+		return this ;
 
 	} ;
 
@@ -51,7 +65,9 @@ const _ChainMap = function ( Set ) {
 
 	ChainMap.prototype.clear = function ( ) {
 
-		this.container.clear( ) ;
+		this.maps[0].clear( ) ;
+
+		return this ;
 
 	} ;
 
@@ -63,23 +79,13 @@ const _ChainMap = function ( Set ) {
 
 	ChainMap.fromkeys = function ( seq , value = null ) {
 
-		for ( let key of seq ) this.set( key , value ) ;
+		return new ChainMap( Dict.fromkeys( seq , value ) ) ;
 
 	} ;
 
 	ChainMap.prototype.getdefault = function ( key , dflt = null ) {
 
 		if ( this.has( key ) ) return this.get( key ) ;
-
-		return dflt ;
-
-	} ;
-
-	ChainMap.prototype.setdefault = function ( key , dflt = null ) {
-
-		if ( this.has( key ) ) return this.get( key ) ;
-
-		this.set( key , dflt ) ;
 
 		return dflt ;
 
@@ -127,7 +133,7 @@ const _ChainMap = function ( Set ) {
 
 	ChainMap.prototype.items = function* ( ) {
 
-		yield* this.container ;
+		yield* this._keys( ) ;
 
 	} ;
 
@@ -137,14 +143,9 @@ const _ChainMap = function ( Set ) {
 
 	} ;
 
-	ChainMap.prototype[Symbol.iterator] = ChainMap.prototype.items ;
-
-	return ChainMap ;
-
-
 	ChainMap.prototype.new_child = function ( map = null ) {
 
-		if ( map === null ) map = { } ;
+		if ( map === null ) map = new Dict( ) ;
 
 		return new ChainMap( map , ...this.maps ) ;
 
@@ -157,6 +158,8 @@ const _ChainMap = function ( Set ) {
 		return new ChainMap( ...parents ) ;
 
 	} ;
+
+	ChainMap.prototype[Symbol.iterator] = ChainMap.prototype.items ;
 
 	return ChainMap ;
 
