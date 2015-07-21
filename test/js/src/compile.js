@@ -5,7 +5,7 @@ var mycollections = collections.compile( {
 
 	BaseSet : Set ,
 	DLL : dll.DoublyLinkedList ,
-	Map : Map
+	BaseMap : Map
 
 } ) ;
 

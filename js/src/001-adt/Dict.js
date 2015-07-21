@@ -29,9 +29,15 @@ const _Dict = function ( Map ) {
 
 	} ;
 
+	Dict.prototype.__missing__ = function ( key ) {
+
+		throw new KeyError( key ) ;
+
+	} ;
+
 	Dict.prototype.get = function ( key ) {
 
-		if ( !this.container.has( key ) ) throw new KeyError( ) ;
+		if ( !this.container.has( key ) ) return this.__missing__( key ) ;
 
 		return this.container.get( key ) ;
 
