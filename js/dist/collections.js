@@ -308,7 +308,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 				definition += "\n} ;\n\n";
 
-				definition += typename + ".prototype = [ ] ;\n\n";
+				definition += typename + ".prototype = new NamedTuple( ) ;\n\n";
 				definition += typename + "._make = function ( iterable ) {\n";
 				definition += "\t" + "return NamedTuple.make( " + typename + " , iterable ) ;\n";
 				definition += "} ;\n\n";
@@ -944,7 +944,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 				if (this.default_factory === null) throw new KeyError(key);
 
-				return default_factory();
+				return this.default_factory();
 			};
 
 			return DefaultDict;

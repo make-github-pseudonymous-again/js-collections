@@ -21,7 +21,7 @@ const _DefaultDict = function ( Dict , Map ) {
 
 		if ( this.default_factory === null ) throw new KeyError( key ) ;
 
-		return default_factory( ) ;
+		return this.default_factory( ) ;
 
 	} ;
 

@@ -13,16 +13,17 @@ var mycollections = collections.compile( {
 
 } ) ;
 
-var Counter = mycollections.Counter ;
+var counter = mycollections.counter ;
+var NotImplementedError = mycollections.NotImplementedError ;
 
-test( "Counter" , function ( ) {
+test( "counter" , function ( ) {
 
 	var c ;
 
-	c = new Counter( ) ;
+	c = counter( ) ;
 	deepEqual( c.len( ) , 0 , "can build an empty counter" ) ;
 
-	c = new Counter( "gallahad" ) ;
+	c = counter( "gallahad" ) ;
 	deepEqual( c.get( "a" ) , 3 , "can build a counter from a string" ) ;
 
 //	c.add( { "l" : 2 , "x" : 1 } ) ;
@@ -40,6 +41,12 @@ test( "Counter" , function ( ) {
 	c.subtract( [ [ "x" , 1 ] ] ) ;
 	deepEqual( c.get( "x" ) , 0 , "can subtract a mapping" ) ;
 
+	c.decrement( "x" ) ;
+	deepEqual( c.get( "x" ) , -1 , "decrement" ) ;
+
+	c.increment( "x" ) ;
+	deepEqual( c.get( "x" ) , 0 , "increment" ) ;
+
 	c.set( "w" , -1 ) ;
 
 	deepEqual(
@@ -48,8 +55,10 @@ test( "Counter" , function ( ) {
 		"elements"
 	) ;
 
-	c = new Counter( [ "eggs" , "ham" ] ) ;
+	c = counter( [ "eggs" , "ham" ] ) ;
 	deepEqual( c.get( "bacon" ) , 0 , "count of a missing element is zero" ) ;
 
+	raises( counter.fromkeys.bind( null , "abc" ) , NotImplementedError , "fromkeys default" ) ;
+	raises( counter.fromkeys.bind( null , "abc" , 1 ) , NotImplementedError , "fromkeys" ) ;
 
 } ) ;

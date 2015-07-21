@@ -13,17 +13,17 @@ var mycollections = collections.compile( {
 } ) ;
 
 var KeyError = mycollections.KeyError ;
-var Dict = mycollections.Dict ;
+var dict = mycollections.dict ;
 
-[ mycollections.OrderedDict ].forEach( function ( OrderedDict ) {
+[ mycollections.ordereddict ].forEach( function ( ordereddict ) {
 
-test( OrderedDict.name , function ( ) {
+test( ordereddict.name , function ( ) {
 
-	deepEqual( list( OrderedDict.fromkeys( "cab" ).keys( ) ) , [ "c" , "a" , "b" ] , "fromkeys" ) ;
+	deepEqual( list( ordereddict.fromkeys( "cab" ).keys( ) ) , [ "c" , "a" , "b" ] , "fromkeys" ) ;
 
-	deepEqual( list( new OrderedDict( [ "c" , "a" , "b" ] ).keys( ) ) , [ "c" , "a" , "b" ] , "mapping" ) ;
+	deepEqual( list( ordereddict( [ "c" , "a" , "b" ] ).keys( ) ) , [ "c" , "a" , "b" ] , "mapping" ) ;
 
-	var d = new OrderedDict( ) ;
+	var d = ordereddict( ) ;
 
 	d.clear( ).set( "x" , 25 ).set( "y" , -2 ).set( "z" , -3 ).set( "x" , -1 ) ;
 
@@ -65,21 +65,21 @@ test( OrderedDict.name , function ( ) {
 
 	ok( d.clear( ).isequal( d ) , "equal self" ) ;
 
-	ok( d.clear( ).isequal( new OrderedDict( ) ) , "equal empty" ) ;
+	ok( d.clear( ).isequal( ordereddict( ) ) , "equal empty" ) ;
 
-	ok( !d.clear( ).isequal( new Dict( ) ) , "not equal type" ) ;
+	ok( !d.clear( ).isequal( dict( ) ) , "not equal type" ) ;
 
 	d.clear( ).set( "x" , 0 ).set( "y" , 1 ) ;
 
-	ok( d.isequal( new OrderedDict( [ [ "x" , 0 ] , [ "y" , 1 ] ] ) ) , "equal" ) ;
+	ok( d.isequal( ordereddict( [ [ "x" , 0 ] , [ "y" , 1 ] ] ) ) , "equal" ) ;
 
-	ok( !d.isequal( new OrderedDict( [ [ "x" , 33 ] , [ "y" , 1 ] ] ) ) , "not equal value" ) ;
+	ok( !d.isequal( ordereddict( [ [ "x" , 33 ] , [ "y" , 1 ] ] ) ) , "not equal value" ) ;
 
-	ok( !d.isequal( new OrderedDict( [ [ "z" , 0 ] , [ "y" , 1 ] ] ) ) , "not equal key" ) ;
+	ok( !d.isequal( ordereddict( [ [ "z" , 0 ] , [ "y" , 1 ] ] ) ) , "not equal key" ) ;
 
-	ok( !d.isequal( new OrderedDict( [ [ "y" , 1 ] ] ) ) , "not equal len" ) ;
+	ok( !d.isequal( ordereddict( [ [ "y" , 1 ] ] ) ) , "not equal len" ) ;
 
-	ok( !d.isequal( new OrderedDict( [ [ "y" , 1 ] , [ "x" , 0 ] ] ) ) , "not equal order" ) ;
+	ok( !d.isequal( ordereddict( [ [ "y" , 1 ] , [ "x" , 0 ] ] ) ) , "not equal order" ) ;
 
 } ) ;
 

@@ -13,7 +13,7 @@ var mycollections = collections.compile( {
 } ) ;
 
 var namedtuple = mycollections.namedtuple ;
-var OrderedDict = mycollections.OrderedDict ;
+var ordereddict = mycollections.ordereddict ;
 
 test( "namedtuple" , function ( ) {
 
@@ -32,7 +32,7 @@ test( "namedtuple" , function ( ) {
 
 	deepEqual( list( p ) , [ 0 , 1 ] , "list" ) ;
 
-	ok( p._asdict( ).isequal( new OrderedDict( [ [ "x" , 0 ] , [ "y" , 1 ] ] ) ) , "asdict" ) ;
+	ok( p._asdict( ).isequal( ordereddict( [ [ "x" , 0 ] , [ "y" , 1 ] ] ) ) , "asdict" ) ;
 
 	var q = p._replace( [ [ "x" , 33 ] ] ) ;
 
@@ -47,7 +47,7 @@ test( "namedtuple" , function ( ) {
 
 	deepEqual( list( q ) , [ 33 , 1 ] , "replace list" ) ;
 
-	ok( q._asdict( ).isequal( new OrderedDict( [ [ "x" , 33 ] , [ "y" , 1 ] ] ) ) , "replace asdict" ) ;
+	ok( q._asdict( ).isequal( ordereddict( [ [ "x" , 33 ] , [ "y" , 1 ] ] ) ) , "replace asdict" ) ;
 
 
 	p = Point._make( [ 0 , 1 ] ) ;
@@ -63,7 +63,7 @@ test( "namedtuple" , function ( ) {
 
 	deepEqual( list( p ) , [ 0 , 1 ] , "make list" ) ;
 
-	ok( p._asdict( ).isequal( new OrderedDict( [ [ "x" , 0 ] , [ "y" , 1 ] ] ) ) , "make asdict" ) ;
+	ok( p._asdict( ).isequal( ordereddict( [ [ "x" , 0 ] , [ "y" , 1 ] ] ) ) , "make asdict" ) ;
 
 	q = p._replace( [ [ "x" , 33 ] ] ) ;
 
@@ -78,6 +78,6 @@ test( "namedtuple" , function ( ) {
 
 	deepEqual( list( q ) , [ 33 , 1 ] , "replace make list" ) ;
 
-	ok( q._asdict( ).isequal( new OrderedDict( [ [ "x" , 33 ] , [ "y" , 1 ] ] ) ) , "replace make asdict" ) ;
+	ok( q._asdict( ).isequal( ordereddict( [ [ "x" , 33 ] , [ "y" , 1 ] ] ) ) , "replace make asdict" ) ;
 
 } ) ;

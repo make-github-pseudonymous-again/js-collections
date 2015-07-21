@@ -27,7 +27,7 @@ const _namedtuple = function ( NamedTuple ) {
 
 		definition += "\n} ;\n\n" ;
 
-		definition += typename + ".prototype = [ ] ;\n\n" ;
+		definition += typename + ".prototype = new NamedTuple( ) ;\n\n" ;
 		definition += typename + "._make = function ( iterable ) {\n" ;
 		definition += "\t" + "return NamedTuple.make( " + typename + " , iterable ) ;\n" ;
 		definition += "} ;\n\n" ;

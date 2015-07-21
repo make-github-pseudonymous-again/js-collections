@@ -16,16 +16,16 @@ var mycollections = collections.compile( {
 } ) ;
 
 var KeyError = mycollections.KeyError ;
-var Dict = mycollections.Dict ;
-var ChainMap = mycollections.ChainMap ;
+var dict = mycollections.dict ;
+var chainmap = mycollections.chainmap ;
 
-test( "ChainMap" , function ( ) {
+test( "chainmap" , function ( ) {
 
-	var A = new Dict( [ [ "x" , "A" ] ] ) ;
-	var B = new Dict( [ [ "x" , "B" ] , [ "y" , "B" ] ] ) ;
-	var C = new Dict( [ [ "x" , "C" ] , [ "y" , "C" ] , [ "z" , "C" ] ] ) ;
+	var A = dict( [ [ "x" , "A" ] ] ) ;
+	var B = dict( [ [ "x" , "B" ] , [ "y" , "B" ] ] ) ;
+	var C = dict( [ [ "x" , "C" ] , [ "y" , "C" ] , [ "z" , "C" ] ] ) ;
 
-	var M = new ChainMap( A , B , C ) ;
+	var M = chainmap( A , B , C ) ;
 
 	deepEqual( sorted( lexico , M ) , [ [ "x" , "A" ] , [ "y" , "B" ] , [ "z" , "C" ] ] , "Symbol.iterator" ) ;
 	deepEqual( sorted( lexico , M.items( ) ) , [ [ "x" , "A" ] , [ "y" , "B" ] , [ "z" , "C" ] ] , "items" ) ;
@@ -115,22 +115,22 @@ test( "ChainMap" , function ( ) {
 	raises( M.delete.bind( M , "x" ) , KeyError , "delete raises" ) ;
 	deepEqual( M.get( "x" ) , "A" , "-wx AC depth 1" ) ;
 
-	deepEqual( new ChainMap( C ).clear( ).len( ) , 0 , "clear" ) ;
+	deepEqual( chainmap( C ).clear( ).len( ) , 0 , "clear" ) ;
 	deepEqual( C.len( ) , 0 , "C is also cleared" ) ;
-	deepEqual( new ChainMap( ).len( ) , 0 , "empty ChainMap" ) ;
+	deepEqual( chainmap( ).len( ) , 0 , "empty chainmap" ) ;
 
-	deepEqual( ChainMap.fromkeys( "xyz" ).get( "y" ) , null , "fromkeys default" ) ;
-	deepEqual( ChainMap.fromkeys( "xyz" , "A" ).get( "y" ) , "A" , "fromkeys" ) ;
-	deepEqual( ChainMap.fromkeys( "x" ).popitem( ) , [ "x" , null ] , "popitem" ) ;
-	deepEqual( ChainMap.fromkeys( "x" ).pop( "x" ) , null , "pop" ) ;
-	deepEqual( ChainMap.fromkeys( "" ).pop( "x" , null ) , null , "pop" ) ;
+	deepEqual( chainmap.fromkeys( "xyz" ).get( "y" ) , null , "fromkeys default" ) ;
+	deepEqual( chainmap.fromkeys( "xyz" , "A" ).get( "y" ) , "A" , "fromkeys" ) ;
+	deepEqual( chainmap.fromkeys( "x" ).popitem( ) , [ "x" , null ] , "popitem" ) ;
+	deepEqual( chainmap.fromkeys( "x" ).pop( "x" ) , null , "pop" ) ;
+	deepEqual( chainmap.fromkeys( "" ).pop( "x" , null ) , null , "pop" ) ;
 
-	M = ChainMap.fromkeys( "x" ).new_child( ) ;
+	M = chainmap.fromkeys( "x" ).new_child( ) ;
 
 	raises( M.popitem.bind( M ) , KeyError , "popitem empty map[0]" ) ;
 	raises( M.pop.bind( M , "x" ) , KeyError , "pop empty map[0]" ) ;
 
-	deepEqual( new ChainMap( ).getdefault( "y" , "A" ) , "A" , "getdefault A" ) ;
-	deepEqual( new ChainMap( new Dict( [ [ "y" , "B" ] ] ) ).getdefault( "y" , "A" ) , "B" , "getdefault B" ) ;
+	deepEqual( chainmap( ).getdefault( "y" , "A" ) , "A" , "getdefault A" ) ;
+	deepEqual( chainmap( dict( [ [ "y" , "B" ] ] ) ).getdefault( "y" , "A" ) , "B" , "getdefault B" ) ;
 
 } ) ;
