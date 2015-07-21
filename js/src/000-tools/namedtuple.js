@@ -15,6 +15,7 @@ const _namedtuple = function ( NamedTuple ) {
 		let fieldlist = [ for ( field of fields ) '"' + field + '" ' ] ;
 
 		definition += "\t" + "this._fields = [ " + fieldlist.join( ", " ) + "] ;\n" ;
+		definition += "\t" + "this.length = " + fields.length + " ;\n" ;
 
 		for ( let i = 0 ; i < fields.length ; ++i ) {
 
@@ -37,13 +38,8 @@ const _namedtuple = function ( NamedTuple ) {
 		definition += typename + ".prototype._asdict = function ( ) {\n" ;
 		definition += "\t" + "return NamedTuple.asdict( this ) ;\n" ;
 		definition += "} ;\n\n" ;
-		definition += typename + ".prototype[Symbol.iterator] = function ( ) {\n" ;
-		definition += "\t" + "return this.slice( )[Symbol.iterator]( ) ;\n" ;
-		definition += "} ;\n\n" ;
 
 		definition += "return " + typename + " ;\n\n} )( )" ;
-
-		console.log( definition ) ;
 
 		return eval( definition ) ;
 
