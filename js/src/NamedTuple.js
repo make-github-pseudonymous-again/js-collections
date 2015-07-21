@@ -1,5 +1,5 @@
 
-const _NamedTuple = function ( OrderedDict ) {
+const _NamedTuple = function ( Dict , OrderedDict ) {
 
 	const NamedTuple = function ( ) { } ;
 
@@ -13,15 +13,15 @@ const _NamedTuple = function ( OrderedDict ) {
 
 	NamedTuple.replace = function ( Constructor , tuple , dict ) {
 
-		const values = { } ;
+		const values = new Dict( ) ;
 
 		const fields = tuple._fields ;
 
-		for ( let key of fields ) values[key] = tuple[key] ;
+		for ( let key of fields ) values.set( key , tuple[key] ) ;
 
-		for ( let [ key , value ] of dict ) values[key] = value ;
+		for ( let [ key , value ] of dict ) values.set( key , value ) ;
 
-		return new Constructor( ...[ for ( key of fields ) values[key] ] ) ;
+		return new Constructor( ...[ for ( key of fields ) values.get( key ) ] ) ;
 
 	} ;
 

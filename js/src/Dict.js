@@ -13,6 +13,22 @@ const _Dict = function ( Map ) {
 
 	} ;
 
+	Dict.prototype.isequal = function ( other ) {
+
+		if ( this.len( ) !== other.len( ) ) return false ;
+
+		for ( let [ key , value ] of other ) {
+
+			if ( !this.has( key ) ) return false ;
+
+			if ( this.get( key ) !== value ) return false ;
+
+		}
+
+		return true ;
+
+	} ;
+
 	Dict.prototype.get = function ( key ) {
 
 		if ( !this.container.has( key ) ) throw new KeyError( ) ;

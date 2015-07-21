@@ -9,7 +9,7 @@ const compile = function ( {
 	const Set = exports._Set( BaseSet ) ;
 	const Dict = exports._Dict( Map ) ;
 	const OrderedDict = exports._OrderedDict( Dict , Map , DLL ) ;
-	const NamedTuple = exports._NamedTuple( OrderedDict ) ;
+	const NamedTuple = exports._NamedTuple( Dict , OrderedDict ) ;
 
 	return {
 		KeyError ,

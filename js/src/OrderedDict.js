@@ -15,6 +15,24 @@ const _OrderedDict = function ( Dict , Map , DLL ) {
 
 	OrderedDict.prototype = new Dict( ) ;
 
+	OrderedDict.prototype.isequal = function ( other ) {
+
+		if ( ! ( other instanceof OrderedDict ) ) return false ;
+
+		if ( !Dict.prototype.isequal.call( this , other ) ) return false ;
+
+		let keys = this.keys( ) ;
+
+		for ( let key of other.keys( ) ) {
+
+			if ( keys.next( ).value !== key ) return false ;
+
+		}
+
+		return true ;
+
+	} ;
+
 	OrderedDict.prototype.set = function ( key , value ) {
 
 		if ( !this.has( key ) ) {

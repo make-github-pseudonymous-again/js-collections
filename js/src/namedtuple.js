@@ -5,26 +5,16 @@ const _namedtuple = function ( NamedTuple ) {
 
 		const fields = [ ...field_names ] ;
 
-		let definition = "( function ( ) { var " + typename + " = function (" ;
+		let definition = "( function ( ) {\n\nvar " + typename + " = function (" ;
 
-		let fieldlist = "" ;
-
-		if ( fields.length > 0 ) {
-
-			const [ first , ...others ] = fields ;
-
-			fieldlist += first ;
-
-			for ( let field of others ) fieldlist += " , " + field ;
-
-			definition += " " + fieldlist ;
-
-		}
+		definition += " " + fields.join( " , " ) ;
 
 		definition += " )" ;
 		definition += " {\n\n" ;
 
-		definition += "\t" + "this._fields = [ " + fieldlist + " ] ;\n" ;
+		let fieldlist = [ for ( field of fields ) '"' + field + '" ' ] ;
+
+		definition += "\t" + "this._fields = [ " + fieldlist.join( ", " ) + "] ;\n" ;
 
 		for ( let i = 0 ; i < fields.length ; ++i ) {
 
@@ -35,18 +25,23 @@ const _namedtuple = function ( NamedTuple ) {
 
 		}
 
-		definition += "\n};\n\n" ;
+		definition += "\n} ;\n\n" ;
 
-		definition += typename + ".prototype = new NamedTuple( ) ;\n" ;
+		definition += typename + ".prototype = [ ] ;\n\n" ;
 		definition += typename + "._make = function ( iterable ) {\n" ;
 		definition += "\t" + "return NamedTuple.make( " + typename + " , iterable ) ;\n" ;
-		definition += "} ;\n" ;
+		definition += "} ;\n\n" ;
 		definition += typename + ".prototype._replace = function ( dict ) {\n" ;
 		definition += "\t" + "return NamedTuple.replace( " + typename + " , this , dict ) ;\n" ;
-		definition += "} ;\n" ;
+		definition += "} ;\n\n" ;
 		definition += typename + ".prototype._asdict = function ( ) {\n" ;
 		definition += "\t" + "return NamedTuple.asdict( this ) ;\n" ;
-		definition += "} ;\n" ;
+		definition += "} ;\n\n" ;
+		definition += typename + ".prototype[Symbol.iterator] = function ( ) {\n" ;
+		definition += "\t" + "return this.slice( )[Symbol.iterator]( ) ;\n" ;
+		definition += "} ;\n\n" ;
+
+		definition += "return " + typename + " ;\n\n} )( )" ;
 
 		console.log( definition ) ;
 

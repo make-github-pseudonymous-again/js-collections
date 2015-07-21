@@ -13,16 +13,17 @@ var mycollections = collections.compile( {
 } ) ;
 
 var KeyError = mycollections.KeyError ;
+var Dict = mycollections.Dict ;
 
-[ mycollections.OrderedDict ].forEach( function ( Dict ) {
+[ mycollections.OrderedDict ].forEach( function ( OrderedDict ) {
 
-test( Dict.name , function ( ) {
+test( OrderedDict.name , function ( ) {
 
-	deepEqual( list( Dict.fromkeys( "cab" ).keys( ) ) , [ "c" , "a" , "b" ] , "fromkeys" ) ;
+	deepEqual( list( OrderedDict.fromkeys( "cab" ).keys( ) ) , [ "c" , "a" , "b" ] , "fromkeys" ) ;
 
-	deepEqual( list( new Dict( [ "c" , "a" , "b" ] ).keys( ) ) , [ "c" , "a" , "b" ] , "mapping" ) ;
+	deepEqual( list( new OrderedDict( [ "c" , "a" , "b" ] ).keys( ) ) , [ "c" , "a" , "b" ] , "mapping" ) ;
 
-	var d = new Dict( ) ;
+	var d = new OrderedDict( ) ;
 
 	d.clear( ).set( "x" , 25 ).set( "y" , -2 ).set( "z" , -3 ).set( "x" , -1 ) ;
 
@@ -61,6 +62,24 @@ test( Dict.name , function ( ) {
 	raises( d.clear( ).popitem.bind( d ) , KeyError , "popitem raises" ) ;
 
 	raises( d.clear( ).popitem.bind( d , false ) , KeyError , "popitem false raises" ) ;
+
+	ok( d.clear( ).isequal( d ) , "equal self" ) ;
+
+	ok( d.clear( ).isequal( new OrderedDict( ) ) , "equal empty" ) ;
+
+	ok( !d.clear( ).isequal( new Dict( ) ) , "not equal type" ) ;
+
+	d.clear( ).set( "x" , 0 ).set( "y" , 1 ) ;
+
+	ok( d.isequal( new OrderedDict( [ [ "x" , 0 ] , [ "y" , 1 ] ] ) ) , "equal" ) ;
+
+	ok( !d.isequal( new OrderedDict( [ [ "x" , 33 ] , [ "y" , 1 ] ] ) ) , "not equal value" ) ;
+
+	ok( !d.isequal( new OrderedDict( [ [ "z" , 0 ] , [ "y" , 1 ] ] ) ) , "not equal key" ) ;
+
+	ok( !d.isequal( new OrderedDict( [ [ "y" , 1 ] ] ) ) , "not equal len" ) ;
+
+	ok( !d.isequal( new OrderedDict( [ [ "y" , 1 ] , [ "x" , 0 ] ] ) ) , "not equal order" ) ;
 
 } ) ;
 
