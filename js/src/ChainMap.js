@@ -9,6 +9,40 @@ const _ChainMap = function ( Dict , Set ) {
 
 	} ;
 
+	ChainMap.prototype.__missing__ = function ( key ) {
+
+		throw new KeyError( key ) ;
+
+	} ;
+
+	ChainMap.prototype.get = function ( key ) {
+
+		for ( let map of this.maps ) {
+
+			try {
+
+				return map.get( key ) ;
+
+			}
+
+			catch ( e ) {
+
+				if ( !( e instanceof KeyError ) ) throw e ;
+
+			}
+
+		}
+
+		return this.__missing__( key ) ;
+
+	} ;
+
+	ChainMap.prototype.getdefault = function ( key , dflt = null ) {
+
+		return this.has( key ) ? this.get( key ) : dflt ;
+
+	} ;
+
 	ChainMap.prototype._keys = function ( ) {
 
 		let keys = new Set( ) ;
@@ -22,18 +56,6 @@ const _ChainMap = function ( Dict , Set ) {
 	ChainMap.prototype.len = function ( ) {
 
 		return this._keys( ).len( ) ;
-
-	} ;
-
-	ChainMap.prototype.get = function ( key ) {
-
-		for ( let map of this.maps ) {
-
-			if ( map.has( key ) ) return map.get( key ) ;
-
-		}
-
-		throw new KeyError( ) ;
 
 	} ;
 
@@ -73,21 +95,15 @@ const _ChainMap = function ( Dict , Set ) {
 
 	ChainMap.prototype.copy = function ( ) {
 
-		return new ChainMap( this.items( ) ) ;
+		const [ child , parents ] = this.maps ;
+
+		return new ChainMap( child.copy( ) , ...parents ) ;
 
 	} ;
 
 	ChainMap.fromkeys = function ( seq , value = null ) {
 
 		return new ChainMap( Dict.fromkeys( seq , value ) ) ;
-
-	} ;
-
-	ChainMap.prototype.getdefault = function ( key , dflt = null ) {
-
-		if ( this.has( key ) ) return this.get( key ) ;
-
-		return dflt ;
 
 	} ;
 

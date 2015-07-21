@@ -7,26 +7,30 @@ const _Set = function ( BaseSet ) {
 
 	} ;
 
-	Set._args = function ( first , second ) {
+	Set.wrap = function ( A ) {
 
-		if ( first.len( ) > second.len( ) ) return [ second , first ] ;
+		if ( A instanceof Set ) return A ;
 
-		return [ first , second ] ;
-
-	} ;
-
-	Set._chain = function* ( first , second ) {
-
-		yield* first.keys( ) ;
-		yield* second.keys( ) ;
+		return new Set( A ) ;
 
 	} ;
 
-	Set.inclusion = function ( A , B ) {
+	Set._operator = function ( method ) {
 
-		return A.ispropersubset( B ) ? -1 : B.ispropersubset( A ) ? 1 : 0 ;
+		return function ( ...args ) {
+
+			return method.apply( this , [ for ( arg of args ) Set.wrap( arg ) ] ) ;
+		} ;
 
 	} ;
+
+	Set._inclusion = function ( A , B ) {
+
+		return A._ispropersubset( B ) ? -1 : B._ispropersubset( A ) ? 1 : 0 ;
+
+	} ;
+
+	Set.inclusion = Set._operator( Set._inclusion ) ;
 
 	Set.prototype[Symbol.iterator] =
 	Set.prototype.keys = function* ( ) {
@@ -47,19 +51,23 @@ const _Set = function ( BaseSet ) {
 
 	} ;
 
-	Set.prototype.isdisjoint = function ( other ) {
+	Set.prototype._isdisjoint = function ( other ) {
 
-		return this._intersection( other ).next( ).done ;
-
-	} ;
-
-	Set.prototype.isequal = function ( other ) {
-
-		return this.issubset( other ) && other.issubset( this ) ;
+		return this._commonkeys( other ).next( ).done ;
 
 	} ;
 
-	Set.prototype.issubset = function ( other ) {
+	Set.prototype.isdisjoint = Set._operator( Set.prototype._isdisjoint ) ;
+
+	Set.prototype._isequal = function ( other ) {
+
+		return this._issubset( other ) && other._issubset( this ) ;
+
+	} ;
+
+	Set.prototype.isequal = Set._operator( Set.prototype._isequal ) ;
+
+	Set.prototype._issubset = function ( other ) {
 
 		if ( this.len( ) > other.len( ) ) return false ;
 
@@ -69,56 +77,75 @@ const _Set = function ( BaseSet ) {
 
 	} ;
 
-	Set.prototype.ispropersubset = function ( other ) {
+	Set.prototype.issubset = Set._operator( Set.prototype._issubset ) ;
 
-		return this.issubset( other ) && !this.issuperset( other ) ;
+	Set.prototype._ispropersubset = function ( other ) {
 
-	} ;
-
-	Set.prototype.issuperset = function ( other ) {
-
-		return other.issubset( this ) ;
+		return this._issubset( other ) && !this._issuperset( other ) ;
 
 	} ;
 
-	Set.prototype.ispropersuperset = function ( other ) {
+	Set.prototype.ispropersubset = Set._operator( Set.prototype._ispropersubset ) ;
 
-		return this.issuperset( other ) && !this.issubset( other ) ;
+	Set.prototype._issuperset = function ( other ) {
 
-	} ;
-
-	Set.prototype.union = function ( other ) {
-
-		return new Set( Set._chain( this , other ) ) ;
+		return other._issubset( this ) ;
 
 	} ;
 
-	Set.prototype._intersection = function* ( other ) {
+	Set.prototype.issuperset = Set._operator( Set.prototype._issuperset ) ;
 
-		const [ smallest , largest ] = Set._args( this , other ) ;
+	Set.prototype._ispropersuperset = function ( other ) {
 
-		for ( let key of smallest ) if ( largest.has( key ) ) yield key ;
+		return this._issuperset( other ) && !this._issubset( other ) ;
+
+	} ;
+
+	Set.prototype.ispropersuperset = Set._operator( Set.prototype._ispropersuperset ) ;
+
+	Set.prototype.union =
+	Set.prototype._union = function ( ...others ) {
+
+		return this.copy( )._update( ...others ) ;
+
+	} ;
+
+	Set.prototype._commonkeys = function* ( ...others ) {
+
+		keys : for ( let key of this ) {
+
+			for ( let other of others ) {
+
+				if ( !other.has( key ) ) continue keys ;
+
+			}
+
+			yield key ;
+
+		}
 
 	} ;
 
 
-	Set.prototype.intersection = function ( other ) {
+	Set.prototype._intersection = function ( ...others ) {
 
-		return new Set( this._intersection( other ) ) ;
-
-	} ;
-
-	Set.prototype.difference = function ( other ) {
-
-		return this.copy( ).difference_update( other ) ;
+		return new Set( this._commonkeys( ...others ) ) ;
 
 	} ;
 
-	Set.prototype.symmetric_difference = function ( other ) {
+	Set.prototype.intersection = Set._operator( Set.prototype._intersection ) ;
 
-		const [ smallest , largest ] = Set._args( this , other ) ;
+	Set.prototype.difference =
+	Set.prototype._difference = function ( ...others ) {
 
-		return largest.copy( ).symmetric_difference_update( smallest ) ;
+		return this.copy( )._difference_update( ...others ) ;
+
+	} ;
+
+	Set.prototype.symmetric_difference =
+	Set.prototype._symmetric_difference = function ( other ) {
+
+		return this.copy( )._symmetric_difference_update( other ) ;
 
 	} ;
 
@@ -128,33 +155,46 @@ const _Set = function ( BaseSet ) {
 
 	} ;
 
-	Set.prototype.update = function ( other ) {
+	Set.prototype.update =
+	Set.prototype._update = function ( ...others ) {
 
-		for ( let key of other ) this.add( key ) ;
+		for ( let other of others ) {
 
-		return this ;
+			for ( let key of other ) this.add( key ) ;
 
-	} ;
-
-	Set.prototype.intersection_update = function ( other ) {
-
-		if ( !( other instanceof Set ) ) other = new Set( other ) ;
-
-		for ( let key of this ) if ( !other.has( key ) ) this.discard( key ) ;
+		}
 
 		return this ;
 
 	} ;
 
-	Set.prototype.difference_update = function ( other ) {
+	Set.prototype._intersection_update = function ( ...others ) {
 
-		for ( let key of other ) this.discard( key ) ;
+		const intersection = this._intersection( ...others ) ;
+
+		this.clear( ).update( intersection ) ;
 
 		return this ;
 
 	} ;
 
-	Set.prototype.symmetric_difference_update = function ( other ) {
+	Set.prototype.intersection_update = Set._operator( Set.prototype._intersection_update ) ;
+
+	Set.prototype.difference_update =
+	Set.prototype._difference_update = function ( ...others ) {
+
+		for ( let other of others ) {
+
+			for ( let key of other ) this.discard( key ) ;
+
+		}
+
+		return this ;
+
+	} ;
+
+	Set.prototype.symmetric_difference_update =
+	Set.prototype._symmetric_difference_update = function ( other ) {
 
 		for ( let key of other ) {
 
@@ -195,11 +235,11 @@ const _Set = function ( BaseSet ) {
 
 		if ( this.len( ) === 0 ) throw new KeyError( ) ;
 
-		const value = this.keys( ).next( ).value ;
+		const key = this.keys( ).next( ).value ;
 
-		this.discard( value ) ;
+		this.discard( key ) ;
 
-		return value ;
+		return key ;
 
 	} ;
 
