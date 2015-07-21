@@ -1566,7 +1566,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 				try {
 					for (var _iterator23 = this[Symbol.iterator](), _step23; !(_iteratorNormalCompletion23 = (_step23 = _iterator23.next()).done); _iteratorNormalCompletion23 = true) {
 						var key = _step23.value;
-						if (!other.contains(key)) return false;
+						if (!other.has(key)) return false;
 					}
 				} catch (err) {
 					_didIteratorError23 = true;
@@ -1596,7 +1596,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 				return other.issubset(this);
 			};
 
-			Set.prototype.ispropersubset = function (other) {
+			Set.prototype.ispropersuperset = function (other) {
 
 				return this.issuperset(other) && !this.issubset(other);
 			};
@@ -1607,15 +1607,15 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 			};
 
 			Set.prototype._intersection = regeneratorRuntime.mark(function callee$3$0(other) {
-				var _Set_$args, _Set_$args2, smallest, largest, _iteratorNormalCompletion24, _didIteratorError24, _iteratorError24, _iterator24, _step24, key;
+				var _Set$_args, _Set$_args2, smallest, largest, _iteratorNormalCompletion24, _didIteratorError24, _iteratorError24, _iterator24, _step24, key;
 
 				return regeneratorRuntime.wrap(function callee$3$0$(context$4$0) {
 					while (1) switch (context$4$0.prev = context$4$0.next) {
 						case 0:
-							_Set_$args = Set_.args(this, other);
-							_Set_$args2 = _slicedToArray(_Set_$args, 2);
-							smallest = _Set_$args2[0];
-							largest = _Set_$args2[1];
+							_Set$_args = Set._args(this, other);
+							_Set$_args2 = _slicedToArray(_Set$_args, 2);
+							smallest = _Set$_args2[0];
+							largest = _Set$_args2[1];
 							_iteratorNormalCompletion24 = true;
 							_didIteratorError24 = false;
 							_iteratorError24 = undefined;
@@ -1630,7 +1630,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 							key = _step24.value;
 
-							if (!largest.contains(key)) {
+							if (!largest.has(key)) {
 								context$4$0.next = 14;
 								break;
 							}
@@ -1695,12 +1695,12 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 			};
 
 			Set.prototype.symmetric_difference = function (other) {
-				var _Set$_args = Set._args(this, other);
+				var _Set$_args3 = Set._args(this, other);
 
-				var _Set$_args2 = _slicedToArray(_Set$_args, 2);
+				var _Set$_args32 = _slicedToArray(_Set$_args3, 2);
 
-				var smallest = _Set$_args2[0];
-				var largest = _Set$_args2[1];
+				var smallest = _Set$_args32[0];
+				var largest = _Set$_args32[1];
 
 				return largest.copy().symmetric_difference_update(smallest);
 			};
@@ -1750,7 +1750,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 				try {
 					for (var _iterator26 = this[Symbol.iterator](), _step26; !(_iteratorNormalCompletion26 = (_step26 = _iterator26.next()).done); _iteratorNormalCompletion26 = true) {
 						var key = _step26.value;
-						if (!other.contains(key)) this.discard(key);
+						if (!other.has(key)) this.discard(key);
 					}
 				} catch (err) {
 					_didIteratorError26 = true;

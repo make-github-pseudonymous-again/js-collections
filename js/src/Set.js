@@ -63,7 +63,7 @@ const _Set = function ( BaseSet ) {
 
 		if ( this.len( ) > other.len( ) ) return false ;
 
-		for ( let key of this ) if ( !other.contains( key ) ) return false ;
+		for ( let key of this ) if ( !other.has( key ) ) return false ;
 
 		return true ;
 
@@ -81,7 +81,7 @@ const _Set = function ( BaseSet ) {
 
 	} ;
 
-	Set.prototype.ispropersubset = function ( other ) {
+	Set.prototype.ispropersuperset = function ( other ) {
 
 		return this.issuperset( other ) && !this.issubset( other ) ;
 
@@ -95,9 +95,9 @@ const _Set = function ( BaseSet ) {
 
 	Set.prototype._intersection = function* ( other ) {
 
-		const [ smallest , largest ] = Set_.args( this , other ) ;
+		const [ smallest , largest ] = Set._args( this , other ) ;
 
-		for ( let key of smallest ) if ( largest.contains( key ) ) yield key ;
+		for ( let key of smallest ) if ( largest.has( key ) ) yield key ;
 
 	} ;
 
@@ -140,7 +140,7 @@ const _Set = function ( BaseSet ) {
 
 		if ( !( other instanceof Set ) ) other = new Set( other ) ;
 
-		for ( let key of this ) if ( !other.contains( key ) ) this.discard( key ) ;
+		for ( let key of this ) if ( !other.has( key ) ) this.discard( key ) ;
 
 		return this ;
 
