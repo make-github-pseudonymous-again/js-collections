@@ -7,6 +7,8 @@ const _dict = function ( Dict ) {
 
 	} ;
 
+	dict.fromkeys = Dict.fromkeys ;
+
 	return dict ;
 
 } ;

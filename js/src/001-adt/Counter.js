@@ -11,6 +11,12 @@ const _Counter = function ( Map , Dict ) {
 
 	Counter.prototype = new Dict( ) ;
 
+	Counter.fromkeys = function ( seq , value = null ) {
+
+		throw new NotImplementedError( "Counter.fromkeys() is undefined.  Use Counter(iterable) instead." ) ;
+
+	} ;
+
 	Counter.prototype.get = function ( key ) {
 
 		if ( this.has( key ) ) return this.container.get( key ) ;

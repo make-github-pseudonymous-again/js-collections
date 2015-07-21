@@ -7,6 +7,8 @@ const _chainmap = function ( ChainMap ) {
 
 	} ;
 
+	chainmap.fromkeys = ChainMap.fromkeys ;
+
 	return chainmap ;
 
 } ;

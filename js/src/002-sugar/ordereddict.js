@@ -7,6 +7,8 @@ const _ordereddict = function ( OrderedDict ) {
 
 	} ;
 
+	ordereddict.fromkeys = OrderedDict.fromkeys ;
+
 	return ordereddict ;
 
 } ;

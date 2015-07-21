@@ -7,6 +7,8 @@ const _counter = function ( Counter ) {
 
 	} ;
 
+	counter.fromkeys = Counter.fromkeys ;
+
 	return counter ;
 
 } ;

@@ -15,15 +15,6 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 	var definition = function definition(exports, undefined) {
 
 		/* js/src/000-tools */
-		/* js/src/000-tools/KeyError.js */
-
-		var KeyError = function KeyError(message) {
-
-			this.message = message;
-		};
-
-		exports.KeyError = KeyError;
-
 		/* js/src/000-tools/Mapping.js */
 
 		var Mapping = {};
@@ -240,6 +231,25 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 		};
 
 		exports._NamedTuple = _NamedTuple;
+
+		/* js/src/000-tools/error */
+		/* js/src/000-tools/error/KeyError.js */
+
+		var KeyError = function KeyError(message) {
+
+			this.message = message;
+		};
+
+		exports.KeyError = KeyError;
+
+		/* js/src/000-tools/error/NotImplementedError.js */
+
+		var NotImplementedError = function NotImplementedError(message) {
+
+			this.message = message;
+		};
+
+		exports.NotImplementedError = NotImplementedError;
 
 		/* js/src/000-tools/namedtuple.js */
 
@@ -710,6 +720,12 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 			Counter.prototype = new Dict();
 
+			Counter.fromkeys = function (seq) {
+				var value = arguments.length <= 1 || arguments[1] === undefined ? null : arguments[1];
+
+				throw new NotImplementedError("Counter.fromkeys() is undefined.  Use Counter(iterable) instead.");
+			};
+
 			Counter.prototype.get = function (key) {
 
 				if (this.has(key)) return this.container.get(key);
@@ -915,11 +931,18 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 				this.default_factory = default_factory;
 			};
 
+			DefaultDict.fromkeys = function (seq) {
+				var value = arguments.length <= 1 || arguments[1] === undefined ? null : arguments[1];
+				var default_factory = arguments.length <= 2 || arguments[2] === undefined ? null : arguments[2];
+
+				return new DefaultDict(default_factory, Mapping.fromkeys(seq, value));
+			};
+
 			DefaultDict.prototype = new Dict();
 
 			DefaultDict.prototype.__missing__ = function (key) {
 
-				if (this.default_factory !== null) throw new KeyError(key);
+				if (this.default_factory === null) throw new KeyError(key);
 
 				return default_factory();
 			};
@@ -2135,6 +2158,8 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 				return new (_bind.apply(ChainMap, [null].concat(maps)))();
 			};
 
+			chainmap.fromkeys = ChainMap.fromkeys;
+
 			return chainmap;
 		};
 
@@ -2149,6 +2174,8 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 				return new Counter(iterable);
 			};
+
+			counter.fromkeys = Counter.fromkeys;
 
 			return counter;
 		};
@@ -2166,6 +2193,8 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 				return new DefaultDict(default_factory, mapping);
 			};
 
+			defaultdict.fromkeys = DefaultDict.fromkeys;
+
 			return defaultdict;
 		};
 
@@ -2181,6 +2210,8 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 				return new Dict(mapping);
 			};
 
+			dict.fromkeys = Dict.fromkeys;
+
 			return dict;
 		};
 
@@ -2195,6 +2226,8 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 				return new OrderedDict(mapping);
 			};
+
+			ordereddict.fromkeys = OrderedDict.fromkeys;
 
 			return ordereddict;
 		};

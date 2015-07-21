@@ -7,6 +7,8 @@ const _defaultdict = function ( DefaultDict ) {
 
 	} ;
 
+	defaultdict.fromkeys = DefaultDict.fromkeys ;
+
 	return defaultdict ;
 
 } ;

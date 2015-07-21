@@ -9,11 +9,17 @@ const _DefaultDict = function ( Dict , Map ) {
 
 	} ;
 
+	DefaultDict.fromkeys = function ( seq , value = null , default_factory = null ) {
+
+		return new DefaultDict( default_factory , Mapping.fromkeys( seq , value ) ) ;
+
+	} ;
+
 	DefaultDict.prototype = new Dict( ) ;
 
 	DefaultDict.prototype.__missing__ = function ( key ) {
 
-		if ( this.default_factory !== null ) throw new KeyError( key ) ;
+		if ( this.default_factory === null ) throw new KeyError( key ) ;
 
 		return default_factory( ) ;
 
