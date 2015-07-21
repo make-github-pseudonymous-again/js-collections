@@ -15,13 +15,13 @@ var mycollections = collections.compile( {
 
 var KeyError = mycollections.KeyError ;
 
-[ mycollections.Set ].forEach( function ( Set ) {
+[ mycollections.set ].forEach( function ( set ) {
 
-test( Set.name , function ( ) {
+test( set.name , function ( ) {
 
-	deepEqual( new Set( ).len( ) , 0 , "len empty" ) ;
+	deepEqual( set( ).len( ) , 0 , "len empty" ) ;
 
-	var s = new Set( "abc" ) ;
+	var s = set( "abc" ) ;
 	ok( s.isequal( "abc" ) ) ;
 
 	deepEqual( s.len( ) , 3 , "len iterable" ) ;
@@ -87,13 +87,13 @@ test( Set.name , function ( ) {
 	deepEqual( s.ispropersuperset( "ab" ) , true , "proper superset ab") ;
 	ok( s.isequal( "abc" ) ) ;
 
-	ok( Set.inclusion( s , "abcd" ) < 0 , "Set.inclusion abcd" ) ;
+	ok( set.inclusion( s , "abcd" ) < 0 , "set.inclusion abcd" ) ;
 	ok( s.isequal( "abc" ) ) ;
 
-	ok( Set.inclusion( s , "abc" ) === 0 , "Set.inclusion abc" ) ;
+	ok( set.inclusion( s , "abc" ) === 0 , "set.inclusion abc" ) ;
 	ok( s.isequal( "abc" ) ) ;
 
-	ok( Set.inclusion( s , "ab" ) > 0 , "Set.inclusion ab" ) ;
+	ok( set.inclusion( s , "ab" ) > 0 , "set.inclusion ab" ) ;
 	ok( s.isequal( "abc" ) ) ;
 
 	ok( s.union( "de" ).isequal( "abcde" ) , "union" ) ;
@@ -132,80 +132,80 @@ test( Set.name , function ( ) {
 	ok( s.symmetric_difference( "bcd" ).isequal( "ad" ) , "symmetric_difference ad" ) ;
 	ok( s.isequal( "abc" ) ) ;
 
-	s = new Set( "abc" ) ; s.add( "x" ) ;
+	s = set( "abc" ) ; s.add( "x" ) ;
 	deepEqual( s.has( "x" ) , true , "has set" ) ;
 	ok( s.isequal( "abcx" ) ) ;
 
 	deepEqual( s.clear( ).update( "abc" ).add( "x" ).has( "x" ) , true , "chain has set" ) ;
 	ok( s.isequal( "abcx" ) ) ;
 
-	s = new Set( "abc" ) ; s.remove( "b" ) ;
+	s = set( "abc" ) ; s.remove( "b" ) ;
 	deepEqual( s.has( "b" ) , false , "has remove" ) ;
 	ok( s.isequal( "ac" ) ) ;
 
 	deepEqual( s.clear( ).update( "abc" ).remove( "b" ).has( "b" ) , false , "chain has remove" ) ;
 	ok( s.isequal( "ac" ) ) ;
 
-	s = new Set( "abc" ) ; s.update( "de" ) ;
+	s = set( "abc" ) ; s.update( "de" ) ;
 	ok( s.isequal( "abcde" ) , "update" ) ;
 	ok( s.clear( ).update( "abc" ).update( "de" ).isequal( "abcde" ) , "chain update" ) ;
 
-	s = new Set( "abc" ) ; s.update( "d" , "e" ) ;
+	s = set( "abc" ) ; s.update( "d" , "e" ) ;
 	ok( s.isequal( "abcde" ) , "update ..." ) ;
 	ok( s.clear( ).update( "abc" ).update( "d" , "e" ).isequal( "abcde" ) , "chain update ..." ) ;
 
-	s = new Set( "abc" ) ; s.intersection_update( "de" ) ;
+	s = set( "abc" ) ; s.intersection_update( "de" ) ;
 	ok( s.isequal( "" ) , "intersection update empty" ) ;
 	ok( s.clear( ).update( "abc" ).intersection_update( "de" ).isequal( "" ) , "chain intersection update empty" ) ;
 
-	s = new Set( "abc" ) ; s.intersection_update( "abc" , "de" ) ;
+	s = set( "abc" ) ; s.intersection_update( "abc" , "de" ) ;
 	ok( s.isequal( "" ) , "intersection update ... empty" ) ;
 	ok( s.clear( ).intersection_update( "abc" , "de" ).isequal( "" ) , "chain intersection update ... empty" ) ;
 
-	s = new Set( "abc" ) ; s.intersection_update( "bcd" ) ;
+	s = set( "abc" ) ; s.intersection_update( "bcd" ) ;
 	ok( s.isequal( "bc" ) , "intersection update bc" ) ;
 	ok( s.clear( ).update( "abc" ).intersection_update( "bcd" ).isequal( "bc" ) , "chain intersection update bc" ) ;
 
-	s = new Set( "abc" ) ; s.intersection_update( "abcd" ,"bcd" ) ;
+	s = set( "abc" ) ; s.intersection_update( "abcd" ,"bcd" ) ;
 	ok( s.isequal( "bc" ) , "intersection update ... bc" ) ;
 	ok( s.clear( ).update( "abc" ).intersection_update( "abcd" ,"bcd" ).isequal( "bc" ) , "chain intersection update ... bc" ) ;
-	s = new Set( "abc" ) ; s.difference_update( "de" ) ;
+	s = set( "abc" ) ; s.difference_update( "de" ) ;
 	ok( s.isequal( "abc" ) , "difference_update abc" ) ;
 	ok( s.clear( ).update( "abc" ).difference_update( "de" ).isequal( "abc" ) , "chain difference_update abc" ) ;
 
-	s = new Set( "abc" ) ; s.difference_update( "d" , "e" ) ;
+	s = set( "abc" ) ; s.difference_update( "d" , "e" ) ;
 	ok( s.isequal( "abc" ) , "difference_update ... abc" ) ;
 	ok( s.clear( ).update( "abc" ).difference_update( "d" , "e" ).isequal( "abc" ) , "chain difference_update ... abc" ) ;
 
-	s = new Set( "abc" ) ; s.difference_update( "bcd" ) ;
+	s = set( "abc" ) ; s.difference_update( "bcd" ) ;
 	ok( s.isequal( "a" ) , "difference_update a" ) ;
 	ok( s.clear( ).update( "abc" ).difference_update( "bcd" ).isequal( "a" ) , "chain difference_update a" ) ;
 
-	s = new Set( "abc" ) ; s.difference_update( "bc" , "d" ) ;
+	s = set( "abc" ) ; s.difference_update( "bc" , "d" ) ;
 	ok( s.isequal( "a" ) , "difference_update ... a" ) ;
 	ok( s.clear( ).update( "abc" ).difference_update( "bc" , "d" ).isequal( "a" ) , "chain difference_update ... a" ) ;
 
-	s = new Set( "abc" ) ; s.symmetric_difference_update( "de" ) ;
+	s = set( "abc" ) ; s.symmetric_difference_update( "de" ) ;
 	ok( s.isequal( "abcde" ) , "symmetric_difference_update abcde" ) ;
 	ok( s.clear( ).update( "abc" ).symmetric_difference_update( "de" ).isequal( "abcde" ) , "chain symmetric_difference_update abcde" ) ;
 
-	s = new Set( "abc" ) ; s.symmetric_difference_update( "bcd" ) ;
+	s = set( "abc" ) ; s.symmetric_difference_update( "bcd" ) ;
 	ok( s.isequal( "ad" ) , "symmetric_difference_update ad" ) ;
 	ok( s.clear( ).update( "abc" ).symmetric_difference_update( "bcd" ).isequal( "ad" ) , "chain symmetric_difference_update ad" ) ;
 
-	deepEqual( new Set( "a" ).pop( ) , "a" , "pop" ) ;
-	deepEqual( new Set( "a" ).pop( ) , "a" , "pop" ) ;
+	deepEqual( set( "a" ).pop( ) , "a" , "pop" ) ;
+	deepEqual( set( "a" ).pop( ) , "a" , "pop" ) ;
 
-	ok( new Set( "abc" ).remove( "b" ).isequal( "ac" ) , "remove b" ) ;
-	ok( new Set( "abc" ).remove( "b" ).isequal( "ac" ) , "remove b" ) ;
+	ok( set( "abc" ).remove( "b" ).isequal( "ac" ) , "remove b" ) ;
+	ok( set( "abc" ).remove( "b" ).isequal( "ac" ) , "remove b" ) ;
 
-	ok( new Set( "abc" ).discard( "b" ).isequal( "ac" ) , "discard b" ) ;
-	ok( new Set( "abc" ).discard( "b" ).isequal( "ac" ) , "discard b" ) ;
+	ok( set( "abc" ).discard( "b" ).isequal( "ac" ) , "discard b" ) ;
+	ok( set( "abc" ).discard( "b" ).isequal( "ac" ) , "discard b" ) ;
 
-	ok( new Set( "abc" ).discard( "d" ).isequal( "abc" ) , "discard d" ) ;
-	ok( new Set( "abc" ).discard( "d" ).isequal( "abc" ) , "discard d" ) ;
+	ok( set( "abc" ).discard( "d" ).isequal( "abc" ) , "discard d" ) ;
+	ok( set( "abc" ).discard( "d" ).isequal( "abc" ) , "discard d" ) ;
 
-	s = new Set( "abcd" ) ;
+	s = set( "abcd" ) ;
 
 	s.clear( ) ;
 	ok( s.isequal( "" ) , "clear" ) ;

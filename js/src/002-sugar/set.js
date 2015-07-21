@@ -7,6 +7,8 @@ const _set = function ( Set ) {
 
 	} ;
 
+	set.inclusion = Set.inclusion ;
+
 	return set ;
 
 } ;
