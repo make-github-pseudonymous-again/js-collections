@@ -127,24 +127,15 @@ Deque.prototype.index = function ( x , start = 0 , stop = this.len( ) ) {
 
 } ;
 
-Deque.prototype.insert = function ( i , x ) {
-
-	throw new NotImplementedError( "insert" ) ;
-
-} ;
-
 Deque.prototype.pop = function ( ) {
 
-	if ( this.empty( ) ) throw new IndexError( "pop" ) ;
-
-	return this.right.pop( ) ;
+	throw new NotImplementedError( "pop" ) ;
 
 } ;
+
 Deque.prototype.popleft = function ( ) {
 
-	if ( this.empty( ) ) throw new IndexError( "popleft" ) ;
-
-	return this.left.pop( ) ;
+	throw new NotImplementedError( "popleft" ) ;
 
 } ;
 
@@ -154,9 +145,15 @@ Deque.prototype.insert = function ( i , x ) {
 
 	this.append( x ) ;
 
-	let j = this.length - 1 ;
+	let j = this.len( ) - 1 ;
 
-	while ( i < j ) this.set( j - 1 , this.get( j ) ) ;
+	for ( ; i < j ; --j ) {
+
+		const a = this.get( j ) ;
+		this.set( j , this.get( j - 1 ) ) ;
+		this.set( j - 1 , a ) ;
+
+	}
 
 	return this ;
 
@@ -165,6 +162,8 @@ Deque.prototype.insert = function ( i , x ) {
 Deque.prototype.delete = function ( i ) {
 
 	this._checkbounds( i ) ;
+
+	const len = this.len( ) - 1 ;
 
 	for ( ; i < len ; ++i ) this.set( i , this.get( i + 1 ) ) ;
 
@@ -196,6 +195,8 @@ Deque.prototype.reverse = function ( ) {
 
 	}
 
+	return this ;
+
 } ;
 
 
@@ -209,7 +210,7 @@ Deque.prototype.rotate = function ( n ) {
 
 	else if ( n < 0 ) {
 
-		while ( n --> 0 ) this.append( this.popleft( ) ) ;
+		while ( n ++< 0 ) this.append( this.popleft( ) ) ;
 
 	}
 

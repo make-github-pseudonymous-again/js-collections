@@ -133,4 +133,16 @@ test( "chainmap" , function ( ) {
 	deepEqual( chainmap( ).getdefault( "y" , "A" ) , "A" , "getdefault A" ) ;
 	deepEqual( chainmap( dict( [ [ "y" , "B" ] ] ) ).getdefault( "y" , "A" ) , "B" , "getdefault B" ) ;
 
+	M = chainmap( {
+		get : function ( ) { throw new Error( ) ; } ,
+		pop : function ( ) { throw new Error( ) ; } ,
+		popitem : function ( ) { throw new Error( ) ; } ,
+		"delete" : function ( ) { throw new Error( ) ; }
+	} ) ;
+
+	raises( M.get.bind( M , 0 ) , Error , "get forwards" ) ;
+	raises( M.pop.bind( M ) , Error , "pop forwards" ) ;
+	raises( M.popitem.bind( M ) , Error , "popitem forwards" ) ;
+	raises( M.delete.bind( M , 0 ) , Error , "delete forwards" ) ;
+
 } ) ;

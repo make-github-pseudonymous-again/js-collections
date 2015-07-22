@@ -1171,22 +1171,14 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 			throw new ValueError("not found");
 		};
 
-		Deque.prototype.insert = function (i, x) {
-
-			throw new NotImplementedError("insert");
-		};
-
 		Deque.prototype.pop = function () {
 
-			if (this.empty()) throw new IndexError("pop");
-
-			return this.right.pop();
+			throw new NotImplementedError("pop");
 		};
+
 		Deque.prototype.popleft = function () {
 
-			if (this.empty()) throw new IndexError("popleft");
-
-			return this.left.pop();
+			throw new NotImplementedError("popleft");
 		};
 
 		Deque.prototype.insert = function (i, x) {
@@ -1195,9 +1187,14 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 			this.append(x);
 
-			var j = this.length - 1;
+			var j = this.len() - 1;
 
-			while (i < j) this.set(j - 1, this.get(j));
+			for (; i < j; --j) {
+
+				var a = this.get(j);
+				this.set(j, this.get(j - 1));
+				this.set(j - 1, a);
+			}
 
 			return this;
 		};
@@ -1205,6 +1202,8 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 		Deque.prototype["delete"] = function (i) {
 
 			this._checkbounds(i);
+
+			var len = this.len() - 1;
 
 			for (; i < len; ++i) this.set(i, this.get(i + 1));
 
@@ -1231,6 +1230,8 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 				this.set(i, b);
 				this.set(j, a);
 			}
+
+			return this;
 		};
 
 		Deque.prototype.rotate = function (n) {
@@ -1240,7 +1241,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 				while (n-- > 0) this.appendleft(this.pop());
 			} else if (n < 0) {
 
-				while (n-- > 0) this.append(this.popleft());
+				while (n++ < 0) this.append(this.popleft());
 			}
 
 			return this;
