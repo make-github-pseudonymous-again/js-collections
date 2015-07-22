@@ -148,7 +148,7 @@ Deque.prototype.popleft = function ( ) {
 
 } ;
 
-BoundedDeque.prototype.insert = function ( i , x ) {
+Deque.prototype.insert = function ( i , x ) {
 
 	this._checkbounds( i ) ;
 
@@ -162,7 +162,7 @@ BoundedDeque.prototype.insert = function ( i , x ) {
 
 } ;
 
-BoundedDeque.prototype.delete = function ( i ) {
+Deque.prototype.delete = function ( i ) {
 
 	this._checkbounds( i ) ;
 
@@ -185,7 +185,7 @@ Deque.prototype.remove = function ( value ) {
 
 } ;
 
-BoundedDeque.prototype.reverse = function ( ) {
+Deque.prototype.reverse = function ( ) {
 
 	for ( let i = 0 , j = this.len( ) ; i <-- j ; ++i ) {
 
