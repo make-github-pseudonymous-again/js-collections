@@ -1,5 +1,6 @@
 
 var dll = require( "aureooms-js-dll" ) ;
+var number = require( "aureooms-js-number" ) ;
 var compare = require( "aureooms-js-compare" ) ;
 var itertools = require( "aureooms-js-itertools" ) ;
 var functools = require( "aureooms-js-functools" ) ;
@@ -22,7 +23,7 @@ var KeyError = mycollections.KeyError ;
 
 var defaultdict = mycollections.defaultdict ;
 
-var default_factory = function ( ) { return 0 ; } ;
+var default_factory = number.$0 ;
 
 [ defaultdict ].forEach( function ( defaultdict ) {
 

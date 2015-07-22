@@ -30,7 +30,8 @@ const compile = function ( {
 		Counter ,
 		counter : exports._counter( Counter ) ,
 		NamedTuple ,
-		namedtuple
+		namedtuple ,
+		deque : exports._deque( UnboundedDeque , BoundedDeque , EmptyDeque )
 	} ;
 
 } ;
