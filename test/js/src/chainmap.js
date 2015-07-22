@@ -130,6 +130,7 @@ test( "chainmap" , function ( ) {
 	raises( M.popitem.bind( M ) , KeyError , "popitem empty map[0]" ) ;
 	raises( M.pop.bind( M , "x" ) , KeyError , "pop empty map[0]" ) ;
 
+	deepEqual( chainmap( ).getdefault( "y" ) , null , "getdefault null" ) ;
 	deepEqual( chainmap( ).getdefault( "y" , "A" ) , "A" , "getdefault A" ) ;
 	deepEqual( chainmap( dict( [ [ "y" , "B" ] ] ) ).getdefault( "y" , "A" ) , "B" , "getdefault B" ) ;
 

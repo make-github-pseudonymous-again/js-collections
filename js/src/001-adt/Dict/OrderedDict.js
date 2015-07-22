@@ -1,7 +1,7 @@
 
 const _OrderedDict = function ( Dict , Map , DLL ) {
 
-	const OrderedDict = function ( mapping = null ) {
+	const OrderedDict = function ( mapping ) {
 
 		this.container = new Map( ) ;
 

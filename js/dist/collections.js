@@ -19,9 +19,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 		var Mapping = {};
 
-		Mapping.fromkeys = regeneratorRuntime.mark(function callee$2$0(seq) {
-			var value = arguments.length <= 1 || arguments[1] === undefined ? null : arguments[1];
-
+		Mapping.fromkeys = regeneratorRuntime.mark(function callee$2$0(seq, value) {
 			var _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, key;
 
 			return regeneratorRuntime.wrap(function callee$2$0$(context$3$0) {
@@ -728,8 +726,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 		var _Counter = function _Counter(Map, Dict) {
 
-			var Counter = function Counter() {
-				var iterable = arguments.length <= 0 || arguments[0] === undefined ? null : arguments[0];
+			var Counter = function Counter(iterable) {
 
 				this.container = new Map();
 
@@ -973,9 +970,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 		Deque.prototype.clear = function () {
 
-			while (!this.empty()) this.pop();
-
-			return this;
+			throw new NotImplementedError("clear");
 		};
 
 		Deque.prototype.copy = function () {
@@ -1106,9 +1101,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 			return this;
 		};
 
-		Deque.prototype._range = regeneratorRuntime.mark(function callee$2$0() {
-			var start = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
-			var stop = arguments.length <= 1 || arguments[1] === undefined ? this.len() : arguments[1];
+		Deque.prototype._range = regeneratorRuntime.mark(function callee$2$0(start, stop) {
 			var i;
 			return regeneratorRuntime.wrap(function callee$2$0$(context$3$0) {
 				while (1) switch (context$3$0.prev = context$3$0.next) {
@@ -1774,9 +1767,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 		var _DefaultDict = function _DefaultDict(Dict, Map) {
 
-			var DefaultDict = function DefaultDict() {
-				var default_factory = arguments.length <= 0 || arguments[0] === undefined ? null : arguments[0];
-				var mapping = arguments.length <= 1 || arguments[1] === undefined ? null : arguments[1];
+			var DefaultDict = function DefaultDict(default_factory, mapping) {
 
 				this.container = new Map(mapping);
 
@@ -2141,8 +2132,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 		var _OrderedDict = function _OrderedDict(Dict, Map, DLL) {
 
-			var OrderedDict = function OrderedDict() {
-				var mapping = arguments.length <= 0 || arguments[0] === undefined ? null : arguments[0];
+			var OrderedDict = function OrderedDict(mapping) {
 
 				this.container = new Map();
 

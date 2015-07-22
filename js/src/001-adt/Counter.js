@@ -1,7 +1,7 @@
 
 const _Counter = function ( Map , Dict ) {
 
-	const Counter = function ( iterable = null ) {
+	const Counter = function ( iterable ) {
 
 		this.container = new Map( ) ;
 

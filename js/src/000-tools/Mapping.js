@@ -1,7 +1,7 @@
 
 const Mapping = { } ;
 
-Mapping.fromkeys = function* ( seq , value = null ) {
+Mapping.fromkeys = function* ( seq , value ) {
 
 	for ( let key of seq ) yield [ key , value ] ;
 

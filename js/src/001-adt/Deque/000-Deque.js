@@ -39,9 +39,7 @@ Deque.prototype.appendleft = function ( x ) {
 
 Deque.prototype.clear = function ( ) {
 
-	while ( !this.empty( ) ) this.pop( ) ;
-
-	return this ;
+	throw new NotImplementedError( "clear" ) ;
 
 } ;
 
@@ -109,7 +107,7 @@ Deque.prototype.set = function ( i , value ) {
 
 } ;
 
-Deque.prototype._range = function* ( start = 0 , stop = this.len( ) ) {
+Deque.prototype._range = function* ( start , stop ) {
 
 	for ( let i = start ; i < stop ; ++i ) yield [ i , this.get( i ) ] ;
 
