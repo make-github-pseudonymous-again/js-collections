@@ -3,7 +3,7 @@ const UnboundedDeque = function ( iterable ) {
 
 	this.growth = 2 ;
 
-	this.minsize = 16 ;
+	this.minsize = 10 ;
 
 	this.currentsize= this.minsize ;
 
@@ -118,6 +118,8 @@ UnboundedDeque.prototype.clear = function ( ) {
 	this.center = 0 ;
 
 	this.length = 0 ;
+
+	return this ;
 
 } ;
 

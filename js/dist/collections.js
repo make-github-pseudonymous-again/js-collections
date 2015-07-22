@@ -943,7 +943,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 		Deque.prototype.len = function () {
 
-			throw NotImplementedError("len");
+			throw new NotImplementedError("len");
 		};
 
 		Deque.prototype.empty = function () {
@@ -958,17 +958,17 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 		Deque.prototype.values = function () {
 
-			throw NotImplementedError("values");
+			throw new NotImplementedError("values");
 		};
 
 		Deque.prototype.append = function (x) {
 
-			throw NotImplementedError("append");
+			throw new NotImplementedError("append");
 		};
 
 		Deque.prototype.appendleft = function (x) {
 
-			throw NotImplementedError("appendleft");
+			throw new NotImplementedError("appendleft");
 		};
 
 		Deque.prototype.clear = function () {
@@ -980,7 +980,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 		Deque.prototype.copy = function () {
 
-			throw NotImplementedError("copy");
+			throw new NotImplementedError("copy");
 		};
 
 		Deque.prototype.count = function (x) {
@@ -1079,7 +1079,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 		Deque.prototype._where = function (i) {
 
-			throw NotImplementedError("_where");
+			throw new NotImplementedError("_where");
 		};
 
 		Deque.prototype.get = function (i) {
@@ -1173,7 +1173,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 		Deque.prototype.insert = function (i, x) {
 
-			throw NotImplementedError("insert");
+			throw new NotImplementedError("insert");
 		};
 
 		Deque.prototype.pop = function () {
@@ -1355,6 +1355,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 		BoundedDeque.prototype.clear = function () {
 
 			this.center = 0;
+
 			this.length = 0;
 
 			this.container = new Array(this.maxlen);
@@ -1464,16 +1465,6 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 			throw new IndexError("pop / popleft");
 		};
 
-		EmptyDeque.prototype.get = function (i) {
-
-			throw new IndexError(i);
-		};
-
-		EmptyDeque.prototype.set = function (i, value) {
-
-			throw new IndexError(i);
-		};
-
 		exports.EmptyDeque = EmptyDeque;
 
 		/* js/src/001-adt/Deque/SingleElementDeque.js */
@@ -1573,7 +1564,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 			this.growth = 2;
 
-			this.minsize = 16;
+			this.minsize = 10;
 
 			this.currentsize = this.minsize;
 
@@ -1720,6 +1711,8 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 			this.center = 0;
 
 			this.length = 0;
+
+			return this;
 		};
 
 		UnboundedDeque.prototype.copy = function () {
@@ -3060,7 +3053,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 		/* js/src/002-sugar/deque.js */
 
-		var _deque = function _deque(UnboundedDeque, BoundedDeque, EmptyDeque) {
+		var _deque = function _deque(UnboundedDeque, BoundedDeque, SingleElementDeque, EmptyDeque) {
 
 			var deque = function deque() {
 				var iterable = arguments.length <= 0 || arguments[0] === undefined ? null : arguments[0];
@@ -3152,7 +3145,11 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 			var namedtuple = exports._namedtuple(NamedTuple);
 
 			return {
+				ValueError: ValueError,
+				IndexError: IndexError,
+				TypeError: exports.TypeError,
 				KeyError: KeyError,
+				NotImplementedError: NotImplementedError,
 				Mapping: Mapping,
 				Set: Set,
 				set: exports._set(Set),
@@ -3168,7 +3165,8 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 				counter: exports._counter(Counter),
 				NamedTuple: NamedTuple,
 				namedtuple: namedtuple,
-				deque: exports._deque(UnboundedDeque, BoundedDeque, EmptyDeque)
+				deque: exports._deque(UnboundedDeque, BoundedDeque, SingleElementDeque, EmptyDeque),
+				Deque: Deque, UnboundedDeque: UnboundedDeque, BoundedDeque: BoundedDeque, SingleElementDeque: SingleElementDeque, EmptyDeque: EmptyDeque
 			};
 		};
 

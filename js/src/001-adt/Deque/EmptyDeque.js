@@ -56,16 +56,4 @@ EmptyDeque.prototype.popleft = function ( ) {
 
 } ;
 
-EmptyDeque.prototype.get = function ( i ) {
-
-	throw new IndexError( i ) ;
-
-} ;
-
-EmptyDeque.prototype.set = function ( i , value ) {
-
-	throw new IndexError( i ) ;
-
-} ;
-
 exports.EmptyDeque = EmptyDeque ;

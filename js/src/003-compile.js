@@ -15,7 +15,11 @@ const compile = function ( {
 	const namedtuple = exports._namedtuple( NamedTuple ) ;
 
 	return {
+		ValueError ,
+		IndexError ,
+		TypeError : exports.TypeError ,
 		KeyError ,
+		NotImplementedError ,
 		Mapping ,
 		Set ,
 		set : exports._set( Set ) ,
@@ -31,7 +35,8 @@ const compile = function ( {
 		counter : exports._counter( Counter ) ,
 		NamedTuple ,
 		namedtuple ,
-		deque : exports._deque( UnboundedDeque , BoundedDeque , EmptyDeque )
+		deque : exports._deque( UnboundedDeque , BoundedDeque , SingleElementDeque , EmptyDeque ) ,
+		Deque , UnboundedDeque , BoundedDeque , SingleElementDeque , EmptyDeque
 	} ;
 
 } ;

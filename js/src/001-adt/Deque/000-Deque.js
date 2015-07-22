@@ -3,7 +3,7 @@ const Deque = function ( ) { } ;
 
 Deque.prototype.len = function ( ) {
 
-	throw NotImplementedError( "len" ) ;
+	throw new NotImplementedError( "len" ) ;
 
 } ;
 
@@ -21,19 +21,19 @@ Deque.prototype[Symbol.iterator] = function ( ) {
 
 Deque.prototype.values = function ( ) {
 
-	throw NotImplementedError( "values" ) ;
+	throw new NotImplementedError( "values" ) ;
 
 } ;
 
 Deque.prototype.append = function ( x ) {
 
-	throw NotImplementedError( "append" ) ;
+	throw new NotImplementedError( "append" ) ;
 
 } ;
 
 Deque.prototype.appendleft = function ( x ) {
 
-	throw NotImplementedError( "appendleft" ) ;
+	throw new NotImplementedError( "appendleft" ) ;
 
 } ;
 
@@ -47,7 +47,7 @@ Deque.prototype.clear = function ( ) {
 
 Deque.prototype.copy = function ( ) {
 
-	throw NotImplementedError( "copy" ) ;
+	throw new NotImplementedError( "copy" ) ;
 
 } ;
 
@@ -87,7 +87,7 @@ Deque.prototype._checkbounds = function ( i ) {
 
 Deque.prototype._where = function ( i ) {
 
-	throw NotImplementedError( "_where" ) ;
+	throw new NotImplementedError( "_where" ) ;
 
 } ;
 
@@ -129,7 +129,7 @@ Deque.prototype.index = function ( x , start = 0 , stop = this.len( ) ) {
 
 Deque.prototype.insert = function ( i , x ) {
 
-	throw NotImplementedError( "insert" ) ;
+	throw new NotImplementedError( "insert" ) ;
 
 } ;
 

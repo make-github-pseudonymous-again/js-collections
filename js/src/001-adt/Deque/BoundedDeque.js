@@ -75,6 +75,7 @@ BoundedDeque.prototype.appendleft = function ( x ) {
 BoundedDeque.prototype.clear = function ( ) {
 
 	this.center = 0 ;
+
 	this.length = 0 ;
 
 	this.container = new Array( this.maxlen ) ;

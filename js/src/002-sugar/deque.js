@@ -1,5 +1,5 @@
 
-const _deque = function ( UnboundedDeque , BoundedDeque , EmptyDeque ) {
+const _deque = function ( UnboundedDeque , BoundedDeque , SingleElementDeque , EmptyDeque ) {
 
 	const deque = function ( iterable = null , maxlen = null ) {
 
