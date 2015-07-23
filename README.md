@@ -1,7 +1,11 @@
 [js-collections](http://aureooms.github.io/js-collections)
 ==
 
-Collections code bricks for JavaScript
+Collections code bricks for JavaScript.
+
+```js
+let { set , dict , deque , counter , chainmap } = collections ;
+```
 
 [![NPM license](http://img.shields.io/npm/l/aureooms-js-collections.svg?style=flat)](https://raw.githubusercontent.com/aureooms/js-collections/master/LICENSE)
 [![NPM version](http://img.shields.io/npm/v/aureooms-js-collections.svg?style=flat)](https://www.npmjs.org/package/aureooms-js-collections)
