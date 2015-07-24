@@ -1,10 +1,24 @@
 [js-collections](http://aureooms.github.io/js-collections)
 ==
 
-Collections code bricks for JavaScript.
+Collections code bricks for JavaScript. Parent is
+[js-data-structures](https://github.com/aureooms/js-data-structures).
+
+JavaScript version of
+[Python's collections library](https://docs.python.org/3.6/library/collections.html)
+together with
+[Python's heapq library](https://docs.python.org/3.6/library/heapq.html)
+and
+[Python's bisect library](https://docs.python.org/3.6/library/bisect.html).
 
 ```js
-let { set , dict , deque , counter , chainmap } = collections ;
+let {
+	list , heapq , bisect ,
+	namedtuple ,
+	deque ,
+	set ,
+	dict , defaultdict , ordereddict , counter , chainmap
+} = collections ;
 ```
 
 [![NPM license](http://img.shields.io/npm/l/aureooms-js-collections.svg?style=flat)](https://raw.githubusercontent.com/aureooms/js-collections/master/LICENSE)
