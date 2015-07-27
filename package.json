@@ -28,6 +28,7 @@
   "devDependencies": {
     "aureooms-js-compare": "^1.4.4",
     "aureooms-js-dll": "^6.0.9",
+    "aureooms-js-functools": "^2.0.3",
     "aureooms-js-itertools": "^1.1.2",
     "aureooms-js-number": "^2.1.0",
     "aureooms-node-package": "^4.2.5"

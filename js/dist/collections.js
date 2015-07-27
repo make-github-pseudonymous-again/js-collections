@@ -10,7 +10,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 (function () {
 
-	"use strict";
+	'use strict';
 
 	var definition = function definition(exports, undefined) {
 
@@ -296,7 +296,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 						for (var _iterator6 = fields[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
 							var field = _step6.value;
 
-							_fieldlist.push("\"" + field + "\" ");
+							_fieldlist.push('"' + field + '" ');
 						}
 					} catch (err) {
 						_didIteratorError6 = true;
@@ -2624,15 +2624,15 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 				var _iteratorNormalCompletion30,
 				    _didIteratorError30,
 				    _iteratorError30,
+				    _len3,
+				    others,
+				    _key3,
 				    _iterator30,
 				    _step30,
 				    key,
 				    _iteratorNormalCompletion31,
 				    _didIteratorError31,
 				    _iteratorError31,
-				    _len3,
-				    others,
-				    _key3,
 				    _iterator31,
 				    _step31,
 				    other,
@@ -2645,9 +2645,14 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 							_didIteratorError30 = false;
 							_iteratorError30 = undefined;
 							context$4$0.prev = 3;
+
+							for (_len3 = args$4$0.length, others = Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+								others[_key3] = args$4$0[_key3];
+							}
+
 							_iterator30 = this[Symbol.iterator]();
 
-						case 5:
+						case 6:
 							if (_iteratorNormalCompletion30 = (_step30 = _iterator30.next()).done) {
 								context$4$0.next = 39;
 								break;
@@ -2657,12 +2662,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 							_iteratorNormalCompletion31 = true;
 							_didIteratorError31 = false;
 							_iteratorError31 = undefined;
-							context$4$0.prev = 10;
-
-							for (_len3 = args$4$0.length, others = Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
-								others[_key3] = args$4$0[_key3];
-							}
-
+							context$4$0.prev = 11;
 							_iterator31 = others[Symbol.iterator]();
 
 						case 13:
@@ -2691,7 +2691,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 						case 22:
 							context$4$0.prev = 22;
-							context$4$0.t0 = context$4$0["catch"](10);
+							context$4$0.t0 = context$4$0["catch"](11);
 							_didIteratorError31 = true;
 							_iteratorError31 = context$4$0.t0;
 
@@ -2725,7 +2725,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 						case 36:
 							_iteratorNormalCompletion30 = true;
-							context$4$0.next = 5;
+							context$4$0.next = 6;
 							break;
 
 						case 39:
@@ -2766,7 +2766,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 						case "end":
 							return context$4$0.stop();
 					}
-				}, callee$3$0, this, [[3, 41, 45, 53], [10, 22, 26, 34], [27,, 29, 33], [46,, 48, 52]]);
+				}, callee$3$0, this, [[3, 41, 45, 53], [11, 22, 26, 34], [27,, 29, 33], [46,, 48, 52]]);
 			});
 
 			Set.prototype._intersection = function () {
