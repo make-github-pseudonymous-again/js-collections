@@ -7,6 +7,12 @@ Deque.prototype.len = function ( ) {
 
 } ;
 
+Deque.prototype.capacity = function ( ) {
+
+	throw new NotImplementedError( "capcity" ) ;
+
+} ;
+
 Deque.prototype.empty = function ( ) {
 
 	return this.len( ) === 0 ;

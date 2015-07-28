@@ -17,6 +17,12 @@ SingleElementDeque.prototype.len = function ( ) {
 
 } ;
 
+SingleElementDeque.prototype.capacity = function ( ) {
+
+	return 1 ;
+
+} ;
+
 SingleElementDeque.prototype.values = function* ( ) {
 
 	if ( this.empty ) return ;

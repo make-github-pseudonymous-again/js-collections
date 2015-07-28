@@ -1886,6 +1886,11 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 			throw new NotImplementedError("len");
 		};
 
+		Deque.prototype.capacity = function () {
+
+			throw new NotImplementedError("capcity");
+		};
+
 		Deque.prototype.empty = function () {
 
 			return this.len() === 0;
@@ -2183,29 +2188,13 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 			return this;
 		};
 
-		/* js/src/001-adt/Deque/BoundedDeque.js */
+		/* js/src/001-adt/Deque/ArbitrarySizeDeque.js */
 
-		var BoundedDeque = function BoundedDeque(iterable, maxlen) {
+		var ArbitrarySizeDeque = function ArbitrarySizeDeque() {};
 
-			this.maxlen = maxlen;
+		ArbitrarySizeDeque.prototype = new Deque();
 
-			this.container = new Array(maxlen);
-
-			this.center = 0;
-
-			this.length = 0;
-
-			if (iterable !== null) this.extend(iterable);
-		};
-
-		BoundedDeque.prototype = new Deque();
-
-		BoundedDeque.prototype.len = function () {
-
-			return this.length;
-		};
-
-		BoundedDeque.prototype.values = regeneratorRuntime.mark(function callee$2$0() {
+		ArbitrarySizeDeque.prototype.values = regeneratorRuntime.mark(function callee$2$0() {
 			var i, _m, m, n;
 
 			return regeneratorRuntime.wrap(function callee$2$0$(context$3$0) {
@@ -2213,7 +2202,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 					case 0:
 						i = this.center;
 						_m = i + this.length;
-						m = Math.min(this.maxlen, _m);
+						m = Math.min(this.capacity(), _m);
 
 					case 3:
 						if (!(i < m)) {
@@ -2230,7 +2219,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 						break;
 
 					case 9:
-						n = _m % this.maxlen;
+						n = _m % this.capacity();
 
 						if (!(n < _m)) {
 							context$3$0.next = 18;
@@ -2259,6 +2248,60 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 				}
 			}, callee$2$0, this);
 		});
+
+		ArbitrarySizeDeque.prototype.pop = function () {
+			var _where4 = this._where(this.length - 1);
+
+			var _where42 = _slicedToArray(_where4, 2);
+
+			var container = _where42[0];
+			var index = _where42[1];
+
+			return this._popindex(container, index);
+		};
+
+		ArbitrarySizeDeque.prototype.popleft = function () {
+			var _where5 = this._where(0);
+
+			var _where52 = _slicedToArray(_where5, 2);
+
+			var container = _where52[0];
+			var index = _where52[1];
+
+			++this.center;
+			this.center %= this.capacity();
+
+			return this._popindex(container, index);
+		};
+
+		exports.ArbitrarySizeDeque = ArbitrarySizeDeque;
+
+		/* js/src/001-adt/Deque/BoundedDeque.js */
+
+		var BoundedDeque = function BoundedDeque(iterable, maxlen) {
+
+			this.maxlen = maxlen;
+
+			this.container = new Array(maxlen);
+
+			this.center = 0;
+
+			this.length = 0;
+
+			if (iterable !== null) this.extend(iterable);
+		};
+
+		BoundedDeque.prototype = new ArbitrarySizeDeque();
+
+		BoundedDeque.prototype.len = function () {
+
+			return this.length;
+		};
+
+		BoundedDeque.prototype.capacity = function () {
+
+			return this.maxlen;
+		};
 
 		BoundedDeque.prototype.append = function (x) {
 
@@ -2324,31 +2367,6 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 			return value;
 		};
 
-		BoundedDeque.prototype.pop = function () {
-			var _where4 = this._where(this.length - 1);
-
-			var _where42 = _slicedToArray(_where4, 2);
-
-			var container = _where42[0];
-			var index = _where42[1];
-
-			return this._popindex(container, index);
-		};
-
-		BoundedDeque.prototype.popleft = function () {
-			var _where5 = this._where(0);
-
-			var _where52 = _slicedToArray(_where5, 2);
-
-			var container = _where52[0];
-			var index = _where52[1];
-
-			++this.center;
-			this.center %= this.maxlen;
-
-			return this._popindex(container, index);
-		};
-
 		exports.BoundedDeque = BoundedDeque;
 
 		/* js/src/001-adt/Deque/EmptyDeque.js */
@@ -2361,6 +2379,11 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 		EmptyDeque.prototype = new Deque();
 
 		EmptyDeque.prototype.len = function () {
+
+			return 0;
+		};
+
+		EmptyDeque.prototype.capacity = function () {
 
 			return 0;
 		};
@@ -2420,6 +2443,11 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 		SingleElementDeque.prototype.len = function () {
 
 			return this.empty ? 0 : 1;
+		};
+
+		SingleElementDeque.prototype.capacity = function () {
+
+			return 1;
 		};
 
 		SingleElementDeque.prototype.values = regeneratorRuntime.mark(function callee$2$0() {
@@ -2514,7 +2542,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 			if (iterable !== null) this.extend(iterable);
 		};
 
-		UnboundedDeque.prototype = new Deque();
+		UnboundedDeque.prototype = new ArbitrarySizeDeque();
 
 		UnboundedDeque.prototype._copy = function (container) {
 
@@ -2559,60 +2587,10 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 			return this.length;
 		};
 
-		UnboundedDeque.prototype.values = regeneratorRuntime.mark(function callee$2$0() {
-			var i, _m, m, n;
+		UnboundedDeque.prototype.capacity = function () {
 
-			return regeneratorRuntime.wrap(function callee$2$0$(context$3$0) {
-				while (1) switch (context$3$0.prev = context$3$0.next) {
-					case 0:
-						i = this.center;
-						_m = i + this.length;
-						m = Math.min(this.currentsize, _m);
-
-					case 3:
-						if (!(i < m)) {
-							context$3$0.next = 9;
-							break;
-						}
-
-						context$3$0.next = 6;
-						return this.container[i];
-
-					case 6:
-						++i;
-						context$3$0.next = 3;
-						break;
-
-					case 9:
-						n = _m % this.currentsize;
-
-						if (!(n < _m)) {
-							context$3$0.next = 18;
-							break;
-						}
-
-						i = 0;
-
-					case 12:
-						if (!(i < n)) {
-							context$3$0.next = 18;
-							break;
-						}
-
-						context$3$0.next = 15;
-						return this.container[i];
-
-					case 15:
-						++i;
-						context$3$0.next = 12;
-						break;
-
-					case 18:
-					case "end":
-						return context$3$0.stop();
-				}
-			}, callee$2$0, this);
-		});
+			return this.currentsize;
+		};
 
 		UnboundedDeque.prototype.append = function (x) {
 
@@ -2676,31 +2654,6 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 			this._shrink();
 
 			return value;
-		};
-
-		UnboundedDeque.prototype.pop = function () {
-			var _where6 = this._where(this.length - 1);
-
-			var _where62 = _slicedToArray(_where6, 2);
-
-			var container = _where62[0];
-			var index = _where62[1];
-
-			return this._popindex(container, index);
-		};
-
-		UnboundedDeque.prototype.popleft = function () {
-			var _where7 = this._where(0);
-
-			var _where72 = _slicedToArray(_where7, 2);
-
-			var container = _where72[0];
-			var index = _where72[1];
-
-			++this.center;
-			this.center %= this.currentsize;
-
-			return this._popindex(container, index);
 		};
 
 		exports.UnboundedDeque = UnboundedDeque;

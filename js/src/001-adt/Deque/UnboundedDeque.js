@@ -18,7 +18,7 @@ const UnboundedDeque = function ( iterable ) {
 
 } ;
 
-UnboundedDeque.prototype = new Deque( ) ;
+UnboundedDeque.prototype = new ArbitrarySizeDeque( ) ;
 
 UnboundedDeque.prototype._copy = function ( container ) {
 
@@ -68,19 +68,12 @@ UnboundedDeque.prototype.len = function ( ) {
 
 } ;
 
-UnboundedDeque.prototype.values = function* ( ) {
+UnboundedDeque.prototype.capacity = function ( ) {
 
-	let i = this.center ;
-	const _m = ( i + this.length ) ;
-	const m = Math.min( this.currentsize, _m ) ;
-
-	for ( ; i < m ; ++i ) yield this.container[i] ;
-
-	const n = _m % this.currentsize;
-
-	if ( n < _m ) for ( i = 0 ; i < n ; ++i ) yield this.container[i] ;
+	return this.currentsize ;
 
 } ;
+
 
 UnboundedDeque.prototype.append = function ( x ) {
 
@@ -150,25 +143,6 @@ UnboundedDeque.prototype._popindex = function ( container , index ) {
 	this._shrink( ) ;
 
 	return value ;
-
-} ;
-
-UnboundedDeque.prototype.pop = function ( ) {
-
-	const [ container , index ] = this._where( this.length - 1 ) ;
-
-	return this._popindex( container , index ) ;
-
-} ;
-
-UnboundedDeque.prototype.popleft = function ( ) {
-
-	const [ container , index ] = this._where( 0 ) ;
-
-	++this.center ;
-	this.center %= this.currentsize;
-
-	return this._popindex( container , index ) ;
 
 } ;
 

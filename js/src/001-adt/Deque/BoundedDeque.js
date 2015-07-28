@@ -14,7 +14,7 @@ const BoundedDeque = function ( iterable , maxlen ) {
 
 } ;
 
-BoundedDeque.prototype = new Deque( ) ;
+BoundedDeque.prototype = new ArbitrarySizeDeque( ) ;
 
 BoundedDeque.prototype.len = function ( ) {
 
@@ -22,17 +22,9 @@ BoundedDeque.prototype.len = function ( ) {
 
 } ;
 
-BoundedDeque.prototype.values = function* ( ) {
+BoundedDeque.prototype.capacity = function ( ) {
 
-	let i = this.center ;
-	const _m = ( i + this.length ) ;
-	const m = Math.min( this.maxlen , _m ) ;
-
-	for ( ; i < m ; ++i ) yield this.container[i] ;
-
-	const n = _m % this.maxlen ;
-
-	if ( n < _m ) for ( i = 0 ; i < n ; ++i ) yield this.container[i] ;
+	return this.maxlen ;
 
 } ;
 
@@ -111,25 +103,6 @@ BoundedDeque.prototype._popindex = function ( container , index ) {
 	--this.length ;
 
 	return value ;
-
-} ;
-
-BoundedDeque.prototype.pop = function ( ) {
-
-	const [ container , index ] = this._where( this.length - 1 ) ;
-
-	return this._popindex( container , index ) ;
-
-} ;
-
-BoundedDeque.prototype.popleft = function ( ) {
-
-	const [ container , index ] = this._where( 0 ) ;
-
-	++this.center ;
-	this.center %= this.maxlen ;
-
-	return this._popindex( container , index ) ;
 
 } ;
 

@@ -13,6 +13,12 @@ EmptyDeque.prototype.len = function ( ) {
 
 } ;
 
+EmptyDeque.prototype.capacity = function ( ) {
+
+	return 0 ;
+
+} ;
+
 EmptyDeque.prototype.values = function ( ) {
 
 	return { next : function ( ) { return { done : true } ; } } ;
