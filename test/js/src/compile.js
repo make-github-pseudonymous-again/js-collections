@@ -11,21 +11,15 @@ var mycollections = collections.compile( {
 
 test( "compile" , function ( ) {
 
-	ok( mycollections.KeyError ) ;
-	ok( mycollections.Mapping ) ;
-	ok( mycollections.Set ) ;
+	ok( mycollections.heapq ) ;
+	ok( mycollections.bisect ) ;
+	ok( mycollections.deque ) ;
 	ok( mycollections.set ) ;
-	ok( mycollections.Dict ) ;
 	ok( mycollections.dict ) ;
-	ok( mycollections.DefaultDict ) ;
 	ok( mycollections.defaultdict ) ;
-	ok( mycollections.OrderedDict ) ;
 	ok( mycollections.ordereddict ) ;
-	ok( mycollections.Counter ) ;
 	ok( mycollections.counter ) ;
-	ok( mycollections.ChainMap ) ;
 	ok( mycollections.chainmap ) ;
-	ok( mycollections.NamedTuple ) ;
 	ok( mycollections.namedtuple ) ;
 
 } ) ;

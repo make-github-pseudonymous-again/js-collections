@@ -13,7 +13,7 @@ and
 
 ```js
 let {
-	list , heapq , bisect ,
+	heapq , bisect ,
 	namedtuple ,
 	deque ,
 	set ,
