@@ -4079,28 +4079,38 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 			var namedtuple = exports._namedtuple(NamedTuple);
 
 			return {
-				ValueError: ValueError,
-				IndexError: IndexError,
-				TypeError: exports.TypeError,
-				KeyError: KeyError,
-				NotImplementedError: NotImplementedError,
-				Mapping: Mapping,
+				bisect: bisect, heapq: heapq,
+
 				Set: Set,
 				set: exports._set(Set),
+
+				Mapping: Mapping,
+
 				Dict: Dict,
 				dict: exports._dict(Dict),
+
 				OrderedDict: OrderedDict,
 				ordereddict: exports._ordereddict(OrderedDict),
+
 				DefaultDict: DefaultDict,
 				defaultdict: exports._defaultdict(DefaultDict),
+
 				ChainMap: ChainMap,
 				chainmap: exports._chainmap(ChainMap),
+
 				Counter: Counter,
 				counter: exports._counter(Counter),
 				NamedTuple: NamedTuple,
 				namedtuple: namedtuple,
+
 				deque: exports._deque(UnboundedDeque, BoundedDeque, SingleElementDeque, EmptyDeque),
-				Deque: Deque, UnboundedDeque: UnboundedDeque, BoundedDeque: BoundedDeque, SingleElementDeque: SingleElementDeque, EmptyDeque: EmptyDeque
+				Deque: Deque, UnboundedDeque: UnboundedDeque, BoundedDeque: BoundedDeque, SingleElementDeque: SingleElementDeque, EmptyDeque: EmptyDeque,
+
+				IndexError: IndexError,
+				KeyError: KeyError,
+				NotImplementedError: NotImplementedError,
+				TypeError: exports.TypeError,
+				ValueError: ValueError
 			};
 		};
 

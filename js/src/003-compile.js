@@ -15,28 +15,38 @@ const compile = function ( {
 	const namedtuple = exports._namedtuple( NamedTuple ) ;
 
 	return {
-		ValueError ,
-		IndexError ,
-		TypeError : exports.TypeError ,
-		KeyError ,
-		NotImplementedError ,
-		Mapping ,
+		bisect , heapq ,
+
 		Set ,
 		set : exports._set( Set ) ,
+
+		Mapping ,
+
 		Dict ,
 		dict : exports._dict( Dict ) ,
+
 		OrderedDict ,
 		ordereddict : exports._ordereddict( OrderedDict ) ,
+
 		DefaultDict ,
 		defaultdict : exports._defaultdict( DefaultDict ) ,
+
 		ChainMap ,
 		chainmap : exports._chainmap( ChainMap ) ,
+
 		Counter ,
 		counter : exports._counter( Counter ) ,
 		NamedTuple ,
 		namedtuple ,
+
 		deque : exports._deque( UnboundedDeque , BoundedDeque , SingleElementDeque , EmptyDeque ) ,
-		Deque , UnboundedDeque , BoundedDeque , SingleElementDeque , EmptyDeque
+		Deque , UnboundedDeque , BoundedDeque , SingleElementDeque , EmptyDeque ,
+
+		IndexError ,
+		KeyError ,
+		NotImplementedError ,
+		TypeError : exports.TypeError ,
+		ValueError
 	} ;
 
 } ;
