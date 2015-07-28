@@ -22,6 +22,12 @@ test( "compile" , function ( ) {
 	ok( mycollections.chainmap ) ;
 	ok( mycollections.namedtuple ) ;
 
+	ok( mycollections.IndexError ) ;
+	ok( mycollections.KeyError ) ;
+	ok( mycollections.NotImplementedError ) ;
+	ok( mycollections.TypeError ) ;
+	ok( mycollections.ValueError ) ;
+
 } ) ;
 
 
