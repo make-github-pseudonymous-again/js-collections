@@ -1,5 +1,4 @@
 
-var dll = require( "aureooms-js-dll" ) ;
 var number = require( "aureooms-js-number" ) ;
 var compare = require( "aureooms-js-compare" ) ;
 var itertools = require( "aureooms-js-itertools" ) ;
@@ -11,17 +10,9 @@ var increasing = compare.increasing ;
 
 var lexico = compare.lexicographical( increasing ) ;
 
-var mycollections = collections.compile( {
+var KeyError = collections.KeyError ;
 
-	BaseSet : Set ,
-	DLL : dll.DoublyLinkedList ,
-	BaseMap : Map
-
-} ) ;
-
-var KeyError = mycollections.KeyError ;
-
-var defaultdict = mycollections.defaultdict ;
+var defaultdict = collections.defaultdict ;
 
 var default_factory = number.$0 ;
 

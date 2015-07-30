@@ -1,5 +1,4 @@
 
-var dll = require( "aureooms-js-dll" ) ;
 var compare = require( "aureooms-js-compare" ) ;
 var itertools = require( "aureooms-js-itertools" ) ;
 
@@ -7,17 +6,9 @@ var sorted = itertools.sorted ;
 var increasing = compare.increasing ;
 var lexico = compare.lexicographical( increasing ) ;
 
-var mycollections = collections.compile( {
-
-	BaseSet : Set ,
-	DLL : dll.DoublyLinkedList ,
-	BaseMap : Map
-
-} ) ;
-
-var KeyError = mycollections.KeyError ;
-var dict = mycollections.dict ;
-var chainmap = mycollections.chainmap ;
+var KeyError = collections.KeyError ;
+var dict = collections.dict ;
+var chainmap = collections.chainmap ;
 
 test( "chainmap" , function ( ) {
 

@@ -1,21 +1,12 @@
 
-var dll = require( "aureooms-js-dll" ) ;
 var itertools = require( "aureooms-js-itertools" ) ;
 
 var list = itertools.list ;
 
-var mycollections = collections.compile( {
+var KeyError = collections.KeyError ;
+var dict = collections.dict ;
 
-	BaseSet : Set ,
-	DLL : dll.DoublyLinkedList ,
-	BaseMap : Map
-
-} ) ;
-
-var KeyError = mycollections.KeyError ;
-var dict = mycollections.dict ;
-
-[ mycollections.ordereddict ].forEach( function ( ordereddict ) {
+[ collections.ordereddict ].forEach( function ( ordereddict ) {
 
 test( ordereddict.name , function ( ) {
 

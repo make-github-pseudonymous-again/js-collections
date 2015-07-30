@@ -1,20 +1,11 @@
 
-var dll = require( "aureooms-js-dll" ) ;
 var compare = require( "aureooms-js-compare" ) ;
 var itertools = require( "aureooms-js-itertools" ) ;
 
 var sorted = itertools.sorted ;
 
-var mycollections = collections.compile( {
-
-	BaseSet : Set ,
-	DLL : dll.DoublyLinkedList ,
-	BaseMap : Map
-
-} ) ;
-
-var counter = mycollections.counter ;
-var NotImplementedError = mycollections.NotImplementedError ;
+var counter = collections.counter ;
+var NotImplementedError = collections.NotImplementedError ;
 
 test( "counter" , function ( ) {
 

@@ -1,21 +1,12 @@
 
-var dll = require( "aureooms-js-dll" ) ;
 var compare = require( "aureooms-js-compare" ) ;
 var itertools = require( "aureooms-js-itertools" ) ;
 
 var sorted = itertools.sorted ;
 
-var mycollections = collections.compile( {
+var KeyError = collections.KeyError ;
 
-	BaseSet : Set ,
-	DLL : dll.DoublyLinkedList ,
-	BaseMap : Map
-
-} ) ;
-
-var KeyError = mycollections.KeyError ;
-
-[ mycollections.set ].forEach( function ( set ) {
+[ collections.set ].forEach( function ( set ) {
 
 test( set.name , function ( ) {
 

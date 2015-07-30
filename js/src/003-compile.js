@@ -1,9 +1,5 @@
 
-const compile = function ( {
-
-	BaseSet , DLL , BaseMap
-
-} ) {
+const compile = function ( BaseSet , BaseMap , DLL , exports = { } ) {
 
 	const Set = exports._Set( BaseSet ) ;
 	const Dict = exports._Dict( BaseMap ) ;
@@ -14,40 +10,46 @@ const compile = function ( {
 	const Counter = exports._Counter( BaseMap , Dict ) ;
 	const namedtuple = exports._namedtuple( NamedTuple ) ;
 
-	return {
-		bisect , heapq ,
+	exports.bisect = bisect ;
 
-		Set ,
-		set : exports._set( Set ) ,
+	exports.heapq = heapq ;
 
-		Mapping ,
+	exports.Set = Set ;
+	exports.set = exports._set( Set ) ;
 
-		Dict ,
-		dict : exports._dict( Dict ) ,
+	exports.Mapping = Mapping ;
 
-		OrderedDict ,
-		ordereddict : exports._ordereddict( OrderedDict ) ,
+	exports.Dict = Dict ;
+	exports.dict = exports._dict( Dict ) ;
 
-		DefaultDict ,
-		defaultdict : exports._defaultdict( DefaultDict ) ,
+	exports.OrderedDict = OrderedDict ;
+	exports.ordereddict = exports._ordereddict( OrderedDict ) ;
 
-		ChainMap ,
-		chainmap : exports._chainmap( ChainMap ) ,
+	exports.DefaultDict = DefaultDict ;
+	exports.defaultdict = exports._defaultdict( DefaultDict ) ;
 
-		Counter ,
-		counter : exports._counter( Counter ) ,
-		NamedTuple ,
-		namedtuple ,
+	exports.ChainMap = ChainMap ;
+	exports.chainmap = exports._chainmap( ChainMap ) ;
 
-		deque : exports._deque( UnboundedDeque , BoundedDeque , SingleElementDeque , EmptyDeque ) ,
-		Deque , UnboundedDeque , BoundedDeque , SingleElementDeque , EmptyDeque ,
+	exports.Counter = Counter ;
+	exports.counter = exports._counter( Counter ) ;
+	exports.NamedTuple = NamedTuple ;
+	exports.namedtuple = namedtuple ;
 
-		IndexError ,
-		KeyError ,
-		NotImplementedError ,
-		TypeError : exports.TypeError ,
-		ValueError
-	} ;
+	exports.deque = exports._deque( UnboundedDeque , BoundedDeque , SingleElementDeque , EmptyDeque ) ;
+	exports.Deque = Deque ;
+	exports.UnboundedDeque = UnboundedDeque ;
+	exports.BoundedDeque = BoundedDeque ;
+	exports.SingleElementDeque = SingleElementDeque ;
+	exports.EmptyDeque = EmptyDeque ;
+
+	exports.IndexError = IndexError ;
+	exports.KeyError = KeyError ;
+	exports.NotImplementedError = NotImplementedError ;
+	exports.TypeError = exports.TypeError ;
+	exports.ValueError = ValueError ;
+
+	return exports ;
 
 } ;
 

@@ -1,19 +1,10 @@
 
-var dll = require( "aureooms-js-dll" ) ;
 var itertools = require( "aureooms-js-itertools" ) ;
 
 var list = itertools.list ;
 
-var mycollections = collections.compile( {
-
-	BaseSet : Set ,
-	DLL : dll.DoublyLinkedList ,
-	BaseMap : Map
-
-} ) ;
-
-var namedtuple = mycollections.namedtuple ;
-var ordereddict = mycollections.ordereddict ;
+var namedtuple = collections.namedtuple ;
+var ordereddict = collections.ordereddict ;
 
 test( "namedtuple" , function ( ) {
 

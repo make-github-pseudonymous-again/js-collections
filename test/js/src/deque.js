@@ -1,4 +1,3 @@
-var dll = require( "aureooms-js-dll" ) ;
 var itertools = require( "aureooms-js-itertools" ) ;
 
 var l = itertools.list ;
@@ -7,24 +6,16 @@ var c = itertools.chain ;
 var m = itertools.map ;
 var f = itertools.filter ;
 
-var mycollections = collections.compile( {
+var IndexError = collections.IndexError ;
+var ValueError = collections.ValueError ;
+var NotImplementedError = collections.NotImplementedError ;
 
-	BaseSet : Set ,
-	DLL : dll.DoublyLinkedList ,
-	BaseMap : Map
-
-} ) ;
-
-var IndexError = mycollections.IndexError ;
-var ValueError = mycollections.ValueError ;
-var NotImplementedError = mycollections.NotImplementedError ;
-
-var deque = mycollections.deque ;
-var Deque = mycollections.Deque ;
-var UnboundedDeque = mycollections.UnboundedDeque ;
-var BoundedDeque = mycollections.BoundedDeque ;
-var SingleElementDeque = mycollections.SingleElementDeque ;
-var EmptyDeque = mycollections.EmptyDeque ;
+var deque = collections.deque ;
+var Deque = collections.Deque ;
+var UnboundedDeque = collections.UnboundedDeque ;
+var BoundedDeque = collections.BoundedDeque ;
+var SingleElementDeque = collections.SingleElementDeque ;
+var EmptyDeque = collections.EmptyDeque ;
 
 test( deque.name , function ( ) {
 

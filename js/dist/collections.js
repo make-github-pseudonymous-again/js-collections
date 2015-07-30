@@ -335,6 +335,218 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 			};
 		};
 
+		/* js/src/000-tools/dll */
+		/* js/src/000-tools/dll/DoublyLinkedList.js */
+		/**
+   * Doubly linked list implementation
+   * making use of dummy nodes for the
+   * sake of simplicity.
+   */
+
+		var DoublyLinkedList = function DoublyLinkedList() {
+			this.front = new Node(null, null, null);
+			this.back = new Node(this.front, null, null);
+			this.front.next = this.back;
+			this.length = 0;
+		};
+
+		var Node = function Node(prev, next, value) {
+			this.prev = prev;
+			this.next = next;
+			this.value = value;
+		};
+
+		var Iterator = function Iterator(front, back, current) {
+			this.front = front;
+			this.back = back;
+			this.current = current;
+		};
+
+		var ReverseIterator = function ReverseIterator(front, back, current) {
+			this.front = front;
+			this.back = back;
+			this.current = current;
+		};
+
+		DoublyLinkedList.prototype.insertAfter = function (iterator, value) {
+
+			var prev = iterator.current;
+
+			var node = new Node(prev, prev.next, value);
+			prev.next.prev = node;
+			prev.next = node;
+
+			++this.length;
+			return this.iterator(node);
+		};
+
+		DoublyLinkedList.prototype.insertBefore = function (iterator, value) {
+
+			var next = iterator.current;
+
+			var node = new Node(next.prev, next, value);
+			next.prev.next = node;
+			next.prev = node;
+
+			++this.length;
+			return this.iterator(node);
+		};
+
+		DoublyLinkedList.prototype.unshift = function (value) {
+			return this.insertAfter(this.begin(), value);
+		};
+
+		DoublyLinkedList.prototype.push = function (value) {
+			return this.insertBefore(this.end(), value);
+		};
+
+		DoublyLinkedList.prototype.erase = function (iterator) {
+			var node = iterator.current;
+
+			node.prev.next = node.next;
+			node.next.prev = node.prev;
+
+			--this.length;
+			return this.iterator(node.next);
+		};
+
+		DoublyLinkedList.prototype.rerase = function (iterator) {
+			var node = iterator.current;
+
+			node.next.prev = node.prev;
+			node.prev.next = node.next;
+
+			--this.length;
+			return this.iterator(node.prev);
+		};
+
+		DoublyLinkedList.prototype.eraserange = function (first, last) {
+
+			var firstnode = first.current;
+			var lastnode = last.current;
+
+			lastnode.prev = firstnode.prev;
+			firstnode.prev.next = lastnode;
+
+			var it = first.copy();
+
+			while (it.current !== lastnode) {
+				--this.length;
+				it.next();
+			}
+			return last.copy();
+		};
+
+		DoublyLinkedList.prototype.reraserange = function (first, last) {
+			var firstnode = first.current;
+			var lastnode = last.current;
+
+			lastnode.next = firstnode.next;
+			firstnode.next.prev = lastnode;
+
+			var it = first.copy();
+
+			while (it.current !== lastnode) {
+				--this.length;
+				it.next();
+			}
+			return last.copy();
+		};
+
+		DoublyLinkedList.prototype.shift = function () {
+			var it = this.begin();
+			var e = it.next();
+
+			if (e.done) {
+				return null;
+			}
+
+			this.rerase(it);
+			return e.value;
+		};
+
+		DoublyLinkedList.prototype.pop = function () {
+			var it = this.rbegin();
+			var e = it.next();
+
+			if (e.done) {
+				return null;
+			}
+
+			this.erase(it);
+			return e.value;
+		};
+
+		DoublyLinkedList.prototype.clear = function () {
+			this.front.next = this.back;
+			this.back.prev = this.front;
+			this.length = 0;
+			return this;
+		};
+
+		DoublyLinkedList.prototype.iterator = function (node) {
+			return new Iterator(this.front, this.back, node);
+		};
+
+		DoublyLinkedList.prototype.riterator = function (node) {
+			return new ReverseIterator(this.front, this.back, node);
+		};
+
+		DoublyLinkedList.prototype.begin = function () {
+			return this.iterator(this.front);
+		};
+
+		DoublyLinkedList.prototype.end = function () {
+			return this.iterator(this.back);
+		};
+
+		DoublyLinkedList.prototype.rbegin = function () {
+			return this.riterator(this.back);
+		};
+
+		DoublyLinkedList.prototype.rend = function () {
+			return this.riterator(this.front);
+		};
+
+		Iterator.prototype.copy = function () {
+			return new Iterator(this.front, this.back, this.current);
+		};
+
+		ReverseIterator.prototype.copy = function () {
+			return new ReverseIterator(this.front, this.back, this.current);
+		};
+
+		Iterator.prototype.next = ReverseIterator.prototype.prev = function () {
+			this.current = this.current.next;
+			if (this.current === this.back) {
+				return { done: true };
+			} else {
+				return {
+					value: this.current.value,
+					done: false
+				};
+			}
+		};
+
+		Iterator.prototype.prev = ReverseIterator.prototype.next = function () {
+			this.current = this.current.prev;
+			if (this.current === this.front) {
+				return { done: true };
+			} else {
+				return {
+					value: this.current.value,
+					done: false
+				};
+			}
+		};
+
+		DoublyLinkedList.prototype[Symbol.iterator] = DoublyLinkedList.prototype.begin;
+		DoublyLinkedList.Node = Node;
+		DoublyLinkedList.Iterator = Iterator;
+		DoublyLinkedList.ReverseIterator = ReverseIterator;
+
+		exports.DoublyLinkedList = DoublyLinkedList;
+
 		/* js/src/000-tools/error */
 		/* js/src/000-tools/error/IndexError.js */
 
@@ -4017,10 +4229,8 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 		/* js/src/003-compile.js */
 
-		var compile = function compile(_ref3) {
-			var BaseSet = _ref3.BaseSet;
-			var DLL = _ref3.DLL;
-			var BaseMap = _ref3.BaseMap;
+		var compile = function compile(BaseSet, BaseMap, DLL) {
+			var exports = arguments.length <= 3 || arguments[3] === undefined ? {} : arguments[3];
 
 			var Set = exports._Set(BaseSet);
 			var Dict = exports._Dict(BaseMap);
@@ -4031,43 +4241,53 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 			var Counter = exports._Counter(BaseMap, Dict);
 			var namedtuple = exports._namedtuple(NamedTuple);
 
-			return {
-				bisect: bisect, heapq: heapq,
+			exports.bisect = bisect;
 
-				Set: Set,
-				set: exports._set(Set),
+			exports.heapq = heapq;
 
-				Mapping: Mapping,
+			exports.Set = Set;
+			exports.set = exports._set(Set);
 
-				Dict: Dict,
-				dict: exports._dict(Dict),
+			exports.Mapping = Mapping;
 
-				OrderedDict: OrderedDict,
-				ordereddict: exports._ordereddict(OrderedDict),
+			exports.Dict = Dict;
+			exports.dict = exports._dict(Dict);
 
-				DefaultDict: DefaultDict,
-				defaultdict: exports._defaultdict(DefaultDict),
+			exports.OrderedDict = OrderedDict;
+			exports.ordereddict = exports._ordereddict(OrderedDict);
 
-				ChainMap: ChainMap,
-				chainmap: exports._chainmap(ChainMap),
+			exports.DefaultDict = DefaultDict;
+			exports.defaultdict = exports._defaultdict(DefaultDict);
 
-				Counter: Counter,
-				counter: exports._counter(Counter),
-				NamedTuple: NamedTuple,
-				namedtuple: namedtuple,
+			exports.ChainMap = ChainMap;
+			exports.chainmap = exports._chainmap(ChainMap);
 
-				deque: exports._deque(UnboundedDeque, BoundedDeque, SingleElementDeque, EmptyDeque),
-				Deque: Deque, UnboundedDeque: UnboundedDeque, BoundedDeque: BoundedDeque, SingleElementDeque: SingleElementDeque, EmptyDeque: EmptyDeque,
+			exports.Counter = Counter;
+			exports.counter = exports._counter(Counter);
+			exports.NamedTuple = NamedTuple;
+			exports.namedtuple = namedtuple;
 
-				IndexError: IndexError,
-				KeyError: KeyError,
-				NotImplementedError: NotImplementedError,
-				TypeError: exports.TypeError,
-				ValueError: ValueError
-			};
+			exports.deque = exports._deque(UnboundedDeque, BoundedDeque, SingleElementDeque, EmptyDeque);
+			exports.Deque = Deque;
+			exports.UnboundedDeque = UnboundedDeque;
+			exports.BoundedDeque = BoundedDeque;
+			exports.SingleElementDeque = SingleElementDeque;
+			exports.EmptyDeque = EmptyDeque;
+
+			exports.IndexError = IndexError;
+			exports.KeyError = KeyError;
+			exports.NotImplementedError = NotImplementedError;
+			exports.TypeError = exports.TypeError;
+			exports.ValueError = ValueError;
+
+			return exports;
 		};
 
 		exports.compile = compile;
+
+		/* js/src/004-overwrite.js */
+
+		compile(Set, Map, DoublyLinkedList, exports);
 
 		return exports;
 	};

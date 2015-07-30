@@ -1,32 +1,22 @@
 
-var dll = require( "aureooms-js-dll" ) ;
-
-var mycollections = collections.compile( {
-
-	BaseSet : Set ,
-	DLL : dll.DoublyLinkedList ,
-	BaseMap : Map
-
-} ) ;
-
 test( "compile" , function ( ) {
 
-	ok( mycollections.heapq ) ;
-	ok( mycollections.bisect ) ;
-	ok( mycollections.deque ) ;
-	ok( mycollections.set ) ;
-	ok( mycollections.dict ) ;
-	ok( mycollections.defaultdict ) ;
-	ok( mycollections.ordereddict ) ;
-	ok( mycollections.counter ) ;
-	ok( mycollections.chainmap ) ;
-	ok( mycollections.namedtuple ) ;
+	ok( collections.heapq ) ;
+	ok( collections.bisect ) ;
+	ok( collections.deque ) ;
+	ok( collections.set ) ;
+	ok( collections.dict ) ;
+	ok( collections.defaultdict ) ;
+	ok( collections.ordereddict ) ;
+	ok( collections.counter ) ;
+	ok( collections.chainmap ) ;
+	ok( collections.namedtuple ) ;
 
-	ok( mycollections.IndexError ) ;
-	ok( mycollections.KeyError ) ;
-	ok( mycollections.NotImplementedError ) ;
-	ok( mycollections.TypeError ) ;
-	ok( mycollections.ValueError ) ;
+	ok( collections.IndexError ) ;
+	ok( collections.KeyError ) ;
+	ok( collections.NotImplementedError ) ;
+	ok( collections.TypeError ) ;
+	ok( collections.ValueError ) ;
 
 } ) ;
 

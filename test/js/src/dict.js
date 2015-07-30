@@ -1,5 +1,4 @@
 
-var dll = require( "aureooms-js-dll" ) ;
 var compare = require( "aureooms-js-compare" ) ;
 var itertools = require( "aureooms-js-itertools" ) ;
 var functools = require( "aureooms-js-functools" ) ;
@@ -10,21 +9,13 @@ var increasing = compare.increasing ;
 
 var lexico = compare.lexicographical( increasing ) ;
 
-var mycollections = collections.compile( {
+var KeyError = collections.KeyError ;
 
-	BaseSet : Set ,
-	DLL : dll.DoublyLinkedList ,
-	BaseMap : Map
+var dict = collections.dict ;
+var defaultdict = functools.partial( collections.defaultdict , [ null ] ) ;
+var ordereddict = collections.ordereddict ;
 
-} ) ;
-
-var KeyError = mycollections.KeyError ;
-
-var dict = mycollections.dict ;
-var defaultdict = functools.partial( mycollections.defaultdict , [ null ] ) ;
-var ordereddict = mycollections.ordereddict ;
-
-defaultdict.fromkeys = functools.rpartial( mycollections.defaultdict.fromkeys , [ null ] ) ;
+defaultdict.fromkeys = functools.rpartial( collections.defaultdict.fromkeys , [ null ] ) ;
 
 [ dict , defaultdict , ordereddict ].forEach( function ( dict ) {
 
