@@ -4,7 +4,7 @@
  * to some comparison function.
  */
 
-const min = function ( compare , iterable , dflt = undefined ) {
+const min = function ( compare , iterable , dflt ) {
 
 	const iterator = iter( iterable ) ;
 

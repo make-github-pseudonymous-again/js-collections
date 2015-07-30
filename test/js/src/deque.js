@@ -24,6 +24,7 @@ test( deque.name , function ( ) {
 	raises( d.values.bind( d ) , NotImplementedError , "Deque values" ) ;
 	raises( l.bind( null , d ) , NotImplementedError , "list( Deque )" ) ;
 	raises( d.len.bind( d ) , NotImplementedError , "Deque len" ) ;
+	raises( d.capacity.bind( d ) , NotImplementedError , "Deque capacity" ) ;
 	raises( d.empty.bind( d ) , NotImplementedError , "Deque empty" ) ;
 	raises( d.append.bind( d , 0 ) , NotImplementedError , "Deque append" ) ;
 	raises( d.appendleft.bind( d , 0 ) , NotImplementedError , "Deque appendleft" ) ;
@@ -60,6 +61,10 @@ test( deque.name , function ( ) {
 	deepEqual( l( deque( "abc" , 0 ) ) , l( "" ) , "iterable constructor 0" ) ;
 	deepEqual( l( deque( "abc" , 1 ) ) , l( "c" ) , "iterable constructor 1" ) ;
 	deepEqual( l( deque( "abc" , 2 ) ) , l( "bc" ) , "iterable constructor 2" ) ;
+
+	deepEqual( deque( "abc" , 0 ).capacity( ) , 0 , "capacity 0" ) ;
+	deepEqual( deque( "abc" , 1 ).capacity( ) , 1 , "capacity 1" ) ;
+	deepEqual( deque( "abc" , 2 ).capacity( ) , 2 , "capacity 2" ) ;
 
 	deepEqual( l( deque( null ).extendleft( "abc" ) ) , l( "cba" ) , "extendleft" ) ;
 	deepEqual( l( deque( null , 0 ).extendleft( "abc" ) ) , l( "" ) , "extendleft 0" ) ;

@@ -368,12 +368,6 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 			this.current = current;
 		};
 
-		var ReverseIterator = function ReverseIterator(front, back, current) {
-			this.front = front;
-			this.back = back;
-			this.current = current;
-		};
-
 		DoublyLinkedList.prototype.insertAfter = function (iterator, value) {
 
 			var prev = iterator.current;
@@ -416,73 +410,6 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 			return this.iterator(node.next);
 		};
 
-		DoublyLinkedList.prototype.rerase = function (iterator) {
-			var node = iterator.current;
-
-			node.next.prev = node.prev;
-			node.prev.next = node.next;
-
-			--this.length;
-			return this.iterator(node.prev);
-		};
-
-		DoublyLinkedList.prototype.eraserange = function (first, last) {
-
-			var firstnode = first.current;
-			var lastnode = last.current;
-
-			lastnode.prev = firstnode.prev;
-			firstnode.prev.next = lastnode;
-
-			var it = first.copy();
-
-			while (it.current !== lastnode) {
-				--this.length;
-				it.next();
-			}
-			return last.copy();
-		};
-
-		DoublyLinkedList.prototype.reraserange = function (first, last) {
-			var firstnode = first.current;
-			var lastnode = last.current;
-
-			lastnode.next = firstnode.next;
-			firstnode.next.prev = lastnode;
-
-			var it = first.copy();
-
-			while (it.current !== lastnode) {
-				--this.length;
-				it.next();
-			}
-			return last.copy();
-		};
-
-		DoublyLinkedList.prototype.shift = function () {
-			var it = this.begin();
-			var e = it.next();
-
-			if (e.done) {
-				return null;
-			}
-
-			this.rerase(it);
-			return e.value;
-		};
-
-		DoublyLinkedList.prototype.pop = function () {
-			var it = this.rbegin();
-			var e = it.next();
-
-			if (e.done) {
-				return null;
-			}
-
-			this.erase(it);
-			return e.value;
-		};
-
 		DoublyLinkedList.prototype.clear = function () {
 			this.front.next = this.back;
 			this.back.prev = this.front;
@@ -494,10 +421,6 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 			return new Iterator(this.front, this.back, node);
 		};
 
-		DoublyLinkedList.prototype.riterator = function (node) {
-			return new ReverseIterator(this.front, this.back, node);
-		};
-
 		DoublyLinkedList.prototype.begin = function () {
 			return this.iterator(this.front);
 		};
@@ -506,23 +429,11 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 			return this.iterator(this.back);
 		};
 
-		DoublyLinkedList.prototype.rbegin = function () {
-			return this.riterator(this.back);
-		};
-
-		DoublyLinkedList.prototype.rend = function () {
-			return this.riterator(this.front);
-		};
-
 		Iterator.prototype.copy = function () {
 			return new Iterator(this.front, this.back, this.current);
 		};
 
-		ReverseIterator.prototype.copy = function () {
-			return new ReverseIterator(this.front, this.back, this.current);
-		};
-
-		Iterator.prototype.next = ReverseIterator.prototype.prev = function () {
+		Iterator.prototype.next = function () {
 			this.current = this.current.next;
 			if (this.current === this.back) {
 				return { done: true };
@@ -534,7 +445,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 			}
 		};
 
-		Iterator.prototype.prev = ReverseIterator.prototype.next = function () {
+		Iterator.prototype.prev = function () {
 			this.current = this.current.prev;
 			if (this.current === this.front) {
 				return { done: true };
@@ -549,7 +460,6 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 		DoublyLinkedList.prototype[Symbol.iterator] = DoublyLinkedList.prototype.begin;
 		DoublyLinkedList.Node = Node;
 		DoublyLinkedList.Iterator = Iterator;
-		DoublyLinkedList.ReverseIterator = ReverseIterator;
 
 		exports.DoublyLinkedList = DoublyLinkedList;
 
@@ -1267,8 +1177,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
    * to some comparison function.
    */
 
-		var min = function min(compare, iterable) {
-			var dflt = arguments.length <= 2 || arguments[2] === undefined ? undefined : arguments[2];
+		var min = function min(compare, iterable, dflt) {
 
 			var iterator = iter(iterable);
 
@@ -1322,44 +1231,20 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 			return regeneratorRuntime.wrap(function range$(context$3$0) {
 				while (1) switch (context$3$0.prev = context$3$0.next) {
 					case 0:
-						if (!(step < 0)) {
-							context$3$0.next = 9;
-							break;
-						}
-
-					case 1:
-						if (!(start > stop)) {
-							context$3$0.next = 7;
-							break;
-						}
-
-						context$3$0.next = 4;
-						return start;
-
-					case 4:
-						start += step;
-						context$3$0.next = 1;
-						break;
-
-					case 7:
-						context$3$0.next = 15;
-						break;
-
-					case 9:
 						if (!(start < stop)) {
-							context$3$0.next = 15;
+							context$3$0.next = 6;
 							break;
 						}
 
-						context$3$0.next = 12;
+						context$3$0.next = 3;
 						return start;
 
-					case 12:
+					case 3:
 						start += step;
-						context$3$0.next = 9;
+						context$3$0.next = 0;
 						break;
 
-					case 15:
+					case 6:
 					case "end":
 						return context$3$0.stop();
 				}

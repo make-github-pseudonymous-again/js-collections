@@ -23,12 +23,6 @@ const Iterator = function(front, back, current){
 	this.current = current;
 };
 
-const ReverseIterator = function(front, back, current){
-	this.front = front;
-	this.back = back;
-	this.current = current;
-};
-
 DoublyLinkedList.prototype.insertAfter = function(iterator, value){
 
 	const prev = iterator.current;
@@ -71,73 +65,6 @@ DoublyLinkedList.prototype.erase = function(iterator){
 	return this.iterator(node.next);
 };
 
-DoublyLinkedList.prototype.rerase = function(iterator){
-	const node = iterator.current;
-
-	node.next.prev = node.prev;
-	node.prev.next = node.next;
-
-	--this.length;
-	return this.iterator(node.prev);
-};
-
-DoublyLinkedList.prototype.eraserange = function(first, last){
-
-	const firstnode = first.current;
-	const lastnode = last.current;
-
-	lastnode.prev = firstnode.prev;
-	firstnode.prev.next = lastnode;
-
-	const it = first.copy();
-
-	while (it.current !== lastnode) {
-		--this.length;
-		it.next();
-	}
-	return last.copy();
-};
-
-DoublyLinkedList.prototype.reraserange = function(first, last){
-	const firstnode = first.current;
-	const lastnode = last.current;
-
-	lastnode.next = firstnode.next;
-	firstnode.next.prev = lastnode;
-
-	const it = first.copy();
-
-	while (it.current !== lastnode) {
-		--this.length;
-		it.next();
-	}
-	return last.copy();
-};
-
-DoublyLinkedList.prototype.shift = function(){
-	const it = this.begin();
-	const e = it.next();
-
-	if (e.done) {
-		return null;
-	}
-
-	this.rerase(it);
-	return e.value;
-};
-
-DoublyLinkedList.prototype.pop = function(){
-	const it = this.rbegin();
-	const e = it.next();
-
-	if (e.done) {
-		return null;
-	}
-
-	this.erase(it);
-	return e.value;
-};
-
 DoublyLinkedList.prototype.clear = function(){
 	this.front.next = this.back;
 	this.back.prev = this.front;
@@ -149,10 +76,6 @@ DoublyLinkedList.prototype.iterator = function(node){
 	return new Iterator(this.front, this.back, node);
 };
 
-DoublyLinkedList.prototype.riterator = function(node){
-	return new ReverseIterator(this.front, this.back, node);
-};
-
 DoublyLinkedList.prototype.begin = function(){
 	return this.iterator(this.front);
 };
@@ -161,24 +84,11 @@ DoublyLinkedList.prototype.end = function(){
 	return this.iterator(this.back);
 };
 
-DoublyLinkedList.prototype.rbegin = function(){
-	return this.riterator(this.back);
-};
-
-DoublyLinkedList.prototype.rend = function(){
-	return this.riterator(this.front);
-};
-
 Iterator.prototype.copy = function() {
 	return new Iterator(this.front, this.back, this.current);
 };
 
-ReverseIterator.prototype.copy = function() {
-	return new ReverseIterator(this.front, this.back, this.current);
-};
-
 Iterator.prototype.next =
-ReverseIterator.prototype.prev =
 function(){
 	this.current = this.current.next;
 	if (this.current === this.back) {
@@ -193,7 +103,6 @@ function(){
 };
 
 Iterator.prototype.prev =
-ReverseIterator.prototype.next =
 function(){
 	this.current = this.current.prev;
 	if (this.current === this.front) {
@@ -210,7 +119,6 @@ function(){
 DoublyLinkedList.prototype[Symbol.iterator] = DoublyLinkedList.prototype.begin ;
 DoublyLinkedList.Node = Node;
 DoublyLinkedList.Iterator = Iterator;
-DoublyLinkedList.ReverseIterator = ReverseIterator;
 
 
 exports.DoublyLinkedList = DoublyLinkedList;
