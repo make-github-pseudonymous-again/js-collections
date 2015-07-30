@@ -1,0 +1,199 @@
+<!DOCTYPE html><html lang="en"><head><title>001-adt/ChainMap</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../"><meta name="groc-document-path" content="001-adt/ChainMap"><meta name="groc-project-path" content="js/src/001-adt/ChainMap.js"><meta name="groc-github-url" content="https://github.com/aureooms/js-collections"><link rel="stylesheet" type="text/css" media="all" href="../assets/style.css"><script type="text/javascript" src="../assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/aureooms/js-collections/blob/master/js/src/001-adt/ChainMap.js">js/src/001-adt/ChainMap.js</a></div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="hljs-keyword">const</span> _ChainMap = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> Dict , Set </span>) </span>{
+
+	<span class="hljs-keyword">const</span> ChainMap = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> ...maps </span>) </span>{
+
+		<span class="hljs-keyword">this</span>.maps = maps ;
+
+		<span class="hljs-keyword">if</span> ( <span class="hljs-keyword">this</span>.maps.length === <span class="hljs-number">0</span> ) <span class="hljs-keyword">this</span>.maps.push( <span class="hljs-keyword">new</span> Dict( ) ) ;
+
+	} ;
+
+	ChainMap.prototype.__missing__ = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> key </span>) </span>{
+
+		<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> KeyError( key ) ;
+
+	} ;
+
+	ChainMap.prototype.get = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> key </span>) </span>{
+
+		<span class="hljs-keyword">for</span> ( <span class="hljs-keyword">let</span> map <span class="hljs-keyword">of</span> <span class="hljs-keyword">this</span>.maps ) {
+
+			<span class="hljs-keyword">try</span> {
+
+				<span class="hljs-keyword">return</span> map.get( key ) ;
+
+			}
+
+			<span class="hljs-keyword">catch</span> ( e ) {
+
+				<span class="hljs-keyword">if</span> ( !( e <span class="hljs-keyword">instanceof</span> KeyError ) ) <span class="hljs-keyword">throw</span> e ;
+
+			}
+
+		}
+
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.__missing__( key ) ;
+
+	} ;
+
+	ChainMap.prototype.getdefault = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> key , dflt = null </span>) </span>{
+
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.has( key ) ? <span class="hljs-keyword">this</span>.get( key ) : dflt ;
+
+	} ;
+
+	ChainMap.prototype._keys = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> </span>) </span>{
+
+		<span class="hljs-keyword">let</span> keys = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>( ) ;
+
+		<span class="hljs-keyword">for</span> ( <span class="hljs-keyword">let</span> map <span class="hljs-keyword">of</span> <span class="hljs-keyword">this</span>.maps ) keys.update( map.keys( ) ) ;
+
+		<span class="hljs-keyword">return</span> keys ;
+
+	} ;
+
+	ChainMap.prototype.len = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> </span>) </span>{
+
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._keys( ).len( ) ;
+
+	} ;
+
+	ChainMap.prototype[<span class="hljs-built_in">Symbol</span>.iterator] =
+	ChainMap.prototype.items = <span class="hljs-function"><span class="hljs-keyword">function</span>* (<span class="hljs-params"> </span>) </span>{
+
+		<span class="hljs-keyword">for</span> ( <span class="hljs-keyword">let</span> key <span class="hljs-keyword">of</span> <span class="hljs-keyword">this</span>.keys( ) ) <span class="hljs-keyword">yield</span> [ key , <span class="hljs-keyword">this</span>.get( key ) ] ;
+
+	} ;
+
+	ChainMap.prototype.has = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> key </span>) </span>{
+
+		<span class="hljs-keyword">for</span> ( <span class="hljs-keyword">let</span> map <span class="hljs-keyword">of</span> <span class="hljs-keyword">this</span>.maps ) {
+
+			<span class="hljs-keyword">if</span> ( map.has( key ) ) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span> ;
+
+		}
+
+		<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span> ;
+
+	} ;
+
+	ChainMap.fromkeys = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> seq , value = null </span>) </span>{
+
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ChainMap( Dict.fromkeys( seq , value ) ) ;
+
+	} ;
+
+	ChainMap.prototype.copy = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> </span>) </span>{
+
+		<span class="hljs-keyword">const</span> [ child , ...parents ] = <span class="hljs-keyword">this</span>.maps ;
+
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ChainMap( child.copy( ) , ...parents ) ;
+
+	} ;
+
+	ChainMap.prototype.new_child = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> map = null </span>) </span>{
+
+		<span class="hljs-keyword">if</span> ( map === <span class="hljs-literal">null</span> ) map = <span class="hljs-keyword">new</span> Dict( ) ;
+
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ChainMap( map , ...this.maps ) ;
+
+	} ;
+
+	ChainMap.prototype.parents = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> </span>) </span>{
+
+		<span class="hljs-keyword">const</span> [ child , ...parents ] = <span class="hljs-keyword">this</span>.maps ;
+
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ChainMap( ...parents ) ;
+
+	} ;
+
+	ChainMap.prototype.set = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> key , value </span>) </span>{
+
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.maps[<span class="hljs-number">0</span>].set( key , value ) ;
+
+	} ;
+
+	ChainMap.prototype.delete = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> key </span>) </span>{
+
+		<span class="hljs-keyword">try</span> {
+
+			<span class="hljs-keyword">this</span>.maps[<span class="hljs-number">0</span>].delete( key ) ;
+
+		}
+
+		<span class="hljs-keyword">catch</span> ( e ) {
+
+			<span class="hljs-keyword">if</span> ( !( e <span class="hljs-keyword">instanceof</span> KeyError ) ) <span class="hljs-keyword">throw</span> e ;
+
+			<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> KeyError( <span class="hljs-string">"Key not found in the first mapping: "</span> + key ) ;
+
+		}
+
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span> ;
+
+	} ;
+
+	ChainMap.prototype.popitem = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> </span>) </span>{
+
+		<span class="hljs-keyword">try</span> {
+
+			<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.maps[<span class="hljs-number">0</span>].popitem( ) ;
+
+		}
+
+		<span class="hljs-keyword">catch</span> ( e ) {
+
+			<span class="hljs-keyword">if</span> ( !( e <span class="hljs-keyword">instanceof</span> KeyError ) ) <span class="hljs-keyword">throw</span> e ;
+
+			<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> KeyError( <span class="hljs-string">"No keys found in the first mapping."</span> ) ;
+
+		}
+
+	} ;
+
+	ChainMap.prototype.pop = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> key , dflt = null </span>) </span>{
+
+		<span class="hljs-keyword">try</span> {
+
+			<span class="hljs-keyword">if</span> ( <span class="hljs-built_in">arguments</span>.length &lt;= <span class="hljs-number">1</span> ) <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.maps[<span class="hljs-number">0</span>].pop( key ) ;
+
+			<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.maps[<span class="hljs-number">0</span>].pop( key , dflt ) ;
+
+		}
+
+		<span class="hljs-keyword">catch</span> ( e ) {
+
+			<span class="hljs-keyword">if</span> ( !( e <span class="hljs-keyword">instanceof</span> KeyError ) ) <span class="hljs-keyword">throw</span> e ;
+
+			<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> KeyError( <span class="hljs-string">"Key not found in the first mapping: "</span> + key ) ;
+
+		}
+
+	} ;
+
+	ChainMap.prototype.clear = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> </span>) </span>{
+
+		<span class="hljs-keyword">this</span>.maps[<span class="hljs-number">0</span>].clear( ) ;
+
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span> ;
+
+	} ;
+
+	ChainMap.prototype.keys = <span class="hljs-function"><span class="hljs-keyword">function</span>* (<span class="hljs-params"> </span>) </span>{
+
+		<span class="hljs-keyword">yield</span>* <span class="hljs-keyword">this</span>._keys( ) ;
+
+	} ;
+
+
+	ChainMap.prototype.values = <span class="hljs-function"><span class="hljs-keyword">function</span>* (<span class="hljs-params"> </span>) </span>{
+
+		<span class="hljs-keyword">for</span> ( <span class="hljs-keyword">let</span> key <span class="hljs-keyword">of</span> <span class="hljs-keyword">this</span>.keys( ) ) <span class="hljs-keyword">yield</span> <span class="hljs-keyword">this</span>.get( key ) ;
+
+	} ;
+
+	<span class="hljs-keyword">return</span> ChainMap ;
+
+} ;
+
+exports._ChainMap = _ChainMap ;</div></div></div></div></body></html>

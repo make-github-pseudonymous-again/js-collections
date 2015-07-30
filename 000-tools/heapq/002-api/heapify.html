@@ -1,0 +1,22 @@
+<!DOCTYPE html><html lang="en"><head><title>000-tools/heapq/002-api/heapify</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../../"><meta name="groc-document-path" content="000-tools/heapq/002-api/heapify"><meta name="groc-project-path" content="js/src/000-tools/heapq/002-api/heapify.js"><meta name="groc-github-url" content="https://github.com/aureooms/js-collections"><link rel="stylesheet" type="text/css" media="all" href="../../../assets/style.css"><script type="text/javascript" src="../../../assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/aureooms/js-collections/blob/master/js/src/000-tools/heapq/002-api/heapify.js">js/src/000-tools/heapq/002-api/heapify.js</a></div></div><div id="document"><div class="segment"></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p>Builds a heap in O(n) operations.</p>
+<p>Parameters:</p>
+<ul>
+<li><p><strong>compare must be a function.</strong><br/>(the comparison function)</p>
+</li>
+<li><p><strong>x must be an array.</strong><br/>(the array where the heap is stored)</p>
+</li>
+</ul></div></div><div class="code"><div class="wrapper"><span class="hljs-keyword">const</span> heapify = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> compare , x </span>) </span>{
+
+	<span class="hljs-keyword">const</span> n = x.length ;
+
+	<span class="hljs-keyword">for</span> ( <span class="hljs-keyword">let</span> k = n / <span class="hljs-number">2</span> | <span class="hljs-number">0</span> ; k ; ) {
+
+		siftdown( compare , x , <span class="hljs-number">0</span> , n , --k ) ;
+
+	}
+
+	<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Heap( compare , x ) ;
+
+} ;
+
+heapq.heapify = heapify ;</div></div></div></div></body></html>

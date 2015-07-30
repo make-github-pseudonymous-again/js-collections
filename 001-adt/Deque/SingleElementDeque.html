@@ -1,0 +1,90 @@
+<!DOCTYPE html><html lang="en"><head><title>001-adt/Deque/SingleElementDeque</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../"><meta name="groc-document-path" content="001-adt/Deque/SingleElementDeque"><meta name="groc-project-path" content="js/src/001-adt/Deque/SingleElementDeque.js"><meta name="groc-github-url" content="https://github.com/aureooms/js-collections"><link rel="stylesheet" type="text/css" media="all" href="../../assets/style.css"><script type="text/javascript" src="../../assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/aureooms/js-collections/blob/master/js/src/001-adt/Deque/SingleElementDeque.js">js/src/001-adt/Deque/SingleElementDeque.js</a></div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="hljs-keyword">const</span> SingleElementDeque = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> iterable </span>) </span>{
+
+	<span class="hljs-keyword">this</span>.empty = <span class="hljs-literal">true</span> ;
+
+	<span class="hljs-keyword">this</span>.value = <span class="hljs-number">0</span> ;
+
+	<span class="hljs-keyword">if</span> ( iterable !== <span class="hljs-literal">null</span> ) <span class="hljs-keyword">this</span>.extend( iterable ) ;
+
+} ;
+
+SingleElementDeque.prototype = <span class="hljs-keyword">new</span> Deque( ) ;
+
+SingleElementDeque.prototype.len = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> </span>) </span>{
+
+	<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.empty ? <span class="hljs-number">0</span> : <span class="hljs-number">1</span> ;
+
+} ;
+
+SingleElementDeque.prototype.capacity = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> </span>) </span>{
+
+	<span class="hljs-keyword">return</span> <span class="hljs-number">1</span> ;
+
+} ;
+
+SingleElementDeque.prototype.values = <span class="hljs-function"><span class="hljs-keyword">function</span>* (<span class="hljs-params"> </span>) </span>{
+
+	<span class="hljs-keyword">if</span> ( <span class="hljs-keyword">this</span>.empty ) <span class="hljs-keyword">return</span> ;
+
+	<span class="hljs-keyword">yield</span> <span class="hljs-keyword">this</span>.value ;
+
+} ;
+
+SingleElementDeque.prototype.append =
+SingleElementDeque.prototype.appendleft = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> x </span>) </span>{
+
+	<span class="hljs-keyword">this</span>.empty = <span class="hljs-literal">false</span> ;
+	<span class="hljs-keyword">this</span>.value = x ;
+
+	<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span> ;
+
+} ;
+
+SingleElementDeque.prototype.clear = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> </span>) </span>{
+
+	<span class="hljs-keyword">this</span>.empty = <span class="hljs-literal">true</span> ;
+	<span class="hljs-keyword">this</span>.value = <span class="hljs-number">0</span> ;
+
+	<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span> ;
+
+} ;
+
+SingleElementDeque.prototype.copy = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> </span>) </span>{
+
+	<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> SingleElementDeque( <span class="hljs-keyword">this</span> ) ;
+
+} ;
+
+SingleElementDeque.prototype.pop =
+SingleElementDeque.prototype.popleft = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> </span>) </span>{
+
+	<span class="hljs-keyword">if</span> ( <span class="hljs-keyword">this</span>.empty ) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IndexError( <span class="hljs-string">"pop / popleft"</span> ) ;
+
+	<span class="hljs-keyword">const</span> value = <span class="hljs-keyword">this</span>.value ;
+
+	<span class="hljs-keyword">this</span>.empty = <span class="hljs-literal">true</span> ;
+	<span class="hljs-keyword">this</span>.value = <span class="hljs-number">0</span> ;
+
+	<span class="hljs-keyword">return</span> value ;
+
+} ;
+
+SingleElementDeque.prototype.get = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> i </span>) </span>{
+
+	<span class="hljs-keyword">if</span> ( <span class="hljs-keyword">this</span>.empty || i !== <span class="hljs-number">0</span> ) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IndexError( i ) ;
+
+	<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.value ;
+
+} ;
+
+SingleElementDeque.prototype.set = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> i , value </span>) </span>{
+
+	<span class="hljs-keyword">if</span> ( <span class="hljs-keyword">this</span>.empty || i !== <span class="hljs-number">0</span> ) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IndexError( i ) ;
+
+	<span class="hljs-keyword">this</span>.value = value ;
+
+	<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span> ;
+
+} ;
+
+exports.SingleElementDeque = SingleElementDeque ;</div></div></div></div></body></html>

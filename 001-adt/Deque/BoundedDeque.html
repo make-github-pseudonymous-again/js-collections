@@ -1,0 +1,105 @@
+<!DOCTYPE html><html lang="en"><head><title>001-adt/Deque/BoundedDeque</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../"><meta name="groc-document-path" content="001-adt/Deque/BoundedDeque"><meta name="groc-project-path" content="js/src/001-adt/Deque/BoundedDeque.js"><meta name="groc-github-url" content="https://github.com/aureooms/js-collections"><link rel="stylesheet" type="text/css" media="all" href="../../assets/style.css"><script type="text/javascript" src="../../assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/aureooms/js-collections/blob/master/js/src/001-adt/Deque/BoundedDeque.js">js/src/001-adt/Deque/BoundedDeque.js</a></div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="hljs-keyword">const</span> BoundedDeque = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> iterable , maxlen </span>) </span>{
+
+	<span class="hljs-keyword">this</span>.maxlen = maxlen ;
+
+	<span class="hljs-keyword">this</span>.container = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>( maxlen ) ;
+
+	<span class="hljs-keyword">this</span>.center = <span class="hljs-number">0</span> ;
+
+	<span class="hljs-keyword">this</span>.length = <span class="hljs-number">0</span> ;
+
+	<span class="hljs-keyword">if</span> ( iterable !== <span class="hljs-literal">null</span> ) <span class="hljs-keyword">this</span>.extend( iterable ) ;
+
+
+} ;
+
+BoundedDeque.prototype = <span class="hljs-keyword">new</span> ArbitrarySizeDeque( ) ;
+
+BoundedDeque.prototype.len = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> </span>) </span>{
+
+	<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.length ;
+
+} ;
+
+BoundedDeque.prototype.capacity = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> </span>) </span>{
+
+	<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.maxlen ;
+
+} ;
+
+BoundedDeque.prototype.append = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> x </span>) </span>{
+
+
+	<span class="hljs-keyword">if</span> ( <span class="hljs-keyword">this</span>.length === <span class="hljs-keyword">this</span>.maxlen ) {
+
+		<span class="hljs-keyword">this</span>.container[<span class="hljs-keyword">this</span>.center] = x ;
+		++<span class="hljs-keyword">this</span>.center ;
+		<span class="hljs-keyword">this</span>.center %= <span class="hljs-keyword">this</span>.maxlen ;
+
+	}
+
+	<span class="hljs-keyword">else</span> {
+
+		<span class="hljs-keyword">const</span> i = ( <span class="hljs-keyword">this</span>.center + <span class="hljs-keyword">this</span>.length ) % <span class="hljs-keyword">this</span>.maxlen ;
+		<span class="hljs-keyword">this</span>.container[i] = x ;
+		++<span class="hljs-keyword">this</span>.length ;
+
+	}
+
+	<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span> ;
+
+} ;
+
+BoundedDeque.prototype.appendleft = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> x </span>) </span>{
+
+	--<span class="hljs-keyword">this</span>.center ;
+	<span class="hljs-keyword">this</span>.center += <span class="hljs-keyword">this</span>.maxlen ;
+	<span class="hljs-keyword">this</span>.center %= <span class="hljs-keyword">this</span>.maxlen ;
+	<span class="hljs-keyword">this</span>.container[<span class="hljs-keyword">this</span>.center] = x ;
+
+	<span class="hljs-keyword">if</span> ( <span class="hljs-keyword">this</span>.length &lt; <span class="hljs-keyword">this</span>.maxlen ) ++<span class="hljs-keyword">this</span>.length ;
+
+	<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span> ;
+
+} ;
+
+BoundedDeque.prototype.clear = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> </span>) </span>{
+
+	<span class="hljs-keyword">this</span>.center = <span class="hljs-number">0</span> ;
+
+	<span class="hljs-keyword">this</span>.length = <span class="hljs-number">0</span> ;
+
+	<span class="hljs-keyword">this</span>.container = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>( <span class="hljs-keyword">this</span>.maxlen ) ;
+
+	<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span> ;
+
+} ;
+
+BoundedDeque.prototype.copy = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> </span>) </span>{
+
+	<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> BoundedDeque( <span class="hljs-keyword">this</span> , <span class="hljs-keyword">this</span>.maxlen ) ;
+
+} ;
+
+
+
+BoundedDeque.prototype._where = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> i </span>) </span>{
+
+	<span class="hljs-keyword">this</span>._checkbounds( i ) ;
+
+	<span class="hljs-keyword">return</span> [ <span class="hljs-keyword">this</span>.container , ( <span class="hljs-keyword">this</span>.center + i ) % <span class="hljs-keyword">this</span>.maxlen ] ;
+
+} ;
+
+
+BoundedDeque.prototype._popindex = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> container , index </span>) </span>{
+
+	<span class="hljs-keyword">const</span> value = container[index] ;</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>GC</p></div></div><div class="code"><div class="wrapper">	container[index] = <span class="hljs-number">0</span> ;
+
+	--<span class="hljs-keyword">this</span>.length ;
+
+	<span class="hljs-keyword">return</span> value ;
+
+} ;
+
+exports.BoundedDeque = BoundedDeque ;</div></div></div></div></body></html>

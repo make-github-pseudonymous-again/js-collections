@@ -1,0 +1,51 @@
+<!DOCTYPE html><html lang="en"><head><title>000-tools/namedtuple</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../"><meta name="groc-document-path" content="000-tools/namedtuple"><meta name="groc-project-path" content="js/src/000-tools/namedtuple.js"><meta name="groc-github-url" content="https://github.com/aureooms/js-collections"><link rel="stylesheet" type="text/css" media="all" href="../assets/style.css"><script type="text/javascript" src="../assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/aureooms/js-collections/blob/master/js/src/000-tools/namedtuple.js">js/src/000-tools/namedtuple.js</a></div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="hljs-keyword">const</span> _namedtuple = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> NamedTuple </span>) </span>{
+
+	<span class="hljs-keyword">const</span> namedtuple = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> typename , field_names </span>) </span>{
+
+		<span class="hljs-keyword">const</span> fields = [ ...field_names ] ;
+
+		<span class="hljs-keyword">let</span> definition = <span class="hljs-string">"( function ( ) {\n\nvar "</span> + typename + <span class="hljs-string">" = function ("</span> ;
+
+		definition += <span class="hljs-string">" "</span> + fields.join( <span class="hljs-string">" , "</span> ) ;
+
+		definition += <span class="hljs-string">" )"</span> ;
+		definition += <span class="hljs-string">" {\n\n"</span> ;
+
+		<span class="hljs-keyword">let</span> fieldlist = [ <span class="hljs-keyword">for</span> ( field <span class="hljs-keyword">of</span> fields ) <span class="hljs-string">'"'</span> + field + <span class="hljs-string">'" '</span> ] ;
+
+		definition += <span class="hljs-string">"\t"</span> + <span class="hljs-string">"this._fields = [ "</span> + fieldlist.join( <span class="hljs-string">", "</span> ) + <span class="hljs-string">"] ;\n"</span> ;
+		definition += <span class="hljs-string">"\t"</span> + <span class="hljs-string">"this.length = "</span> + fields.length + <span class="hljs-string">" ;\n"</span> ;
+
+		<span class="hljs-keyword">for</span> ( <span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span> ; i &lt; fields.length ; ++i ) {
+
+			<span class="hljs-keyword">let</span> field = fields[i] ;
+
+			definition += <span class="hljs-string">"\n"</span> ;
+			definition += <span class="hljs-string">"\t"</span> + <span class="hljs-string">"this["</span> + i + <span class="hljs-string">"] = this."</span> + field + <span class="hljs-string">" = "</span> + field + <span class="hljs-string">" ;"</span> ;
+
+		}
+
+		definition += <span class="hljs-string">"\n} ;\n\n"</span> ;
+
+		definition += typename + <span class="hljs-string">".prototype = new NamedTuple( ) ;\n\n"</span> ;
+		definition += typename + <span class="hljs-string">"._make = function ( iterable ) {\n"</span> ;
+		definition += <span class="hljs-string">"\t"</span> + <span class="hljs-string">"return NamedTuple.make( "</span> + typename + <span class="hljs-string">" , iterable ) ;\n"</span> ;
+		definition += <span class="hljs-string">"} ;\n\n"</span> ;
+		definition += typename + <span class="hljs-string">".prototype._replace = function ( dict ) {\n"</span> ;
+		definition += <span class="hljs-string">"\t"</span> + <span class="hljs-string">"return NamedTuple.replace( "</span> + typename + <span class="hljs-string">" , this , dict ) ;\n"</span> ;
+		definition += <span class="hljs-string">"} ;\n\n"</span> ;
+		definition += typename + <span class="hljs-string">".prototype._asdict = function ( ) {\n"</span> ;
+		definition += <span class="hljs-string">"\t"</span> + <span class="hljs-string">"return NamedTuple.asdict( this ) ;\n"</span> ;
+		definition += <span class="hljs-string">"} ;\n\n"</span> ;
+
+		definition += <span class="hljs-string">"return "</span> + typename + <span class="hljs-string">" ;\n\n} )( )"</span> ;
+
+		<span class="hljs-keyword">return</span> <span class="hljs-built_in">eval</span>( definition ) ;
+
+	} ;
+
+	<span class="hljs-keyword">return</span> namedtuple ;
+
+} ;
+
+exports._namedtuple = _namedtuple ;</div></div></div></div></body></html>

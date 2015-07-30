@@ -1,0 +1,134 @@
+<!DOCTYPE html><html lang="en"><head><title>001-adt/Dict/OrderedDict</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../"><meta name="groc-document-path" content="001-adt/Dict/OrderedDict"><meta name="groc-project-path" content="js/src/001-adt/Dict/OrderedDict.js"><meta name="groc-github-url" content="https://github.com/aureooms/js-collections"><link rel="stylesheet" type="text/css" media="all" href="../../assets/style.css"><script type="text/javascript" src="../../assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/aureooms/js-collections/blob/master/js/src/001-adt/Dict/OrderedDict.js">js/src/001-adt/Dict/OrderedDict.js</a></div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="hljs-keyword">const</span> _OrderedDict = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> Dict , Map , DLL </span>) </span>{
+
+	<span class="hljs-keyword">const</span> OrderedDict = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> mapping </span>) </span>{
+
+		<span class="hljs-keyword">this</span>.container = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>( ) ;
+
+		<span class="hljs-keyword">this</span>.map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>( ) ;
+
+		<span class="hljs-keyword">this</span>.list = <span class="hljs-keyword">new</span> DLL( ) ;
+
+		<span class="hljs-keyword">if</span> ( mapping !== <span class="hljs-literal">null</span> ) <span class="hljs-keyword">this</span>.update( mapping ) ;
+
+	} ;
+
+	OrderedDict.prototype = <span class="hljs-keyword">new</span> Dict( ) ;
+
+	OrderedDict.prototype.isequal = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> other </span>) </span>{
+
+		<span class="hljs-keyword">if</span> ( ! ( other <span class="hljs-keyword">instanceof</span> OrderedDict ) ) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span> ;
+
+		<span class="hljs-keyword">if</span> ( !Dict.prototype.isequal.call( <span class="hljs-keyword">this</span> , other ) ) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span> ;
+
+		<span class="hljs-keyword">let</span> keys = <span class="hljs-keyword">this</span>.keys( ) ;
+
+		<span class="hljs-keyword">for</span> ( <span class="hljs-keyword">let</span> key <span class="hljs-keyword">of</span> other.keys( ) ) {
+
+			<span class="hljs-keyword">if</span> ( keys.next( ).value !== key ) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span> ;
+
+		}
+
+		<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span> ;
+
+	} ;
+
+	OrderedDict.prototype.set = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> key , value </span>) </span>{
+
+		<span class="hljs-keyword">if</span> ( !<span class="hljs-keyword">this</span>.has( key ) ) {
+
+			<span class="hljs-keyword">this</span>.map.set( key , <span class="hljs-keyword">this</span>.list.push( key ) ) ;
+
+		}
+
+		<span class="hljs-keyword">this</span>.container.set( key , value ) ;
+
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span> ;
+
+	} ;
+
+	OrderedDict.prototype.delete = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> key </span>) </span>{
+
+		<span class="hljs-keyword">if</span> ( !<span class="hljs-keyword">this</span>.container.delete( key ) ) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> KeyError( ) ;
+
+		<span class="hljs-keyword">this</span>.list.erase( <span class="hljs-keyword">this</span>.map.get( key ) ) ;
+		<span class="hljs-keyword">this</span>.map.delete( key ) ;
+
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span> ;
+
+	} ;
+
+	OrderedDict.prototype.clear = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> </span>) </span>{
+
+		<span class="hljs-keyword">this</span>.container.clear( ) ;
+
+		<span class="hljs-keyword">this</span>.map.clear( ) ;
+
+		<span class="hljs-keyword">this</span>.list.clear( ) ;
+
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span> ;
+
+	} ;
+
+	OrderedDict.prototype.copy = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> </span>) </span>{
+
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> OrderedDict( <span class="hljs-keyword">this</span>.items( ) ) ;
+
+	} ;
+
+	OrderedDict.fromkeys = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> seq , value = null </span>) </span>{
+
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> OrderedDict( Mapping.fromkeys( seq , value ) ) ;
+
+	} ;
+
+	OrderedDict.prototype.popitem = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> last = true </span>) </span>{
+
+		<span class="hljs-keyword">if</span> ( <span class="hljs-keyword">this</span>.len( ) === <span class="hljs-number">0</span> ) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> KeyError( ) ;
+
+		<span class="hljs-keyword">const</span> key = last ?
+		<span class="hljs-keyword">this</span>.list.end( ).prev( ).value :
+		<span class="hljs-keyword">this</span>.list.begin( ).next( ).value ;
+
+		<span class="hljs-keyword">return</span> [ key , <span class="hljs-keyword">this</span>.pop( key ) ] ;
+
+	} ;
+
+	OrderedDict.prototype.move_to_end = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> key , last = true </span>) </span>{
+
+		<span class="hljs-keyword">if</span> ( !<span class="hljs-keyword">this</span>.container.has( key ) ) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> KeyError( ) ;
+
+		<span class="hljs-keyword">this</span>.list.erase( <span class="hljs-keyword">this</span>.map.get( key ) ) ;
+
+		<span class="hljs-keyword">const</span> iterator = last ? <span class="hljs-keyword">this</span>.list.push( key ) : <span class="hljs-keyword">this</span>.list.unshift( key ) ;
+
+		<span class="hljs-keyword">this</span>.map.set( key , iterator ) ;
+
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span> ;
+
+	} ;
+
+	OrderedDict.prototype.keys = <span class="hljs-function"><span class="hljs-keyword">function</span>* (<span class="hljs-params"> </span>) </span>{
+
+		<span class="hljs-keyword">for</span> ( <span class="hljs-keyword">let</span> key <span class="hljs-keyword">of</span> <span class="hljs-keyword">this</span>.list ) <span class="hljs-keyword">yield</span> key ;
+
+	} ;
+
+	OrderedDict.prototype.values = <span class="hljs-function"><span class="hljs-keyword">function</span>* (<span class="hljs-params"> </span>) </span>{
+
+		<span class="hljs-keyword">for</span> ( <span class="hljs-keyword">let</span> key <span class="hljs-keyword">of</span> <span class="hljs-keyword">this</span>.keys( ) ) <span class="hljs-keyword">yield</span> <span class="hljs-keyword">this</span>.container.get( key ) ;
+
+	} ;
+
+	OrderedDict.prototype.items = <span class="hljs-function"><span class="hljs-keyword">function</span>* (<span class="hljs-params"> </span>) </span>{
+
+		<span class="hljs-keyword">for</span> ( <span class="hljs-keyword">let</span> key <span class="hljs-keyword">of</span> <span class="hljs-keyword">this</span>.keys( ) ) <span class="hljs-keyword">yield</span> [ key , <span class="hljs-keyword">this</span>.container.get( key ) ] ;
+
+	} ;
+
+	OrderedDict.prototype[<span class="hljs-built_in">Symbol</span>.iterator] = OrderedDict.prototype.items ;
+
+	<span class="hljs-keyword">return</span> OrderedDict ;
+
+} ;
+
+exports._OrderedDict = _OrderedDict ;</div></div></div></div></body></html>

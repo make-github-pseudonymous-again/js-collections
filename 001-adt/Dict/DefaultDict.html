@@ -1,0 +1,31 @@
+<!DOCTYPE html><html lang="en"><head><title>001-adt/Dict/DefaultDict</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../"><meta name="groc-document-path" content="001-adt/Dict/DefaultDict"><meta name="groc-project-path" content="js/src/001-adt/Dict/DefaultDict.js"><meta name="groc-github-url" content="https://github.com/aureooms/js-collections"><link rel="stylesheet" type="text/css" media="all" href="../../assets/style.css"><script type="text/javascript" src="../../assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/aureooms/js-collections/blob/master/js/src/001-adt/Dict/DefaultDict.js">js/src/001-adt/Dict/DefaultDict.js</a></div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="hljs-keyword">const</span> _DefaultDict = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> Dict , Map </span>) </span>{
+
+	<span class="hljs-keyword">const</span> DefaultDict = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> default_factory  , mapping  </span>) </span>{
+
+		<span class="hljs-keyword">this</span>.container = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>( mapping ) ;
+
+		<span class="hljs-keyword">this</span>.default_factory = default_factory ;
+
+	} ;
+
+	DefaultDict.fromkeys = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> seq , value = null , default_factory = null </span>) </span>{
+
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> DefaultDict( default_factory , Mapping.fromkeys( seq , value ) ) ;
+
+	} ;
+
+	DefaultDict.prototype = <span class="hljs-keyword">new</span> Dict( ) ;
+
+	DefaultDict.prototype.__missing__ = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> key </span>) </span>{
+
+		<span class="hljs-keyword">if</span> ( <span class="hljs-keyword">this</span>.default_factory === <span class="hljs-literal">null</span> ) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> KeyError( key ) ;
+
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.default_factory( ) ;
+
+	} ;
+
+	<span class="hljs-keyword">return</span> DefaultDict ;
+
+} ;
+
+exports._DefaultDict = _DefaultDict ;</div></div></div></div></body></html>
