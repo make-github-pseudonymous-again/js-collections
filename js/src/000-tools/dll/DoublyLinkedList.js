@@ -84,10 +84,6 @@ DoublyLinkedList.prototype.end = function(){
 	return this.iterator(this.back);
 };
 
-Iterator.prototype.copy = function() {
-	return new Iterator(this.front, this.back, this.current);
-};
-
 Iterator.prototype.next =
 function(){
 	this.current = this.current.next;

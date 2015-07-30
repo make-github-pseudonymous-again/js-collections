@@ -429,10 +429,6 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 			return this.iterator(this.back);
 		};
 
-		Iterator.prototype.copy = function () {
-			return new Iterator(this.front, this.back, this.current);
-		};
-
 		Iterator.prototype.next = function () {
 			this.current = this.current.next;
 			if (this.current === this.back) {

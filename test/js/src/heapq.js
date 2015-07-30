@@ -122,4 +122,25 @@ test( "heapq" , function ( ) {
 	deepEqual( heapq.heappop( h ) , "c" , "pop c" ) ;
 	deepEqual( heapq.heappop( h ) , "d" , "pop d" ) ;
 	deepEqual( heapq.heappop( h ) , "e" , "pop e" ) ;
+
+	heapq.heappush( h , "b" ) ;
+	heapq.heappush( h , "a" ) ;
+	heapq.heappush( h , "d" ) ;
+	heapq.heappush( h , "e" ) ;
+	heapq.heappush( h , "c" ) ;
+
+	deepEqual( heapq.heappushpop( h , "z" ) , "a" , "pushpop aa" ) ;
+	deepEqual( heapq.heappushpop( h , "a" ) , "a" , "pushpop ba" ) ;
+	deepEqual( heapq.heappushpop( h , "z" ) , "b" , "pushpop bb" ) ;
+	deepEqual( heapq.heappushpop( h , "a" ) , "a" , "pushpop ca" ) ;
+	deepEqual( heapq.heappushpop( h , "z" ) , "c" , "pushpop cc" ) ;
+
+	deepEqual( heapq.heappop( h ) , "d" , "pop d" ) ;
+	deepEqual( heapq.heappop( h ) , "e" , "pop e" ) ;
+	deepEqual( heapq.heappop( h ) , "z" , "pop z 1" ) ;
+	deepEqual( heapq.heappop( h ) , "z" , "pop z 2" ) ;
+	deepEqual( heapq.heappop( h ) , "z" , "pop z 3" ) ;
+
+	deepEqual( heapq.heappushpop( h , "z" ) , "z" , "pushpop zz" ) ;
+
 } ) ;
