@@ -17,6 +17,8 @@
     "javascript",
     "js",
     "list",
+	"heapq",
+	"bisect",
     "map"
   ],
   "homepage": "http://aureooms.github.io/js-collections/",

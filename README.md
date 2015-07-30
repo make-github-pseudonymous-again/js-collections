@@ -111,3 +111,11 @@ Alternatively, you can use any tool mentioned [here](http://bower.io/docs/tools/
 ```js
 require( [ "aureooms-js-collections" ] , function ( collections ) { ... } ) ;
 ```
+
+## Use
+
+See Python's docs:
+
+  - [collections](https://docs.python.org/3.6/library/collections.html)
+  - [heapq](https://docs.python.org/3.6/library/heapq.html)
+  - [bisect](https://docs.python.org/3.6/library/bisect.html).
