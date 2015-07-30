@@ -30,6 +30,8 @@
     "aureooms-js-functools": "^2.0.3",
     "aureooms-js-itertools": "^1.1.2",
     "aureooms-js-number": "^2.1.0",
+    "aureooms-js-operator": "^1.0.2",
+    "aureooms-js-sort": "^6.0.0",
     "aureooms-node-package": "^4.2.5"
   },
   "repository": {

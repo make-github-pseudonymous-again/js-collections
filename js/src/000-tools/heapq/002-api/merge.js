@@ -19,7 +19,7 @@ const merge = function* ( compare , ...iterables ) {
 
 		while ( true ) {
 
-			const s = h[0] ;
+			const s = x[0] ;
 
 			const [ value , order , it ] = s ;
 
@@ -27,7 +27,12 @@ const merge = function* ( compare , ...iterables ) {
 
 			const rv = next( it ) ;
 
-			if ( rv.done ) break ;
+			if ( rv.done ) {
+
+				heappop( h ) ;
+				break ;
+
+			}
 
 			s[0] = rv.value ;
 
@@ -39,7 +44,7 @@ const merge = function* ( compare , ...iterables ) {
 
 	if ( x.length > 0 ) {
 
-		const [ value , order , it ] = h[0] ;
+		const [ value , order , it ] = x[0] ;
 
 		yield value ;
 

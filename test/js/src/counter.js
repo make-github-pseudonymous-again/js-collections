@@ -52,4 +52,9 @@ test( "counter" , function ( ) {
 	raises( counter.fromkeys.bind( null , "abc" ) , NotImplementedError , "fromkeys default" ) ;
 	raises( counter.fromkeys.bind( null , "abc" , 1 ) , NotImplementedError , "fromkeys" ) ;
 
+	deepEqual( counter('aab').most_common(1) , [['a', 2]] , "most_common aab" ) ;
+	deepEqual( counter('abracadabra').most_common(0) , [] , "most_common 0" ) ;
+	deepEqual( counter('abracadabra').most_common(1) , [['a', 5]] , "most_common 1" ) ;
+	deepEqual( counter('abbcccddddeeeee').most_common(3) , [['e', 5], ['d', 4], ['c', 3]] , "most_common all" ) ;
+	deepEqual( counter('abbcccddddeeeee').most_common() , [['e', 5], ['d', 4], ['c', 3], ['b', 2], ['a', 1]] , "most_common all" ) ;
 } ) ;

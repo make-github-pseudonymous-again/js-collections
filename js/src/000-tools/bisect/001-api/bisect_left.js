@@ -5,7 +5,7 @@ const bisect_left = function ( a , x , lo = 0 , hi = a.length ) {
 
     while ( lo < hi ) {
 
-        mid = ( lo + hi ) / 2 | 0 ;
+        const mid = ( lo + hi ) / 2 | 0 ;
 
         if ( x > a[mid] ) lo = mid + 1 ;
 

@@ -249,7 +249,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 				while (lo < hi) {
 
-					mid = (lo + hi) / 2 | 0;
+					var mid = (lo + hi) / 2 | 0;
 
 					if (x > a[mid]) lo = mid + 1;else hi = mid;
 				}
@@ -271,7 +271,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 				while (lo < hi) {
 
-					mid = (lo + hi) / 2 | 0;
+					var mid = (lo + hi) / 2 | 0;
 
 					if (x < a[mid]) hi = mid;else lo = mid + 1;
 				}
@@ -313,6 +313,12 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 		bisect.insort_right = insort_right;
 
 		/* js/src/000-tools/compare */
+		/* js/src/000-tools/compare/counts.js */
+
+		var counts = function counts(a, b) {
+			return increasing(a[1], b[1]);
+		};
+
 		/* js/src/000-tools/compare/increasing.js */
 
 		var increasing = function increasing(a, b) {
@@ -675,6 +681,49 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 			return i + current;
 		};
 
+		/* js/src/000-tools/heapq/001-core/siftup.js */
+
+		/**
+   * Sifts up a node.
+   *
+   * @param {function} compare the comparison function
+   * @param {array} a the array where the heap is stored
+   * @param {int} i is the root element
+   * @param {int} j - 1 is the last leaf
+   * @param {int} k is the target node
+   */
+
+		var siftup = function siftup(compare, a, i, j, k) {
+
+			var current = k - i;
+
+			// while we are not the root
+
+			while (current !== 0) {
+
+				// address of the parent in a zero-based
+				// d-ary heap
+
+				var _parent = i + (current - 1 >>> 1);
+
+				// if current value is greater than its parent
+				// then we are done
+
+				if (compare(a[i + current], a[_parent]) >= 0) return i + current;
+
+				// otherwise
+				// swap with parent
+
+				var tmp = a[i + current];
+				a[i + current] = a[_parent];
+				a[_parent] = tmp;
+
+				current = _parent - i;
+			}
+
+			return i + current;
+		};
+
 		/* js/src/000-tools/heapq/002-api */
 		/* js/src/000-tools/heapq/002-api/heapify.js */
 
@@ -713,9 +762,9 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 			// swap last leaf and root
 
-			var tmp = a[0];
-			a[0] = a[last];
-			a[last] = tmp;
+			var tmp = x[0];
+			x[0] = x[last];
+			x[last] = tmp;
 
 			// sift down the new root
 
@@ -812,7 +861,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 			    s,
 			    _s,
 			    value,
-			    _h$0,
+			    _x$0,
 			    args$3$0 = arguments;
 
 			return regeneratorRuntime.wrap(function merge$(context$3$0) {
@@ -896,17 +945,17 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 					case 33:
 						if (!(x.length > 1)) {
-							context$3$0.next = 51;
+							context$3$0.next = 52;
 							break;
 						}
 
 					case 34:
 						if (!true) {
-							context$3$0.next = 49;
+							context$3$0.next = 50;
 							break;
 						}
 
-						s = h[0];
+						s = x[0];
 						_s = _slicedToArray(s, 3);
 						value = _s[0];
 						order = _s[1];
@@ -918,13 +967,14 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 						rv = next(it);
 
 						if (!rv.done) {
-							context$3$0.next = 45;
+							context$3$0.next = 46;
 							break;
 						}
 
-						return context$3$0.abrupt("break", 49);
+						heappop(h);
+						return context$3$0.abrupt("break", 50);
 
-					case 45:
+					case 46:
 
 						s[0] = rv.value;
 
@@ -933,27 +983,27 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 						context$3$0.next = 34;
 						break;
 
-					case 49:
+					case 50:
 						context$3$0.next = 33;
 						break;
 
-					case 51:
+					case 52:
 						if (!(x.length > 0)) {
-							context$3$0.next = 59;
+							context$3$0.next = 60;
 							break;
 						}
 
-						_h$0 = _slicedToArray(h[0], 3);
-						value = _h$0[0];
-						order = _h$0[1];
-						it = _h$0[2];
-						context$3$0.next = 58;
+						_x$0 = _slicedToArray(x[0], 3);
+						value = _x$0[0];
+						order = _x$0[1];
+						it = _x$0[2];
+						context$3$0.next = 59;
 						return value;
 
-					case 58:
-						return context$3$0.delegateYield(it, "t1", 59);
-
 					case 59:
+						return context$3$0.delegateYield(it, "t1", 60);
+
+					case 60:
 					case "end":
 						return context$3$0.stop();
 				}
@@ -977,7 +1027,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 			if (n === 1) {
 
-				sentinel = {};
+				var sentinel = {};
 
 				result = min(compare, iterable, sentinel);
 
@@ -2083,6 +2133,12 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 				}
 			};
 
+			Counter.prototype.most_common = function () {
+				var n = arguments.length <= 0 || arguments[0] === undefined ? this.len() : arguments[0];
+
+				return heapq.nlargest(counts, n, this);
+			};
+
 			return Counter;
 		};
 
@@ -2344,9 +2400,9 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 			for (; i < j; --j) {
 
-				var _a = this.get(j);
+				var a = this.get(j);
 				this.set(j, this.get(j - 1));
-				this.set(j - 1, _a);
+				this.set(j - 1, a);
 			}
 
 			return this;
@@ -2378,10 +2434,10 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 			for (var i = 0, j = this.len(); i < --j; ++i) {
 
-				var _a2 = this.get(i);
+				var a = this.get(i);
 				var b = this.get(j);
 				this.set(i, b);
-				this.set(j, _a2);
+				this.set(j, a);
 			}
 
 			return this;

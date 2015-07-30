@@ -65,6 +65,12 @@ const _Counter = function ( Map , Dict ) {
 
 	} ;
 
+	Counter.prototype.most_common = function ( n = this.len( ) ) {
+
+		return heapq.nlargest( counts , n , this ) ;
+
+	} ;
+
 	return Counter ;
 
 } ;

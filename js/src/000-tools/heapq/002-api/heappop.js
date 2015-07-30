@@ -10,9 +10,9 @@ const heappop = function ( heap ) {
 
 	// swap last leaf and root
 
-	const tmp = a[0] ;
-	a[0] = a[last] ;
-	a[last] = tmp ;
+	const tmp = x[0] ;
+	x[0] = x[last] ;
+	x[last] = tmp ;
 
 	// sift down the new root
 

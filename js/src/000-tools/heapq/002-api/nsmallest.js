@@ -3,7 +3,7 @@ const nsmallest = function ( compare , n , iterable ) {
 
 	if ( n === 1 ) {
 
-        sentinel = { } ;
+        const sentinel = { } ;
 
         result = min( compare , iterable , sentinel ) ;
 
