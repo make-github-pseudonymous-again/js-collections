@@ -1,50 +1,50 @@
 {
-  "scripts": {
-    "test": "./node_modules/.bin/aureooms-node-package-test",
-    "build": "./node_modules/.bin/aureooms-node-package-build",
-    "doc": "./node_modules/.bin/groc"
-  },
-  "author": "aureooms",
-  "keywords": [
-    "bricks",
-    "collection",
-    "collections",
-    "count",
-    "counter",
-    "dict",
-    "ender",
-    "hash",
-    "javascript",
-    "js",
-    "list",
-	"heapq",
-	"bisect",
-    "map"
-  ],
-  "homepage": "http://aureooms.github.io/js-collections/",
-  "bugs": {
-    "url": "https://github.com/aureooms/js-collections/issues"
-  },
-  "license": "AGPL-3.0",
-  "name": "aureooms-js-collections",
-  "devDependencies": {
-    "aureooms-js-compare": "^1.4.4",
-    "aureooms-js-functools": "^2.0.3",
-    "aureooms-js-itertools": "^1.1.2",
-    "aureooms-js-number": "^2.1.0",
-    "aureooms-js-operator": "^1.0.2",
-    "aureooms-js-sort": "^6.0.0",
-    "aureooms-node-package": "^4.2.5"
-  },
-  "repository": {
-    "url": "https://github.com/aureooms/js-collections.git",
-    "type": "git"
-  },
-  "description": "Collections code bricks for JavaScript",
-  "spm": {
-    "main": "js/dist/collections.js"
-  },
-  "main": "js/dist/collections.js",
-  "dependencies": {},
-  "version": "0.0.1"
+	"scripts": {
+		"test": "./node_modules/.bin/aureooms-node-package-test",
+		"build": "./node_modules/.bin/aureooms-node-package-build",
+		"doc": "./node_modules/.bin/groc"
+	},
+	"author": "aureooms",
+	"keywords": [
+		"bricks",
+		"collection",
+		"collections",
+		"count",
+		"counter",
+		"dict",
+		"ender",
+		"hash",
+		"javascript",
+		"js",
+		"list",
+		"heapq",
+		"bisect",
+		"map"
+	],
+	"homepage": "http://aureooms.github.io/js-collections/",
+	"bugs": {
+		"url": "https://github.com/aureooms/js-collections/issues"
+	},
+	"license": "AGPL-3.0",
+	"name": "aureooms-js-collections",
+	"devDependencies": {
+		"aureooms-js-compare": "^1.4.4",
+		"aureooms-js-functools": "^2.0.3",
+		"aureooms-js-itertools": "^1.1.2",
+		"aureooms-js-number": "^2.1.0",
+		"aureooms-js-operator": "^1.0.2",
+		"aureooms-js-sort": "^6.0.0",
+		"aureooms-node-package": "^4.2.5"
+	},
+	"repository": {
+		"url": "https://github.com/aureooms/js-collections.git",
+		"type": "git"
+	},
+	"description": "Collections code bricks for JavaScript",
+	"spm": {
+		"main": "js/dist/collections.js"
+	},
+	"main": "js/dist/collections.js",
+	"dependencies": {},
+	"version": "1.0.0"
 }
