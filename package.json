@@ -30,7 +30,7 @@
 	"devDependencies": {
 		"aureooms-js-compare": "^1.4.4",
 		"aureooms-js-functools": "^2.0.3",
-		"aureooms-js-itertools": "^1.1.2",
+		"aureooms-js-itertools": "^3.0.0",
 		"aureooms-js-number": "^3.0.0",
 		"aureooms-js-operator": "^1.0.2",
 		"aureooms-js-sort": "^6.0.0",
