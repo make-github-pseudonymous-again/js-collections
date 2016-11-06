@@ -33,7 +33,7 @@
 		"aureooms-js-itertools": "^3.0.0",
 		"aureooms-js-number": "^3.0.0",
 		"aureooms-js-operator": "^1.0.2",
-		"aureooms-js-sort": "^6.0.0",
+		"aureooms-js-sort": "^7.0.0",
 		"aureooms-node-package": "^4.2.5"
 	},
 	"repository": {
