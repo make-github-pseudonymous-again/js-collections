@@ -1,7 +1,7 @@
 
-const bisect_right = function ( a , x , lo = 0 , hi = a.length ) {
+export function bisect_right ( a , x , lo = 0 , hi = a.length ) {
 
-	if ( lo < 0 ) throw new ValueError( "lo must be non-negative" ) ;
+    if ( lo < 0 ) throw new ValueError( "lo must be non-negative" ) ;
 
     while ( lo < hi ) {
 
@@ -11,10 +11,8 @@ const bisect_right = function ( a , x , lo = 0 , hi = a.length ) {
 
         else lo = mid + 1 ;
 
-	}
+    }
 
     return lo ;
 
-} ;
-
-bisect.bisect_right = bisect_right ;
+}

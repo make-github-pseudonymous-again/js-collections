@@ -1,5 +1,5 @@
 
-const ArbitrarySizeDeque = function ( ) { } ;
+export const ArbitrarySizeDeque = function ( ) { } ;
 
 ArbitrarySizeDeque.prototype = new Deque( ) ;
 
@@ -35,5 +35,3 @@ ArbitrarySizeDeque.prototype.popleft = function ( ) {
 	return this._popindex( container , index ) ;
 
 } ;
-
-exports.ArbitrarySizeDeque = ArbitrarySizeDeque ;

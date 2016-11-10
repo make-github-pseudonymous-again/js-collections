@@ -1,8 +1,6 @@
 
-const ValueError = function ( message ) {
+export function ValueError ( message ) {
 
 	this.message = message ;
 
-} ;
-
-exports.ValueError = ValueError ;
+}

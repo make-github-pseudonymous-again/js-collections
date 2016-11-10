@@ -1,5 +1,5 @@
 
-const _ordereddict = function ( OrderedDict ) {
+export const _ordereddict = function ( OrderedDict ) {
 
 	const ordereddict = function ( mapping = null ) {
 
@@ -13,4 +13,3 @@ const _ordereddict = function ( OrderedDict ) {
 
 } ;
 
-exports._ordereddict = _ordereddict ;

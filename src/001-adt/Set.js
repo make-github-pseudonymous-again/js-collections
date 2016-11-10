@@ -1,5 +1,5 @@
 
-const _Set = function ( BaseSet ) {
+export function _Set ( BaseSet ) {
 
 	const Set = function ( iterable = null ) {
 
@@ -19,7 +19,8 @@ const _Set = function ( BaseSet ) {
 
 		return function ( ...args ) {
 
-			return method.apply( this , [ for ( arg of args ) Set.wrap( arg ) ] ) ;
+			return method.apply( this , Array.from( args , Set.wrap ) ) ;
+
 		} ;
 
 	} ;
@@ -253,6 +254,4 @@ const _Set = function ( BaseSet ) {
 
 	return Set ;
 
-} ;
-
-exports._Set = _Set ;
+}

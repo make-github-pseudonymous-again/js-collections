@@ -1,5 +1,5 @@
 
-const _chainmap = function ( ChainMap ) {
+export const _chainmap = function ( ChainMap ) {
 
 	const chainmap = function ( ...maps ) {
 
@@ -12,5 +12,3 @@ const _chainmap = function ( ChainMap ) {
 	return chainmap ;
 
 } ;
-
-exports._chainmap = _chainmap ;

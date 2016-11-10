@@ -1,8 +1,6 @@
 
-const KeyError = function ( message ) {
+export function KeyError ( message ) {
 
 	this.message = message ;
 
-} ;
-
-exports.KeyError = KeyError ;
+}

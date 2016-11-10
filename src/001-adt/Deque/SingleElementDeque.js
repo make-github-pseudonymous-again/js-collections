@@ -1,5 +1,5 @@
 
-const SingleElementDeque = function ( iterable ) {
+export const SingleElementDeque = function ( iterable ) {
 
 	this.empty = true ;
 
@@ -87,5 +87,3 @@ SingleElementDeque.prototype.set = function ( i , value ) {
 	return this ;
 
 } ;
-
-exports.SingleElementDeque = SingleElementDeque ;

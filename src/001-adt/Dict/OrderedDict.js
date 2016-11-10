@@ -1,5 +1,5 @@
 
-const _OrderedDict = function ( Dict , Map , DLL ) {
+export function _OrderedDict ( Dict , Map , DLL ) {
 
 	const OrderedDict = function ( mapping ) {
 
@@ -130,6 +130,4 @@ const _OrderedDict = function ( Dict , Map , DLL ) {
 
 	return OrderedDict ;
 
-} ;
-
-exports._OrderedDict = _OrderedDict ;
+}

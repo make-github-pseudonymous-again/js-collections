@@ -1,5 +1,5 @@
 
-const _Dict = function ( Map ) {
+export const _Dict = function ( Map ) {
 
 	const Dict = function ( mapping = null ) {
 
@@ -160,5 +160,3 @@ const _Dict = function ( Map ) {
 	return Dict ;
 
 } ;
-
-exports._Dict = _Dict ;

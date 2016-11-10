@@ -1,5 +1,5 @@
 
-const _deque = function ( UnboundedDeque , BoundedDeque , SingleElementDeque , EmptyDeque ) {
+export const _deque = function ( UnboundedDeque , BoundedDeque , SingleElementDeque , EmptyDeque ) {
 
 	const deque = function ( iterable = null , maxlen = null ) {
 
@@ -21,4 +21,3 @@ const _deque = function ( UnboundedDeque , BoundedDeque , SingleElementDeque , E
 
 } ;
 
-exports._deque = _deque ;

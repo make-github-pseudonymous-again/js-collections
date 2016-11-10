@@ -1,8 +1,6 @@
 
-const NotImplementedError = function ( message ) {
+export function NotImplementedError ( message ) {
 
 	this.message = message ;
 
-} ;
-
-exports.NotImplementedError = NotImplementedError ;
+}

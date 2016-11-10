@@ -1,5 +1,5 @@
 
-const heappush = function ( heap , item ) {
+ export function heappush ( heap , item ) {
 
 	const x = heap.data ;
 	const n = x.length ;
@@ -10,6 +10,4 @@ const heappush = function ( heap , item ) {
 
 	siftup( heap.compare , x , 0 , n + 1 , n ) ;
 
-} ;
-
-heapq.heappush = heappush ;
+}

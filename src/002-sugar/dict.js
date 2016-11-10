@@ -1,5 +1,5 @@
 
-const _dict = function ( Dict ) {
+export const _dict = function ( Dict ) {
 
 	const dict = function ( mapping = null ) {
 
@@ -13,4 +13,3 @@ const _dict = function ( Dict ) {
 
 } ;
 
-exports._dict = _dict ;

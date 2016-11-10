@@ -9,7 +9,7 @@
  * @param {int} k is the target node
  */
 
-const siftup = function ( compare , a , i , j , k ) {
+export function siftup ( compare , a , i , j , k ) {
 
 	let current = k - i ;
 
@@ -40,4 +40,4 @@ const siftup = function ( compare , a , i , j , k ) {
 
 	return i + current ;
 
-} ;
+}

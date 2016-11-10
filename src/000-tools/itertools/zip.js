@@ -1,5 +1,5 @@
 
-let zip = function* ( iterables ) {
+export function* zip ( iterables ) {
 
 	let iterators = [ ...map( iter , iterables ) ] ;
 
@@ -21,4 +21,4 @@ let zip = function* ( iterables ) {
 
 	}
 
-} ;
+}

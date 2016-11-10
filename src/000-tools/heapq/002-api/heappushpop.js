@@ -1,5 +1,5 @@
 
-const heappushpop = function ( heap , item ) {
+export function heappushpop ( heap , item ) {
 
 	const x = heap.data ;
 	const n = x.length ;
@@ -20,6 +20,4 @@ const heappushpop = function ( heap , item ) {
 
 	return smallest ;
 
-} ;
-
-heapq.heappushpop = heappushpop ;
+}

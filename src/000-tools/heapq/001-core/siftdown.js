@@ -10,7 +10,7 @@
  * @param {int} k is the target node
  */
 
-const siftdown = function ( compare, a, i, j, k ) {
+export function siftdown ( compare, a, i, j, k ) {
 
 	let current = k - i;
 
@@ -46,4 +46,4 @@ const siftdown = function ( compare, a, i, j, k ) {
 
 	return i + current;
 
-} ;
+}

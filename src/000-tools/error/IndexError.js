@@ -1,8 +1,6 @@
 
-const IndexError = function ( message ) {
+export function IndexError ( message ) {
 
 	this.message = message ;
 
-} ;
-
-exports.IndexError = IndexError ;
+}

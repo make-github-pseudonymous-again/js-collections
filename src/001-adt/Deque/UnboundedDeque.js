@@ -1,5 +1,5 @@
 
-const UnboundedDeque = function ( iterable ) {
+export const UnboundedDeque = function ( iterable ) {
 
 	this.growth = 2 ;
 
@@ -145,5 +145,3 @@ UnboundedDeque.prototype._popindex = function ( container , index ) {
 	return value ;
 
 } ;
-
-exports.UnboundedDeque = UnboundedDeque ;

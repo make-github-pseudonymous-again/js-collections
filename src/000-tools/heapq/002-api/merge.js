@@ -1,5 +1,5 @@
 
-const merge = function* ( compare , ...iterables ) {
+export function* merge ( compare , ...iterables ) {
 
 	const x = [ ] ;
 
@@ -52,6 +52,4 @@ const merge = function* ( compare , ...iterables ) {
 
 	}
 
-} ;
-
-heapq.merge = merge ;
+}

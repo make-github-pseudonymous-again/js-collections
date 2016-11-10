@@ -1,5 +1,5 @@
 
-const Deque = function ( ) { } ;
+export function Deque ( ) { } ;
 
 Deque.prototype.len = function ( ) {
 

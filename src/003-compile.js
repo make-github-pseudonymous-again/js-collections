@@ -1,5 +1,5 @@
 
-const compile = function ( BaseSet , BaseMap , DLL , exports = { } ) {
+export const compile = function ( BaseSet , BaseMap , DLL , exports = { } ) {
 
 	const Set = exports._Set( BaseSet ) ;
 	const Dict = exports._Dict( BaseMap ) ;
@@ -52,5 +52,3 @@ const compile = function ( BaseSet , BaseMap , DLL , exports = { } ) {
 	return exports ;
 
 } ;
-
-exports.compile = compile ;

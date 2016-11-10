@@ -1,2 +1,2 @@
 
-compile( Set , Map , DoublyLinkedList , exports ) ;
+export default compile( Set , Map , DoublyLinkedList , exports ) ;

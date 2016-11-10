@@ -1,5 +1,5 @@
 
-const _namedtuple = function ( NamedTuple ) {
+export function _namedtuple ( NamedTuple ) {
 
 	const namedtuple = function ( typename , field_names ) {
 
@@ -12,7 +12,7 @@ const _namedtuple = function ( NamedTuple ) {
 		definition += " )" ;
 		definition += " {\n\n" ;
 
-		let fieldlist = [ for ( field of fields ) '"' + field + '" ' ] ;
+		let fieldlist = fields.map( field => '"' + field + '" ' ) ;
 
 		definition += "\t" + "this._fields = [ " + fieldlist.join( ", " ) + "] ;\n" ;
 		definition += "\t" + "this.length = " + fields.length + " ;\n" ;
@@ -47,6 +47,4 @@ const _namedtuple = function ( NamedTuple ) {
 
 	return namedtuple ;
 
-} ;
-
-exports._namedtuple = _namedtuple ;
+}

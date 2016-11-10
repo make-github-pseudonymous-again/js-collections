@@ -4,12 +4,12 @@
  * sake of simplicity.
  */
 
-const DoublyLinkedList = function(){
+export function DoublyLinkedList ( ) {
 	this.front = new Node(null, null, null);
 	this.back = new Node(this.front, null, null);
 	this.front.next = this.back;
 	this.length = 0;
-};
+}
 
 const Node = function(prev, next, value){
 	this.prev = prev;
@@ -115,6 +115,3 @@ function(){
 DoublyLinkedList.prototype[Symbol.iterator] = DoublyLinkedList.prototype.begin ;
 DoublyLinkedList.Node = Node;
 DoublyLinkedList.Iterator = Iterator;
-
-
-exports.DoublyLinkedList = DoublyLinkedList;

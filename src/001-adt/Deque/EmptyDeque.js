@@ -1,5 +1,5 @@
 
-const EmptyDeque = function ( iterable ) {
+export const EmptyDeque = function ( iterable ) {
 
 	if ( iterable !== null ) this.extend( iterable ) ;
 
@@ -61,5 +61,3 @@ EmptyDeque.prototype.popleft = function ( ) {
 	throw new IndexError( "pop / popleft" ) ;
 
 } ;
-
-exports.EmptyDeque = EmptyDeque ;

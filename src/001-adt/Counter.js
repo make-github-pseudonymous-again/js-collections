@@ -1,5 +1,5 @@
 
-const _Counter = function ( Map , Dict ) {
+export function _Counter ( Map , Dict ) {
 
 	const Counter = function ( iterable ) {
 
@@ -73,6 +73,4 @@ const _Counter = function ( Map , Dict ) {
 
 	return Counter ;
 
-} ;
-
-exports._Counter = _Counter ;
+}

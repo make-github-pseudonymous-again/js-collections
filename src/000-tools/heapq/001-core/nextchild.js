@@ -12,7 +12,7 @@
  * @param {int} j - 1 is the last leaf
  */
 
-const nextchild = function ( compare , a , i , j ) {
+export function nextchild ( compare , a , i , j ) {
 
 	if ( j - i < 2 ) return i ;
 
@@ -20,4 +20,4 @@ const nextchild = function ( compare , a , i , j ) {
 
 	return i + 1 ;
 
-} ;
+}

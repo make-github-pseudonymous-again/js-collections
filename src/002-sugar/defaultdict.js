@@ -1,5 +1,5 @@
 
-const _defaultdict = function ( DefaultDict ) {
+export const _defaultdict = function ( DefaultDict ) {
 
 	const defaultdict = function ( default_factory = null , mapping = null ) {
 
@@ -13,4 +13,3 @@ const _defaultdict = function ( DefaultDict ) {
 
 } ;
 
-exports._defaultdict = _defaultdict ;

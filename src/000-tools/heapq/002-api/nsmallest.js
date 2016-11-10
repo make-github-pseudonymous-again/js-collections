@@ -1,13 +1,13 @@
 
-const nsmallest = function ( compare , n , iterable ) {
+export function nsmallest ( compare , n , iterable ) {
 
 	if ( n === 1 ) {
 
-        const sentinel = { } ;
+		const sentinel = { } ;
 
-        result = min( compare , iterable , sentinel ) ;
+		const result = min( compare , iterable , sentinel ) ;
 
-        return result === sentinel ? [ ] : [ result ] ;
+		return result === sentinel ? [ ] : [ result ] ;
 
 	}
 
@@ -19,7 +19,7 @@ const nsmallest = function ( compare , n , iterable ) {
 
 	const it = iter( iterable ) ;
 
-	const result = [ for ( [ i , elem ] of zip( [ range( 0 , n , 1 ) , it ] ) ) [ elem , i ] ] ;
+	const result = Array.from( zip( [ range( 0 , n , 1 ) , it ] ) , ( [ i , elem ] ) => [ elem , i ] ) ;
 
 	if ( result.length === 0 ) return result ;
 
@@ -43,8 +43,6 @@ const nsmallest = function ( compare , n , iterable ) {
 
 	}
 
-	return sorted( compare , [ for ( r of result ) r[0] ] ) ;
+	return sorted( compare , Array.from( result , r => r[0] ) ) ;
 
-} ;
-
-heapq.nsmallest = nsmallest ;
+}

@@ -1,5 +1,5 @@
 
-const _DefaultDict = function ( Dict , Map ) {
+export const _DefaultDict = function ( Dict , Map ) {
 
 	const DefaultDict = function ( default_factory  , mapping  ) {
 
@@ -28,5 +28,3 @@ const _DefaultDict = function ( Dict , Map ) {
 	return DefaultDict ;
 
 } ;
-
-exports._DefaultDict = _DefaultDict ;

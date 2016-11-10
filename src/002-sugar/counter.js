@@ -1,5 +1,5 @@
 
-const _counter = function ( Counter ) {
+export const _counter = function ( Counter ) {
 
 	const counter = function ( iterable = null ) {
 
@@ -12,5 +12,3 @@ const _counter = function ( Counter ) {
 	return counter ;
 
 } ;
-
-exports._counter = _counter ;

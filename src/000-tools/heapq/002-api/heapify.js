@@ -7,7 +7,7 @@
  *
  */
 
-const heapify = function ( compare , x ) {
+export function heapify ( compare , x ) {
 
 	const n = x.length ;
 
@@ -19,6 +19,4 @@ const heapify = function ( compare , x ) {
 
 	return new Heap( compare , x ) ;
 
-} ;
-
-heapq.heapify = heapify ;
+}

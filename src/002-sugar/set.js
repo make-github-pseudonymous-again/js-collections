@@ -1,5 +1,5 @@
 
-const _set = function ( Set ) {
+export const _set = function ( Set ) {
 
 	const set = function ( iterable = null ) {
 
@@ -13,4 +13,3 @@ const _set = function ( Set ) {
 
 } ;
 
-exports._set = _set ;

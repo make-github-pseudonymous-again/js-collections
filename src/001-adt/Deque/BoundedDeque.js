@@ -1,5 +1,5 @@
 
-const BoundedDeque = function ( iterable , maxlen ) {
+export const BoundedDeque = function ( iterable , maxlen ) {
 
 	this.maxlen = maxlen ;
 
@@ -105,5 +105,3 @@ BoundedDeque.prototype._popindex = function ( container , index ) {
 	return value ;
 
 } ;
-
-exports.BoundedDeque = BoundedDeque ;

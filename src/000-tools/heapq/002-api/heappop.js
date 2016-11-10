@@ -1,5 +1,5 @@
 
-const heappop = function ( heap ) {
+export function heappop ( heap ) {
 
 	const x = heap.data ;
 	const n = x.length ;
@@ -22,6 +22,4 @@ const heappop = function ( heap ) {
 
 	return x.pop( ) ;
 
-};
-
-heapq.heappop = heappop ;
+}

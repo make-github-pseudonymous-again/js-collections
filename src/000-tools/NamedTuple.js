@@ -1,5 +1,5 @@
 
-const _NamedTuple = function ( Dict , OrderedDict ) {
+export function _NamedTuple ( Dict , OrderedDict ) {
 
 	const NamedTuple = function ( ) { } ;
 
@@ -21,7 +21,7 @@ const _NamedTuple = function ( Dict , OrderedDict ) {
 
 		for ( let [ key , value ] of dict ) values.set( key , value ) ;
 
-		return new Constructor( ...[ for ( key of fields ) values.get( key ) ] ) ;
+		return new Constructor( ...fields.map( key => values.get( key ) ) ) ;
 
 	} ;
 
@@ -29,12 +29,10 @@ const _NamedTuple = function ( Dict , OrderedDict ) {
 
 		const fields = tuple._fields ;
 
-		return new OrderedDict( [ for ( key of fields ) [ key , tuple[key] ] ] ) ;
+		return new OrderedDict( fields.map( key => [ key , tuple[key] ] ) ) ;
 
 	} ;
 
 	return NamedTuple ;
 
-} ;
-
-exports._NamedTuple = _NamedTuple ;
+}

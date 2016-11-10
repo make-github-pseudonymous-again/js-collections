@@ -1,5 +1,5 @@
 
-const heapreplace = function ( heap , item ) {
+export function heapreplace ( heap , item ) {
 
 	const x = heap.data ;
 	const n = x.length ;
@@ -16,6 +16,4 @@ const heapreplace = function ( heap , item ) {
 
 	return oldroot ;
 
-} ;
-
-heapq.heapreplace = heapreplace ;
+}

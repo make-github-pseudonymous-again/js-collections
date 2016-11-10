@@ -1,5 +1,5 @@
 
-const _ChainMap = function ( Dict , Set ) {
+export function _ChainMap ( Dict , Set ) {
 
 	const ChainMap = function ( ...maps ) {
 
@@ -195,6 +195,4 @@ const _ChainMap = function ( Dict , Set ) {
 
 	return ChainMap ;
 
-} ;
-
-exports._ChainMap = _ChainMap ;
+}
