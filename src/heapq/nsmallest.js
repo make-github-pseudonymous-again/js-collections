@@ -1,4 +1,10 @@
-import { _zip2 , _range } from 'aureooms-js-itertools' ;
+import { min , sorted , _zip2 , _range } from 'aureooms-js-itertools' ;
+import { reverse } from 'aureooms-js-compare' ;
+
+import { keeporder } from './core' ;
+
+import heapify from './heapify' ;
+import heapreplace from './heapreplace' ;
 
 export function nsmallest ( compare , n , iterable ) {
 

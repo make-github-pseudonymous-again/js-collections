@@ -1,5 +1,7 @@
+import { IndexError } from '../error' ;
+import { siftdown } from './core' ;
 
-export function heappop ( heap ) {
+export default function heappop ( heap ) {
 
 	const x = heap.data ;
 	const n = x.length ;

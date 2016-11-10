@@ -1,3 +1,4 @@
+import { siftdown , Heap } from './core' ;
 
 /**
  * Builds a heap in O(n) operations.
@@ -7,7 +8,7 @@
  *
  */
 
-export function heapify ( compare , x ) {
+export default function heapify ( compare , x ) {
 
 	const n = x.length ;
 

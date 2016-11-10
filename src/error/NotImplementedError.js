@@ -1,5 +1,5 @@
 
-export function NotImplementedError ( message ) {
+export default function NotImplementedError ( message ) {
 
 	this.message = message ;
 

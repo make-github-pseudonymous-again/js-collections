@@ -1,5 +1,12 @@
+import { enumerate , map , iter } from 'aureooms-js-itertools' ;
 
-export function* merge ( compare , ...iterables ) {
+import { keeporder } from './core' ;
+
+import heapify from './heapify' ;
+import heappop from './heappop' ;
+import heapreplace from './heapreplace' ;
+
+export default function* merge ( compare , ...iterables ) {
 
 	const x = [ ] ;
 

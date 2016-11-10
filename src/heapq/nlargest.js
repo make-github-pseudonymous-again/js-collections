@@ -1,5 +1,8 @@
+import { reverse } from 'aureooms-js-compare' ;
 
-export function nlargest ( compare , n , iterable ) {
+import nsmallest from './nsmallest' ;
+
+export default function nlargest ( compare , n , iterable ) {
 
 	return nsmallest( reverse( compare ) , n , iterable ) ;
 

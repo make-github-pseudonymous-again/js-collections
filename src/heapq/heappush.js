@@ -1,5 +1,6 @@
+import { siftup } from './core' ;
 
- export function heappush ( heap , item ) {
+ export default function heappush ( heap , item ) {
 
 	const x = heap.data ;
 	const n = x.length ;

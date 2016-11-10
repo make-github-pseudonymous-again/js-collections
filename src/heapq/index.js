@@ -1,24 +1,33 @@
+import core from './core' ;
 import heapify from './heapify' ;
 import heappop from './heappop' ;
 import heappush from './heappush' ;
-import heapushpop from './heappushpop' ;
+import heappushpop from './heappushpop' ;
 import heapreplace from './heapreplace' ;
 import merge from './merge' ;
 import nlargest from './nlargest' ;
 import nsmallest from './nsmallest' ;
 
-const heapq = {
+export default {
+	core ,
 	heapify ,
 	heappop ,
 	heappush ,
-	heapushpop ,
+	heappushpop ,
 	heapreplace ,
 	merge ,
 	nlargest ,
-	nsmallest
+	nsmallest ,
 } ;
 
-export heapq ;
-
-export default heapq ;
-
+export {
+	core ,
+	heapify ,
+	heappop ,
+	heappush ,
+	heappushpop ,
+	heapreplace ,
+	merge ,
+	nlargest ,
+	nsmallest ,
+} ;

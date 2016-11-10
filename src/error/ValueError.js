@@ -1,5 +1,5 @@
 
-export function ValueError ( message ) {
+export default function ValueError ( message ) {
 
 	this.message = message ;
 

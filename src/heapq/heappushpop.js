@@ -1,5 +1,6 @@
+import { siftdown } from './core' ;
 
-export function heappushpop ( heap , item ) {
+export default function heappushpop ( heap , item ) {
 
 	const x = heap.data ;
 	const n = x.length ;

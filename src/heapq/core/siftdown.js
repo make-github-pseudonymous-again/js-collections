@@ -1,4 +1,4 @@
-
+import nextchild from './nextchild' ;
 
 /**
  * Sifts down a node.
@@ -10,7 +10,7 @@
  * @param {int} k is the target node
  */
 
-export function siftdown ( compare, a, i, j, k ) {
+export default function siftdown ( compare, a, i, j, k ) {
 
 	let current = k - i;
 

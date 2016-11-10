@@ -12,7 +12,7 @@
  * @param {int} j - 1 is the last leaf
  */
 
-export function nextchild ( compare , a , i , j ) {
+export default function nextchild ( compare , a , i , j ) {
 
 	if ( j - i < 2 ) return i ;
 

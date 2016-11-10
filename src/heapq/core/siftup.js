@@ -9,7 +9,7 @@
  * @param {int} k is the target node
  */
 
-export function siftup ( compare , a , i , j , k ) {
+export default function siftup ( compare , a , i , j , k ) {
 
 	let current = k - i ;
 
