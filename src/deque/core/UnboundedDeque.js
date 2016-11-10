@@ -17,7 +17,7 @@ export default function UnboundedDeque ( iterable ) {
 	if ( iterable !== null ) this.extend( iterable ) ;
 
 
-} ;
+}
 
 UnboundedDeque.prototype = new ArbitrarySizeDeque( ) ;
 

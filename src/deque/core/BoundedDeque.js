@@ -1,6 +1,6 @@
 import ArbitrarySizeDeque from './ArbitrarySizeDeque' ;
 
-export const BoundedDeque = function ( iterable , maxlen ) {
+export default function BoundedDeque ( iterable , maxlen ) {
 
 	this.maxlen = maxlen ;
 
@@ -13,7 +13,7 @@ export const BoundedDeque = function ( iterable , maxlen ) {
 	if ( iterable !== null ) this.extend( iterable ) ;
 
 
-} ;
+}
 
 BoundedDeque.prototype = new ArbitrarySizeDeque( ) ;
 

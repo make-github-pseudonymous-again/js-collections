@@ -1,7 +1,7 @@
 import { KeyError } from '../../error' ;
 import { Mapping } from '../../mapping' ;
 
-export const _Dict = function ( Map ) {
+export default function _Dict ( Map ) {
 
 	const Dict = function ( mapping = null ) {
 

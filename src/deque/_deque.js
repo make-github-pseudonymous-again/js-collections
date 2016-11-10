@@ -1,3 +1,4 @@
+import { ValueError } from '../error' ;
 
 export default function _deque ( UnboundedDeque , BoundedDeque , SingleElementDeque , EmptyDeque ) {
 

@@ -1,11 +1,11 @@
 import { IndexError } from '../../error' ;
 import Deque from './Deque' ;
 
-export const EmptyDeque = function ( iterable ) {
+export default function EmptyDeque ( iterable ) {
 
 	if ( iterable !== null ) this.extend( iterable ) ;
 
-} ;
+}
 
 EmptyDeque.prototype = new Deque( ) ;
 
