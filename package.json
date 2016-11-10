@@ -1,6 +1,6 @@
 {
   "name": "aureooms-js-collections",
-  "description": "Collections code bricks for JavaScript",
+  "description": "Collections library for JavaScript",
   "version": "1.0.0",
   "author": "Aurélien Ooms <aurelien.ooms@gmail.com>",
   "ava": {
@@ -44,13 +44,11 @@
   "homepage": "http://aureooms.github.io/js-collections/",
   "keywords": [
     "bisect",
-    "bricks",
     "collection",
     "collections",
     "count",
     "counter",
     "dict",
-    "ender",
     "hash",
     "heapq",
     "javascript",
@@ -65,7 +63,7 @@
     "type": "git"
   },
   "scripts": {
-    "build": "babel src -d lib",
+    "build": "rm -rf lib && babel src -d lib",
     "cover": "nyc --reporter=lcov npm test",
     "prepublish": "npm run build",
     "test": "ava ./test/src"
