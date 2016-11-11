@@ -1,44 +1,43 @@
 
 export default function compile ( BaseSet , BaseMap , DoublyLinkedList , core ) {
 
-	const Set = core._Set( BaseSet ) ;
-	const Dict = core._Dict( BaseMap ) ;
-	const OrderedDict = core._OrderedDict( Dict , BaseMap , DoublyLinkedList ) ;
-	const NamedTuple = core._NamedTuple( Dict , OrderedDict ) ;
-	const DefaultDict = core._DefaultDict( Dict , BaseMap ) ;
-	const ChainMap = core._ChainMap( Dict , Set ) ;
-	const Counter = core._Counter( BaseMap , Dict ) ;
-	const namedtuple = core._namedtuple( NamedTuple ) ;
+	const Set = core.set._Set( BaseSet ) ;
+	const Dict = core.dict.dict._Dict( BaseMap ) ;
+	const OrderedDict = core.dict.ordereddict._OrderedDict( Dict , BaseMap , DoublyLinkedList ) ;
+	const NamedTuple = core.namedtuple._NamedTuple( Dict , OrderedDict ) ;
+	const DefaultDict = core.dict.defaultdict._DefaultDict( Dict , BaseMap ) ;
+	const ChainMap = core.chainmap._ChainMap( Dict , Set ) ;
+	const Counter = core.counter._Counter( BaseMap , Dict ) ;
+	const namedtuple = core.namedtuple._namedtuple( NamedTuple ) ;
 
 	const all = { } ;
 
-	all.bisect = bisect ;
+	all.bisect = core.bisect ;
 
-	all.heapq = heapq ;
+	all.heapq = core.heapq ;
 
 	all.Set = Set ;
-	all.set = core._set( Set ) ;
+	all.set = core.set._set( Set ) ;
 
-	all.Mapping = Mapping ;
+	all.Mapping = core.mapping ;
 
 	all.Dict = Dict ;
-	all.dict = core._dict( Dict ) ;
-
+	all.dict = core.dict.dict_dict( Dict ) ;
 	all.OrderedDict = OrderedDict ;
-	all.ordereddict = core._ordereddict( OrderedDict ) ;
-
+	all.ordereddict = core.dict.ordereddict._ordereddict( OrderedDict ) ;
 	all.DefaultDict = DefaultDict ;
-	all.defaultdict = core._defaultdict( DefaultDict ) ;
+	all.defaultdict = core.dict.defaultdict._defaultdict( DefaultDict ) ;
 
 	all.ChainMap = ChainMap ;
-	all.chainmap = core._chainmap( ChainMap ) ;
+	all.chainmap = core.chainmap._chainmap( ChainMap ) ;
 
 	all.Counter = Counter ;
-	all.counter = core._counter( Counter ) ;
+	all.counter = core.counter._counter( Counter ) ;
+
 	all.NamedTuple = NamedTuple ;
 	all.namedtuple = namedtuple ;
 
-	all.deque = core._deque( UnboundedDeque , BoundedDeque , SingleElementDeque , EmptyDeque ) ;
+	all.deque = core.deque._deque( UnboundedDeque , BoundedDeque , SingleElementDeque , EmptyDeque ) ;
 	all.Deque = Deque ;
 	all.UnboundedDeque = UnboundedDeque ;
 	all.BoundedDeque = BoundedDeque ;
