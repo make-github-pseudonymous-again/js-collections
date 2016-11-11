@@ -6,7 +6,7 @@ import { keeporder } from './core' ;
 import heapify from './heapify' ;
 import heapreplace from './heapreplace' ;
 
-export function nsmallest ( compare , n , iterable ) {
+export default function nsmallest ( compare , n , iterable ) {
 
 	if ( n === 1 ) {
 

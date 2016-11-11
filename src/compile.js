@@ -1,54 +1,56 @@
 
-export default function compile ( BaseSet , BaseMap , DLL , exports = { } ) {
+export default function compile ( BaseSet , BaseMap , DoublyLinkedList , core ) {
 
-	const Set = exports._Set( BaseSet ) ;
-	const Dict = exports._Dict( BaseMap ) ;
-	const OrderedDict = exports._OrderedDict( Dict , BaseMap , DLL ) ;
-	const NamedTuple = exports._NamedTuple( Dict , OrderedDict ) ;
-	const DefaultDict = exports._DefaultDict( Dict , BaseMap ) ;
-	const ChainMap = exports._ChainMap( Dict , Set ) ;
-	const Counter = exports._Counter( BaseMap , Dict ) ;
-	const namedtuple = exports._namedtuple( NamedTuple ) ;
+	const Set = core._Set( BaseSet ) ;
+	const Dict = core._Dict( BaseMap ) ;
+	const OrderedDict = core._OrderedDict( Dict , BaseMap , DoublyLinkedList ) ;
+	const NamedTuple = core._NamedTuple( Dict , OrderedDict ) ;
+	const DefaultDict = core._DefaultDict( Dict , BaseMap ) ;
+	const ChainMap = core._ChainMap( Dict , Set ) ;
+	const Counter = core._Counter( BaseMap , Dict ) ;
+	const namedtuple = core._namedtuple( NamedTuple ) ;
 
-	exports.bisect = bisect ;
+	const all = { } ;
 
-	exports.heapq = heapq ;
+	all.bisect = bisect ;
 
-	exports.Set = Set ;
-	exports.set = exports._set( Set ) ;
+	all.heapq = heapq ;
 
-	exports.Mapping = Mapping ;
+	all.Set = Set ;
+	all.set = core._set( Set ) ;
 
-	exports.Dict = Dict ;
-	exports.dict = exports._dict( Dict ) ;
+	all.Mapping = Mapping ;
 
-	exports.OrderedDict = OrderedDict ;
-	exports.ordereddict = exports._ordereddict( OrderedDict ) ;
+	all.Dict = Dict ;
+	all.dict = core._dict( Dict ) ;
 
-	exports.DefaultDict = DefaultDict ;
-	exports.defaultdict = exports._defaultdict( DefaultDict ) ;
+	all.OrderedDict = OrderedDict ;
+	all.ordereddict = core._ordereddict( OrderedDict ) ;
 
-	exports.ChainMap = ChainMap ;
-	exports.chainmap = exports._chainmap( ChainMap ) ;
+	all.DefaultDict = DefaultDict ;
+	all.defaultdict = core._defaultdict( DefaultDict ) ;
 
-	exports.Counter = Counter ;
-	exports.counter = exports._counter( Counter ) ;
-	exports.NamedTuple = NamedTuple ;
-	exports.namedtuple = namedtuple ;
+	all.ChainMap = ChainMap ;
+	all.chainmap = core._chainmap( ChainMap ) ;
 
-	exports.deque = exports._deque( UnboundedDeque , BoundedDeque , SingleElementDeque , EmptyDeque ) ;
-	exports.Deque = Deque ;
-	exports.UnboundedDeque = UnboundedDeque ;
-	exports.BoundedDeque = BoundedDeque ;
-	exports.SingleElementDeque = SingleElementDeque ;
-	exports.EmptyDeque = EmptyDeque ;
+	all.Counter = Counter ;
+	all.counter = core._counter( Counter ) ;
+	all.NamedTuple = NamedTuple ;
+	all.namedtuple = namedtuple ;
 
-	exports.IndexError = IndexError ;
-	exports.KeyError = KeyError ;
-	exports.NotImplementedError = NotImplementedError ;
-	exports.TypeError = exports.TypeError ;
-	exports.ValueError = ValueError ;
+	all.deque = core._deque( UnboundedDeque , BoundedDeque , SingleElementDeque , EmptyDeque ) ;
+	all.Deque = Deque ;
+	all.UnboundedDeque = UnboundedDeque ;
+	all.BoundedDeque = BoundedDeque ;
+	all.SingleElementDeque = SingleElementDeque ;
+	all.EmptyDeque = EmptyDeque ;
 
-	return exports ;
+	all.IndexError = IndexError ;
+	all.KeyError = KeyError ;
+	all.NotImplementedError = NotImplementedError ;
+	all.TypeError = TypeError ;
+	all.ValueError = ValueError ;
+
+	return all ;
 
 }

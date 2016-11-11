@@ -1,5 +1,9 @@
-import { fromkeys } from './fromkeys' ;
+import fromkeys from './fromkeys' ;
 
-export { fromkeys } ;
+export default {
+	fromkeys ,
+} ;
 
-export default { fromkeys } ;
+export {
+	fromkeys ,
+} ;

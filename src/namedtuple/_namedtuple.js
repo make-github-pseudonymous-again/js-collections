@@ -1,5 +1,5 @@
 
-export function _namedtuple ( NamedTuple ) {
+export default function _namedtuple ( NamedTuple ) {
 
 	const namedtuple = function ( typename , field_names ) {
 

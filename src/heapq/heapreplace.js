@@ -1,7 +1,7 @@
 import { IndexError } from '../error' ;
 import { siftdown } from './core' ;
 
-export function heapreplace ( heap , item ) {
+export default function heapreplace ( heap , item ) {
 
 	const x = heap.data ;
 	const n = x.length ;

@@ -1,5 +1,6 @@
+import { KeyError } from '../error' ;
 
-export function _Set ( BaseSet ) {
+export default function _Set ( BaseSet ) {
 
 	const Set = function ( iterable = null ) {
 

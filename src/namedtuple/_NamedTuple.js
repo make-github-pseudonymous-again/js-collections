@@ -1,5 +1,5 @@
 
-export function _NamedTuple ( Dict , OrderedDict ) {
+export default function _NamedTuple ( Dict , OrderedDict ) {
 
 	const NamedTuple = function ( ) { } ;
 

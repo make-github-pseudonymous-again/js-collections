@@ -1,5 +1,5 @@
 
-export const _set = function ( Set ) {
+export default function _set ( Set ) {
 
 	const set = function ( iterable = null ) {
 
@@ -11,5 +11,4 @@ export const _set = function ( Set ) {
 
 	return set ;
 
-} ;
-
+}
