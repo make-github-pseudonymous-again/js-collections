@@ -84,7 +84,7 @@
 </nav>
 
 <div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="-js-collections-http-aureooms-github-io-js-collections-"><a href="http://aureooms.github.io/js-collections">js-collections</a></h1>
-<p>Collections code bricks for JavaScript. Parent is
+<p>Collections library for JavaScript. Parent is
 <a href="https://github.com/aureooms/js-data-structures">js-data-structures</a>.</p>
 <p>JavaScript version of
 <a href="https://docs.python.org/3.6/library/collections.html">Python&apos;s collections library</a>
@@ -110,67 +110,6 @@ and
 <a href="https://www.npmjs.org/package/aureooms-js-collections"><img src="http://img.shields.io/npm/dm/aureooms-js-collections.svg?style=flat" alt="NPM downloads per month"></a>
 <a href="https://github.com/aureooms/js-collections/issues"><img src="http://img.shields.io/github/issues/aureooms/js-collections.svg?style=flat" alt="GitHub issues"></a>
 <a href="https://aureooms.github.io/js-collections/source.html"><img src="https://aureooms.github.io/js-collections/badge.svg" alt="Documentation"></a></p>
-<p>Can be managed through <a href="https://github.com/jspm/jspm-cli">jspm</a>,
-<a href="https://github.com/duojs/duo">duo</a>,
-<a href="https://github.com/componentjs/component">component</a>,
-<a href="https://github.com/bower/bower">bower</a>,
-<a href="https://github.com/ender-js/Ender">ender</a>,
-<a href="https://github.com/caolan/jam">jam</a>,
-<a href="https://github.com/spmjs/spm">spm</a>,
-and <a href="https://github.com/npm/npm">npm</a>.</p>
-<h2 id="install">Install</h2>
-<h3 id="jspm">jspm</h3>
-<pre><code class="lang-terminal"><code class="source-code prettyprint">jspm install github:aureooms/js-collections
-# or
-jspm install npm:aureooms-js-collections</code>
-</code></pre>
-<h3 id="duo">duo</h3>
-<p>No install step needed for duo!</p>
-<h3 id="component">component</h3>
-<pre><code class="lang-terminal"><code class="source-code prettyprint">component install aureooms/js-collections</code>
-</code></pre>
-<h3 id="bower">bower</h3>
-<pre><code class="lang-terminal"><code class="source-code prettyprint">bower install aureooms-js-collections</code>
-</code></pre>
-<h3 id="ender">ender</h3>
-<pre><code class="lang-terminal"><code class="source-code prettyprint">ender add aureooms-js-collections</code>
-</code></pre>
-<h3 id="jam">jam</h3>
-<pre><code class="lang-terminal"><code class="source-code prettyprint">jam install aureooms-js-collections</code>
-</code></pre>
-<h3 id="spm">spm</h3>
-<pre><code class="lang-terminal"><code class="source-code prettyprint">spm install aureooms-js-collections --save</code>
-</code></pre>
-<h3 id="npm">npm</h3>
-<pre><code class="lang-terminal"><code class="source-code prettyprint">npm install aureooms-js-collections --save</code>
-</code></pre>
-<h2 id="require">Require</h2>
-<h3 id="jspm">jspm</h3>
-<pre><code class="lang-js"><code class="source-code prettyprint">let collections = require( &quot;github:aureooms/js-collections&quot; ) ;
-// or
-import collections from &apos;aureooms-js-collections&apos; ;</code>
-</code></pre>
-<h3 id="duo">duo</h3>
-<pre><code class="lang-js"><code class="source-code prettyprint">let collections = require( &quot;aureooms/js-collections&quot; ) ;</code>
-</code></pre>
-<h3 id="component-ender-spm-npm">component, ender, spm, npm</h3>
-<pre><code class="lang-js"><code class="source-code prettyprint">let collections = require( &quot;aureooms-js-collections&quot; ) ;</code>
-</code></pre>
-<h3 id="bower">bower</h3>
-<p>The script tag exposes the global variable <code>collections</code>.</p>
-<pre><code class="lang-html"><code class="source-code prettyprint">&lt;script src=&quot;bower_components/aureooms-js-collections/js/dist/collections.min.js&quot;&gt;&lt;/script&gt;</code>
-</code></pre>
-<p>Alternatively, you can use any tool mentioned <a href="http://bower.io/docs/tools/">here</a>.</p>
-<h3 id="jam">jam</h3>
-<pre><code class="lang-js"><code class="source-code prettyprint">require( [ &quot;aureooms-js-collections&quot; ] , function ( collections ) { ... } ) ;</code>
-</code></pre>
-<h2 id="use">Use</h2>
-<p>See Python&apos;s docs:</p>
-<ul>
-<li><a href="https://docs.python.org/3.6/library/collections.html">collections</a></li>
-<li><a href="https://docs.python.org/3.6/library/heapq.html">heapq</a></li>
-<li><a href="https://docs.python.org/3.6/library/bisect.html">bisect</a></li>
-</ul>
 <h3 id="some-changes-w-r-t-python-s-api">Some changes w.r.t. Python&apos;s API</h3>
 <h4 id="-heapq-"><code>heapq</code></h4>
 <pre><code class="lang-js"><code class="source-code prettyprint">let array = [ 2 , 1 , 3 ] ;
