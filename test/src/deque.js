@@ -1,11 +1,11 @@
 import test from 'ava' ;
 
 import {
-	list : l ,
-	range : r ,
-	chain : c ,
-	map : m ,
-	filter : f ,
+	list as l ,
+	range as r ,
+	chain as c ,
+	map as m ,
+	filter as f ,
 } from 'aureooms-js-itertools' ;
 
 import {
@@ -20,7 +20,7 @@ import {
 	EmptyDeque ,
 } from '../../src' ;
 
-test( deque.name , function ( ) {
+test( deque.name , t => {
 
 	let d = new Deque( ) ;
 

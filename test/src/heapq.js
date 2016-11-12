@@ -1,33 +1,33 @@
 import test from 'ava' ;
 
-import compare from "aureooms-js-compare" ;
-import itertools from "aureooms-js-itertools" ;
+import { increasing } from "aureooms-js-compare" ;
+import { list } from "aureooms-js-itertools" ;
 
 import { heapq , IndexError } from '../../src' ;
 
 test( "heapq" , t => {
 
 	t.deepEqual(
-		itertools.list( heapq.merge( compare.increasing ) ) ,
+		list( heapq.merge( increasing ) ) ,
 		[ ] ,
 		"merge 0"
 	) ;
 
 	t.deepEqual(
-		itertools.list( heapq.merge( compare.increasing , [ ] , [ ] ) ) ,
+		list( heapq.merge( increasing , [ ] , [ ] ) ) ,
 		[ ] ,
 		"merge 2 [ ]"
 	) ;
 
 	t.deepEqual(
-		itertools.list( heapq.merge( compare.increasing , [ ] , [ 1 , 3 , 9 ] , [ 1 , 2 , 3 , 4 ] , [ 1 , 1 , 5 , 10 , 99 ] ) ) ,
+		list( heapq.merge( increasing , [ ] , [ 1 , 3 , 9 ] , [ 1 , 2 , 3 , 4 ] , [ 1 , 1 , 5 , 10 , 99 ] ) ) ,
 		[ 1 , 1 , 1 , 1 , 2 , 3 , 3 , 4 , 5 , 9 , 10 , 99 ] ,
 		"merge"
 	) ;
 
 	t.deepEqual(
 
-		heapq.nlargest( compare.increasing , 1 , [ ] ) ,
+		heapq.nlargest( increasing , 1 , [ ] ) ,
 		[ ] ,
 		"nlargest empty 1"
 
@@ -35,7 +35,7 @@ test( "heapq" , t => {
 
 	t.deepEqual(
 
-		heapq.nlargest( compare.increasing , 99 , [ ] ) ,
+		heapq.nlargest( increasing , 99 , [ ] ) ,
 		[ ] ,
 		"nlargest empty 99"
 
@@ -43,7 +43,7 @@ test( "heapq" , t => {
 
 	t.deepEqual(
 
-		heapq.nsmallest( compare.increasing , 1 , [ ] ) ,
+		heapq.nsmallest( increasing , 1 , [ ] ) ,
 		[ ] ,
 		"nsmallest empty 1"
 
@@ -51,7 +51,7 @@ test( "heapq" , t => {
 
 	t.deepEqual(
 
-		heapq.nsmallest( compare.increasing , 99 , [ ] ) ,
+		heapq.nsmallest( increasing , 99 , [ ] ) ,
 		[ ] ,
 		"nsmallest empty 99"
 
@@ -60,7 +60,7 @@ test( "heapq" , t => {
 
 	t.deepEqual(
 
-		heapq.nlargest( compare.increasing , 3 , [ 9 , 8 , 7 , 6 ] ) ,
+		heapq.nlargest( increasing , 3 , [ 9 , 8 , 7 , 6 ] ) ,
 		[ 9 , 8 , 7 ] ,
 		"nlargest"
 
@@ -68,7 +68,7 @@ test( "heapq" , t => {
 
 	t.deepEqual(
 
-		heapq.nsmallest( compare.increasing , 3 , [ 9 , 8 , 7 , 6 ] ) ,
+		heapq.nsmallest( increasing , 3 , [ 9 , 8 , 7 , 6 ] ) ,
 		[ 6 , 7 , 8 ] ,
 		"nsmallest"
 
@@ -76,7 +76,7 @@ test( "heapq" , t => {
 
 	t.deepEqual(
 
-		heapq.nlargest( compare.increasing , 4 , [ 9 , 8 , 7 , 6 ] ) ,
+		heapq.nlargest( increasing , 4 , [ 9 , 8 , 7 , 6 ] ) ,
 		[ 9 , 8 , 7 , 6 ] ,
 		"nlargest (sort)"
 
@@ -84,7 +84,7 @@ test( "heapq" , t => {
 
 	t.deepEqual(
 
-		heapq.nsmallest( compare.increasing , 4 , [ 9 , 8 , 7 , 6 ] ) ,
+		heapq.nsmallest( increasing , 4 , [ 9 , 8 , 7 , 6 ] ) ,
 		[ 6 , 7 , 8 , 9 ] ,
 		"nsmallest (sort)"
 
@@ -92,7 +92,7 @@ test( "heapq" , t => {
 
 	t.deepEqual(
 
-		heapq.nlargest( compare.increasing , 1 , [ 9 , 8 , 7 , 6 ] ) ,
+		heapq.nlargest( increasing , 1 , [ 9 , 8 , 7 , 6 ] ) ,
 		[ 9 ] ,
 		"nlargest (min)"
 
@@ -100,16 +100,16 @@ test( "heapq" , t => {
 
 	t.deepEqual(
 
-		heapq.nsmallest( compare.increasing , 1 , [ 9 , 8 , 7 , 6 ] ) ,
+		heapq.nsmallest( increasing , 1 , [ 9 , 8 , 7 , 6 ] ) ,
 		[ 6 ] ,
 		"nsmallest (min)"
 
 	) ;
 
-	t.throws( heapq.heappop.bind( null , heapq.heapify( compare.increasing , [ ] ) ) , IndexError , "pop raises" ) ;
-	t.throws( heapq.heapreplace.bind( null , heapq.heapify( compare.increasing , [ ] ) , 1 ) , IndexError , "replace raises" ) ;
+	t.throws( heapq.heappop.bind( null , heapq.heapify( increasing , [ ] ) ) , IndexError , "pop raises" ) ;
+	t.throws( heapq.heapreplace.bind( null , heapq.heapify( increasing , [ ] ) , 1 ) , IndexError , "replace raises" ) ;
 
-	const h = heapq.heapify( compare.increasing , [ ] ) ;
+	const h = heapq.heapify( increasing , [ ] ) ;
 
 	heapq.heappush( h , "b" ) ;
 	heapq.heappush( h , "a" ) ;

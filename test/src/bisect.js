@@ -3,7 +3,7 @@ import test from 'ava' ;
 import { issorted } from "aureooms-js-sort" ;
 import { increasing , colexicographical } from "aureooms-js-compare" ;
 import { attrgetter } from "aureooms-js-operator" ;
-import { map : m , list : l , sorted : s } from "aureooms-js-itertools" ;
+import { map as m , list as l , sorted as s } from "aureooms-js-itertools" ;
 
 import { bisect } from '../../src' ;
 const { bisect_left , bisect_right , insort_left , insort_right } = bisect ;

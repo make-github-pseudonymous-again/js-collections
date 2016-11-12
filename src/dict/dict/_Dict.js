@@ -1,5 +1,5 @@
 import { KeyError } from '../../error' ;
-import { Mapping } from '../../mapping' ;
+import Mapping from '../../mapping' ;
 
 export default function _Dict ( Map ) {
 

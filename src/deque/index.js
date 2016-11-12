@@ -1,12 +1,12 @@
 import _deque from './_deque' ;
-import core from './core' ;
+import implementation from './implementation' ;
 
 export default {
 	_deque ,
-	core ,
+	implementation ,
 } ;
 
 export {
 	_deque ,
-	core ,
+	implementation ,
 } ;

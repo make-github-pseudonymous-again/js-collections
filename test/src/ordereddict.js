@@ -2,7 +2,7 @@ import test from 'ava' ;
 
 import { list } from 'aureooms-js-itertools' ;
 
-import { dict , KeyError } from '../../src' ;
+import { dict , ordereddict , KeyError } from '../../src' ;
 
 test( ordereddict.name , t => {
 

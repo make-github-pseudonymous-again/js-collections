@@ -1,6 +1,7 @@
 import test from 'ava' ;
 
 import { sorted } from "aureooms-js-itertools" ;
+import { increasing } from 'aureooms-js-compare' ;
 
 import { counter , NotImplementedError } from '../../src' ;
 
@@ -36,7 +37,7 @@ test( "counter" , t => {
 	c.set( "w" , -1 ) ;
 
 	t.deepEqual(
-		sorted( compare.increasing , c.elements( ) ) ,
+		sorted( increasing , c.elements( ) ) ,
 		[ "a" , "a" , "a" , "d" , "g" , "h" , "l" , "l" ] ,
 		"elements"
 	) ;

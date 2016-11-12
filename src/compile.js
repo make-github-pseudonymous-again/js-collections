@@ -9,6 +9,11 @@ export default function compile ( BaseSet , BaseMap , DoublyLinkedList , core ) 
 	const ChainMap = core.chainmap._ChainMap( Dict , Set ) ;
 	const Counter = core.counter._Counter( BaseMap , Dict ) ;
 	const namedtuple = core.namedtuple._namedtuple( NamedTuple ) ;
+	const Deque = core.deque.implementation.Deque ;
+	const UnboundedDeque = core.deque.implementation.UnboundedDeque ;
+	const BoundedDeque = core.deque.implementation.BoundedDeque ;
+	const SingleElementDeque = core.deque.implementation.SingleElementDeque ;
+	const EmptyDeque = core.deque.implementation.EmptyDeque ;
 
 	const all = { } ;
 
@@ -22,7 +27,7 @@ export default function compile ( BaseSet , BaseMap , DoublyLinkedList , core ) 
 	all.Mapping = core.mapping ;
 
 	all.Dict = Dict ;
-	all.dict = core.dict.dict_dict( Dict ) ;
+	all.dict = core.dict.dict._dict( Dict ) ;
 	all.OrderedDict = OrderedDict ;
 	all.ordereddict = core.dict.ordereddict._ordereddict( OrderedDict ) ;
 	all.DefaultDict = DefaultDict ;
@@ -44,11 +49,11 @@ export default function compile ( BaseSet , BaseMap , DoublyLinkedList , core ) 
 	all.SingleElementDeque = SingleElementDeque ;
 	all.EmptyDeque = EmptyDeque ;
 
-	all.IndexError = IndexError ;
-	all.KeyError = KeyError ;
-	all.NotImplementedError = NotImplementedError ;
-	all.TypeError = TypeError ;
-	all.ValueError = ValueError ;
+	all.IndexError = core.error.IndexError ;
+	all.KeyError = core.error.KeyError ;
+	all.NotImplementedError = core.error.NotImplementedError ;
+	all.TypeError = core.error.TypeError ;
+	all.ValueError = core.error.ValueError ;
 
 	return all ;
 

@@ -1,4 +1,4 @@
-import { min , sorted , _zip2 , _range } from 'aureooms-js-itertools' ;
+import { min , sorted , _zip2 , _range , iter } from 'aureooms-js-itertools' ;
 import { reverse } from 'aureooms-js-compare' ;
 
 import { keeporder } from './core' ;

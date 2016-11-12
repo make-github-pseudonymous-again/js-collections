@@ -1,18 +1,11 @@
 import test from 'ava' ;
 
-import compare from "aureooms-js-compare" ;
-const increasing = compare.increasing ;
-const lex = compare.lexicographical( increasing ) ;
+import { increasing , lexicographical } from "aureooms-js-compare" ;
+const lex = lexicographical( increasing ) ;
 
-import itertools from "aureooms-js-itertools" ;
-const sorted = itertools.sorted ;
+import { sorted } from "aureooms-js-itertools" ;
 
-
-import collections from '../../src' ;
-
-const KeyError = collections.KeyError ;
-const dict = collections.dict ;
-const chainmap = collections.chainmap ;
+import { KeyError , dict , chainmap } from '../../src' ;
 
 test( "chainmap" , t => {
 
@@ -41,7 +34,7 @@ test( "chainmap" , t => {
 	t.deepEqual( M.get( "y" ) , "B" , "ABC depth 2" ) ;
 	t.deepEqual( M.get( "z" ) , "C" , "ABC depth 3" ) ;
 
-	t.deepEqual( sorted( compare.increasing , M.keys( ) ) , [ "x" , "y" , "z" ] , "keys" ) ;
+	t.deepEqual( sorted( increasing , M.keys( ) ) , [ "x" , "y" , "z" ] , "keys" ) ;
 
 	M = M.parents( ) ;
 

@@ -12,7 +12,8 @@ export default {
 	EmptyDeque ,
 	SingleElementDeque ,
 	UnboundedDeque ,
-}
+} ;
+
 export {
 	ArbitrarySizeDeque ,
 	BoundedDeque ,
@@ -20,4 +21,4 @@ export {
 	EmptyDeque ,
 	SingleElementDeque ,
 	UnboundedDeque ,
-}
+} ;
