@@ -10,6 +10,7 @@ export default function compile ( BaseSet , BaseMap , DoublyLinkedList , core ) 
 	const Counter = core.counter._Counter( BaseMap , Dict ) ;
 	const namedtuple = core.namedtuple._namedtuple( NamedTuple ) ;
 	const Deque = core.deque.implementation.Deque ;
+	const ArbitrarySizeDeque = core.deque.implementation.ArbitrarySizeDeque ;
 	const UnboundedDeque = core.deque.implementation.UnboundedDeque ;
 	const BoundedDeque = core.deque.implementation.BoundedDeque ;
 	const SingleElementDeque = core.deque.implementation.SingleElementDeque ;
@@ -44,6 +45,7 @@ export default function compile ( BaseSet , BaseMap , DoublyLinkedList , core ) 
 
 	all.deque = core.deque._deque( UnboundedDeque , BoundedDeque , SingleElementDeque , EmptyDeque ) ;
 	all.Deque = Deque ;
+	all.ArbitrarySizeDeque = ArbitrarySizeDeque ;
 	all.UnboundedDeque = UnboundedDeque ;
 	all.BoundedDeque = BoundedDeque ;
 	all.SingleElementDeque = SingleElementDeque ;

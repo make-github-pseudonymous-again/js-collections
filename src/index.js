@@ -7,6 +7,7 @@ const collections = compile( Set , Map , DoublyLinkedList , core ) ;
 export default collections ;
 
 const {
+
 	bisect ,
 	chainmap ,
 	counter ,
@@ -25,10 +26,17 @@ const {
 	EmptyDeque ,
 	SingleElementDeque ,
 	UnboundedDeque ,
+
+	IndexError ,
+	KeyError ,
+	NotImplementedError ,
+	TypeError ,
+	ValueError ,
 
 } = collections ;
 
 export {
+
 	bisect ,
 	chainmap ,
 	counter ,
@@ -47,5 +55,11 @@ export {
 	EmptyDeque ,
 	SingleElementDeque ,
 	UnboundedDeque ,
+
+	IndexError ,
+	KeyError ,
+	NotImplementedError ,
+	TypeError ,
+	ValueError ,
 
 } ;

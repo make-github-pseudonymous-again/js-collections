@@ -50,22 +50,22 @@ test( ordereddict.name , t => {
 
 	t.throws( d.clear( ).popitem.bind( d , false ) , KeyError , "popitem false raises" ) ;
 
-	t.ok( d.clear( ).isequal( d ) , "equal self" ) ;
+	t.true( d.clear( ).isequal( d ) , "equal self" ) ;
 
-	t.ok( d.clear( ).isequal( ordereddict( ) ) , "equal empty" ) ;
+	t.true( d.clear( ).isequal( ordereddict( ) ) , "equal empty" ) ;
 
-	t.ok( !d.clear( ).isequal( dict( ) ) , "not equal type" ) ;
+	t.true( !d.clear( ).isequal( dict( ) ) , "not equal type" ) ;
 
 	d.clear( ).set( "x" , 0 ).set( "y" , 1 ) ;
 
-	t.ok( d.isequal( ordereddict( [ [ "x" , 0 ] , [ "y" , 1 ] ] ) ) , "equal" ) ;
+	t.true( d.isequal( ordereddict( [ [ "x" , 0 ] , [ "y" , 1 ] ] ) ) , "equal" ) ;
 
-	t.ok( !d.isequal( ordereddict( [ [ "x" , 33 ] , [ "y" , 1 ] ] ) ) , "not equal value" ) ;
+	t.true( !d.isequal( ordereddict( [ [ "x" , 33 ] , [ "y" , 1 ] ] ) ) , "not equal value" ) ;
 
-	t.ok( !d.isequal( ordereddict( [ [ "z" , 0 ] , [ "y" , 1 ] ] ) ) , "not equal key" ) ;
+	t.true( !d.isequal( ordereddict( [ [ "z" , 0 ] , [ "y" , 1 ] ] ) ) , "not equal key" ) ;
 
-	t.ok( !d.isequal( ordereddict( [ [ "y" , 1 ] ] ) ) , "not equal len" ) ;
+	t.true( !d.isequal( ordereddict( [ [ "y" , 1 ] ] ) ) , "not equal len" ) ;
 
-	t.ok( !d.isequal( ordereddict( [ [ "y" , 1 ] , [ "x" , 0 ] ] ) ) , "not equal order" ) ;
+	t.true( !d.isequal( ordereddict( [ [ "y" , 1 ] , [ "x" , 0 ] ] ) ) , "not equal order" ) ;
 
 } ) ;
