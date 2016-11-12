@@ -1,22 +1,25 @@
+import test from 'ava' ;
 
-test( "compile" , function ( ) {
+import collections from '../../src' ;
 
-	ok( collections.heapq ) ;
-	ok( collections.bisect ) ;
-	ok( collections.deque ) ;
-	ok( collections.set ) ;
-	ok( collections.dict ) ;
-	ok( collections.defaultdict ) ;
-	ok( collections.ordereddict ) ;
-	ok( collections.counter ) ;
-	ok( collections.chainmap ) ;
-	ok( collections.namedtuple ) ;
+test( 'compile' , t => {
 
-	ok( collections.IndexError ) ;
-	ok( collections.KeyError ) ;
-	ok( collections.NotImplementedError ) ;
-	ok( collections.TypeError ) ;
-	ok( collections.ValueError ) ;
+	t.truthy( collections.heapq ) ;
+	t.truthy( collections.bisect ) ;
+	t.truthy( collections.deque ) ;
+	t.truthy( collections.set ) ;
+	t.truthy( collections.dict ) ;
+	t.truthy( collections.defaultdict ) ;
+	t.truthy( collections.ordereddict ) ;
+	t.truthy( collections.counter ) ;
+	t.truthy( collections.chainmap ) ;
+	t.truthy( collections.namedtuple ) ;
+
+	t.truthy( collections.IndexError ) ;
+	t.truthy( collections.KeyError ) ;
+	t.truthy( collections.NotImplementedError ) ;
+	t.truthy( collections.TypeError ) ;
+	t.truthy( collections.ValueError ) ;
 
 } ) ;
 

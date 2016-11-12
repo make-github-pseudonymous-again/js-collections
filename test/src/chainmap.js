@@ -1,129 +1,133 @@
+import test from 'ava' ;
 
-var compare = require( "aureooms-js-compare" ) ;
-var itertools = require( "aureooms-js-itertools" ) ;
+import compare from "aureooms-js-compare" ;
+const increasing = compare.increasing ;
+const lex = compare.lexicographical( increasing ) ;
 
-var sorted = itertools.sorted ;
-var increasing = compare.increasing ;
-var lexico = compare.lexicographical( increasing ) ;
+import itertools from "aureooms-js-itertools" ;
+const sorted = itertools.sorted ;
 
-var KeyError = collections.KeyError ;
-var dict = collections.dict ;
-var chainmap = collections.chainmap ;
 
-test( "chainmap" , function ( ) {
+import collections from '../../src' ;
 
-	var A = dict( [ [ "x" , "A" ] ] ) ;
-	var B = dict( [ [ "x" , "B" ] , [ "y" , "B" ] ] ) ;
-	var C = dict( [ [ "x" , "C" ] , [ "y" , "C" ] , [ "z" , "C" ] ] ) ;
+const KeyError = collections.KeyError ;
+const dict = collections.dict ;
+const chainmap = collections.chainmap ;
 
-	var M = chainmap( A , B , C ) ;
+test( "chainmap" , t => {
 
-	deepEqual( sorted( lexico , M ) , [ [ "x" , "A" ] , [ "y" , "B" ] , [ "z" , "C" ] ] , "Symbol.iterator" ) ;
-	deepEqual( sorted( lexico , M.items( ) ) , [ [ "x" , "A" ] , [ "y" , "B" ] , [ "z" , "C" ] ] , "items" ) ;
-	deepEqual( sorted( lexico , M.keys( ) ) , [ "x" ,"y" , "z" ] , "keys" ) ;
-	deepEqual( sorted( lexico , M.values( ) ) , [ "A" , "B" , "C" ] , "values" ) ;
+	const A = dict( [ [ "x" , "A" ] ] ) ;
+	const B = dict( [ [ "x" , "B" ] , [ "y" , "B" ] ] ) ;
+	const C = dict( [ [ "x" , "C" ] , [ "y" , "C" ] , [ "z" , "C" ] ] ) ;
 
-	var N = M.copy( ) ;
+	let M = chainmap( A , B , C ) ;
 
-	ok( N.maps[0] !== A , "A gets a copy" ) ;
-	ok( N.maps[0].isequal( A ) , "0 is A" ) ;
-	ok( N.maps[1] === B , "no copy for B" ) ;
-	ok( N.maps[1].isequal( B ) , "1 is B" ) ;
-	ok( N.maps[2] === C , "no copy for C" ) ;
-	ok( N.maps[2].isequal( C ) , "2 is C" ) ;
+	t.deepEqual( sorted( lex , M ) , [ [ "x" , "A" ] , [ "y" , "B" ] , [ "z" , "C" ] ] , "Symbol.iterator" ) ;
+	t.deepEqual( sorted( lex , M.items( ) ) , [ [ "x" , "A" ] , [ "y" , "B" ] , [ "z" , "C" ] ] , "items" ) ;
+	t.deepEqual( sorted( lex , M.keys( ) ) , [ "x" ,"y" , "z" ] , "keys" ) ;
+	t.deepEqual( sorted( lex , M.values( ) ) , [ "A" , "B" , "C" ] , "values" ) ;
 
-	deepEqual( M.len( ) , 3 , "ABC len" ) ;
-	deepEqual( M.get( "x" ) , "A" , "ABC depth 1" ) ;
-	deepEqual( M.get( "y" ) , "B" , "ABC depth 2" ) ;
-	deepEqual( M.get( "z" ) , "C" , "ABC depth 3" ) ;
+	const N = M.copy( ) ;
 
-	deepEqual( sorted( compare.increasing , M.keys( ) ) , [ "x" , "y" , "z" ] , "keys" ) ;
+	t.true( N.maps[0] !== A , "A gets a copy" ) ;
+	t.true( N.maps[0].isequal( A ) , "0 is A" ) ;
+	t.true( N.maps[1] === B , "no copy for B" ) ;
+	t.true( N.maps[1].isequal( B ) , "1 is B" ) ;
+	t.true( N.maps[2] === C , "no copy for C" ) ;
+	t.true( N.maps[2].isequal( C ) , "2 is C" ) ;
 
-	M = M.parents( ) ;
+	t.deepEqual( M.len( ) , 3 , "ABC len" ) ;
+	t.deepEqual( M.get( "x" ) , "A" , "ABC depth 1" ) ;
+	t.deepEqual( M.get( "y" ) , "B" , "ABC depth 2" ) ;
+	t.deepEqual( M.get( "z" ) , "C" , "ABC depth 3" ) ;
 
-	deepEqual( M.len( ) , 3 , "BC len" ) ;
-	deepEqual( M.get( "x" ) , "B" , "BC depth 1" ) ;
-	deepEqual( M.get( "y" ) , "B" , "BC depth 1" ) ;
-	deepEqual( M.get( "z" ) , "C" , "BC depth 2" ) ;
+	t.deepEqual( sorted( compare.increasing , M.keys( ) ) , [ "x" , "y" , "z" ] , "keys" ) ;
 
 	M = M.parents( ) ;
 
-	deepEqual( M.len( ) , 3 , "C len" ) ;
-	deepEqual( M.get( "x" ) , "C" , "C depth 1" ) ;
-	deepEqual( M.get( "y" ) , "C" , "C depth 1" ) ;
-	deepEqual( M.get( "z" ) , "C" , "C depth 1" ) ;
+	t.deepEqual( M.len( ) , 3 , "BC len" ) ;
+	t.deepEqual( M.get( "x" ) , "B" , "BC depth 1" ) ;
+	t.deepEqual( M.get( "y" ) , "B" , "BC depth 1" ) ;
+	t.deepEqual( M.get( "z" ) , "C" , "BC depth 2" ) ;
+
+	M = M.parents( ) ;
+
+	t.deepEqual( M.len( ) , 3 , "C len" ) ;
+	t.deepEqual( M.get( "x" ) , "C" , "C depth 1" ) ;
+	t.deepEqual( M.get( "y" ) , "C" , "C depth 1" ) ;
+	t.deepEqual( M.get( "z" ) , "C" , "C depth 1" ) ;
 
 	M = M.new_child( A ) ;
 
-	deepEqual( M.len( ) , 3 , "AC len" ) ;
-	deepEqual( M.get( "x" ) , "A" , "AC depth 1" ) ;
-	deepEqual( M.get( "y" ) , "C" , "AC depth 2" ) ;
-	deepEqual( M.get( "z" ) , "C" , "AC depth 2" ) ;
+	t.deepEqual( M.len( ) , 3 , "AC len" ) ;
+	t.deepEqual( M.get( "x" ) , "A" , "AC depth 1" ) ;
+	t.deepEqual( M.get( "y" ) , "C" , "AC depth 2" ) ;
+	t.deepEqual( M.get( "z" ) , "C" , "AC depth 2" ) ;
 
 	M = M.new_child( B ) ;
 
-	deepEqual( M.len( ) , 3 , "BAC len" ) ;
-	deepEqual( M.get( "x" ) , "B" , "BAC depth 1" ) ;
-	deepEqual( M.get( "y" ) , "B" , "BAC depth 1" ) ;
-	deepEqual( M.get( "z" ) , "C" , "BAC depth 3" ) ;
+	t.deepEqual( M.len( ) , 3 , "BAC len" ) ;
+	t.deepEqual( M.get( "x" ) , "B" , "BAC depth 1" ) ;
+	t.deepEqual( M.get( "y" ) , "B" , "BAC depth 1" ) ;
+	t.deepEqual( M.get( "z" ) , "C" , "BAC depth 3" ) ;
 
 	M = M.new_child( ) ;
 
-	deepEqual( M.len( ) , 3 , "DBAC len" ) ;
-	deepEqual( M.get( "x" ) , "B" , "DBAC depth 2" ) ;
-	deepEqual( M.get( "y" ) , "B" , "DBAC depth 2" ) ;
-	deepEqual( M.get( "z" ) , "C" , "DBAC depth 4" ) ;
+	t.deepEqual( M.len( ) , 3 , "DBAC len" ) ;
+	t.deepEqual( M.get( "x" ) , "B" , "DBAC depth 2" ) ;
+	t.deepEqual( M.get( "y" ) , "B" , "DBAC depth 2" ) ;
+	t.deepEqual( M.get( "z" ) , "C" , "DBAC depth 4" ) ;
 
 	M.set( "x" , "D" ) ;
 
-	deepEqual( M.len( ) , 3 , "x DBAC len" ) ;
-	deepEqual( M.get( "x" ) , "D" , "x DBAC depth 1" ) ;
-	deepEqual( M.get( "y" ) , "B" , "x DBAC depth 2" ) ;
-	deepEqual( M.get( "z" ) , "C" , "x DBAC depth 4" ) ;
+	t.deepEqual( M.len( ) , 3 , "x DBAC len" ) ;
+	t.deepEqual( M.get( "x" ) , "D" , "x DBAC depth 1" ) ;
+	t.deepEqual( M.get( "y" ) , "B" , "x DBAC depth 2" ) ;
+	t.deepEqual( M.get( "z" ) , "C" , "x DBAC depth 4" ) ;
 
 	M.set( "w" , "D" ) ;
 
-	deepEqual( M.len( ) , 4 , "w DBAC len" ) ;
-	deepEqual( M.get( "w" ) , "D" , "w DBAC depth 1" ) ;
-	deepEqual( M.get( "x" ) , "D" , "w DBAC depth 1" ) ;
-	deepEqual( M.get( "y" ) , "B" , "w DBAC depth 2" ) ;
-	deepEqual( M.get( "z" ) , "C" , "w DBAC depth 4" ) ;
+	t.deepEqual( M.len( ) , 4 , "w DBAC len" ) ;
+	t.deepEqual( M.get( "w" ) , "D" , "w DBAC depth 1" ) ;
+	t.deepEqual( M.get( "x" ) , "D" , "w DBAC depth 1" ) ;
+	t.deepEqual( M.get( "y" ) , "B" , "w DBAC depth 2" ) ;
+	t.deepEqual( M.get( "z" ) , "C" , "w DBAC depth 4" ) ;
 
 	M = M.parents( ) ;
 
-	raises( M.get.bind( M , "w" ) , KeyError , "w throws" ) ;
+	t.throws( M.get.bind( M , "w" ) , KeyError , "w throws" ) ;
 
-	deepEqual( M.len( ) , 3 , "-w DBAC len" ) ;
-	deepEqual( M.get( "x" ) , "B" , "-w BAC depth 1" ) ;
-	deepEqual( M.get( "y" ) , "B" , "-w BAC depth 1" ) ;
-	deepEqual( M.get( "z" ) , "C" , "-w BAC depth 3" ) ;
+	t.deepEqual( M.len( ) , 3 , "-w DBAC len" ) ;
+	t.deepEqual( M.get( "x" ) , "B" , "-w BAC depth 1" ) ;
+	t.deepEqual( M.get( "y" ) , "B" , "-w BAC depth 1" ) ;
+	t.deepEqual( M.get( "z" ) , "C" , "-w BAC depth 3" ) ;
 
-	ok( M.has( "x" ) , "has x BAC depth 1" ) ;
-	ok( M.has( "y" ) , "has y BAC depth 1" ) ;
-	ok( M.has( "z" ) , "has z BAC depth 3" ) ;
+	t.true( M.has( "x" ) , "has x BAC depth 1" ) ;
+	t.true( M.has( "y" ) , "has y BAC depth 1" ) ;
+	t.true( M.has( "z" ) , "has z BAC depth 3" ) ;
 
-	deepEqual( M.delete( "x" ).len( ) , 3 , "delete" ) ;
-	raises( M.delete.bind( M , "x" ) , KeyError , "delete raises" ) ;
-	deepEqual( M.get( "x" ) , "A" , "-wx AC depth 1" ) ;
+	t.deepEqual( M.delete( "x" ).len( ) , 3 , "delete" ) ;
+	t.throws( M.delete.bind( M , "x" ) , KeyError , "delete raises" ) ;
+	t.deepEqual( M.get( "x" ) , "A" , "-wx AC depth 1" ) ;
 
-	deepEqual( chainmap( C ).clear( ).len( ) , 0 , "clear" ) ;
-	deepEqual( C.len( ) , 0 , "C is also cleared" ) ;
-	deepEqual( chainmap( ).len( ) , 0 , "empty chainmap" ) ;
+	t.deepEqual( chainmap( C ).clear( ).len( ) , 0 , "clear" ) ;
+	t.deepEqual( C.len( ) , 0 , "C is also cleared" ) ;
+	t.deepEqual( chainmap( ).len( ) , 0 , "empty chainmap" ) ;
 
-	deepEqual( chainmap.fromkeys( "xyz" ).get( "y" ) , null , "fromkeys default" ) ;
-	deepEqual( chainmap.fromkeys( "xyz" , "A" ).get( "y" ) , "A" , "fromkeys" ) ;
-	deepEqual( chainmap.fromkeys( "x" ).popitem( ) , [ "x" , null ] , "popitem" ) ;
-	deepEqual( chainmap.fromkeys( "x" ).pop( "x" ) , null , "pop" ) ;
-	deepEqual( chainmap.fromkeys( "" ).pop( "x" , null ) , null , "pop" ) ;
+	t.deepEqual( chainmap.fromkeys( "xyz" ).get( "y" ) , null , "fromkeys default" ) ;
+	t.deepEqual( chainmap.fromkeys( "xyz" , "A" ).get( "y" ) , "A" , "fromkeys" ) ;
+	t.deepEqual( chainmap.fromkeys( "x" ).popitem( ) , [ "x" , null ] , "popitem" ) ;
+	t.deepEqual( chainmap.fromkeys( "x" ).pop( "x" ) , null , "pop" ) ;
+	t.deepEqual( chainmap.fromkeys( "" ).pop( "x" , null ) , null , "pop" ) ;
 
 	M = chainmap.fromkeys( "x" ).new_child( ) ;
 
-	raises( M.popitem.bind( M ) , KeyError , "popitem empty map[0]" ) ;
-	raises( M.pop.bind( M , "x" ) , KeyError , "pop empty map[0]" ) ;
+	t.throws( M.popitem.bind( M ) , KeyError , "popitem empty map[0]" ) ;
+	t.throws( M.pop.bind( M , "x" ) , KeyError , "pop empty map[0]" ) ;
 
-	deepEqual( chainmap( ).getdefault( "y" ) , null , "getdefault null" ) ;
-	deepEqual( chainmap( ).getdefault( "y" , "A" ) , "A" , "getdefault A" ) ;
-	deepEqual( chainmap( dict( [ [ "y" , "B" ] ] ) ).getdefault( "y" , "A" ) , "B" , "getdefault B" ) ;
+	t.deepEqual( chainmap( ).getdefault( "y" ) , null , "getdefault null" ) ;
+	t.deepEqual( chainmap( ).getdefault( "y" , "A" ) , "A" , "getdefault A" ) ;
+	t.deepEqual( chainmap( dict( [ [ "y" , "B" ] ] ) ).getdefault( "y" , "A" ) , "B" , "getdefault B" ) ;
 
 	M = chainmap( {
 		get : function ( ) { throw new Error( ) ; } ,
@@ -132,9 +136,9 @@ test( "chainmap" , function ( ) {
 		"delete" : function ( ) { throw new Error( ) ; }
 	} ) ;
 
-	raises( M.get.bind( M , 0 ) , Error , "get forwards" ) ;
-	raises( M.pop.bind( M ) , Error , "pop forwards" ) ;
-	raises( M.popitem.bind( M ) , Error , "popitem forwards" ) ;
-	raises( M.delete.bind( M , 0 ) , Error , "delete forwards" ) ;
+	t.throws( M.get.bind( M , 0 ) , Error , "get forwards" ) ;
+	t.throws( M.pop.bind( M ) , Error , "pop forwards" ) ;
+	t.throws( M.popitem.bind( M ) , Error , "popitem forwards" ) ;
+	t.throws( M.delete.bind( M , 0 ) , Error , "delete forwards" ) ;
 
 } ) ;

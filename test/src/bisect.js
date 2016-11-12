@@ -1,51 +1,47 @@
+import test from 'ava' ;
 
-var sort = require( "aureooms-js-sort" ) ;
-var compare = require( "aureooms-js-compare" ) ;
-var operator = require( "aureooms-js-operator" ) ;
-var itertools = require( "aureooms-js-itertools" ) ;
+import { issorted } from "aureooms-js-sort" ;
+import { increasing , colexicographical } from "aureooms-js-compare" ;
+import { attrgetter } from "aureooms-js-operator" ;
+import { map : m , list : l , sorted : s } from "aureooms-js-itertools" ;
 
-var m = itertools.map ;
-var l = itertools.list ;
-var s = itertools.sorted ;
+import { bisect } from '../../src' ;
+const { bisect_left , bisect_right , insort_left , insort_right } = bisect ;
+import { ValueError } from '../../src' ;
 
-var bisect = collections.bisect ;
-var ValueError = collections.ValueError ;
-
-var grade = function ( score ) {
-	var breakpoints = [ 60 , 70 , 80 , 90 ] ;
-	var grades = 'FDCBA' ;
-	var i = bisect.bisect_right( breakpoints , score ) ;
+function grade ( score ) {
+	const breakpoints = [ 60 , 70 , 80 , 90 ] ;
+	const grades = 'FDCBA' ;
+	const i = bisect_right( breakpoints , score ) ;
 	return grades[i] ;
-} ;
+}
 
+test( "bisect" , t => {
 
-test( "bisect" , function ( ) {
+	t.throws( bisect_left.bind( null , [ ] , 0 , -1 , -1 ) , ValueError ) ;
+	t.throws( bisect_right.bind( null , [ ] , 0 , -1 , -1 ) , ValueError ) ;
+	t.throws( insort_left.bind( null , [ ] , 0 , -1 , -1 ) , ValueError ) ;
+	t.throws( insort_right.bind( null , [ ] , 0 , -1 , -1 ) , ValueError ) ;
 
-	raises( bisect.bisect_left.bind( null , [ ] , 0 , -1 , -1 ) , ValueError ) ;
-	raises( bisect.bisect_right.bind( null , [ ] , 0 , -1 , -1 ) , ValueError ) ;
-	raises( bisect.insort_left.bind( null , [ ] , 0 , -1 , -1 ) , ValueError ) ;
-	raises( bisect.insort_right.bind( null , [ ] , 0 , -1 , -1 ) , ValueError ) ;
+	let grades = l( m( grade , [33, 99, 77, 70, 89, 90, 100] ) ) ;
 
-	var grades = l( m( grade , [33, 99, 77, 70, 89, 90, 100] ) ) ;
+	t.deepEqual( grades , ['F', 'A', 'C', 'C', 'B', 'A', 'A'] ) ;
 
-	deepEqual( grades , ['F', 'A', 'C', 'C', 'B', 'A', 'A'] ) ;
+	let data = [['red', 5], ['blue', 1], ['yellow', 8], ['black', 0]] ;
 
-	var data = [['red', 5], ['blue', 1], ['yellow', 8], ['black', 0]] ;
+	data = s( colexicographical( increasing ) , data ) ;
+	let keys = l(m( attrgetter( "1" ) , data ) ) ;
 
-	data = s( compare.colexicographical( compare.increasing ) , data ) ;
-	var keys = l(m( operator.attrgetter( "1" ) , data ) ) ;
+	t.deepEqual( data[bisect_left(keys, 0)] , ['black', 0] ) ;
+	t.deepEqual( data[bisect_left(keys, 1)] , ['blue', 1] ) ;
+	t.deepEqual( data[bisect_left(keys, 5)] , ['red', 5] ) ;
+	t.deepEqual( data[bisect_left(keys, 8)] , ['yellow', 8] ) ;
 
-	deepEqual( data[bisect.bisect_left(keys, 0)] , ['black', 0] ) ;
-	deepEqual( data[bisect.bisect_left(keys, 1)] , ['blue', 1] ) ;
-	deepEqual( data[bisect.bisect_left(keys, 5)] , ['red', 5] ) ;
-	deepEqual( data[bisect.bisect_left(keys, 8)] , ['yellow', 8] ) ;
+	let a = s( increasing , [ Math.random( ) , Math.random( ) , Math.random( ) ] ) ;
 
-	var a = [ Math.random( ) , Math.random( ) , Math.random( ) ] ;
+	insort_left( a , Math.random( ) ) ;
+	insort_right( a , Math.random( ) ) ;
 
-	bisect.insort_left( a , Math.random( ) ) ;
-	bisect.insort_right( a , Math.random( ) ) ;
-
-	ok( sort.issorted( compare.increasing , a , 0 , a.length ) ) ;
+	t.is( issorted( increasing , a , 0 , a.length ) , a.length ) ;
 
 } ) ;
-

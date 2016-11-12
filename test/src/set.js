@@ -1,221 +1,213 @@
+import test from 'ava' ;
 
-var compare = require( "aureooms-js-compare" ) ;
-var itertools = require( "aureooms-js-itertools" ) ;
+import { set , KeyError } from '../../src' ;
 
-var sorted = itertools.sorted ;
+test( set.name , t => {
 
-var KeyError = collections.KeyError ;
-
-[ collections.set ].forEach( function ( set ) {
-
-test( set.name , function ( ) {
-
-	deepEqual( set( ).len( ) , 0 , "len empty" ) ;
+	t.is( set( ).len( ) , 0 , "len empty" ) ;
 
 	var s = set( "abc" ) ;
-	ok( s.isequal( "abc" ) ) ;
+	t.true( s.isequal( "abc" ) ) ;
 
-	deepEqual( s.len( ) , 3 , "len iterable" ) ;
-	ok( s.isequal( "abc" ) ) ;
+	t.is( s.len( ) , 3 , "len iterable" ) ;
+	t.true( s.isequal( "abc" ) ) ;
 
-	deepEqual( s.has( "b" ) , true , "has true" ) ;
-	ok( s.isequal( "abc" ) ) ;
+	t.true( s.has( "b" ) , "has true" ) ;
+	t.true( s.isequal( "abc" ) ) ;
 
-	deepEqual( s.has( "x" ) , false , "has false" ) ;
-	ok( s.isequal( "abc" ) ) ;
+	t.false( s.has( "x" ) , "has false" ) ;
+	t.true( s.isequal( "abc" ) ) ;
 
-	deepEqual( s.isdisjoint( "xyz" ) , true , "isdisjoint true" ) ;
-	ok( s.isequal( "abc" ) ) ;
+	t.true( s.isdisjoint( "xyz" ) , "isdisjoint true" ) ;
+	t.true( s.isequal( "abc" ) ) ;
 
-	deepEqual( s.isdisjoint( "xbz" ) , false , "isdisjoint false" ) ;
-	ok( s.isequal( "abc" ) ) ;
+	t.is( s.isdisjoint( "xbz" ) , false , "isdisjoint false" ) ;
+	t.true( s.isequal( "abc" ) ) ;
 
-	deepEqual( s.isequal( "abc" ) , true , "equal" ) ;
-	ok( s.isequal( "abc" ) ) ;
+	t.is( s.isequal( "abc" ) , true , "equal" ) ;
+	t.true( s.isequal( "abc" ) ) ;
 
-	deepEqual( s.isequal( "abcd" ) , false , "not equal len" ) ;
-	ok( s.isequal( "abc" ) ) ;
+	t.is( s.isequal( "abcd" ) , false , "not equal len" ) ;
+	t.true( s.isequal( "abc" ) ) ;
 
-	deepEqual( s.isequal( "abd" ) , false , "not equal key" ) ;
-	ok( s.isequal( "abc" ) ) ;
+	t.is( s.isequal( "abd" ) , false , "not equal key" ) ;
+	t.true( s.isequal( "abc" ) ) ;
 
-	deepEqual( s.isequal( "abd" ) , false , "not equal key" ) ;
-	ok( s.isequal( "abc" ) ) ;
+	t.is( s.isequal( "abd" ) , false , "not equal key" ) ;
+	t.true( s.isequal( "abc" ) ) ;
 
-	deepEqual( s.issubset( "abcd" ) , true , "subset abcd") ;
-	ok( s.isequal( "abc" ) ) ;
+	t.is( s.issubset( "abcd" ) , true , "subset abcd") ;
+	t.true( s.isequal( "abc" ) ) ;
 
-	deepEqual( s.issubset( "abc" ) , true , "subset abc") ;
-	ok( s.isequal( "abc" ) ) ;
+	t.is( s.issubset( "abc" ) , true , "subset abc") ;
+	t.true( s.isequal( "abc" ) ) ;
 
-	deepEqual( s.issubset( "ab" ) , false , "subset ab") ;
-	ok( s.isequal( "abc" ) ) ;
+	t.is( s.issubset( "ab" ) , false , "subset ab") ;
+	t.true( s.isequal( "abc" ) ) ;
 
-	deepEqual( s.ispropersubset( "abcd" ) , true , "proper subset abcd") ;
-	ok( s.isequal( "abc" ) ) ;
+	t.is( s.ispropersubset( "abcd" ) , true , "proper subset abcd") ;
+	t.true( s.isequal( "abc" ) ) ;
 
-	deepEqual( s.ispropersubset( "abc" ) , false , "proper subset abc") ;
-	ok( s.isequal( "abc" ) ) ;
+	t.is( s.ispropersubset( "abc" ) , false , "proper subset abc") ;
+	t.true( s.isequal( "abc" ) ) ;
 
-	deepEqual( s.ispropersubset( "ab" ) , false , "proper subset ab") ;
-	ok( s.isequal( "abc" ) ) ;
+	t.is( s.ispropersubset( "ab" ) , false , "proper subset ab") ;
+	t.true( s.isequal( "abc" ) ) ;
 
-	deepEqual( s.issuperset( "abcd" ) , false , "superset abcd") ;
-	ok( s.isequal( "abc" ) ) ;
+	t.is( s.issuperset( "abcd" ) , false , "superset abcd") ;
+	t.true( s.isequal( "abc" ) ) ;
 
-	deepEqual( s.issuperset( "abc" ) , true , "superset abc") ;
-	ok( s.isequal( "abc" ) ) ;
+	t.is( s.issuperset( "abc" ) , true , "superset abc") ;
+	t.true( s.isequal( "abc" ) ) ;
 
-	deepEqual( s.issuperset( "ab" ) , true , "superset ab") ;
-	ok( s.isequal( "abc" ) ) ;
+	t.is( s.issuperset( "ab" ) , true , "superset ab") ;
+	t.true( s.isequal( "abc" ) ) ;
 
-	deepEqual( s.ispropersuperset( "abcd" ) , false , "proper superset abcd") ;
-	ok( s.isequal( "abc" ) ) ;
+	t.is( s.ispropersuperset( "abcd" ) , false , "proper superset abcd") ;
+	t.true( s.isequal( "abc" ) ) ;
 
-	deepEqual( s.ispropersuperset( "abc" ) , false , "proper superset abc") ;
-	ok( s.isequal( "abc" ) ) ;
+	t.is( s.ispropersuperset( "abc" ) , false , "proper superset abc") ;
+	t.true( s.isequal( "abc" ) ) ;
 
-	deepEqual( s.ispropersuperset( "ab" ) , true , "proper superset ab") ;
-	ok( s.isequal( "abc" ) ) ;
+	t.is( s.ispropersuperset( "ab" ) , true , "proper superset ab") ;
+	t.true( s.isequal( "abc" ) ) ;
 
-	ok( set.inclusion( s , "abcd" ) < 0 , "set.inclusion abcd" ) ;
-	ok( s.isequal( "abc" ) ) ;
+	t.true( set.inclusion( s , "abcd" ) < 0 , "set.inclusion abcd" ) ;
+	t.true( s.isequal( "abc" ) ) ;
 
-	ok( set.inclusion( s , "abc" ) === 0 , "set.inclusion abc" ) ;
-	ok( s.isequal( "abc" ) ) ;
+	t.true( set.inclusion( s , "abc" ) === 0 , "set.inclusion abc" ) ;
+	t.true( s.isequal( "abc" ) ) ;
 
-	ok( set.inclusion( s , "ab" ) > 0 , "set.inclusion ab" ) ;
-	ok( s.isequal( "abc" ) ) ;
+	t.true( set.inclusion( s , "ab" ) > 0 , "set.inclusion ab" ) ;
+	t.true( s.isequal( "abc" ) ) ;
 
-	ok( s.union( "de" ).isequal( "abcde" ) , "union" ) ;
-	ok( s.isequal( "abc" ) ) ;
+	t.true( s.union( "de" ).isequal( "abcde" ) , "union" ) ;
+	t.true( s.isequal( "abc" ) ) ;
 
-	ok( s.union( "d" , "e" ).isequal( "abcde" ) , "union ..." ) ;
-	ok( s.isequal( "abc" ) ) ;
+	t.true( s.union( "d" , "e" ).isequal( "abcde" ) , "union ..." ) ;
+	t.true( s.isequal( "abc" ) ) ;
 
-	ok( s.intersection( "de" ).isequal( "" ) , "intersection empty" ) ;
-	ok( s.isequal( "abc" ) ) ;
+	t.true( s.intersection( "de" ).isequal( "" ) , "intersection empty" ) ;
+	t.true( s.isequal( "abc" ) ) ;
 
-	ok( s.intersection( "abc" , "de" ).isequal( "" ) , "intersection ... empty" ) ;
-	ok( s.isequal( "abc" ) ) ;
+	t.true( s.intersection( "abc" , "de" ).isequal( "" ) , "intersection ... empty" ) ;
+	t.true( s.isequal( "abc" ) ) ;
 
-	ok( s.intersection( "bcd" ).isequal( "bc" ) , "intersection bc" ) ;
-	ok( s.isequal( "abc" ) ) ;
+	t.true( s.intersection( "bcd" ).isequal( "bc" ) , "intersection bc" ) ;
+	t.true( s.isequal( "abc" ) ) ;
 
-	ok( s.intersection( "abcd" , "bcd" ).isequal( "bc" ) , "intersection ... bc" ) ;
-	ok( s.isequal( "abc" ) ) ;
+	t.true( s.intersection( "abcd" , "bcd" ).isequal( "bc" ) , "intersection ... bc" ) ;
+	t.true( s.isequal( "abc" ) ) ;
 
-	ok( s.difference( "de" ).isequal( "abc" ) , "difference abc" ) ;
-	ok( s.isequal( "abc" ) ) ;
+	t.true( s.difference( "de" ).isequal( "abc" ) , "difference abc" ) ;
+	t.true( s.isequal( "abc" ) ) ;
 
-	ok( s.difference( "d" , "e" ).isequal( "abc" ) , "difference ... abc" ) ;
-	ok( s.isequal( "abc" ) ) ;
+	t.true( s.difference( "d" , "e" ).isequal( "abc" ) , "difference ... abc" ) ;
+	t.true( s.isequal( "abc" ) ) ;
 
-	ok( s.difference( "bcd" ).isequal( "a" ) , "difference a" ) ;
-	ok( s.isequal( "abc" ) ) ;
+	t.true( s.difference( "bcd" ).isequal( "a" ) , "difference a" ) ;
+	t.true( s.isequal( "abc" ) ) ;
 
-	ok( s.difference( "bc" , "d" ).isequal( "a" ) , "difference ... a" ) ;
-	ok( s.isequal( "abc" ) ) ;
+	t.true( s.difference( "bc" , "d" ).isequal( "a" ) , "difference ... a" ) ;
+	t.true( s.isequal( "abc" ) ) ;
 
-	ok( s.symmetric_difference( "de" ).isequal( "abcde" ) , "symmetric_difference abcde" ) ;
-	ok( s.isequal( "abc" ) ) ;
+	t.true( s.symmetric_difference( "de" ).isequal( "abcde" ) , "symmetric_difference abcde" ) ;
+	t.true( s.isequal( "abc" ) ) ;
 
-	ok( s.symmetric_difference( "bcd" ).isequal( "ad" ) , "symmetric_difference ad" ) ;
-	ok( s.isequal( "abc" ) ) ;
+	t.true( s.symmetric_difference( "bcd" ).isequal( "ad" ) , "symmetric_difference ad" ) ;
+	t.true( s.isequal( "abc" ) ) ;
 
 	s = set( "abc" ) ; s.add( "x" ) ;
-	deepEqual( s.has( "x" ) , true , "has set" ) ;
-	ok( s.isequal( "abcx" ) ) ;
+	t.is( s.has( "x" ) , true , "has set" ) ;
+	t.true( s.isequal( "abcx" ) ) ;
 
-	deepEqual( s.clear( ).update( "abc" ).add( "x" ).has( "x" ) , true , "chain has set" ) ;
-	ok( s.isequal( "abcx" ) ) ;
+	t.is( s.clear( ).update( "abc" ).add( "x" ).has( "x" ) , true , "chain has set" ) ;
+	t.true( s.isequal( "abcx" ) ) ;
 
 	s = set( "abc" ) ; s.remove( "b" ) ;
-	deepEqual( s.has( "b" ) , false , "has remove" ) ;
-	ok( s.isequal( "ac" ) ) ;
+	t.is( s.has( "b" ) , false , "has remove" ) ;
+	t.true( s.isequal( "ac" ) ) ;
 
-	deepEqual( s.clear( ).update( "abc" ).remove( "b" ).has( "b" ) , false , "chain has remove" ) ;
-	ok( s.isequal( "ac" ) ) ;
+	t.is( s.clear( ).update( "abc" ).remove( "b" ).has( "b" ) , false , "chain has remove" ) ;
+	t.true( s.isequal( "ac" ) ) ;
 
 	s = set( "abc" ) ; s.update( "de" ) ;
-	ok( s.isequal( "abcde" ) , "update" ) ;
-	ok( s.clear( ).update( "abc" ).update( "de" ).isequal( "abcde" ) , "chain update" ) ;
+	t.true( s.isequal( "abcde" ) , "update" ) ;
+	t.true( s.clear( ).update( "abc" ).update( "de" ).isequal( "abcde" ) , "chain update" ) ;
 
 	s = set( "abc" ) ; s.update( "d" , "e" ) ;
-	ok( s.isequal( "abcde" ) , "update ..." ) ;
-	ok( s.clear( ).update( "abc" ).update( "d" , "e" ).isequal( "abcde" ) , "chain update ..." ) ;
+	t.true( s.isequal( "abcde" ) , "update ..." ) ;
+	t.true( s.clear( ).update( "abc" ).update( "d" , "e" ).isequal( "abcde" ) , "chain update ..." ) ;
 
 	s = set( "abc" ) ; s.intersection_update( "de" ) ;
-	ok( s.isequal( "" ) , "intersection update empty" ) ;
-	ok( s.clear( ).update( "abc" ).intersection_update( "de" ).isequal( "" ) , "chain intersection update empty" ) ;
+	t.true( s.isequal( "" ) , "intersection update empty" ) ;
+	t.true( s.clear( ).update( "abc" ).intersection_update( "de" ).isequal( "" ) , "chain intersection update empty" ) ;
 
 	s = set( "abc" ) ; s.intersection_update( "abc" , "de" ) ;
-	ok( s.isequal( "" ) , "intersection update ... empty" ) ;
-	ok( s.clear( ).intersection_update( "abc" , "de" ).isequal( "" ) , "chain intersection update ... empty" ) ;
+	t.true( s.isequal( "" ) , "intersection update ... empty" ) ;
+	t.true( s.clear( ).intersection_update( "abc" , "de" ).isequal( "" ) , "chain intersection update ... empty" ) ;
 
 	s = set( "abc" ) ; s.intersection_update( "bcd" ) ;
-	ok( s.isequal( "bc" ) , "intersection update bc" ) ;
-	ok( s.clear( ).update( "abc" ).intersection_update( "bcd" ).isequal( "bc" ) , "chain intersection update bc" ) ;
+	t.true( s.isequal( "bc" ) , "intersection update bc" ) ;
+	t.true( s.clear( ).update( "abc" ).intersection_update( "bcd" ).isequal( "bc" ) , "chain intersection update bc" ) ;
 
 	s = set( "abc" ) ; s.intersection_update( "abcd" ,"bcd" ) ;
-	ok( s.isequal( "bc" ) , "intersection update ... bc" ) ;
-	ok( s.clear( ).update( "abc" ).intersection_update( "abcd" ,"bcd" ).isequal( "bc" ) , "chain intersection update ... bc" ) ;
+	t.true( s.isequal( "bc" ) , "intersection update ... bc" ) ;
+	t.true( s.clear( ).update( "abc" ).intersection_update( "abcd" ,"bcd" ).isequal( "bc" ) , "chain intersection update ... bc" ) ;
 	s = set( "abc" ) ; s.difference_update( "de" ) ;
-	ok( s.isequal( "abc" ) , "difference_update abc" ) ;
-	ok( s.clear( ).update( "abc" ).difference_update( "de" ).isequal( "abc" ) , "chain difference_update abc" ) ;
+	t.true( s.isequal( "abc" ) , "difference_update abc" ) ;
+	t.true( s.clear( ).update( "abc" ).difference_update( "de" ).isequal( "abc" ) , "chain difference_update abc" ) ;
 
 	s = set( "abc" ) ; s.difference_update( "d" , "e" ) ;
-	ok( s.isequal( "abc" ) , "difference_update ... abc" ) ;
-	ok( s.clear( ).update( "abc" ).difference_update( "d" , "e" ).isequal( "abc" ) , "chain difference_update ... abc" ) ;
+	t.true( s.isequal( "abc" ) , "difference_update ... abc" ) ;
+	t.true( s.clear( ).update( "abc" ).difference_update( "d" , "e" ).isequal( "abc" ) , "chain difference_update ... abc" ) ;
 
 	s = set( "abc" ) ; s.difference_update( "bcd" ) ;
-	ok( s.isequal( "a" ) , "difference_update a" ) ;
-	ok( s.clear( ).update( "abc" ).difference_update( "bcd" ).isequal( "a" ) , "chain difference_update a" ) ;
+	t.true( s.isequal( "a" ) , "difference_update a" ) ;
+	t.true( s.clear( ).update( "abc" ).difference_update( "bcd" ).isequal( "a" ) , "chain difference_update a" ) ;
 
 	s = set( "abc" ) ; s.difference_update( "bc" , "d" ) ;
-	ok( s.isequal( "a" ) , "difference_update ... a" ) ;
-	ok( s.clear( ).update( "abc" ).difference_update( "bc" , "d" ).isequal( "a" ) , "chain difference_update ... a" ) ;
+	t.true( s.isequal( "a" ) , "difference_update ... a" ) ;
+	t.true( s.clear( ).update( "abc" ).difference_update( "bc" , "d" ).isequal( "a" ) , "chain difference_update ... a" ) ;
 
 	s = set( "abc" ) ; s.symmetric_difference_update( "de" ) ;
-	ok( s.isequal( "abcde" ) , "symmetric_difference_update abcde" ) ;
-	ok( s.clear( ).update( "abc" ).symmetric_difference_update( "de" ).isequal( "abcde" ) , "chain symmetric_difference_update abcde" ) ;
+	t.true( s.isequal( "abcde" ) , "symmetric_difference_update abcde" ) ;
+	t.true( s.clear( ).update( "abc" ).symmetric_difference_update( "de" ).isequal( "abcde" ) , "chain symmetric_difference_update abcde" ) ;
 
 	s = set( "abc" ) ; s.symmetric_difference_update( "bcd" ) ;
-	ok( s.isequal( "ad" ) , "symmetric_difference_update ad" ) ;
-	ok( s.clear( ).update( "abc" ).symmetric_difference_update( "bcd" ).isequal( "ad" ) , "chain symmetric_difference_update ad" ) ;
+	t.true( s.isequal( "ad" ) , "symmetric_difference_update ad" ) ;
+	t.true( s.clear( ).update( "abc" ).symmetric_difference_update( "bcd" ).isequal( "ad" ) , "chain symmetric_difference_update ad" ) ;
 
-	deepEqual( set( "a" ).pop( ) , "a" , "pop" ) ;
-	deepEqual( set( "a" ).pop( ) , "a" , "pop" ) ;
+	t.is( set( "a" ).pop( ) , "a" , "pop" ) ;
+	t.is( set( "a" ).pop( ) , "a" , "pop" ) ;
 
-	ok( set( "abc" ).remove( "b" ).isequal( "ac" ) , "remove b" ) ;
-	ok( set( "abc" ).remove( "b" ).isequal( "ac" ) , "remove b" ) ;
+	t.true( set( "abc" ).remove( "b" ).isequal( "ac" ) , "remove b" ) ;
+	t.true( set( "abc" ).remove( "b" ).isequal( "ac" ) , "remove b" ) ;
 
-	ok( set( "abc" ).discard( "b" ).isequal( "ac" ) , "discard b" ) ;
-	ok( set( "abc" ).discard( "b" ).isequal( "ac" ) , "discard b" ) ;
+	t.true( set( "abc" ).discard( "b" ).isequal( "ac" ) , "discard b" ) ;
+	t.true( set( "abc" ).discard( "b" ).isequal( "ac" ) , "discard b" ) ;
 
-	ok( set( "abc" ).discard( "d" ).isequal( "abc" ) , "discard d" ) ;
-	ok( set( "abc" ).discard( "d" ).isequal( "abc" ) , "discard d" ) ;
+	t.true( set( "abc" ).discard( "d" ).isequal( "abc" ) , "discard d" ) ;
+	t.true( set( "abc" ).discard( "d" ).isequal( "abc" ) , "discard d" ) ;
 
 	s = set( "abcd" ) ;
 
 	s.clear( ) ;
-	ok( s.isequal( "" ) , "clear" ) ;
+	t.true( s.isequal( "" ) , "clear" ) ;
 
-	raises( s.clear( ).pop.bind( s ) , KeyError , "pop raises" ) ;
-	raises( s.clear( ).pop.bind( s ) , KeyError , "pop raises" ) ;
+	t.throws( s.clear( ).pop.bind( s ) , KeyError , "pop raises" ) ;
+	t.throws( s.clear( ).pop.bind( s ) , KeyError , "pop raises" ) ;
 
-	raises( s.clear( ).add( "x" ).remove.bind( s , "y" ) , KeyError , "remove raises" ) ;
-	raises( s.clear( ).add( "x" ).remove.bind( s , "y" ) , KeyError , "remove raises" ) ;
+	t.throws( s.clear( ).add( "x" ).remove.bind( s , "y" ) , KeyError , "remove raises" ) ;
+	t.throws( s.clear( ).add( "x" ).remove.bind( s , "y" ) , KeyError , "remove raises" ) ;
 
-	deepEqual( s.clear( ) , s , "ref clear" ) ;
-	deepEqual( s.add( "x" ) , s , "ref add" ) ;
-	deepEqual( s.remove( "x" ) , s , "ref remove" ) ;
-	deepEqual( s.discard( "x" ) , s , "ref discard" ) ;
-	deepEqual( s.update( ) , s , "ref update" ) ;
-	deepEqual( s.intersection_update( ) , s , "ref intersection_update" ) ;
-	deepEqual( s.difference_update( ) , s , "ref difference_update" ) ;
-	deepEqual( s.symmetric_difference_update( "x" ) , s , "ref symmetric_difference_update" ) ;
-
-} ) ;
+	t.deepEqual( s.clear( ) , s , "ref clear" ) ;
+	t.deepEqual( s.add( "x" ) , s , "ref add" ) ;
+	t.deepEqual( s.remove( "x" ) , s , "ref remove" ) ;
+	t.deepEqual( s.discard( "x" ) , s , "ref discard" ) ;
+	t.deepEqual( s.update( ) , s , "ref update" ) ;
+	t.deepEqual( s.intersection_update( ) , s , "ref intersection_update" ) ;
+	t.deepEqual( s.difference_update( ) , s , "ref difference_update" ) ;
+	t.deepEqual( s.symmetric_difference_update( "x" ) , s , "ref symmetric_difference_update" ) ;
 
 } ) ;
