@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl">
-  <title data-ice="title">aureooms/js-collections API Document</title>
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/bisect/index.js | aureooms/js-collections API Document</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -83,132 +83,27 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="-js-collections-http-aureooms-github-io-js-collections-"><a href="http://aureooms.github.io/js-collections">js-collections</a></h1>
-<p>Collections code bricks for JavaScript. Parent is
-<a href="https://github.com/aureooms/js-data-structures">js-data-structures</a>.</p>
-<p>JavaScript version of
-<a href="https://docs.python.org/3.6/library/collections.html">Python&apos;s collections library</a>
-together with
-<a href="https://docs.python.org/3.6/library/heapq.html">Python&apos;s heapq library</a>
-and
-<a href="https://docs.python.org/3.6/library/bisect.html">Python&apos;s bisect library</a>.</p>
-<pre><code class="lang-js"><code class="source-code prettyprint">let {
-    heapq , bisect ,
-    namedtuple ,
-    deque ,
-    set ,
-    dict , defaultdict , ordereddict , counter , chainmap
-} = collections ;</code>
+<div class="content" data-ice="content"><h1 data-ice="title">src/bisect/index.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import bisect_right from &apos;./bisect_right&apos; ;
+import bisect_left from &apos;./bisect_left&apos; ;
+import insort_right from &apos;./insort_right&apos; ;
+import insort_left from &apos;./insort_left&apos; ;
+
+export default {
+    bisect_right ,
+    bisect_left ,
+    insort_right ,
+    insort_left
+} ;
+
+export {
+    bisect_right ,
+    bisect_left ,
+    insort_right ,
+    insort_left
+} ;
 </code></pre>
-<p><a href="https://raw.githubusercontent.com/aureooms/js-collections/master/LICENSE"><img src="http://img.shields.io/npm/l/aureooms-js-collections.svg?style=flat" alt="NPM license"></a>
-<a href="https://www.npmjs.org/package/aureooms-js-collections"><img src="http://img.shields.io/npm/v/aureooms-js-collections.svg?style=flat" alt="NPM version"></a>
-<a href="https://travis-ci.org/aureooms/js-collections"><img src="http://img.shields.io/travis/aureooms/js-collections.svg?style=flat" alt="Build Status"></a>
-<a href="https://coveralls.io/r/aureooms/js-collections"><img src="http://img.shields.io/coveralls/aureooms/js-collections.svg?style=flat" alt="Coverage Status"></a>
-<a href="https://david-dm.org/aureooms/js-collections#info=dependencies"><img src="http://img.shields.io/david/aureooms/js-collections.svg?style=flat" alt="Dependencies Status"></a>
-<a href="https://david-dm.org/aureooms/js-collections#info=devDependencies"><img src="http://img.shields.io/david/dev/aureooms/js-collections.svg?style=flat" alt="devDependencies Status"></a>
-<a href="https://codeclimate.com/github/aureooms/js-collections"><img src="http://img.shields.io/codeclimate/github/aureooms/js-collections.svg?style=flat" alt="Code Climate"></a>
-<a href="https://www.npmjs.org/package/aureooms-js-collections"><img src="http://img.shields.io/npm/dm/aureooms-js-collections.svg?style=flat" alt="NPM downloads per month"></a>
-<a href="https://github.com/aureooms/js-collections/issues"><img src="http://img.shields.io/github/issues/aureooms/js-collections.svg?style=flat" alt="GitHub issues"></a>
-<a href="https://aureooms.github.io/js-collections/source.html"><img src="https://aureooms.github.io/js-collections/badge.svg" alt="Documentation"></a></p>
-<p>Can be managed through <a href="https://github.com/jspm/jspm-cli">jspm</a>,
-<a href="https://github.com/duojs/duo">duo</a>,
-<a href="https://github.com/componentjs/component">component</a>,
-<a href="https://github.com/bower/bower">bower</a>,
-<a href="https://github.com/ender-js/Ender">ender</a>,
-<a href="https://github.com/caolan/jam">jam</a>,
-<a href="https://github.com/spmjs/spm">spm</a>,
-and <a href="https://github.com/npm/npm">npm</a>.</p>
-<h2 id="install">Install</h2>
-<h3 id="jspm">jspm</h3>
-<pre><code class="lang-terminal"><code class="source-code prettyprint">jspm install github:aureooms/js-collections
-# or
-jspm install npm:aureooms-js-collections</code>
-</code></pre>
-<h3 id="duo">duo</h3>
-<p>No install step needed for duo!</p>
-<h3 id="component">component</h3>
-<pre><code class="lang-terminal"><code class="source-code prettyprint">component install aureooms/js-collections</code>
-</code></pre>
-<h3 id="bower">bower</h3>
-<pre><code class="lang-terminal"><code class="source-code prettyprint">bower install aureooms-js-collections</code>
-</code></pre>
-<h3 id="ender">ender</h3>
-<pre><code class="lang-terminal"><code class="source-code prettyprint">ender add aureooms-js-collections</code>
-</code></pre>
-<h3 id="jam">jam</h3>
-<pre><code class="lang-terminal"><code class="source-code prettyprint">jam install aureooms-js-collections</code>
-</code></pre>
-<h3 id="spm">spm</h3>
-<pre><code class="lang-terminal"><code class="source-code prettyprint">spm install aureooms-js-collections --save</code>
-</code></pre>
-<h3 id="npm">npm</h3>
-<pre><code class="lang-terminal"><code class="source-code prettyprint">npm install aureooms-js-collections --save</code>
-</code></pre>
-<h2 id="require">Require</h2>
-<h3 id="jspm">jspm</h3>
-<pre><code class="lang-js"><code class="source-code prettyprint">let collections = require( &quot;github:aureooms/js-collections&quot; ) ;
-// or
-import collections from &apos;aureooms-js-collections&apos; ;</code>
-</code></pre>
-<h3 id="duo">duo</h3>
-<pre><code class="lang-js"><code class="source-code prettyprint">let collections = require( &quot;aureooms/js-collections&quot; ) ;</code>
-</code></pre>
-<h3 id="component-ender-spm-npm">component, ender, spm, npm</h3>
-<pre><code class="lang-js"><code class="source-code prettyprint">let collections = require( &quot;aureooms-js-collections&quot; ) ;</code>
-</code></pre>
-<h3 id="bower">bower</h3>
-<p>The script tag exposes the global variable <code>collections</code>.</p>
-<pre><code class="lang-html"><code class="source-code prettyprint">&lt;script src=&quot;bower_components/aureooms-js-collections/js/dist/collections.min.js&quot;&gt;&lt;/script&gt;</code>
-</code></pre>
-<p>Alternatively, you can use any tool mentioned <a href="http://bower.io/docs/tools/">here</a>.</p>
-<h3 id="jam">jam</h3>
-<pre><code class="lang-js"><code class="source-code prettyprint">require( [ &quot;aureooms-js-collections&quot; ] , function ( collections ) { ... } ) ;</code>
-</code></pre>
-<h2 id="use">Use</h2>
-<p>See Python&apos;s docs:</p>
-<ul>
-<li><a href="https://docs.python.org/3.6/library/collections.html">collections</a></li>
-<li><a href="https://docs.python.org/3.6/library/heapq.html">heapq</a></li>
-<li><a href="https://docs.python.org/3.6/library/bisect.html">bisect</a></li>
-</ul>
-<h3 id="some-changes-w-r-t-python-s-api">Some changes w.r.t. Python&apos;s API</h3>
-<h4 id="-heapq-"><code>heapq</code></h4>
-<pre><code class="lang-js"><code class="source-code prettyprint">let array = [ 2 , 1 , 3 ] ;
-let heap = heapq.heapify( compare.increasing , array ) ;
-array[0] ; // 1
-heapq.heappop( heap ) ; // 1
-heapq.heappop( heap ) ; // 2
-heapq.heappop( heap ) ; // 3
-array.length ; // 0</code>
-</code></pre>
-<h4 id="-set-"><code>set</code></h4>
-<h5 id="-set-iterable-null-this-"><code>set( iterable = null ) -&gt; this</code></h5>
-<h5 id="-set-inclusion-a-b-1-0-1-"><code>set.inclusion( A , B ) -&gt; {-1,0,1}</code></h5>
-<h5 id="-set-prototype-symbol-iterator-iterable-"><code>set.prototype[Symbol.iterator]( ) -&gt; iterable</code></h5>
-<h5 id="-set-prototype-keys-iterable-"><code>set.prototype.keys( ) -&gt; iterable</code></h5>
-<h5 id="-set-prototype-len-integer-"><code>set.prototype.len( ) -&gt; integer</code></h5>
-<h5 id="-set-prototype-has-key-boolean-"><code>set.prototype.has( key ) -&gt; boolean</code></h5>
-<h5 id="-set-prototype-isdisjoint-other-boolean-"><code>set.prototype.isdisjoint( other ) -&gt; boolean</code></h5>
-<h5 id="-set-prototype-isequal-other-boolean-"><code>set.prototype.isequal( other ) -&gt; boolean</code></h5>
-<h5 id="-set-prototype-issubset-other-boolean-"><code>set.prototype.issubset( other ) -&gt; boolean</code></h5>
-<h5 id="-set-prototype-ispropersubset-other-boolean-"><code>set.prototype.ispropersubset( other ) -&gt; boolean</code></h5>
-<h5 id="-set-prototype-issuperset-other-boolean-"><code>set.prototype.issuperset( other ) -&gt; boolean</code></h5>
-<h5 id="-set-prototype-ispropersuperset-other-boolean-"><code>set.prototype.ispropersuperset( other ) -&gt; boolean</code></h5>
-<h5 id="-set-prototype-union-others-set-"><code>set.prototype.union( ...others ) -&gt; set</code></h5>
-<h5 id="-set-prototype-intersection-others-set-"><code>set.prototype.intersection( ...others ) -&gt; set</code></h5>
-<h5 id="-set-prototype-difference-others-set-"><code>set.prototype.difference( ...others ) -&gt; set</code></h5>
-<h5 id="-set-prototype-symmetric_difference-other-set-"><code>set.prototype.symmetric_difference( other ) -&gt; set</code></h5>
-<h5 id="-set-prototype-copy-set-"><code>set.prototype.copy( ) -&gt; set</code></h5>
-<h5 id="-set-prototype-update-others-this-"><code>set.prototype.update( ...others ) -&gt; this</code></h5>
-<h5 id="-set-prototype-intersection_update-others-this-"><code>set.prototype.intersection_update( ...others ) -&gt; this</code></h5>
-<h5 id="-set-prototype-difference_update-others-this-"><code>set.prototype.difference_update( ...others ) -&gt; this</code></h5>
-<h5 id="-set-prototype-symmetric_difference_update-other-this-"><code>set.prototype.symmetric_difference_update( other ) -&gt; this</code></h5>
-<h5 id="-set-prototype-add-key-this-"><code>set.prototype.add( key ) -&gt; this</code></h5>
-<h5 id="-set-prototype-remove-key-this-"><code>set.prototype.remove( key ) -&gt; this</code></h5>
-<h5 id="-set-prototype-discard-key-this-"><code>set.prototype.discard( key ) -&gt; this</code></h5>
-<h5 id="-set-prototype-pop-key-"><code>set.prototype.pop( ) -&gt; key</code></h5>
-<h5 id="-set-prototype-clear-this-"><code>set.prototype.clear( ) -&gt; this</code></h5>
-</div>
+
 </div>
 
 <footer class="footer">
