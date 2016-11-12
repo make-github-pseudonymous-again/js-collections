@@ -1,7 +1,7 @@
 [js-collections](http://aureooms.github.io/js-collections)
 ==
 
-Collections code bricks for JavaScript. Parent is
+Collections library for JavaScript. Parent is
 [js-data-structures](https://github.com/aureooms/js-data-structures).
 
 JavaScript version of
@@ -31,93 +31,6 @@ let {
 [![NPM downloads per month](http://img.shields.io/npm/dm/aureooms-js-collections.svg?style=flat)](https://www.npmjs.org/package/aureooms-js-collections)
 [![GitHub issues](http://img.shields.io/github/issues/aureooms/js-collections.svg?style=flat)](https://github.com/aureooms/js-collections/issues)
 [![Documentation](https://aureooms.github.io/js-collections/badge.svg)](https://aureooms.github.io/js-collections/source.html)
-
-Can be managed through [jspm](https://github.com/jspm/jspm-cli),
-[duo](https://github.com/duojs/duo),
-[component](https://github.com/componentjs/component),
-[bower](https://github.com/bower/bower),
-[ender](https://github.com/ender-js/Ender),
-[jam](https://github.com/caolan/jam),
-[spm](https://github.com/spmjs/spm),
-and [npm](https://github.com/npm/npm).
-
-## Install
-
-### jspm
-```terminal
-jspm install github:aureooms/js-collections
-# or
-jspm install npm:aureooms-js-collections
-```
-### duo
-No install step needed for duo!
-
-### component
-```terminal
-component install aureooms/js-collections
-```
-
-### bower
-```terminal
-bower install aureooms-js-collections
-```
-
-### ender
-```terminal
-ender add aureooms-js-collections
-```
-
-### jam
-```terminal
-jam install aureooms-js-collections
-```
-
-### spm
-```terminal
-spm install aureooms-js-collections --save
-```
-
-### npm
-```terminal
-npm install aureooms-js-collections --save
-```
-
-## Require
-### jspm
-```js
-let collections = require( "github:aureooms/js-collections" ) ;
-// or
-import collections from 'aureooms-js-collections' ;
-```
-### duo
-```js
-let collections = require( "aureooms/js-collections" ) ;
-```
-
-### component, ender, spm, npm
-```js
-let collections = require( "aureooms-js-collections" ) ;
-```
-
-### bower
-The script tag exposes the global variable `collections`.
-```html
-<script src="bower_components/aureooms-js-collections/js/dist/collections.min.js"></script>
-```
-Alternatively, you can use any tool mentioned [here](http://bower.io/docs/tools/).
-
-### jam
-```js
-require( [ "aureooms-js-collections" ] , function ( collections ) { ... } ) ;
-```
-
-## Use
-
-See Python's docs:
-
-  - [collections](https://docs.python.org/3.6/library/collections.html)
-  - [heapq](https://docs.python.org/3.6/library/heapq.html)
-  - [bisect](https://docs.python.org/3.6/library/bisect.html)
 
 ### Some changes w.r.t. Python's API
 
