@@ -1,6 +1,6 @@
 {
   "name": "aureooms-js-collections",
-  "description": "Collections library for JavaScript",
+  "description": "Python's collections library for JavaScript",
   "version": "2.0.0",
   "author": "Aurélien Ooms <aurelien.ooms@gmail.com>",
   "ava": {
@@ -23,15 +23,21 @@
     "url": "https://github.com/aureooms/js-collections/issues"
   },
   "dependencies": {
-    "aureooms-js-compare": "^1.4.5",
-    "aureooms-js-dll": "^6.0.10",
-    "aureooms-js-itertools": "^3.1.0"
+    "aureooms-js-collections-chainmap": "^3.0.0",
+    "aureooms-js-collections-counter": "^3.0.0",
+    "aureooms-js-collections-defaultdict": "^3.0.1",
+    "aureooms-js-collections-deque": "^3.1.0",
+    "aureooms-js-collections-dict": "^3.0.0",
+    "aureooms-js-collections-namedtuple": "^3.0.0",
+    "aureooms-js-collections-ordereddict": "^3.0.0",
+    "aureooms-js-collections-set": "^3.0.0",
+    "aureooms-js-error": "^3.0.0"
   },
   "devDependencies": {
+    "aureooms-js-compare": "^1.4.5",
     "aureooms-js-functools": "^2.0.3",
+    "aureooms-js-itertools": "^3.1.0",
     "aureooms-js-number": "^3.0.0",
-    "aureooms-js-operator": "^1.0.2",
-    "aureooms-js-sort": "^7.0.0",
     "ava": "^0.16.0",
     "babel-cli": "^6.18.0",
     "babel-polyfill": "^6.16.0",
@@ -43,18 +49,19 @@
   },
   "homepage": "http://aureooms.github.io/js-collections/",
   "keywords": [
-    "bisect",
     "collection",
     "collections",
     "count",
     "counter",
+    "defaultdict",
     "dict",
     "hash",
-    "heapq",
     "javascript",
     "js",
     "list",
-    "map"
+    "map",
+    "ordereddict",
+    "set"
   ],
   "license": "AGPL-3.0",
   "main": "lib/index.js",
