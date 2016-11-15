@@ -31,3 +31,15 @@ let {
 [![NPM downloads per month](http://img.shields.io/npm/dm/aureooms-js-collections.svg?style=flat)](https://www.npmjs.org/package/aureooms-js-collections)
 [![GitHub issues](http://img.shields.io/github/issues/aureooms/js-collections.svg?style=flat)](https://github.com/aureooms/js-collections/issues)
 [![Documentation](https://aureooms.github.io/js-collections/badge.svg)](https://aureooms.github.io/js-collections/source.html)
+
+## Children
+The implementation of this package is split over several children packages:
+
+  - [aureooms-js-collections-chainmap](https://github.com/aureooms/js-collections-chainmap)
+  - [aureooms-js-collections-counter](https://github.com/aureooms/js-collections-counter)
+  - [aureooms-js-collections-defaultdict](https://github.com/aureooms/js-collections-defaultdict)
+  - [aureooms-js-collections-deque](https://github.com/aureooms/js-collections-deque)
+  - [aureooms-js-collections-dict](https://github.com/aureooms/js-collections-dict)
+  - [aureooms-js-collections-namedtuple](https://github.com/aureooms/js-collections-namedtuple)
+  - [aureooms-js-collections-ordereddict](https://github.com/aureooms/js-collections-ordereddict)
+  - [aureooms-js-collections-set](https://github.com/aureooms/js-collections-set)
