@@ -1,3837 +1,6 @@
 [
   {
-    "__docId__": 0,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/bisect/bisect_left.js",
-    "memberof": null,
-    "longname": "src/bisect/bisect_left.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 1,
-    "content": "import { ValueError } from '../error' ;\n\nexport default function bisect_left ( a , x , lo = 0 , hi = a.length ) {\n\n    if ( lo < 0 ) throw new ValueError( \"lo must be non-negative\" ) ;\n\n    while ( lo < hi ) {\n\n        const mid = ( lo + hi ) / 2 | 0 ;\n\n        if ( x > a[mid] ) lo = mid + 1 ;\n\n        else hi = mid ;\n\n    }\n\n    return lo ;\n\n}\n"
-  },
-  {
     "__docId__": 1,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "bisect_left",
-    "memberof": "src/bisect/bisect_left.js",
-    "longname": "src/bisect/bisect_left.js~bisect_left",
-    "access": null,
-    "export": true,
-    "importPath": "aureooms-js-collections/src/bisect/bisect_left.js",
-    "importStyle": "bisect_left",
-    "description": null,
-    "lineNumber": 3,
-    "undocument": true,
-    "params": [
-      {
-        "name": "a",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "x",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "lo",
-        "optional": true,
-        "types": [
-          "number"
-        ],
-        "defaultRaw": 0,
-        "defaultValue": "0"
-      },
-      {
-        "name": "hi",
-        "optional": true,
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 2,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/bisect/bisect_right.js",
-    "memberof": null,
-    "longname": "src/bisect/bisect_right.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 1,
-    "content": "import { ValueError } from '../error' ;\n\nexport default function bisect_right ( a , x , lo = 0 , hi = a.length ) {\n\n    if ( lo < 0 ) throw new ValueError( \"lo must be non-negative\" ) ;\n\n    while ( lo < hi ) {\n\n        const mid = ( lo + hi ) / 2 | 0 ;\n\n        if ( x < a[mid] ) hi = mid ;\n\n        else lo = mid + 1 ;\n\n    }\n\n    return lo ;\n\n}\n"
-  },
-  {
-    "__docId__": 3,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "bisect_right",
-    "memberof": "src/bisect/bisect_right.js",
-    "longname": "src/bisect/bisect_right.js~bisect_right",
-    "access": null,
-    "export": true,
-    "importPath": "aureooms-js-collections/src/bisect/bisect_right.js",
-    "importStyle": "bisect_right",
-    "description": null,
-    "lineNumber": 3,
-    "undocument": true,
-    "params": [
-      {
-        "name": "a",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "x",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "lo",
-        "optional": true,
-        "types": [
-          "number"
-        ],
-        "defaultRaw": 0,
-        "defaultValue": "0"
-      },
-      {
-        "name": "hi",
-        "optional": true,
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 4,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/bisect/index.js",
-    "memberof": null,
-    "longname": "src/bisect/index.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 1,
-    "content": "import bisect_right from './bisect_right' ;\nimport bisect_left from './bisect_left' ;\nimport insort_right from './insort_right' ;\nimport insort_left from './insort_left' ;\n\nexport default {\n    bisect_right ,\n    bisect_left ,\n    insort_right ,\n    insort_left\n} ;\n\nexport {\n    bisect_right ,\n    bisect_left ,\n    insort_right ,\n    insort_left\n} ;\n"
-  },
-  {
-    "__docId__": 5,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/bisect/insort_left.js",
-    "memberof": null,
-    "longname": "src/bisect/insort_left.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 1,
-    "content": "import bisect_left from './bisect_left' ;\n\nexport default function insort_left ( a , x , lo = 0 , hi = a.length ) {\n\n\tconst pos = bisect_left( a , x , lo , hi ) ;\n\n\ta.splice( pos , 0 , x ) ;\n\n}\n"
-  },
-  {
-    "__docId__": 6,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "insort_left",
-    "memberof": "src/bisect/insort_left.js",
-    "longname": "src/bisect/insort_left.js~insort_left",
-    "access": null,
-    "export": true,
-    "importPath": "aureooms-js-collections/src/bisect/insort_left.js",
-    "importStyle": "insort_left",
-    "description": null,
-    "lineNumber": 3,
-    "undocument": true,
-    "params": [
-      {
-        "name": "a",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "x",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "lo",
-        "optional": true,
-        "types": [
-          "number"
-        ],
-        "defaultRaw": 0,
-        "defaultValue": "0"
-      },
-      {
-        "name": "hi",
-        "optional": true,
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "generator": false
-  },
-  {
-    "__docId__": 7,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/bisect/insort_right.js",
-    "memberof": null,
-    "longname": "src/bisect/insort_right.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 1,
-    "content": "import bisect_right from './bisect_right' ;\n\nexport default function insort_right ( a , x , lo = 0 , hi = a.length ) {\n\n\tconst pos = bisect_right( a , x , lo , hi ) ;\n\n\ta.splice( pos , 0 , x ) ;\n\n}\n"
-  },
-  {
-    "__docId__": 8,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "insort_right",
-    "memberof": "src/bisect/insort_right.js",
-    "longname": "src/bisect/insort_right.js~insort_right",
-    "access": null,
-    "export": true,
-    "importPath": "aureooms-js-collections/src/bisect/insort_right.js",
-    "importStyle": "insort_right",
-    "description": null,
-    "lineNumber": 3,
-    "undocument": true,
-    "params": [
-      {
-        "name": "a",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "x",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "lo",
-        "optional": true,
-        "types": [
-          "number"
-        ],
-        "defaultRaw": 0,
-        "defaultValue": "0"
-      },
-      {
-        "name": "hi",
-        "optional": true,
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "generator": false
-  },
-  {
-    "__docId__": 9,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/chainmap/_ChainMap.js",
-    "memberof": null,
-    "longname": "src/chainmap/_ChainMap.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 1,
-    "content": "import { KeyError } from '../error' ;\n\nexport default function _ChainMap ( Dict , Set ) {\n\n\tconst ChainMap = function ( ...maps ) {\n\n\t\tthis.maps = maps ;\n\n\t\tif ( this.maps.length === 0 ) this.maps.push( new Dict( ) ) ;\n\n\t} ;\n\n\tChainMap.prototype.__missing__ = function ( key ) {\n\n\t\tthrow new KeyError( key ) ;\n\n\t} ;\n\n\tChainMap.prototype.get = function ( key ) {\n\n\t\tfor ( let map of this.maps ) {\n\n\t\t\ttry {\n\n\t\t\t\treturn map.get( key ) ;\n\n\t\t\t}\n\n\t\t\tcatch ( e ) {\n\n\t\t\t\tif ( !( e instanceof KeyError ) ) throw e ;\n\n\t\t\t}\n\n\t\t}\n\n\t\treturn this.__missing__( key ) ;\n\n\t} ;\n\n\tChainMap.prototype.getdefault = function ( key , dflt = null ) {\n\n\t\treturn this.has( key ) ? this.get( key ) : dflt ;\n\n\t} ;\n\n\tChainMap.prototype._keys = function ( ) {\n\n\t\tlet keys = new Set( ) ;\n\n\t\tfor ( let map of this.maps ) keys.update( map.keys( ) ) ;\n\n\t\treturn keys ;\n\n\t} ;\n\n\tChainMap.prototype.len = function ( ) {\n\n\t\treturn this._keys( ).len( ) ;\n\n\t} ;\n\n\tChainMap.prototype[Symbol.iterator] =\n\tChainMap.prototype.items = function* ( ) {\n\n\t\tfor ( let key of this.keys( ) ) yield [ key , this.get( key ) ] ;\n\n\t} ;\n\n\tChainMap.prototype.has = function ( key ) {\n\n\t\tfor ( let map of this.maps ) {\n\n\t\t\tif ( map.has( key ) ) return true ;\n\n\t\t}\n\n\t\treturn false ;\n\n\t} ;\n\n\tChainMap.fromkeys = function ( seq , value = null ) {\n\n\t\treturn new ChainMap( Dict.fromkeys( seq , value ) ) ;\n\n\t} ;\n\n\tChainMap.prototype.copy = function ( ) {\n\n\t\tconst [ child , ...parents ] = this.maps ;\n\n\t\treturn new ChainMap( child.copy( ) , ...parents ) ;\n\n\t} ;\n\n\tChainMap.prototype.new_child = function ( map = null ) {\n\n\t\tif ( map === null ) map = new Dict( ) ;\n\n\t\treturn new ChainMap( map , ...this.maps ) ;\n\n\t} ;\n\n\tChainMap.prototype.parents = function ( ) {\n\n\t\tconst [ child , ...parents ] = this.maps ;\n\n\t\treturn new ChainMap( ...parents ) ;\n\n\t} ;\n\n\tChainMap.prototype.set = function ( key , value ) {\n\n\t\treturn this.maps[0].set( key , value ) ;\n\n\t} ;\n\n\tChainMap.prototype.delete = function ( key ) {\n\n\t\ttry {\n\n\t\t\tthis.maps[0].delete( key ) ;\n\n\t\t}\n\n\t\tcatch ( e ) {\n\n\t\t\tif ( !( e instanceof KeyError ) ) throw e ;\n\n\t\t\tthrow new KeyError( \"Key not found in the first mapping: \" + key ) ;\n\n\t\t}\n\n\t\treturn this ;\n\n\t} ;\n\n\tChainMap.prototype.popitem = function ( ) {\n\n\t\ttry {\n\n\t\t\treturn this.maps[0].popitem( ) ;\n\n\t\t}\n\n\t\tcatch ( e ) {\n\n\t\t\tif ( !( e instanceof KeyError ) ) throw e ;\n\n\t\t\tthrow new KeyError( \"No keys found in the first mapping.\" ) ;\n\n\t\t}\n\n\t} ;\n\n\tChainMap.prototype.pop = function ( key , dflt = null ) {\n\n\t\ttry {\n\n\t\t\tif ( arguments.length <= 1 ) return this.maps[0].pop( key ) ;\n\n\t\t\treturn this.maps[0].pop( key , dflt ) ;\n\n\t\t}\n\n\t\tcatch ( e ) {\n\n\t\t\tif ( !( e instanceof KeyError ) ) throw e ;\n\n\t\t\tthrow new KeyError( \"Key not found in the first mapping: \" + key ) ;\n\n\t\t}\n\n\t} ;\n\n\tChainMap.prototype.clear = function ( ) {\n\n\t\tthis.maps[0].clear( ) ;\n\n\t\treturn this ;\n\n\t} ;\n\n\tChainMap.prototype.keys = function* ( ) {\n\n\t\tyield* this._keys( ) ;\n\n\t} ;\n\n\n\tChainMap.prototype.values = function* ( ) {\n\n\t\tfor ( let key of this.keys( ) ) yield this.get( key ) ;\n\n\t} ;\n\n\treturn ChainMap ;\n\n}\n"
-  },
-  {
-    "__docId__": 10,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "_ChainMap",
-    "memberof": "src/chainmap/_ChainMap.js",
-    "longname": "src/chainmap/_ChainMap.js~_ChainMap",
-    "access": null,
-    "export": true,
-    "importPath": "aureooms-js-collections/src/chainmap/_ChainMap.js",
-    "importStyle": "_ChainMap",
-    "description": null,
-    "lineNumber": 3,
-    "undocument": true,
-    "params": [
-      {
-        "name": "Dict",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "Set",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 11,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/chainmap/_chainmap.js",
-    "memberof": null,
-    "longname": "src/chainmap/_chainmap.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 1,
-    "content": "export default function _chainmap ( ChainMap ) {\n\n\tconst chainmap = function ( ...maps ) {\n\n\t\treturn new ChainMap( ...maps ) ;\n\n\t} ;\n\n\tchainmap.fromkeys = ChainMap.fromkeys ;\n\n\treturn chainmap ;\n\n}\n"
-  },
-  {
-    "__docId__": 12,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "_chainmap",
-    "memberof": "src/chainmap/_chainmap.js",
-    "longname": "src/chainmap/_chainmap.js~_chainmap",
-    "access": null,
-    "export": true,
-    "importPath": "aureooms-js-collections/src/chainmap/_chainmap.js",
-    "importStyle": "_chainmap",
-    "description": null,
-    "lineNumber": 1,
-    "undocument": true,
-    "params": [
-      {
-        "name": "ChainMap",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 13,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/compile.js",
-    "memberof": null,
-    "longname": "src/compile.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 2,
-    "content": "\nexport default function compile ( BaseSet , BaseMap , DoublyLinkedList , core ) {\n\n\tconst Set = core.set._Set( BaseSet ) ;\n\tconst Dict = core.dict.dict._Dict( BaseMap ) ;\n\tconst OrderedDict = core.dict.ordereddict._OrderedDict( Dict , BaseMap , DoublyLinkedList ) ;\n\tconst NamedTuple = core.namedtuple._NamedTuple( Dict , OrderedDict ) ;\n\tconst DefaultDict = core.dict.defaultdict._DefaultDict( Dict , BaseMap ) ;\n\tconst ChainMap = core.chainmap._ChainMap( Dict , Set ) ;\n\tconst Counter = core.counter._Counter( BaseMap , Dict ) ;\n\tconst namedtuple = core.namedtuple._namedtuple( NamedTuple ) ;\n\tconst Deque = core.deque.implementation.Deque ;\n\tconst ArbitrarySizeDeque = core.deque.implementation.ArbitrarySizeDeque ;\n\tconst UnboundedDeque = core.deque.implementation.UnboundedDeque ;\n\tconst BoundedDeque = core.deque.implementation.BoundedDeque ;\n\tconst SingleElementDeque = core.deque.implementation.SingleElementDeque ;\n\tconst EmptyDeque = core.deque.implementation.EmptyDeque ;\n\n\tconst all = { } ;\n\n\tall.bisect = core.bisect ;\n\n\tall.heapq = core.heapq ;\n\n\tall.Set = Set ;\n\tall.set = core.set._set( Set ) ;\n\n\tall.Mapping = core.mapping ;\n\n\tall.Dict = Dict ;\n\tall.dict = core.dict.dict._dict( Dict ) ;\n\tall.OrderedDict = OrderedDict ;\n\tall.ordereddict = core.dict.ordereddict._ordereddict( OrderedDict ) ;\n\tall.DefaultDict = DefaultDict ;\n\tall.defaultdict = core.dict.defaultdict._defaultdict( DefaultDict ) ;\n\n\tall.ChainMap = ChainMap ;\n\tall.chainmap = core.chainmap._chainmap( ChainMap ) ;\n\n\tall.Counter = Counter ;\n\tall.counter = core.counter._counter( Counter ) ;\n\n\tall.NamedTuple = NamedTuple ;\n\tall.namedtuple = namedtuple ;\n\n\tall.deque = core.deque._deque( UnboundedDeque , BoundedDeque , SingleElementDeque , EmptyDeque ) ;\n\tall.Deque = Deque ;\n\tall.ArbitrarySizeDeque = ArbitrarySizeDeque ;\n\tall.UnboundedDeque = UnboundedDeque ;\n\tall.BoundedDeque = BoundedDeque ;\n\tall.SingleElementDeque = SingleElementDeque ;\n\tall.EmptyDeque = EmptyDeque ;\n\n\tall.IndexError = core.error.IndexError ;\n\tall.KeyError = core.error.KeyError ;\n\tall.NotImplementedError = core.error.NotImplementedError ;\n\tall.TypeError = core.error.TypeError ;\n\tall.ValueError = core.error.ValueError ;\n\n\treturn all ;\n\n}\n"
-  },
-  {
-    "__docId__": 14,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "compile",
-    "memberof": "src/compile.js",
-    "longname": "src/compile.js~compile",
-    "access": null,
-    "export": true,
-    "importPath": "aureooms-js-collections/src/compile.js",
-    "importStyle": "compile",
-    "description": null,
-    "lineNumber": 2,
-    "undocument": true,
-    "params": [
-      {
-        "name": "BaseSet",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "BaseMap",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "DoublyLinkedList",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "core",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 15,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/counter/_Counter.js",
-    "memberof": null,
-    "longname": "src/counter/_Counter.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 1,
-    "content": "import { NotImplementedError } from '../error' ;\nimport { nlargest } from '../heapq' ;\n\nimport counts from './counts' ;\n\nexport default function _Counter ( Map , Dict ) {\n\n\tconst Counter = function ( iterable ) {\n\n\t\tthis.container = new Map( ) ;\n\n\t\tif ( iterable !== null ) this.update( iterable ) ;\n\n\t} ;\n\n\tCounter.prototype = new Dict( ) ;\n\n\tCounter.fromkeys = function ( seq , value = null ) {\n\n\t\tthrow new NotImplementedError( \"Counter.fromkeys() is undefined.  Use Counter(iterable) instead.\" ) ;\n\n\t} ;\n\n\tCounter.prototype.get = function ( key ) {\n\n\t\tif ( this.has( key ) ) return this.container.get( key ) ;\n\n\t\treturn 0 ;\n\n\t} ;\n\n\tCounter.prototype.elements = function* ( ) {\n\n\t\tfor ( let [ key , count ] of this ) {\n\n\t\t\twhile ( count --> 0 ) yield key ;\n\n\t\t}\n\n\t} ;\n\n\tCounter.prototype.increment = function ( key , amount = 1 ) {\n\n\t\tthis.set( key , this.get( key ) + amount ) ;\n\n\t} ;\n\n\tCounter.prototype.decrement = function ( key , amount = 1 ) {\n\n\t\tthis.increment( key , -amount ) ;\n\n\t} ;\n\n\tCounter.prototype.update = function ( iterable ) {\n\n\t\tfor ( let key of iterable ) this.increment( key ) ;\n\n\t} ;\n\n\tCounter.prototype.add = function ( other ) {\n\n\t\tfor ( let [ key , count ] of other ) this.increment( key , count ) ;\n\n\t} ;\n\n\tCounter.prototype.subtract = function ( other ) {\n\n\t\tfor ( let [ key , count ] of other ) this.decrement( key , count ) ;\n\n\t} ;\n\n\tCounter.prototype.most_common = function ( n = this.len( ) ) {\n\n\t\treturn nlargest( counts , n , this ) ;\n\n\t} ;\n\n\treturn Counter ;\n\n}\n"
-  },
-  {
-    "__docId__": 16,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "_Counter",
-    "memberof": "src/counter/_Counter.js",
-    "longname": "src/counter/_Counter.js~_Counter",
-    "access": null,
-    "export": true,
-    "importPath": "aureooms-js-collections/src/counter/_Counter.js",
-    "importStyle": "_Counter",
-    "description": null,
-    "lineNumber": 6,
-    "undocument": true,
-    "params": [
-      {
-        "name": "Map",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "Dict",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 17,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/counter/_counter.js",
-    "memberof": null,
-    "longname": "src/counter/_counter.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 2,
-    "content": "\nexport default function _counter ( Counter ) {\n\n\tconst counter = function ( iterable = null ) {\n\n\t\treturn new Counter( iterable ) ;\n\n\t} ;\n\n\tcounter.fromkeys = Counter.fromkeys ;\n\n\treturn counter ;\n\n} ;\n"
-  },
-  {
-    "__docId__": 18,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "_counter",
-    "memberof": "src/counter/_counter.js",
-    "longname": "src/counter/_counter.js~_counter",
-    "access": null,
-    "export": true,
-    "importPath": "aureooms-js-collections/src/counter/_counter.js",
-    "importStyle": "_counter",
-    "description": null,
-    "lineNumber": 2,
-    "undocument": true,
-    "params": [
-      {
-        "name": "Counter",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 19,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/counter/counts.js",
-    "memberof": null,
-    "longname": "src/counter/counts.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 1,
-    "content": "import { increasing , attr } from 'aureooms-js-compare' ;\n\nconst counts = attr( increasing , 1 ) ;\n\nexport default counts ;\n"
-  },
-  {
-    "__docId__": 20,
-    "kind": "variable",
-    "static": true,
-    "variation": null,
-    "name": "counts",
-    "memberof": "src/counter/counts.js",
-    "longname": "src/counter/counts.js~counts",
-    "access": null,
-    "export": true,
-    "importPath": "aureooms-js-collections/src/counter/counts.js",
-    "importStyle": "counts",
-    "description": null,
-    "lineNumber": 3,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 21,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/deque/_deque.js",
-    "memberof": null,
-    "longname": "src/deque/_deque.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 1,
-    "content": "import { TypeError , ValueError } from '../error' ;\n\nexport default function _deque ( UnboundedDeque , BoundedDeque , SingleElementDeque , EmptyDeque ) {\n\n\tconst deque = function ( iterable = null , maxlen = null ) {\n\n\t\tif ( maxlen === null ) return new UnboundedDeque( iterable ) ;\n\n\t\tif ( !Number.isInteger( maxlen ) ) throw new TypeError( maxlen ) ;\n\n\t\tif ( maxlen === 0 ) return new EmptyDeque( iterable ) ;\n\n\t\tif ( maxlen === 1 ) return new SingleElementDeque( iterable ) ;\n\n\t\tif ( maxlen > 0 ) return new BoundedDeque( iterable , maxlen ) ;\n\n\t\tthrow new ValueError( maxlen ) ;\n\n\t} ;\n\n\treturn deque ;\n\n}\n"
-  },
-  {
-    "__docId__": 22,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "_deque",
-    "memberof": "src/deque/_deque.js",
-    "longname": "src/deque/_deque.js~_deque",
-    "access": null,
-    "export": true,
-    "importPath": "aureooms-js-collections/src/deque/_deque.js",
-    "importStyle": "_deque",
-    "description": null,
-    "lineNumber": 3,
-    "undocument": true,
-    "params": [
-      {
-        "name": "UnboundedDeque",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "BoundedDeque",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "SingleElementDeque",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "EmptyDeque",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 23,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/deque/implementation/ArbitrarySizeDeque.js",
-    "memberof": null,
-    "longname": "src/deque/implementation/ArbitrarySizeDeque.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 1,
-    "content": "import Deque from './Deque' ;\n\nexport default function ArbitrarySizeDeque ( ) { }\n\nArbitrarySizeDeque.prototype = new Deque( ) ;\n\nArbitrarySizeDeque.prototype.values = function* ( ) {\n\n\tlet i = this.center ;\n\tconst _m = ( i + this.length ) ;\n\tconst m = Math.min( this.capacity( ) , _m ) ;\n\n\tfor ( ; i < m ; ++i ) yield this.container[i] ;\n\n\tconst n = _m % this.capacity( ) ;\n\n\tif ( n < _m ) for ( i = 0 ; i < n ; ++i ) yield this.container[i] ;\n\n} ;\n\nArbitrarySizeDeque.prototype.pop = function ( ) {\n\n\tconst [ container , index ] = this._where( this.length - 1 ) ;\n\n\treturn this._popindex( container , index ) ;\n\n} ;\n\nArbitrarySizeDeque.prototype.popleft = function ( ) {\n\n\tconst [ container , index ] = this._where( 0 ) ;\n\n\t++this.center ;\n\tthis.center %= this.capacity( ) ;\n\n\treturn this._popindex( container , index ) ;\n\n} ;\n"
-  },
-  {
-    "__docId__": 24,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "ArbitrarySizeDeque",
-    "memberof": "src/deque/implementation/ArbitrarySizeDeque.js",
-    "longname": "src/deque/implementation/ArbitrarySizeDeque.js~ArbitrarySizeDeque",
-    "access": null,
-    "export": true,
-    "importPath": "aureooms-js-collections/src/deque/implementation/ArbitrarySizeDeque.js",
-    "importStyle": "ArbitrarySizeDeque",
-    "description": null,
-    "lineNumber": 3,
-    "undocument": true,
-    "params": [],
-    "generator": false
-  },
-  {
-    "__docId__": 25,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "values",
-    "memberof": "src/deque/implementation/ArbitrarySizeDeque.js",
-    "longname": "src/deque/implementation/ArbitrarySizeDeque.js~values",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/ArbitrarySizeDeque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 7,
-    "undocument": true,
-    "params": [],
-    "generator": true
-  },
-  {
-    "__docId__": 26,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "pop",
-    "memberof": "src/deque/implementation/ArbitrarySizeDeque.js",
-    "longname": "src/deque/implementation/ArbitrarySizeDeque.js~pop",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/ArbitrarySizeDeque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 21,
-    "undocument": true,
-    "params": [],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 27,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "popleft",
-    "memberof": "src/deque/implementation/ArbitrarySizeDeque.js",
-    "longname": "src/deque/implementation/ArbitrarySizeDeque.js~popleft",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/ArbitrarySizeDeque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 29,
-    "undocument": true,
-    "params": [],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 28,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/deque/implementation/BoundedDeque.js",
-    "memberof": null,
-    "longname": "src/deque/implementation/BoundedDeque.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 1,
-    "content": "import ArbitrarySizeDeque from './ArbitrarySizeDeque' ;\n\nexport default function BoundedDeque ( iterable , maxlen ) {\n\n\tthis.maxlen = maxlen ;\n\n\tthis.container = new Array( maxlen ) ;\n\n\tthis.center = 0 ;\n\n\tthis.length = 0 ;\n\n\tif ( iterable !== null ) this.extend( iterable ) ;\n\n\n}\n\nBoundedDeque.prototype = new ArbitrarySizeDeque( ) ;\n\nBoundedDeque.prototype.len = function ( ) {\n\n\treturn this.length ;\n\n} ;\n\nBoundedDeque.prototype.capacity = function ( ) {\n\n\treturn this.maxlen ;\n\n} ;\n\nBoundedDeque.prototype.append = function ( x ) {\n\n\n\tif ( this.length === this.maxlen ) {\n\n\t\tthis.container[this.center] = x ;\n\t\t++this.center ;\n\t\tthis.center %= this.maxlen ;\n\n\t}\n\n\telse {\n\n\t\tconst i = ( this.center + this.length ) % this.maxlen ;\n\t\tthis.container[i] = x ;\n\t\t++this.length ;\n\n\t}\n\n\treturn this ;\n\n} ;\n\nBoundedDeque.prototype.appendleft = function ( x ) {\n\n\t--this.center ;\n\tthis.center += this.maxlen ;\n\tthis.center %= this.maxlen ;\n\tthis.container[this.center] = x ;\n\n\tif ( this.length < this.maxlen ) ++this.length ;\n\n\treturn this ;\n\n} ;\n\nBoundedDeque.prototype.clear = function ( ) {\n\n\tthis.center = 0 ;\n\n\tthis.length = 0 ;\n\n\tthis.container = new Array( this.maxlen ) ;\n\n\treturn this ;\n\n} ;\n\nBoundedDeque.prototype.copy = function ( ) {\n\n\treturn new BoundedDeque( this , this.maxlen ) ;\n\n} ;\n\n\n\nBoundedDeque.prototype._where = function ( i ) {\n\n\tthis._checkbounds( i ) ;\n\n\treturn [ this.container , ( this.center + i ) % this.maxlen ] ;\n\n} ;\n\n\nBoundedDeque.prototype._popindex = function ( container , index ) {\n\n\tconst value = container[index] ;\n\n\t// GC\n\t// TODO use null instead of 0 for non-Number deques\n\tcontainer[index] = 0 ;\n\n\t--this.length ;\n\n\treturn value ;\n\n} ;\n"
-  },
-  {
-    "__docId__": 29,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "BoundedDeque",
-    "memberof": "src/deque/implementation/BoundedDeque.js",
-    "longname": "src/deque/implementation/BoundedDeque.js~BoundedDeque",
-    "access": null,
-    "export": true,
-    "importPath": "aureooms-js-collections/src/deque/implementation/BoundedDeque.js",
-    "importStyle": "BoundedDeque",
-    "description": null,
-    "lineNumber": 3,
-    "undocument": true,
-    "params": [
-      {
-        "name": "iterable",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "maxlen",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "generator": false
-  },
-  {
-    "__docId__": 30,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "len",
-    "memberof": "src/deque/implementation/BoundedDeque.js",
-    "longname": "src/deque/implementation/BoundedDeque.js~len",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/BoundedDeque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 20,
-    "undocument": true,
-    "params": [],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 31,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "capacity",
-    "memberof": "src/deque/implementation/BoundedDeque.js",
-    "longname": "src/deque/implementation/BoundedDeque.js~capacity",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/BoundedDeque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 26,
-    "undocument": true,
-    "params": [],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 32,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "append",
-    "memberof": "src/deque/implementation/BoundedDeque.js",
-    "longname": "src/deque/implementation/BoundedDeque.js~append",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/BoundedDeque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 32,
-    "undocument": true,
-    "params": [
-      {
-        "name": "x",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 33,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "appendleft",
-    "memberof": "src/deque/implementation/BoundedDeque.js",
-    "longname": "src/deque/implementation/BoundedDeque.js~appendleft",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/BoundedDeque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 55,
-    "undocument": true,
-    "params": [
-      {
-        "name": "x",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 34,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "clear",
-    "memberof": "src/deque/implementation/BoundedDeque.js",
-    "longname": "src/deque/implementation/BoundedDeque.js~clear",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/BoundedDeque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 68,
-    "undocument": true,
-    "params": [],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 35,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "copy",
-    "memberof": "src/deque/implementation/BoundedDeque.js",
-    "longname": "src/deque/implementation/BoundedDeque.js~copy",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/BoundedDeque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 80,
-    "undocument": true,
-    "params": [],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 36,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "_where",
-    "memberof": "src/deque/implementation/BoundedDeque.js",
-    "longname": "src/deque/implementation/BoundedDeque.js~_where",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/BoundedDeque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 88,
-    "undocument": true,
-    "params": [
-      {
-        "name": "i",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 37,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "_popindex",
-    "memberof": "src/deque/implementation/BoundedDeque.js",
-    "longname": "src/deque/implementation/BoundedDeque.js~_popindex",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/BoundedDeque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 97,
-    "undocument": true,
-    "params": [
-      {
-        "name": "container",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "index",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 38,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/deque/implementation/Deque.js",
-    "memberof": null,
-    "longname": "src/deque/implementation/Deque.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 1,
-    "content": "import { NotImplementedError , IndexError , ValueError } from '../../error' ;\n\nexport default function Deque ( ) { }\n\nDeque.prototype.len = function ( ) {\n\n\tthrow new NotImplementedError( \"len\" ) ;\n\n} ;\n\nDeque.prototype.capacity = function ( ) {\n\n\tthrow new NotImplementedError( \"capcity\" ) ;\n\n} ;\n\nDeque.prototype.empty = function ( ) {\n\n\treturn this.len( ) === 0 ;\n\n} ;\n\nDeque.prototype[Symbol.iterator] = function ( ) {\n\n\treturn this.values( ) ;\n\n} ;\n\nDeque.prototype.values = function ( ) {\n\n\tthrow new NotImplementedError( \"values\" ) ;\n\n} ;\n\nDeque.prototype.append = function ( x ) {\n\n\tthrow new NotImplementedError( \"append\" ) ;\n\n} ;\n\nDeque.prototype.appendleft = function ( x ) {\n\n\tthrow new NotImplementedError( \"appendleft\" ) ;\n\n} ;\n\nDeque.prototype.clear = function ( ) {\n\n\tthrow new NotImplementedError( \"clear\" ) ;\n\n} ;\n\nDeque.prototype.copy = function ( ) {\n\n\tthrow new NotImplementedError( \"copy\" ) ;\n\n} ;\n\n\nDeque.prototype.count = function ( x ) {\n\n\tlet c = 0 ;\n\n\tfor ( let element of this ) if ( element === x ) ++c ;\n\n\treturn c ;\n\n} ;\n\nDeque.prototype.extend = function ( iterable ) {\n\n\tfor ( let x of iterable ) this.append( x ) ;\n\n\treturn this ;\n\n} ;\n\nDeque.prototype.extendleft = function ( iterable ) {\n\n\tfor ( let x of iterable ) this.appendleft( x ) ;\n\n\treturn this ;\n\n} ;\n\nDeque.prototype._checkbounds = function ( i ) {\n\n\tif ( i < 0 || i >= this.len( ) ) throw new IndexError( i ) ;\n\n} ;\n\n\nDeque.prototype._where = function ( i ) {\n\n\tthrow new NotImplementedError( \"_where\" ) ;\n\n} ;\n\nDeque.prototype.get = function ( i ) {\n\n\tconst [ container , index ] = this._where( i ) ;\n\n\treturn container[index] ;\n\n} ;\n\nDeque.prototype.set = function ( i , value ) {\n\n\tconst [ container , index ] = this._where( i ) ;\n\n\tcontainer[index] = value ;\n\n\treturn this ;\n\n} ;\n\nDeque.prototype._range = function* ( start , stop ) {\n\n\tfor ( let i = start ; i < stop ; ++i ) yield [ i , this.get( i ) ] ;\n\n} ;\n\nDeque.prototype.index = function ( x , start = 0 , stop = this.len( ) ) {\n\n\tfor ( let [ i , element ] of this._range( start , stop ) ) {\n\n\t\tif ( element === x ) return i ;\n\n\t}\n\n\tthrow new ValueError( \"not found\" ) ;\n\n} ;\n\nDeque.prototype.pop = function ( ) {\n\n\tthrow new NotImplementedError( \"pop\" ) ;\n\n} ;\n\nDeque.prototype.popleft = function ( ) {\n\n\tthrow new NotImplementedError( \"popleft\" ) ;\n\n} ;\n\nDeque.prototype.insert = function ( i , x ) {\n\n\tthis._checkbounds( i ) ;\n\n\tthis.append( x ) ;\n\n\tlet j = this.len( ) - 1 ;\n\n\tfor ( ; i < j ; --j ) {\n\n\t\tconst a = this.get( j ) ;\n\t\tthis.set( j , this.get( j - 1 ) ) ;\n\t\tthis.set( j - 1 , a ) ;\n\n\t}\n\n\treturn this ;\n\n} ;\n\nDeque.prototype.delete = function ( i ) {\n\n\tthis._checkbounds( i ) ;\n\n\tconst len = this.len( ) - 1 ;\n\n\tfor ( ; i < len ; ++i ) this.set( i , this.get( i + 1 ) ) ;\n\n\tthis.pop( ) ;\n\n\treturn this ;\n\n} ;\n\n\nDeque.prototype.remove = function ( value ) {\n\n\tconst i = this.index( value ) ;\n\n\tthis.delete( i ) ;\n\n\treturn this ;\n\n} ;\n\nDeque.prototype.reverse = function ( ) {\n\n\tfor ( let i = 0 , j = this.len( ) ; i <-- j ; ++i ) {\n\n\t\tlet a = this.get( i ) ;\n\t\tlet b = this.get( j ) ;\n\t\tthis.set( i , b ) ;\n\t\tthis.set( j , a ) ;\n\n\t}\n\n\treturn this ;\n\n} ;\n\n\nDeque.prototype.rotate = function ( n ) {\n\n\tif ( n > 0 ) {\n\n\t\twhile ( n --> 0 ) this.appendleft( this.pop( ) ) ;\n\n\t}\n\n\telse if ( n < 0 ) {\n\n\t\twhile ( n ++< 0 ) this.append( this.popleft( ) ) ;\n\n\t}\n\n\treturn this ;\n\n} ;\n"
-  },
-  {
-    "__docId__": 39,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "Deque",
-    "memberof": "src/deque/implementation/Deque.js",
-    "longname": "src/deque/implementation/Deque.js~Deque",
-    "access": null,
-    "export": true,
-    "importPath": "aureooms-js-collections/src/deque/implementation/Deque.js",
-    "importStyle": "Deque",
-    "description": null,
-    "lineNumber": 3,
-    "undocument": true,
-    "params": [],
-    "generator": false
-  },
-  {
-    "__docId__": 40,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "len",
-    "memberof": "src/deque/implementation/Deque.js",
-    "longname": "src/deque/implementation/Deque.js~len",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/Deque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 5,
-    "undocument": true,
-    "params": [],
-    "generator": false
-  },
-  {
-    "__docId__": 41,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "capacity",
-    "memberof": "src/deque/implementation/Deque.js",
-    "longname": "src/deque/implementation/Deque.js~capacity",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/Deque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 11,
-    "undocument": true,
-    "params": [],
-    "generator": false
-  },
-  {
-    "__docId__": 42,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "empty",
-    "memberof": "src/deque/implementation/Deque.js",
-    "longname": "src/deque/implementation/Deque.js~empty",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/Deque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 17,
-    "undocument": true,
-    "params": [],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 43,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "Symbol.iterator",
-    "memberof": "src/deque/implementation/Deque.js",
-    "longname": "src/deque/implementation/Deque.js~Symbol.iterator",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/Deque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 23,
-    "undocument": true,
-    "params": [],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 44,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "values",
-    "memberof": "src/deque/implementation/Deque.js",
-    "longname": "src/deque/implementation/Deque.js~values",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/Deque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 29,
-    "undocument": true,
-    "params": [],
-    "generator": false
-  },
-  {
-    "__docId__": 45,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "append",
-    "memberof": "src/deque/implementation/Deque.js",
-    "longname": "src/deque/implementation/Deque.js~append",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/Deque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 35,
-    "undocument": true,
-    "params": [
-      {
-        "name": "x",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "generator": false
-  },
-  {
-    "__docId__": 46,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "appendleft",
-    "memberof": "src/deque/implementation/Deque.js",
-    "longname": "src/deque/implementation/Deque.js~appendleft",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/Deque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 41,
-    "undocument": true,
-    "params": [
-      {
-        "name": "x",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "generator": false
-  },
-  {
-    "__docId__": 47,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "clear",
-    "memberof": "src/deque/implementation/Deque.js",
-    "longname": "src/deque/implementation/Deque.js~clear",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/Deque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 47,
-    "undocument": true,
-    "params": [],
-    "generator": false
-  },
-  {
-    "__docId__": 48,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "copy",
-    "memberof": "src/deque/implementation/Deque.js",
-    "longname": "src/deque/implementation/Deque.js~copy",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/Deque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 53,
-    "undocument": true,
-    "params": [],
-    "generator": false
-  },
-  {
-    "__docId__": 49,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "count",
-    "memberof": "src/deque/implementation/Deque.js",
-    "longname": "src/deque/implementation/Deque.js~count",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/Deque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 60,
-    "undocument": true,
-    "params": [
-      {
-        "name": "x",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 50,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "extend",
-    "memberof": "src/deque/implementation/Deque.js",
-    "longname": "src/deque/implementation/Deque.js~extend",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/Deque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 70,
-    "undocument": true,
-    "params": [
-      {
-        "name": "iterable",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 51,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "extendleft",
-    "memberof": "src/deque/implementation/Deque.js",
-    "longname": "src/deque/implementation/Deque.js~extendleft",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/Deque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 78,
-    "undocument": true,
-    "params": [
-      {
-        "name": "iterable",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 52,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "_checkbounds",
-    "memberof": "src/deque/implementation/Deque.js",
-    "longname": "src/deque/implementation/Deque.js~_checkbounds",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/Deque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 86,
-    "undocument": true,
-    "params": [
-      {
-        "name": "i",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "generator": false
-  },
-  {
-    "__docId__": 53,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "_where",
-    "memberof": "src/deque/implementation/Deque.js",
-    "longname": "src/deque/implementation/Deque.js~_where",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/Deque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 93,
-    "undocument": true,
-    "params": [
-      {
-        "name": "i",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "generator": false
-  },
-  {
-    "__docId__": 54,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "get",
-    "memberof": "src/deque/implementation/Deque.js",
-    "longname": "src/deque/implementation/Deque.js~get",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/Deque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 99,
-    "undocument": true,
-    "params": [
-      {
-        "name": "i",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 55,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "set",
-    "memberof": "src/deque/implementation/Deque.js",
-    "longname": "src/deque/implementation/Deque.js~set",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/Deque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 107,
-    "undocument": true,
-    "params": [
-      {
-        "name": "i",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "value",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 56,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "_range",
-    "memberof": "src/deque/implementation/Deque.js",
-    "longname": "src/deque/implementation/Deque.js~_range",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/Deque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 117,
-    "undocument": true,
-    "params": [
-      {
-        "name": "start",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "stop",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "generator": true
-  },
-  {
-    "__docId__": 57,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "index",
-    "memberof": "src/deque/implementation/Deque.js",
-    "longname": "src/deque/implementation/Deque.js~index",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/Deque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 123,
-    "undocument": true,
-    "params": [
-      {
-        "name": "x",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "start",
-        "optional": true,
-        "types": [
-          "number"
-        ],
-        "defaultRaw": 0,
-        "defaultValue": "0"
-      },
-      {
-        "name": "stop",
-        "optional": true,
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 58,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "pop",
-    "memberof": "src/deque/implementation/Deque.js",
-    "longname": "src/deque/implementation/Deque.js~pop",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/Deque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 135,
-    "undocument": true,
-    "params": [],
-    "generator": false
-  },
-  {
-    "__docId__": 59,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "popleft",
-    "memberof": "src/deque/implementation/Deque.js",
-    "longname": "src/deque/implementation/Deque.js~popleft",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/Deque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 141,
-    "undocument": true,
-    "params": [],
-    "generator": false
-  },
-  {
-    "__docId__": 60,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "insert",
-    "memberof": "src/deque/implementation/Deque.js",
-    "longname": "src/deque/implementation/Deque.js~insert",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/Deque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 147,
-    "undocument": true,
-    "params": [
-      {
-        "name": "i",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "x",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 61,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "delete",
-    "memberof": "src/deque/implementation/Deque.js",
-    "longname": "src/deque/implementation/Deque.js~delete",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/Deque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 167,
-    "undocument": true,
-    "params": [
-      {
-        "name": "i",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 62,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "remove",
-    "memberof": "src/deque/implementation/Deque.js",
-    "longname": "src/deque/implementation/Deque.js~remove",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/Deque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 182,
-    "undocument": true,
-    "params": [
-      {
-        "name": "value",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 63,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "reverse",
-    "memberof": "src/deque/implementation/Deque.js",
-    "longname": "src/deque/implementation/Deque.js~reverse",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/Deque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 192,
-    "undocument": true,
-    "params": [],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 64,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "rotate",
-    "memberof": "src/deque/implementation/Deque.js",
-    "longname": "src/deque/implementation/Deque.js~rotate",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/Deque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 208,
-    "undocument": true,
-    "params": [
-      {
-        "name": "n",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 65,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/deque/implementation/EmptyDeque.js",
-    "memberof": null,
-    "longname": "src/deque/implementation/EmptyDeque.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 1,
-    "content": "import { IndexError } from '../../error' ;\nimport Deque from './Deque' ;\n\nexport default function EmptyDeque ( iterable ) {\n\n\tif ( iterable !== null ) this.extend( iterable ) ;\n\n}\n\nEmptyDeque.prototype = new Deque( ) ;\n\nEmptyDeque.prototype.len = function ( ) {\n\n\treturn 0 ;\n\n} ;\n\nEmptyDeque.prototype.capacity = function ( ) {\n\n\treturn 0 ;\n\n} ;\n\nEmptyDeque.prototype.values = function ( ) {\n\n\treturn { next : function ( ) { return { done : true } ; } } ;\n\n} ;\n\nEmptyDeque.prototype.append = function ( x ) {\n\n\treturn this ;\n\n} ;\n\nEmptyDeque.prototype.appendleft = function ( x ) {\n\n\treturn this ;\n\n} ;\n\nEmptyDeque.prototype.clear = function ( ) {\n\n\treturn this ;\n\n} ;\n\nEmptyDeque.prototype.copy = function ( ) {\n\n\treturn new EmptyDeque( this ) ;\n\n} ;\n\nEmptyDeque.prototype._where = function ( i ) {\n\n\tthrow new IndexError( i ) ;\n\n} ;\n\nEmptyDeque.prototype.pop =\nEmptyDeque.prototype.popleft = function ( ) {\n\n\tthrow new IndexError( \"pop / popleft\" ) ;\n\n} ;\n"
-  },
-  {
-    "__docId__": 66,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "EmptyDeque",
-    "memberof": "src/deque/implementation/EmptyDeque.js",
-    "longname": "src/deque/implementation/EmptyDeque.js~EmptyDeque",
-    "access": null,
-    "export": true,
-    "importPath": "aureooms-js-collections/src/deque/implementation/EmptyDeque.js",
-    "importStyle": "EmptyDeque",
-    "description": null,
-    "lineNumber": 4,
-    "undocument": true,
-    "params": [
-      {
-        "name": "iterable",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "generator": false
-  },
-  {
-    "__docId__": 67,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "len",
-    "memberof": "src/deque/implementation/EmptyDeque.js",
-    "longname": "src/deque/implementation/EmptyDeque.js~len",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/EmptyDeque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 12,
-    "undocument": true,
-    "params": [],
-    "return": {
-      "types": [
-        "number"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 68,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "capacity",
-    "memberof": "src/deque/implementation/EmptyDeque.js",
-    "longname": "src/deque/implementation/EmptyDeque.js~capacity",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/EmptyDeque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 18,
-    "undocument": true,
-    "params": [],
-    "return": {
-      "types": [
-        "number"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 69,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "values",
-    "memberof": "src/deque/implementation/EmptyDeque.js",
-    "longname": "src/deque/implementation/EmptyDeque.js~values",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/EmptyDeque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 24,
-    "undocument": true,
-    "params": [],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 70,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "append",
-    "memberof": "src/deque/implementation/EmptyDeque.js",
-    "longname": "src/deque/implementation/EmptyDeque.js~append",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/EmptyDeque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 30,
-    "undocument": true,
-    "params": [
-      {
-        "name": "x",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 71,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "appendleft",
-    "memberof": "src/deque/implementation/EmptyDeque.js",
-    "longname": "src/deque/implementation/EmptyDeque.js~appendleft",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/EmptyDeque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 36,
-    "undocument": true,
-    "params": [
-      {
-        "name": "x",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 72,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "clear",
-    "memberof": "src/deque/implementation/EmptyDeque.js",
-    "longname": "src/deque/implementation/EmptyDeque.js~clear",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/EmptyDeque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 42,
-    "undocument": true,
-    "params": [],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 73,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "copy",
-    "memberof": "src/deque/implementation/EmptyDeque.js",
-    "longname": "src/deque/implementation/EmptyDeque.js~copy",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/EmptyDeque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 48,
-    "undocument": true,
-    "params": [],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 74,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "_where",
-    "memberof": "src/deque/implementation/EmptyDeque.js",
-    "longname": "src/deque/implementation/EmptyDeque.js~_where",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/EmptyDeque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 54,
-    "undocument": true,
-    "params": [
-      {
-        "name": "i",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "generator": false
-  },
-  {
-    "__docId__": 75,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/deque/implementation/SingleElementDeque.js",
-    "memberof": null,
-    "longname": "src/deque/implementation/SingleElementDeque.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 1,
-    "content": "import { IndexError } from '../../error' ;\nimport Deque from './Deque' ;\n\nexport default function SingleElementDeque ( iterable ) {\n\n\tthis.empty = true ;\n\n\tthis.value = 0 ;\n\n\tif ( iterable !== null ) this.extend( iterable ) ;\n\n}\n\nSingleElementDeque.prototype = new Deque( ) ;\n\nSingleElementDeque.prototype.len = function ( ) {\n\n\treturn this.empty ? 0 : 1 ;\n\n} ;\n\nSingleElementDeque.prototype.capacity = function ( ) {\n\n\treturn 1 ;\n\n} ;\n\nSingleElementDeque.prototype.values = function* ( ) {\n\n\tif ( this.empty ) return ;\n\n\tyield this.value ;\n\n} ;\n\nSingleElementDeque.prototype.append =\nSingleElementDeque.prototype.appendleft = function ( x ) {\n\n\tthis.empty = false ;\n\tthis.value = x ;\n\n\treturn this ;\n\n} ;\n\nSingleElementDeque.prototype.clear = function ( ) {\n\n\tthis.empty = true ;\n\tthis.value = 0 ;\n\n\treturn this ;\n\n} ;\n\nSingleElementDeque.prototype.copy = function ( ) {\n\n\treturn new SingleElementDeque( this ) ;\n\n} ;\n\nSingleElementDeque.prototype.pop =\nSingleElementDeque.prototype.popleft = function ( ) {\n\n\tif ( this.empty ) throw new IndexError( \"pop / popleft\" ) ;\n\n\tconst value = this.value ;\n\n\tthis.empty = true ;\n\tthis.value = 0 ;\n\n\treturn value ;\n\n} ;\n\nSingleElementDeque.prototype.get = function ( i ) {\n\n\tif ( this.empty || i !== 0 ) throw new IndexError( i ) ;\n\n\treturn this.value ;\n\n} ;\n\nSingleElementDeque.prototype.set = function ( i , value ) {\n\n\tif ( this.empty || i !== 0 ) throw new IndexError( i ) ;\n\n\tthis.value = value ;\n\n\treturn this ;\n\n} ;\n"
-  },
-  {
-    "__docId__": 76,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "SingleElementDeque",
-    "memberof": "src/deque/implementation/SingleElementDeque.js",
-    "longname": "src/deque/implementation/SingleElementDeque.js~SingleElementDeque",
-    "access": null,
-    "export": true,
-    "importPath": "aureooms-js-collections/src/deque/implementation/SingleElementDeque.js",
-    "importStyle": "SingleElementDeque",
-    "description": null,
-    "lineNumber": 4,
-    "undocument": true,
-    "params": [
-      {
-        "name": "iterable",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "generator": false
-  },
-  {
-    "__docId__": 77,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "len",
-    "memberof": "src/deque/implementation/SingleElementDeque.js",
-    "longname": "src/deque/implementation/SingleElementDeque.js~len",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/SingleElementDeque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 16,
-    "undocument": true,
-    "params": [],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 78,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "capacity",
-    "memberof": "src/deque/implementation/SingleElementDeque.js",
-    "longname": "src/deque/implementation/SingleElementDeque.js~capacity",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/SingleElementDeque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 22,
-    "undocument": true,
-    "params": [],
-    "return": {
-      "types": [
-        "number"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 79,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "values",
-    "memberof": "src/deque/implementation/SingleElementDeque.js",
-    "longname": "src/deque/implementation/SingleElementDeque.js~values",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/SingleElementDeque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 28,
-    "undocument": true,
-    "params": [],
-    "generator": true
-  },
-  {
-    "__docId__": 80,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "clear",
-    "memberof": "src/deque/implementation/SingleElementDeque.js",
-    "longname": "src/deque/implementation/SingleElementDeque.js~clear",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/SingleElementDeque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 46,
-    "undocument": true,
-    "params": [],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 81,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "copy",
-    "memberof": "src/deque/implementation/SingleElementDeque.js",
-    "longname": "src/deque/implementation/SingleElementDeque.js~copy",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/SingleElementDeque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 55,
-    "undocument": true,
-    "params": [],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 82,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "get",
-    "memberof": "src/deque/implementation/SingleElementDeque.js",
-    "longname": "src/deque/implementation/SingleElementDeque.js~get",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/SingleElementDeque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 75,
-    "undocument": true,
-    "params": [
-      {
-        "name": "i",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 83,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "set",
-    "memberof": "src/deque/implementation/SingleElementDeque.js",
-    "longname": "src/deque/implementation/SingleElementDeque.js~set",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/SingleElementDeque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 83,
-    "undocument": true,
-    "params": [
-      {
-        "name": "i",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "value",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 84,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/deque/implementation/UnboundedDeque.js",
-    "memberof": null,
-    "longname": "src/deque/implementation/UnboundedDeque.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 1,
-    "content": "import ArbitrarySizeDeque from './ArbitrarySizeDeque' ;\n\nexport default function UnboundedDeque ( iterable ) {\n\n\tthis.growth = 2 ;\n\n\tthis.minsize = 10 ;\n\n\tthis.currentsize = this.minsize ;\n\n\tthis.container = new Array( this.currentsize ) ;\n\n\tthis.center = 0 ;\n\n\tthis.length = 0 ;\n\n\tif ( iterable !== null ) this.extend( iterable ) ;\n\n\n}\n\nUnboundedDeque.prototype = new ArbitrarySizeDeque( ) ;\n\nUnboundedDeque.prototype._copy = function ( container ) {\n\n\tconst len = this.length ;\n\n\tfor ( let i = 0 ; i < len ; ++i ) container[i] = this.get( i ) ;\n\n} ;\n\nUnboundedDeque.prototype._realloc = function ( newsize ) {\n\n\tconst container = new Array( newsize ) ;\n\n\tthis._copy( container ) ;\n\n\tthis.container = container ;\n\n\tthis.center = 0 ;\n\n\tthis.currentsize = newsize ;\n\n} ;\n\n\nUnboundedDeque.prototype._shrink = function ( ) {\n\n\tconst newsize = Math.max( this.minsize , this.length * this.growth ) ;\n\n\tif ( newsize * this.growth >= this.currentsize ) return ;\n\n\tthis._realloc( newsize ) ;\n\n} ;\n\nUnboundedDeque.prototype._grow = function ( newlen ) {\n\n\tif ( newlen <= this.currentsize ) return ;\n\n\tthis._realloc( newlen * this.growth ) ;\n\n} ;\n\n\nUnboundedDeque.prototype.len = function ( ) {\n\n\treturn this.length ;\n\n} ;\n\nUnboundedDeque.prototype.capacity = function ( ) {\n\n\treturn this.currentsize ;\n\n} ;\n\n\nUnboundedDeque.prototype.append = function ( x ) {\n\n\tthis._grow( this.length + 1 ) ;\n\n\tconst i = ( this.center + this.length ) % this.currentsize;\n\tthis.container[i] = x ;\n\t++this.length ;\n\n\treturn this ;\n\n} ;\n\nUnboundedDeque.prototype.appendleft = function ( x ) {\n\n\tthis._grow( this.length + 1 ) ;\n\n\t--this.center ;\n\tthis.center += this.currentsize;\n\tthis.center %= this.currentsize;\n\tthis.container[this.center] = x ;\n\n\t++this.length ;\n\n\treturn this ;\n\n} ;\n\nUnboundedDeque.prototype.clear = function ( ) {\n\n\tthis.currentsize = this.minsize ;\n\n\tthis.container = new Array( this.currentsize ) ;\n\n\tthis.center = 0 ;\n\n\tthis.length = 0 ;\n\n\treturn this ;\n\n} ;\n\nUnboundedDeque.prototype.copy = function ( ) {\n\n\treturn new UnboundedDeque( this ) ;\n\n} ;\n\nUnboundedDeque.prototype._where = function ( i ) {\n\n\tthis._checkbounds( i ) ;\n\n\treturn [ this.container , ( this.center + i ) % this.currentsize] ;\n\n} ;\n\n\nUnboundedDeque.prototype._popindex = function ( container , index ) {\n\n\tconst value = container[index] ;\n\n\t// GC\n\t// TODO use null instead of 0 for non-Number deques\n\tcontainer[index] = 0 ;\n\n\t--this.length ;\n\n\tthis._shrink( ) ;\n\n\treturn value ;\n\n} ;\n"
-  },
-  {
-    "__docId__": 85,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "UnboundedDeque",
-    "memberof": "src/deque/implementation/UnboundedDeque.js",
-    "longname": "src/deque/implementation/UnboundedDeque.js~UnboundedDeque",
-    "access": null,
-    "export": true,
-    "importPath": "aureooms-js-collections/src/deque/implementation/UnboundedDeque.js",
-    "importStyle": "UnboundedDeque",
-    "description": null,
-    "lineNumber": 3,
-    "undocument": true,
-    "params": [
-      {
-        "name": "iterable",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "generator": false
-  },
-  {
-    "__docId__": 86,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "_copy",
-    "memberof": "src/deque/implementation/UnboundedDeque.js",
-    "longname": "src/deque/implementation/UnboundedDeque.js~_copy",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/UnboundedDeque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 24,
-    "undocument": true,
-    "params": [
-      {
-        "name": "container",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "generator": false
-  },
-  {
-    "__docId__": 87,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "_realloc",
-    "memberof": "src/deque/implementation/UnboundedDeque.js",
-    "longname": "src/deque/implementation/UnboundedDeque.js~_realloc",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/UnboundedDeque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 32,
-    "undocument": true,
-    "params": [
-      {
-        "name": "newsize",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "generator": false
-  },
-  {
-    "__docId__": 88,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "_shrink",
-    "memberof": "src/deque/implementation/UnboundedDeque.js",
-    "longname": "src/deque/implementation/UnboundedDeque.js~_shrink",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/UnboundedDeque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 47,
-    "undocument": true,
-    "params": [],
-    "generator": false
-  },
-  {
-    "__docId__": 89,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "_grow",
-    "memberof": "src/deque/implementation/UnboundedDeque.js",
-    "longname": "src/deque/implementation/UnboundedDeque.js~_grow",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/UnboundedDeque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 57,
-    "undocument": true,
-    "params": [
-      {
-        "name": "newlen",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "generator": false
-  },
-  {
-    "__docId__": 90,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "len",
-    "memberof": "src/deque/implementation/UnboundedDeque.js",
-    "longname": "src/deque/implementation/UnboundedDeque.js~len",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/UnboundedDeque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 66,
-    "undocument": true,
-    "params": [],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 91,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "capacity",
-    "memberof": "src/deque/implementation/UnboundedDeque.js",
-    "longname": "src/deque/implementation/UnboundedDeque.js~capacity",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/UnboundedDeque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 72,
-    "undocument": true,
-    "params": [],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 92,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "append",
-    "memberof": "src/deque/implementation/UnboundedDeque.js",
-    "longname": "src/deque/implementation/UnboundedDeque.js~append",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/UnboundedDeque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 79,
-    "undocument": true,
-    "params": [
-      {
-        "name": "x",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 93,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "appendleft",
-    "memberof": "src/deque/implementation/UnboundedDeque.js",
-    "longname": "src/deque/implementation/UnboundedDeque.js~appendleft",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/UnboundedDeque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 91,
-    "undocument": true,
-    "params": [
-      {
-        "name": "x",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 94,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "clear",
-    "memberof": "src/deque/implementation/UnboundedDeque.js",
-    "longname": "src/deque/implementation/UnboundedDeque.js~clear",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/UnboundedDeque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 106,
-    "undocument": true,
-    "params": [],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 95,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "copy",
-    "memberof": "src/deque/implementation/UnboundedDeque.js",
-    "longname": "src/deque/implementation/UnboundedDeque.js~copy",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/UnboundedDeque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 120,
-    "undocument": true,
-    "params": [],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 96,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "_where",
-    "memberof": "src/deque/implementation/UnboundedDeque.js",
-    "longname": "src/deque/implementation/UnboundedDeque.js~_where",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/UnboundedDeque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 126,
-    "undocument": true,
-    "params": [
-      {
-        "name": "i",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 97,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "_popindex",
-    "memberof": "src/deque/implementation/UnboundedDeque.js",
-    "longname": "src/deque/implementation/UnboundedDeque.js~_popindex",
-    "access": null,
-    "export": false,
-    "importPath": "aureooms-js-collections/src/deque/implementation/UnboundedDeque.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 135,
-    "undocument": true,
-    "params": [
-      {
-        "name": "container",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "index",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 98,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/dict/defaultdict/_DefaultDict.js",
-    "memberof": null,
-    "longname": "src/dict/defaultdict/_DefaultDict.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 1,
-    "content": "import { KeyError } from '../../error' ;\nimport Mapping from '../../mapping' ;\n\nexport default function _DefaultDict ( Dict , Map ) {\n\n\tconst DefaultDict = function ( default_factory  , mapping  ) {\n\n\t\tthis.container = new Map( mapping ) ;\n\n\t\tthis.default_factory = default_factory ;\n\n\t} ;\n\n\tDefaultDict.fromkeys = function ( seq , value = null , default_factory = null ) {\n\n\t\treturn new DefaultDict( default_factory , Mapping.fromkeys( seq , value ) ) ;\n\n\t} ;\n\n\tDefaultDict.prototype = new Dict( ) ;\n\n\tDefaultDict.prototype.__missing__ = function ( key ) {\n\n\t\tif ( this.default_factory === null ) throw new KeyError( key ) ;\n\n\t\treturn this.default_factory( ) ;\n\n\t} ;\n\n\treturn DefaultDict ;\n\n}\n"
-  },
-  {
-    "__docId__": 99,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "_DefaultDict",
-    "memberof": "src/dict/defaultdict/_DefaultDict.js",
-    "longname": "src/dict/defaultdict/_DefaultDict.js~_DefaultDict",
-    "access": null,
-    "export": true,
-    "importPath": "aureooms-js-collections/src/dict/defaultdict/_DefaultDict.js",
-    "importStyle": "_DefaultDict",
-    "description": null,
-    "lineNumber": 4,
-    "undocument": true,
-    "params": [
-      {
-        "name": "Dict",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "Map",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 100,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/dict/defaultdict/_defaultdict.js",
-    "memberof": null,
-    "longname": "src/dict/defaultdict/_defaultdict.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 2,
-    "content": "\nexport default function _defaultdict ( DefaultDict ) {\n\n\tconst defaultdict = function ( default_factory = null , mapping = null ) {\n\n\t\treturn new DefaultDict( default_factory , mapping ) ;\n\n\t} ;\n\n\tdefaultdict.fromkeys = DefaultDict.fromkeys ;\n\n\treturn defaultdict ;\n\n}\n"
-  },
-  {
-    "__docId__": 101,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "_defaultdict",
-    "memberof": "src/dict/defaultdict/_defaultdict.js",
-    "longname": "src/dict/defaultdict/_defaultdict.js~_defaultdict",
-    "access": null,
-    "export": true,
-    "importPath": "aureooms-js-collections/src/dict/defaultdict/_defaultdict.js",
-    "importStyle": "_defaultdict",
-    "description": null,
-    "lineNumber": 2,
-    "undocument": true,
-    "params": [
-      {
-        "name": "DefaultDict",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 102,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/dict/dict/_Dict.js",
-    "memberof": null,
-    "longname": "src/dict/dict/_Dict.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 1,
-    "content": "import { KeyError } from '../../error' ;\nimport Mapping from '../../mapping' ;\n\nexport default function _Dict ( Map ) {\n\n\tconst Dict = function ( mapping = null ) {\n\n\t\tthis.container = new Map( mapping ) ;\n\n\t} ;\n\n\tDict.prototype.len = function ( ) {\n\n\t\treturn this.container.size ;\n\n\t} ;\n\n\tDict.prototype.isequal = function ( other ) {\n\n\t\tif ( this.len( ) !== other.len( ) ) return false ;\n\n\t\tfor ( let [ key , value ] of other ) {\n\n\t\t\tif ( !this.has( key ) ) return false ;\n\n\t\t\tif ( this.get( key ) !== value ) return false ;\n\n\t\t}\n\n\t\treturn true ;\n\n\t} ;\n\n\tDict.prototype.__missing__ = function ( key ) {\n\n\t\tthrow new KeyError( key ) ;\n\n\t} ;\n\n\tDict.prototype.get = function ( key ) {\n\n\t\tif ( !this.container.has( key ) ) return this.__missing__( key ) ;\n\n\t\treturn this.container.get( key ) ;\n\n\t} ;\n\n\tDict.prototype.set = function ( key , value ) {\n\n\t\tthis.container.set( key , value ) ;\n\n\t\treturn this ;\n\n\t} ;\n\n\tDict.prototype.delete = function ( key ) {\n\n\t\tif ( !this.container.delete( key ) ) throw new KeyError( ) ;\n\n\t\treturn this ;\n\n\t} ;\n\n\tDict.prototype.has = function ( key ) {\n\n\t\treturn this.container.has( key ) ;\n\n\t} ;\n\n\tDict.prototype.clear = function ( ) {\n\n\t\tthis.container.clear( ) ;\n\n\t\treturn this ;\n\n\t} ;\n\n\tDict.prototype.copy = function ( ) {\n\n\t\treturn new Dict( this.items( ) ) ;\n\n\t} ;\n\n\tDict.fromkeys = function ( seq , value = null ) {\n\n\t\treturn new Dict( Mapping.fromkeys( seq , value ) ) ;\n\n\t} ;\n\n\tDict.prototype.getdefault = function ( key , dflt = null ) {\n\n\t\tif ( this.has( key ) ) return this.get( key ) ;\n\n\t\treturn dflt ;\n\n\t} ;\n\n\tDict.prototype.setdefault = function ( key , dflt = null ) {\n\n\t\tif ( this.has( key ) ) return this.get( key ) ;\n\n\t\tthis.set( key , dflt ) ;\n\n\t\treturn dflt ;\n\n\t} ;\n\n\tDict.prototype.pop = function ( key , dflt = null ) {\n\n\t\tif ( this.has( key ) ) {\n\n\t\t\tconst value = this.get( key ) ;\n\n\t\t\tthis.delete( key ) ;\n\n\t\t\treturn value ;\n\n\t\t}\n\n\t\tif ( arguments.length < 2 ) throw new KeyError( ) ;\n\n\t\treturn dflt ;\n\n\t} ;\n\n\tDict.prototype.popitem = function ( ) {\n\n\t\tif ( this.len( ) === 0 ) throw new KeyError( ) ;\n\n\t\tconst key = this.keys( ).next( ).value ;\n\n\t\treturn [ key , this.pop( key ) ] ;\n\n\t} ;\n\n\tDict.prototype.keys = function* ( ) {\n\n\t\tfor ( let key of this.container.keys( ) ) yield key ;\n\n\t} ;\n\n\tDict.prototype.values = function* ( ) {\n\n\t\tfor ( let [ key , value ] of this.container ) yield value ;\n\n\t} ;\n\n\tDict.prototype.items = function* ( ) {\n\n\t\tyield* this.container ;\n\n\t} ;\n\n\tDict.prototype.update = function ( mapping ) {\n\n\t\tfor ( let [ key , value ] of mapping ) this.set( key , value ) ;\n\n\t} ;\n\n\tDict.prototype[Symbol.iterator] = Dict.prototype.items ;\n\n\treturn Dict ;\n\n}\n"
-  },
-  {
-    "__docId__": 103,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "_Dict",
-    "memberof": "src/dict/dict/_Dict.js",
-    "longname": "src/dict/dict/_Dict.js~_Dict",
-    "access": null,
-    "export": true,
-    "importPath": "aureooms-js-collections/src/dict/dict/_Dict.js",
-    "importStyle": "_Dict",
-    "description": null,
-    "lineNumber": 4,
-    "undocument": true,
-    "params": [
-      {
-        "name": "Map",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 104,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/dict/dict/_dict.js",
-    "memberof": null,
-    "longname": "src/dict/dict/_dict.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 2,
-    "content": "\nexport default function _dict ( Dict ) {\n\n\tconst dict = function ( mapping = null ) {\n\n\t\treturn new Dict( mapping ) ;\n\n\t} ;\n\n\tdict.fromkeys = Dict.fromkeys ;\n\n\treturn dict ;\n\n}\n"
-  },
-  {
-    "__docId__": 105,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "_dict",
-    "memberof": "src/dict/dict/_dict.js",
-    "longname": "src/dict/dict/_dict.js~_dict",
-    "access": null,
-    "export": true,
-    "importPath": "aureooms-js-collections/src/dict/dict/_dict.js",
-    "importStyle": "_dict",
-    "description": null,
-    "lineNumber": 2,
-    "undocument": true,
-    "params": [
-      {
-        "name": "Dict",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 106,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/dict/ordereddict/_OrderedDict.js",
-    "memberof": null,
-    "longname": "src/dict/ordereddict/_OrderedDict.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 1,
-    "content": "import { KeyError } from '../../error' ;\nimport Mapping from '../../mapping' ;\n\nexport default function _OrderedDict ( Dict , Map , DoublyLinkedList ) {\n\n\tconst OrderedDict = function ( mapping ) {\n\n\t\tthis.container = new Map( ) ;\n\n\t\tthis.map = new Map( ) ;\n\n\t\tthis.list = new DoublyLinkedList( ) ;\n\n\t\tif ( mapping !== null ) this.update( mapping ) ;\n\n\t} ;\n\n\tOrderedDict.prototype = new Dict( ) ;\n\n\tOrderedDict.prototype.isequal = function ( other ) {\n\n\t\tif ( ! ( other instanceof OrderedDict ) ) return false ;\n\n\t\tif ( !Dict.prototype.isequal.call( this , other ) ) return false ;\n\n\t\tlet keys = this.keys( ) ;\n\n\t\tfor ( let key of other.keys( ) ) {\n\n\t\t\tif ( keys.next( ).value !== key ) return false ;\n\n\t\t}\n\n\t\treturn true ;\n\n\t} ;\n\n\tOrderedDict.prototype.set = function ( key , value ) {\n\n\t\tif ( !this.has( key ) ) {\n\n\t\t\tthis.map.set( key , this.list.push( key ) ) ;\n\n\t\t}\n\n\t\tthis.container.set( key , value ) ;\n\n\t\treturn this ;\n\n\t} ;\n\n\tOrderedDict.prototype.delete = function ( key ) {\n\n\t\tif ( !this.container.delete( key ) ) throw new KeyError( ) ;\n\n\t\tthis.list.erase( this.map.get( key ) ) ;\n\t\tthis.map.delete( key ) ;\n\n\t\treturn this ;\n\n\t} ;\n\n\tOrderedDict.prototype.clear = function ( ) {\n\n\t\tthis.container.clear( ) ;\n\n\t\tthis.map.clear( ) ;\n\n\t\tthis.list.clear( ) ;\n\n\t\treturn this ;\n\n\t} ;\n\n\tOrderedDict.prototype.copy = function ( ) {\n\n\t\treturn new OrderedDict( this.items( ) ) ;\n\n\t} ;\n\n\tOrderedDict.fromkeys = function ( seq , value = null ) {\n\n\t\treturn new OrderedDict( Mapping.fromkeys( seq , value ) ) ;\n\n\t} ;\n\n\tOrderedDict.prototype.popitem = function ( last = true ) {\n\n\t\tif ( this.len( ) === 0 ) throw new KeyError( ) ;\n\n\t\tconst key = last ?\n\t\tthis.list.end( ).prev( ).value :\n\t\tthis.list.begin( ).next( ).value ;\n\n\t\treturn [ key , this.pop( key ) ] ;\n\n\t} ;\n\n\tOrderedDict.prototype.move_to_end = function ( key , last = true ) {\n\n\t\tif ( !this.container.has( key ) ) throw new KeyError( ) ;\n\n\t\tthis.list.erase( this.map.get( key ) ) ;\n\n\t\tconst iterator = last ? this.list.push( key ) : this.list.unshift( key ) ;\n\n\t\tthis.map.set( key , iterator ) ;\n\n\t\treturn this ;\n\n\t} ;\n\n\tOrderedDict.prototype.keys = function* ( ) {\n\n\t\tfor ( let key of this.list ) yield key ;\n\n\t} ;\n\n\tOrderedDict.prototype.values = function* ( ) {\n\n\t\tfor ( let key of this.keys( ) ) yield this.container.get( key ) ;\n\n\t} ;\n\n\tOrderedDict.prototype.items = function* ( ) {\n\n\t\tfor ( let key of this.keys( ) ) yield [ key , this.container.get( key ) ] ;\n\n\t} ;\n\n\tOrderedDict.prototype[Symbol.iterator] = OrderedDict.prototype.items ;\n\n\treturn OrderedDict ;\n\n}\n"
-  },
-  {
-    "__docId__": 107,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "_OrderedDict",
-    "memberof": "src/dict/ordereddict/_OrderedDict.js",
-    "longname": "src/dict/ordereddict/_OrderedDict.js~_OrderedDict",
-    "access": null,
-    "export": true,
-    "importPath": "aureooms-js-collections/src/dict/ordereddict/_OrderedDict.js",
-    "importStyle": "_OrderedDict",
-    "description": null,
-    "lineNumber": 4,
-    "undocument": true,
-    "params": [
-      {
-        "name": "Dict",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "Map",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "DoublyLinkedList",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 108,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/dict/ordereddict/_ordereddict.js",
-    "memberof": null,
-    "longname": "src/dict/ordereddict/_ordereddict.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 2,
-    "content": "\nexport default function _ordereddict ( OrderedDict ) {\n\n\tconst ordereddict = function ( mapping = null ) {\n\n\t\treturn new OrderedDict( mapping ) ;\n\n\t} ;\n\n\tordereddict.fromkeys = OrderedDict.fromkeys ;\n\n\treturn ordereddict ;\n\n}\n"
-  },
-  {
-    "__docId__": 109,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "_ordereddict",
-    "memberof": "src/dict/ordereddict/_ordereddict.js",
-    "longname": "src/dict/ordereddict/_ordereddict.js~_ordereddict",
-    "access": null,
-    "export": true,
-    "importPath": "aureooms-js-collections/src/dict/ordereddict/_ordereddict.js",
-    "importStyle": "_ordereddict",
-    "description": null,
-    "lineNumber": 2,
-    "undocument": true,
-    "params": [
-      {
-        "name": "OrderedDict",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 110,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/error/IndexError.js",
-    "memberof": null,
-    "longname": "src/error/IndexError.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 2,
-    "content": "\nexport default function IndexError ( message ) {\n\n\tthis.message = message ;\n\n}\n"
-  },
-  {
-    "__docId__": 111,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "IndexError",
-    "memberof": "src/error/IndexError.js",
-    "longname": "src/error/IndexError.js~IndexError",
-    "access": null,
-    "export": true,
-    "importPath": "aureooms-js-collections/src/error/IndexError.js",
-    "importStyle": "IndexError",
-    "description": null,
-    "lineNumber": 2,
-    "undocument": true,
-    "params": [
-      {
-        "name": "message",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "generator": false
-  },
-  {
-    "__docId__": 112,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/error/KeyError.js",
-    "memberof": null,
-    "longname": "src/error/KeyError.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 2,
-    "content": "\nexport default function KeyError ( message ) {\n\n\tthis.message = message ;\n\n}\n"
-  },
-  {
-    "__docId__": 113,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "KeyError",
-    "memberof": "src/error/KeyError.js",
-    "longname": "src/error/KeyError.js~KeyError",
-    "access": null,
-    "export": true,
-    "importPath": "aureooms-js-collections/src/error/KeyError.js",
-    "importStyle": "KeyError",
-    "description": null,
-    "lineNumber": 2,
-    "undocument": true,
-    "params": [
-      {
-        "name": "message",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "generator": false
-  },
-  {
-    "__docId__": 114,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/error/NotImplementedError.js",
-    "memberof": null,
-    "longname": "src/error/NotImplementedError.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 2,
-    "content": "\nexport default function NotImplementedError ( message ) {\n\n\tthis.message = message ;\n\n}\n"
-  },
-  {
-    "__docId__": 115,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "NotImplementedError",
-    "memberof": "src/error/NotImplementedError.js",
-    "longname": "src/error/NotImplementedError.js~NotImplementedError",
-    "access": null,
-    "export": true,
-    "importPath": "aureooms-js-collections/src/error/NotImplementedError.js",
-    "importStyle": "NotImplementedError",
-    "description": null,
-    "lineNumber": 2,
-    "undocument": true,
-    "params": [
-      {
-        "name": "message",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "generator": false
-  },
-  {
-    "__docId__": 116,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/error/TypeError.js",
-    "memberof": null,
-    "longname": "src/error/TypeError.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 1,
-    "content": "export default TypeError ;\n"
-  },
-  {
-    "__docId__": 117,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/error/ValueError.js",
-    "memberof": null,
-    "longname": "src/error/ValueError.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 2,
-    "content": "\nexport default function ValueError ( message ) {\n\n\tthis.message = message ;\n\n}\n"
-  },
-  {
-    "__docId__": 118,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "ValueError",
-    "memberof": "src/error/ValueError.js",
-    "longname": "src/error/ValueError.js~ValueError",
-    "access": null,
-    "export": true,
-    "importPath": "aureooms-js-collections/src/error/ValueError.js",
-    "importStyle": "ValueError",
-    "description": null,
-    "lineNumber": 2,
-    "undocument": true,
-    "params": [
-      {
-        "name": "message",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "generator": false
-  },
-  {
-    "__docId__": 119,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/heapq/core/Heap.js",
-    "memberof": null,
-    "longname": "src/heapq/core/Heap.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 2,
-    "content": "\nexport default function Heap ( compare , data ) {\n\n\tthis.compare = compare ;\n\tthis.data = data ;\n\n}\n"
-  },
-  {
-    "__docId__": 120,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "Heap",
-    "memberof": "src/heapq/core/Heap.js",
-    "longname": "src/heapq/core/Heap.js~Heap",
-    "access": null,
-    "export": true,
-    "importPath": "aureooms-js-collections/src/heapq/core/Heap.js",
-    "importStyle": "Heap",
-    "description": null,
-    "lineNumber": 2,
-    "undocument": true,
-    "params": [
-      {
-        "name": "compare",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "data",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "generator": false
-  },
-  {
-    "__docId__": 121,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/heapq/core/keeporder.js",
-    "memberof": null,
-    "longname": "src/heapq/core/keeporder.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 1,
-    "content": "import { increasing } from 'aureooms-js-compare' ;\n\nconst keeporder = compare => ( a , b ) => compare( a[0] , b[0] ) || increasing( a[1] , b[1] ) ;\n\nexport default keeporder ;\n"
-  },
-  {
-    "__docId__": 122,
-    "kind": "variable",
-    "static": true,
-    "variation": null,
-    "name": "keeporder",
-    "memberof": "src/heapq/core/keeporder.js",
-    "longname": "src/heapq/core/keeporder.js~keeporder",
-    "access": null,
-    "export": true,
-    "importPath": "aureooms-js-collections/src/heapq/core/keeporder.js",
-    "importStyle": "keeporder",
-    "description": null,
-    "lineNumber": 3,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 123,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/heapq/core/nextchild.js",
-    "memberof": null,
-    "longname": "src/heapq/core/nextchild.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 15,
-    "content": "\n\n/**\n * Computes which child is the smallest according\n * to a comparison function.\n *\n * Hypothesis : i < j i.e. there should be at least one child\n *\n * @param {function} compare the comparison function\n * @param {array} a the array where the heap is stored\n * @param {int} i is the first child\n * @param {int} j - 1 is the last leaf\n */\n\nexport default function nextchild ( compare , a , i , j ) {\n\n\tif ( j - i < 2 ) return i ;\n\n\tif ( compare( a[i] , a[i+1] ) <= 0 ) return i ;\n\n\treturn i + 1 ;\n\n}\n"
-  },
-  {
-    "__docId__": 124,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "nextchild",
-    "memberof": "src/heapq/core/nextchild.js",
-    "longname": "src/heapq/core/nextchild.js~nextchild",
-    "access": null,
-    "export": true,
-    "importPath": "aureooms-js-collections/src/heapq/core/nextchild.js",
-    "importStyle": "nextchild",
-    "description": "Computes which child is the smallest according\nto a comparison function.\n\nHypothesis : i < j i.e. there should be at least one child",
-    "lineNumber": 15,
-    "params": [
-      {
-        "nullable": null,
-        "types": [
-          "function"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "compare",
-        "description": "the comparison function"
-      },
-      {
-        "nullable": null,
-        "types": [
-          "array"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "a",
-        "description": "the array where the heap is stored"
-      },
-      {
-        "nullable": null,
-        "types": [
-          "int"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "i",
-        "description": "is the first child"
-      },
-      {
-        "nullable": null,
-        "types": [
-          "int"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "j",
-        "description": "1 is the last leaf"
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 125,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/heapq/core/siftdown.js",
-    "memberof": null,
-    "longname": "src/heapq/core/siftdown.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 1,
-    "content": "import nextchild from './nextchild' ;\n\n/**\n * Sifts down a node.\n *\n * @param {function} compare the comparison function\n * @param {array} a the array where the heap is stored\n * @param {int} i is the root element\n * @param {int} j - 1 is the last leaf\n * @param {int} k is the target node\n */\n\nexport default function siftdown ( compare, a, i, j, k ) {\n\n\tlet current = k - i;\n\n\twhile ( true ) {\n\n\t\t// address of the first child in a zero-based\n\t\t// binary heap\n\n\t\tconst firstchild = 2 * current + 1;\n\n\t\t// if current node has no children\n\t\t// then we are done\n\n\t\tif ( firstchild >= j - i ) break ;\n\n\t\t// if current value is smaller than its smallest\n\t\t// child then we are done\n\n\t\tconst candidate = nextchild( compare, a, i + firstchild, j );\n\n\t\tif ( compare( a[i + current], a[candidate] ) <= 0 ) break ;\n\n\t\t// otherwise\n\t\t// swap with smallest child\n\n\t\tconst tmp = a[i+current] ;\n\t\ta[i+current] = a[candidate] ;\n\t\ta[candidate] = tmp ;\n\n\t\tcurrent = candidate - i;\n\n\t}\n\n\treturn i + current;\n\n}\n"
-  },
-  {
-    "__docId__": 126,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "siftdown",
-    "memberof": "src/heapq/core/siftdown.js",
-    "longname": "src/heapq/core/siftdown.js~siftdown",
-    "access": null,
-    "export": true,
-    "importPath": "aureooms-js-collections/src/heapq/core/siftdown.js",
-    "importStyle": "siftdown",
-    "description": "Sifts down a node.",
-    "lineNumber": 13,
-    "params": [
-      {
-        "nullable": null,
-        "types": [
-          "function"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "compare",
-        "description": "the comparison function"
-      },
-      {
-        "nullable": null,
-        "types": [
-          "array"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "a",
-        "description": "the array where the heap is stored"
-      },
-      {
-        "nullable": null,
-        "types": [
-          "int"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "i",
-        "description": "is the root element"
-      },
-      {
-        "nullable": null,
-        "types": [
-          "int"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "j",
-        "description": "1 is the last leaf"
-      },
-      {
-        "nullable": null,
-        "types": [
-          "int"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "k",
-        "description": "is the target node"
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 127,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/heapq/core/siftup.js",
-    "memberof": null,
-    "longname": "src/heapq/core/siftup.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 12,
-    "content": "\n/**\n * Sifts up a node.\n *\n * @param {function} compare the comparison function\n * @param {array} a the array where the heap is stored\n * @param {int} i is the root element\n * @param {int} j - 1 is the last leaf\n * @param {int} k is the target node\n */\n\nexport default function siftup ( compare , a , i , j , k ) {\n\n\tlet current = k - i ;\n\n\t// while we are not the root\n\n\twhile ( current !== 0 ) {\n\n\t\t// address of the parent in a zero-based\n\t\t// d-ary heap\n\n\t\tconst parent = i + ( ( current - 1 ) >>> 1 ) ;\n\n\t\t// if current value is greater than its parent\n\t\t// then we are done\n\n\t\tif ( compare( a[i + current], a[parent] ) >= 0 ) return i + current ;\n\n\t\t// otherwise\n\t\t// swap with parent\n\n\t\tconst tmp = a[i+current] ;\n\t\ta[i+current] = a[parent] ;\n\t\ta[parent] = tmp ;\n\n\t\tcurrent = parent - i ;\n\n\t}\n\n\treturn i + current ;\n\n}\n"
-  },
-  {
-    "__docId__": 128,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "siftup",
-    "memberof": "src/heapq/core/siftup.js",
-    "longname": "src/heapq/core/siftup.js~siftup",
-    "access": null,
-    "export": true,
-    "importPath": "aureooms-js-collections/src/heapq/core/siftup.js",
-    "importStyle": "siftup",
-    "description": "Sifts up a node.",
-    "lineNumber": 12,
-    "params": [
-      {
-        "nullable": null,
-        "types": [
-          "function"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "compare",
-        "description": "the comparison function"
-      },
-      {
-        "nullable": null,
-        "types": [
-          "array"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "a",
-        "description": "the array where the heap is stored"
-      },
-      {
-        "nullable": null,
-        "types": [
-          "int"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "i",
-        "description": "is the root element"
-      },
-      {
-        "nullable": null,
-        "types": [
-          "int"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "j",
-        "description": "1 is the last leaf"
-      },
-      {
-        "nullable": null,
-        "types": [
-          "int"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "k",
-        "description": "is the target node"
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 129,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/heapq/heapify.js",
-    "memberof": null,
-    "longname": "src/heapq/heapify.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 1,
-    "content": "import { siftdown , Heap } from './core' ;\n\n/**\n * Builds a heap in O(n) operations.\n *\n * @param {function} compare the comparison function\n * @param {array} x the array where the heap is stored\n *\n */\n\nexport default function heapify ( compare , x ) {\n\n\tconst n = x.length ;\n\n\tfor ( let k = n / 2 | 0 ; k ; ) {\n\n\t\tsiftdown( compare , x , 0 , n , --k ) ;\n\n\t}\n\n\treturn new Heap( compare , x ) ;\n\n}\n"
-  },
-  {
-    "__docId__": 130,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "heapify",
-    "memberof": "src/heapq/heapify.js",
-    "longname": "src/heapq/heapify.js~heapify",
-    "access": null,
-    "export": true,
-    "importPath": "aureooms-js-collections/src/heapq/heapify.js",
-    "importStyle": "heapify",
-    "description": "Builds a heap in O(n) operations.",
-    "lineNumber": 11,
-    "params": [
-      {
-        "nullable": null,
-        "types": [
-          "function"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "compare",
-        "description": "the comparison function"
-      },
-      {
-        "nullable": null,
-        "types": [
-          "array"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "x",
-        "description": "the array where the heap is stored"
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 131,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/heapq/heappop.js",
-    "memberof": null,
-    "longname": "src/heapq/heappop.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 1,
-    "content": "import { IndexError } from '../error' ;\nimport { siftdown } from './core' ;\n\nexport default function heappop ( heap ) {\n\n\tconst x = heap.data ;\n\tconst n = x.length ;\n\n\tif ( n === 0 ) throw new IndexError( \"heappop\" ) ;\n\n\tconst last = n - 1 ;\n\n\t// swap last leaf and root\n\n\tconst tmp = x[0] ;\n\tx[0] = x[last] ;\n\tx[last] = tmp ;\n\n\t// sift down the new root\n\n\tsiftdown( heap.compare , x , 0 , last , 0 ) ;\n\n\t// return old root\n\n\treturn x.pop( ) ;\n\n}\n"
-  },
-  {
-    "__docId__": 132,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "heappop",
-    "memberof": "src/heapq/heappop.js",
-    "longname": "src/heapq/heappop.js~heappop",
-    "access": null,
-    "export": true,
-    "importPath": "aureooms-js-collections/src/heapq/heappop.js",
-    "importStyle": "heappop",
-    "description": null,
-    "lineNumber": 4,
-    "undocument": true,
-    "params": [
-      {
-        "name": "heap",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 133,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/heapq/heappush.js",
-    "memberof": null,
-    "longname": "src/heapq/heappush.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 1,
-    "content": "import { siftup } from './core' ;\n\n export default function heappush ( heap , item ) {\n\n\tconst x = heap.data ;\n\tconst n = x.length ;\n\n\tx.push( item ) ;\n\n\t// sift up the new leaf\n\n\tsiftup( heap.compare , x , 0 , n + 1 , n ) ;\n\n}\n"
-  },
-  {
-    "__docId__": 134,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "heappush",
-    "memberof": "src/heapq/heappush.js",
-    "longname": "src/heapq/heappush.js~heappush",
-    "access": null,
-    "export": true,
-    "importPath": "aureooms-js-collections/src/heapq/heappush.js",
-    "importStyle": "heappush",
-    "description": null,
-    "lineNumber": 3,
-    "undocument": true,
-    "params": [
-      {
-        "name": "heap",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "item",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "generator": false
-  },
-  {
-    "__docId__": 135,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/heapq/heappushpop.js",
-    "memberof": null,
-    "longname": "src/heapq/heappushpop.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 1,
-    "content": "import { siftdown } from './core' ;\n\nexport default function heappushpop ( heap , item ) {\n\n\tconst x = heap.data ;\n\tconst n = x.length ;\n\n\tif ( n === 0 ) return item ;\n\n\tconst compare = heap.compare ;\n\n\tif ( compare( item , x[0] ) <= 0 ) return item ;\n\n\tconst smallest = x[0] ;\n\n\tx[0] = item ;\n\n\t// sift down the new root\n\n\tsiftdown( compare , x , 0 , n , 0 ) ;\n\n\treturn smallest ;\n\n}\n"
-  },
-  {
-    "__docId__": 136,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "heappushpop",
-    "memberof": "src/heapq/heappushpop.js",
-    "longname": "src/heapq/heappushpop.js~heappushpop",
-    "access": null,
-    "export": true,
-    "importPath": "aureooms-js-collections/src/heapq/heappushpop.js",
-    "importStyle": "heappushpop",
-    "description": null,
-    "lineNumber": 3,
-    "undocument": true,
-    "params": [
-      {
-        "name": "heap",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "item",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 137,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/heapq/heapreplace.js",
-    "memberof": null,
-    "longname": "src/heapq/heapreplace.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 1,
-    "content": "import { IndexError } from '../error' ;\nimport { siftdown } from './core' ;\n\nexport default function heapreplace ( heap , item ) {\n\n\tconst x = heap.data ;\n\tconst n = x.length ;\n\n\tif ( n === 0 ) throw new IndexError( \"heapreplace\" ) ;\n\n\tconst oldroot = x[0] ;\n\n\tx[0] = item ;\n\n\t// sift down the new root\n\n\tsiftdown( heap.compare , x , 0 , n , 0 ) ;\n\n\treturn oldroot ;\n\n}\n"
-  },
-  {
-    "__docId__": 138,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "heapreplace",
-    "memberof": "src/heapq/heapreplace.js",
-    "longname": "src/heapq/heapreplace.js~heapreplace",
-    "access": null,
-    "export": true,
-    "importPath": "aureooms-js-collections/src/heapq/heapreplace.js",
-    "importStyle": "heapreplace",
-    "description": null,
-    "lineNumber": 4,
-    "undocument": true,
-    "params": [
-      {
-        "name": "heap",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "item",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 139,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/heapq/merge.js",
-    "memberof": null,
-    "longname": "src/heapq/merge.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 1,
-    "content": "import { enumerate , map , iter } from 'aureooms-js-itertools' ;\n\nimport { keeporder } from './core' ;\n\nimport heapify from './heapify' ;\nimport heappop from './heappop' ;\nimport heapreplace from './heapreplace' ;\n\nexport default function* merge ( compare , ...iterables ) {\n\n\tconst x = [ ] ;\n\n\tfor ( let [ order , it ] of enumerate( map( iter , iterables ) ) ) {\n\n\t\tconst rv = it.next() ;\n\n\t\tif ( rv.done ) continue ;\n\n\t\tx.push( [ rv.value , order , it ] ) ;\n\n\t}\n\n\tconst h = heapify( keeporder( compare ) , x ) ;\n\n\twhile ( x.length > 1 ) {\n\n\t\twhile ( true ) {\n\n\t\t\tconst s = x[0] ;\n\n\t\t\tconst [ value , order , it ] = s ;\n\n\t\t\tyield value ;\n\n\t\t\tconst rv = it.next() ;\n\n\t\t\tif ( rv.done ) {\n\n\t\t\t\theappop( h ) ;\n\t\t\t\tbreak ;\n\n\t\t\t}\n\n\t\t\ts[0] = rv.value ;\n\n\t\t\theapreplace( h , s ) ;\n\n\t\t}\n\n\t}\n\n\tif ( x.length > 0 ) {\n\n\t\tconst [ value , order , it ] = x[0] ;\n\n\t\tyield value ;\n\n\t\tyield *it ;\n\n\t}\n\n}\n"
-  },
-  {
-    "__docId__": 140,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "merge",
-    "memberof": "src/heapq/merge.js",
-    "longname": "src/heapq/merge.js~merge",
-    "access": null,
-    "export": true,
-    "importPath": "aureooms-js-collections/src/heapq/merge.js",
-    "importStyle": "merge",
-    "description": null,
-    "lineNumber": 9,
-    "undocument": true,
-    "params": [
-      {
-        "name": "compare",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "iterables",
-        "types": [
-          "...*"
-        ],
-        "spread": true
-      }
-    ],
-    "generator": true
-  },
-  {
-    "__docId__": 141,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/heapq/nlargest.js",
-    "memberof": null,
-    "longname": "src/heapq/nlargest.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 1,
-    "content": "import { reverse } from 'aureooms-js-compare' ;\n\nimport nsmallest from './nsmallest' ;\n\nexport default function nlargest ( compare , n , iterable ) {\n\n\treturn nsmallest( reverse( compare ) , n , iterable ) ;\n\n}\n"
-  },
-  {
-    "__docId__": 142,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "nlargest",
-    "memberof": "src/heapq/nlargest.js",
-    "longname": "src/heapq/nlargest.js~nlargest",
-    "access": null,
-    "export": true,
-    "importPath": "aureooms-js-collections/src/heapq/nlargest.js",
-    "importStyle": "nlargest",
-    "description": null,
-    "lineNumber": 5,
-    "undocument": true,
-    "params": [
-      {
-        "name": "compare",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "n",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "iterable",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 143,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/heapq/nsmallest.js",
-    "memberof": null,
-    "longname": "src/heapq/nsmallest.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 1,
-    "content": "import { min , sorted , _zip2 , _range , iter } from 'aureooms-js-itertools' ;\nimport { reverse } from 'aureooms-js-compare' ;\n\nimport { keeporder } from './core' ;\n\nimport heapify from './heapify' ;\nimport heapreplace from './heapreplace' ;\n\nexport default function nsmallest ( compare , n , iterable ) {\n\n\tif ( n === 1 ) {\n\n\t\tconst sentinel = { } ;\n\n\t\tconst result = min( compare , iterable , sentinel ) ;\n\n\t\treturn result === sentinel ? [ ] : [ result ] ;\n\n\t}\n\n\tif ( iterable.length !== undefined ) {\n\n\t\tif ( n >= iterable.length ) return sorted( compare , iterable ) ;\n\n\t}\n\n\tconst it = iter( iterable ) ;\n\n\tconst result = Array.from( _zip2( _range( 0 , n , 1 ) , it ) , ( [ i , elem ] ) => [ elem , i ] ) ;\n\n\tif ( result.length === 0 ) return result ;\n\n\tconst h = heapify( keeporder( reverse( compare ) ) , result ) ;\n\n\tlet top = result[0][0] ;\n\n\tlet order = n ;\n\n\tfor ( const elem of it ) {\n\n\t\tif ( compare( elem , top ) < 0 ) {\n\n\t\t\theapreplace( h , [ elem , order ] ) ;\n\n\t\t\ttop = result[0][0] ;\n\n\t\t\t++order ;\n\n\t\t}\n\n\t}\n\n\treturn sorted( compare , Array.from( result , r => r[0] ) ) ;\n\n}\n"
-  },
-  {
-    "__docId__": 144,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "nsmallest",
-    "memberof": "src/heapq/nsmallest.js",
-    "longname": "src/heapq/nsmallest.js~nsmallest",
-    "access": null,
-    "export": true,
-    "importPath": "aureooms-js-collections/src/heapq/nsmallest.js",
-    "importStyle": "nsmallest",
-    "description": null,
-    "lineNumber": 9,
-    "undocument": true,
-    "params": [
-      {
-        "name": "compare",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "n",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "iterable",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 145,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/mapping/fromkeys.js",
-    "memberof": null,
-    "longname": "src/mapping/fromkeys.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 2,
-    "content": "\nexport default function* fromkeys ( seq , value ) {\n\n\tfor ( let key of seq ) yield [ key , value ] ;\n\n}\n"
-  },
-  {
-    "__docId__": 146,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "fromkeys",
-    "memberof": "src/mapping/fromkeys.js",
-    "longname": "src/mapping/fromkeys.js~fromkeys",
-    "access": null,
-    "export": true,
-    "importPath": "aureooms-js-collections/src/mapping/fromkeys.js",
-    "importStyle": "fromkeys",
-    "description": null,
-    "lineNumber": 2,
-    "undocument": true,
-    "params": [
-      {
-        "name": "seq",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "value",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "generator": true
-  },
-  {
-    "__docId__": 147,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/namedtuple/_NamedTuple.js",
-    "memberof": null,
-    "longname": "src/namedtuple/_NamedTuple.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 2,
-    "content": "\nexport default function _NamedTuple ( Dict , OrderedDict ) {\n\n\tconst NamedTuple = function ( ) { } ;\n\n\tNamedTuple.prototype = [ ] ;\n\n\tNamedTuple.make = function ( Constructor , iterable ) {\n\n\t\treturn new Constructor( ...iterable ) ;\n\n\t} ;\n\n\tNamedTuple.replace = function ( Constructor , tuple , dict ) {\n\n\t\tconst values = new Dict( ) ;\n\n\t\tconst fields = tuple._fields ;\n\n\t\tfor ( let key of fields ) values.set( key , tuple[key] ) ;\n\n\t\tfor ( let [ key , value ] of dict ) values.set( key , value ) ;\n\n\t\treturn new Constructor( ...fields.map( key => values.get( key ) ) ) ;\n\n\t} ;\n\n\tNamedTuple.asdict = function ( tuple ) {\n\n\t\tconst fields = tuple._fields ;\n\n\t\treturn new OrderedDict( fields.map( key => [ key , tuple[key] ] ) ) ;\n\n\t} ;\n\n\treturn NamedTuple ;\n\n}\n"
-  },
-  {
-    "__docId__": 148,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "_NamedTuple",
-    "memberof": "src/namedtuple/_NamedTuple.js",
-    "longname": "src/namedtuple/_NamedTuple.js~_NamedTuple",
-    "access": null,
-    "export": true,
-    "importPath": "aureooms-js-collections/src/namedtuple/_NamedTuple.js",
-    "importStyle": "_NamedTuple",
-    "description": null,
-    "lineNumber": 2,
-    "undocument": true,
-    "params": [
-      {
-        "name": "Dict",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "OrderedDict",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 149,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/namedtuple/_namedtuple.js",
-    "memberof": null,
-    "longname": "src/namedtuple/_namedtuple.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 2,
-    "content": "\nexport default function _namedtuple ( NamedTuple ) {\n\n\tconst namedtuple = function ( typename , field_names ) {\n\n\t\tconst fields = [ ...field_names ] ;\n\n\t\tlet definition = \"( function ( ) {\\n\\nvar \" + typename + \" = function (\" ;\n\n\t\tdefinition += \" \" + fields.join( \" , \" ) ;\n\n\t\tdefinition += \" )\" ;\n\t\tdefinition += \" {\\n\\n\" ;\n\n\t\tlet fieldlist = fields.map( field => '\"' + field + '\" ' ) ;\n\n\t\tdefinition += \"\\t\" + \"this._fields = [ \" + fieldlist.join( \", \" ) + \"] ;\\n\" ;\n\t\tdefinition += \"\\t\" + \"this.length = \" + fields.length + \" ;\\n\" ;\n\n\t\tfor ( let i = 0 ; i < fields.length ; ++i ) {\n\n\t\t\tlet field = fields[i] ;\n\n\t\t\tdefinition += \"\\n\" ;\n\t\t\tdefinition += \"\\t\" + \"this[\" + i + \"] = this.\" + field + \" = \" + field + \" ;\" ;\n\n\t\t}\n\n\t\tdefinition += \"\\n} ;\\n\\n\" ;\n\n\t\tdefinition += typename + \".prototype = new NamedTuple( ) ;\\n\\n\" ;\n\t\tdefinition += typename + \"._make = function ( iterable ) {\\n\" ;\n\t\tdefinition += \"\\t\" + \"return NamedTuple.make( \" + typename + \" , iterable ) ;\\n\" ;\n\t\tdefinition += \"} ;\\n\\n\" ;\n\t\tdefinition += typename + \".prototype._replace = function ( dict ) {\\n\" ;\n\t\tdefinition += \"\\t\" + \"return NamedTuple.replace( \" + typename + \" , this , dict ) ;\\n\" ;\n\t\tdefinition += \"} ;\\n\\n\" ;\n\t\tdefinition += typename + \".prototype._asdict = function ( ) {\\n\" ;\n\t\tdefinition += \"\\t\" + \"return NamedTuple.asdict( this ) ;\\n\" ;\n\t\tdefinition += \"} ;\\n\\n\" ;\n\n\t\tdefinition += \"return \" + typename + \" ;\\n\\n} )( )\" ;\n\n\t\treturn eval( definition ) ;\n\n\t} ;\n\n\treturn namedtuple ;\n\n}\n"
-  },
-  {
-    "__docId__": 150,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "_namedtuple",
-    "memberof": "src/namedtuple/_namedtuple.js",
-    "longname": "src/namedtuple/_namedtuple.js~_namedtuple",
-    "access": null,
-    "export": true,
-    "importPath": "aureooms-js-collections/src/namedtuple/_namedtuple.js",
-    "importStyle": "_namedtuple",
-    "description": null,
-    "lineNumber": 2,
-    "undocument": true,
-    "params": [
-      {
-        "name": "NamedTuple",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 151,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/set/_Set.js",
-    "memberof": null,
-    "longname": "src/set/_Set.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 1,
-    "content": "import { KeyError } from '../error' ;\n\nexport default function _Set ( BaseSet ) {\n\n\tconst Set = function ( iterable = null ) {\n\n\t\tthis.container = new BaseSet( iterable ) ;\n\n\t} ;\n\n\tSet.wrap = function ( A ) {\n\n\t\tif ( A instanceof Set ) return A ;\n\n\t\treturn new Set( A ) ;\n\n\t} ;\n\n\tSet._operator = function ( method ) {\n\n\t\treturn function ( ...args ) {\n\n\t\t\treturn method.apply( this , Array.from( args , Set.wrap ) ) ;\n\n\t\t} ;\n\n\t} ;\n\n\tSet._inclusion = function ( A , B ) {\n\n\t\treturn A._ispropersubset( B ) ? -1 : B._ispropersubset( A ) ? 1 : 0 ;\n\n\t} ;\n\n\tSet.inclusion = Set._operator( Set._inclusion ) ;\n\n\tSet.prototype[Symbol.iterator] =\n\tSet.prototype.keys = function* ( ) {\n\n\t\tyield* this.container ;\n\n\t} ;\n\n\tSet.prototype.len = function ( ) {\n\n\t\treturn this.container.size ;\n\n\t} ;\n\n\tSet.prototype.has = function ( key ) {\n\n\t\treturn this.container.has( key ) ;\n\n\t} ;\n\n\tSet.prototype._isdisjoint = function ( other ) {\n\n\t\treturn this._commonkeys( other ).next( ).done ;\n\n\t} ;\n\n\tSet.prototype.isdisjoint = Set._operator( Set.prototype._isdisjoint ) ;\n\n\tSet.prototype._isequal = function ( other ) {\n\n\t\treturn this._issubset( other ) && other._issubset( this ) ;\n\n\t} ;\n\n\tSet.prototype.isequal = Set._operator( Set.prototype._isequal ) ;\n\n\tSet.prototype._issubset = function ( other ) {\n\n\t\tif ( this.len( ) > other.len( ) ) return false ;\n\n\t\tfor ( let key of this ) if ( !other.has( key ) ) return false ;\n\n\t\treturn true ;\n\n\t} ;\n\n\tSet.prototype.issubset = Set._operator( Set.prototype._issubset ) ;\n\n\tSet.prototype._ispropersubset = function ( other ) {\n\n\t\treturn this._issubset( other ) && !this._issuperset( other ) ;\n\n\t} ;\n\n\tSet.prototype.ispropersubset = Set._operator( Set.prototype._ispropersubset ) ;\n\n\tSet.prototype._issuperset = function ( other ) {\n\n\t\treturn other._issubset( this ) ;\n\n\t} ;\n\n\tSet.prototype.issuperset = Set._operator( Set.prototype._issuperset ) ;\n\n\tSet.prototype._ispropersuperset = function ( other ) {\n\n\t\treturn this._issuperset( other ) && !this._issubset( other ) ;\n\n\t} ;\n\n\tSet.prototype.ispropersuperset = Set._operator( Set.prototype._ispropersuperset ) ;\n\n\tSet.prototype.union =\n\tSet.prototype._union = function ( ...others ) {\n\n\t\treturn this.copy( )._update( ...others ) ;\n\n\t} ;\n\n\tSet.prototype._commonkeys = function* ( ...others ) {\n\n\t\tkeys : for ( let key of this ) {\n\n\t\t\tfor ( let other of others ) {\n\n\t\t\t\tif ( !other.has( key ) ) continue keys ;\n\n\t\t\t}\n\n\t\t\tyield key ;\n\n\t\t}\n\n\t} ;\n\n\n\tSet.prototype._intersection = function ( ...others ) {\n\n\t\treturn new Set( this._commonkeys( ...others ) ) ;\n\n\t} ;\n\n\tSet.prototype.intersection = Set._operator( Set.prototype._intersection ) ;\n\n\tSet.prototype.difference =\n\tSet.prototype._difference = function ( ...others ) {\n\n\t\treturn this.copy( )._difference_update( ...others ) ;\n\n\t} ;\n\n\tSet.prototype.symmetric_difference =\n\tSet.prototype._symmetric_difference = function ( other ) {\n\n\t\treturn this.copy( )._symmetric_difference_update( other ) ;\n\n\t} ;\n\n\tSet.prototype.copy = function ( ) {\n\n\t\treturn new Set( this ) ;\n\n\t} ;\n\n\tSet.prototype.update =\n\tSet.prototype._update = function ( ...others ) {\n\n\t\tfor ( let other of others ) {\n\n\t\t\tfor ( let key of other ) this.add( key ) ;\n\n\t\t}\n\n\t\treturn this ;\n\n\t} ;\n\n\tSet.prototype._intersection_update = function ( ...others ) {\n\n\t\tconst intersection = this._intersection( ...others ) ;\n\n\t\tthis.clear( ).update( intersection ) ;\n\n\t\treturn this ;\n\n\t} ;\n\n\tSet.prototype.intersection_update = Set._operator( Set.prototype._intersection_update ) ;\n\n\tSet.prototype.difference_update =\n\tSet.prototype._difference_update = function ( ...others ) {\n\n\t\tfor ( let other of others ) {\n\n\t\t\tfor ( let key of other ) this.discard( key ) ;\n\n\t\t}\n\n\t\treturn this ;\n\n\t} ;\n\n\tSet.prototype.symmetric_difference_update =\n\tSet.prototype._symmetric_difference_update = function ( other ) {\n\n\t\tfor ( let key of other ) {\n\n\t\t\tif ( this.has( key ) ) this.discard( key ) ;\n\t\t\telse this.add( key ) ;\n\n\t\t}\n\n\t\treturn this ;\n\n\t} ;\n\n\tSet.prototype.add = function ( key ) {\n\n\t\tthis.container.add( key ) ;\n\n\t\treturn this ;\n\n\t} ;\n\n\tSet.prototype.remove = function ( key ) {\n\n\t\tif ( !this.container.delete( key ) ) throw new KeyError( ) ;\n\n\t\treturn this ;\n\n\t} ;\n\n\tSet.prototype.discard = function ( key ) {\n\n\t\tthis.container.delete( key ) ;\n\n\t\treturn this ;\n\n\t} ;\n\n\tSet.prototype.pop = function ( ) {\n\n\t\tif ( this.len( ) === 0 ) throw new KeyError( ) ;\n\n\t\tconst key = this.keys( ).next( ).value ;\n\n\t\tthis.discard( key ) ;\n\n\t\treturn key ;\n\n\t} ;\n\n\tSet.prototype.clear = function ( ) {\n\n\t\tthis.container.clear( ) ;\n\n\t\treturn this ;\n\n\t} ;\n\n\treturn Set ;\n\n}\n"
-  },
-  {
-    "__docId__": 152,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "_Set",
-    "memberof": "src/set/_Set.js",
-    "longname": "src/set/_Set.js~_Set",
-    "access": null,
-    "export": true,
-    "importPath": "aureooms-js-collections/src/set/_Set.js",
-    "importStyle": "_Set",
-    "description": null,
-    "lineNumber": 3,
-    "undocument": true,
-    "params": [
-      {
-        "name": "BaseSet",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 153,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/set/_set.js",
-    "memberof": null,
-    "longname": "src/set/_set.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 2,
-    "content": "\nexport default function _set ( Set ) {\n\n\tconst set = function ( iterable = null ) {\n\n\t\treturn new Set( iterable ) ;\n\n\t} ;\n\n\tset.inclusion = Set.inclusion ;\n\n\treturn set ;\n\n}\n"
-  },
-  {
-    "__docId__": 154,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "_set",
-    "memberof": "src/set/_set.js",
-    "longname": "src/set/_set.js~_set",
-    "access": null,
-    "export": true,
-    "importPath": "aureooms-js-collections/src/set/_set.js",
-    "importStyle": "_set",
-    "description": null,
-    "lineNumber": 2,
-    "undocument": true,
-    "params": [
-      {
-        "name": "Set",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 156,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3844,7 +13,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 157,
+    "__docId__": 2,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3857,7 +26,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 158,
+    "__docId__": 3,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3870,7 +39,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 159,
+    "__docId__": 4,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3883,7 +52,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 160,
+    "__docId__": 5,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3896,7 +65,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 161,
+    "__docId__": 6,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3909,7 +78,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 162,
+    "__docId__": 7,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3922,7 +91,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 163,
+    "__docId__": 8,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3935,7 +104,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 164,
+    "__docId__": 9,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3948,7 +117,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 165,
+    "__docId__": 10,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3961,7 +130,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 166,
+    "__docId__": 11,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3974,7 +143,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 167,
+    "__docId__": 12,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3987,7 +156,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 168,
+    "__docId__": 13,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4000,7 +169,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 169,
+    "__docId__": 14,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4013,7 +182,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 170,
+    "__docId__": 15,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4026,7 +195,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 171,
+    "__docId__": 16,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4039,7 +208,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 172,
+    "__docId__": 17,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4052,7 +221,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 173,
+    "__docId__": 18,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4065,7 +234,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 174,
+    "__docId__": 19,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4078,7 +247,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 175,
+    "__docId__": 20,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4091,7 +260,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 176,
+    "__docId__": 21,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4104,7 +273,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 177,
+    "__docId__": 22,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4117,7 +286,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 178,
+    "__docId__": 23,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4130,7 +299,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 179,
+    "__docId__": 24,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4143,7 +312,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 180,
+    "__docId__": 25,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4156,7 +325,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 181,
+    "__docId__": 26,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4169,7 +338,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 182,
+    "__docId__": 27,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4182,7 +351,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 183,
+    "__docId__": 28,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4195,7 +364,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 184,
+    "__docId__": 29,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4208,7 +377,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 185,
+    "__docId__": 30,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4221,7 +390,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 186,
+    "__docId__": 31,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4234,7 +403,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 187,
+    "__docId__": 32,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4247,7 +416,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 188,
+    "__docId__": 33,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4260,7 +429,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 189,
+    "__docId__": 34,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4273,7 +442,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 190,
+    "__docId__": 35,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4286,7 +455,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 191,
+    "__docId__": 36,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4299,7 +468,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 192,
+    "__docId__": 37,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4312,7 +481,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 193,
+    "__docId__": 38,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4325,7 +494,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 194,
+    "__docId__": 39,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4338,7 +507,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 195,
+    "__docId__": 40,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4351,7 +520,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 196,
+    "__docId__": 41,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4364,7 +533,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 197,
+    "__docId__": 42,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4377,7 +546,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 198,
+    "__docId__": 43,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4390,7 +559,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 199,
+    "__docId__": 44,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4403,7 +572,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 200,
+    "__docId__": 45,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4416,7 +585,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 201,
+    "__docId__": 46,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4429,7 +598,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 202,
+    "__docId__": 47,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4442,7 +611,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 204,
+    "__docId__": 49,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4455,7 +624,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 205,
+    "__docId__": 50,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4468,7 +637,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 206,
+    "__docId__": 51,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4481,7 +650,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 207,
+    "__docId__": 52,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4494,7 +663,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 208,
+    "__docId__": 53,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4507,7 +676,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 209,
+    "__docId__": 54,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4520,7 +689,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 210,
+    "__docId__": 55,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4533,7 +702,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 211,
+    "__docId__": 56,
     "kind": "external",
     "static": true,
     "variation": null,
