@@ -1,5 +1,5 @@
 {
-  "name": "aureooms-js-collections",
+  "name": "@aureooms/js-collections",
   "description": "Python's collections library for JavaScript",
   "version": "3.0.0",
   "author": "Aurélien Ooms <aurelien.ooms@gmail.com>",
@@ -23,21 +23,21 @@
     "url": "https://github.com/aureooms/js-collections/issues"
   },
   "dependencies": {
-    "aureooms-js-collections-chainmap": "^3.0.0",
-    "aureooms-js-collections-counter": "^3.0.0",
-    "aureooms-js-collections-defaultdict": "^3.0.1",
-    "aureooms-js-collections-deque": "^3.1.0",
-    "aureooms-js-collections-dict": "^3.0.0",
-    "aureooms-js-collections-namedtuple": "^3.0.0",
-    "aureooms-js-collections-ordereddict": "^3.0.0",
-    "aureooms-js-collections-set": "^3.0.0",
-    "aureooms-js-error": "^3.0.0"
+    "@aureooms/js-collections-chainmap": "^3.0.0",
+    "@aureooms/js-collections-counter": "^3.0.0",
+    "@aureooms/js-collections-defaultdict": "^3.0.1",
+    "@aureooms/js-collections-deque": "^3.1.0",
+    "@aureooms/js-collections-dict": "^3.0.0",
+    "@aureooms/js-collections-namedtuple": "^3.0.0",
+    "@aureooms/js-collections-ordereddict": "^3.0.0",
+    "@aureooms/js-collections-set": "^3.0.0",
+    "@aureooms/js-error": "^3.0.0"
   },
   "devDependencies": {
-    "aureooms-js-compare": "^1.4.5",
-    "aureooms-js-functools": "^2.0.3",
-    "aureooms-js-itertools": "^3.1.0",
-    "aureooms-js-number": "^3.0.0",
+    "@aureooms/js-compare": "^1.4.5",
+    "@aureooms/js-functools": "^2.0.3",
+    "@aureooms/js-itertools": "^3.1.0",
+    "@aureooms/js-number": "^3.0.0",
     "ava": "^0.17.0",
     "babel-cli": "^6.18.0",
     "babel-polyfill": "^6.16.0",
