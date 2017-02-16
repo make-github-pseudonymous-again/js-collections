@@ -1,7 +1,7 @@
 import test from 'ava' ;
 
-import { sorted } from "aureooms-js-itertools" ;
-import { increasing } from 'aureooms-js-compare' ;
+import { sorted } from "@aureooms/js-itertools" ;
+import { increasing } from '@aureooms/js-compare' ;
 
 import { counter , NotImplementedError } from '../../src' ;
 

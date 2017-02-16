@@ -1,8 +1,8 @@
 import test from 'ava' ;
 
-import { $0 as default_factory } from "aureooms-js-number" ;
-import { increasing , lexicographical } from "aureooms-js-compare" ;
-import { sorted } from "aureooms-js-itertools" ;
+import { $0 as default_factory } from "@aureooms/js-number" ;
+import { increasing , lexicographical } from "@aureooms/js-compare" ;
+import { sorted } from "@aureooms/js-itertools" ;
 
 const lex = lexicographical( increasing ) ;
 

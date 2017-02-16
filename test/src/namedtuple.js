@@ -1,6 +1,6 @@
 import test from 'ava' ;
 
-import { list } from "aureooms-js-itertools" ;
+import { list } from "@aureooms/js-itertools" ;
 
 import { namedtuple , ordereddict } from '../../src' ;
 

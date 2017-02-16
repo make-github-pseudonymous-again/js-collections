@@ -1,8 +1,8 @@
 import test from 'ava' ;
 
-import { increasing , lexicographical } from "aureooms-js-compare" ;
-import { sorted } from "aureooms-js-itertools" ;
-import { partial , rpartial } from "aureooms-js-functools" ;
+import { increasing , lexicographical } from "@aureooms/js-compare" ;
+import { sorted } from "@aureooms/js-itertools" ;
+import { partial , rpartial } from "@aureooms/js-functools" ;
 
 import { KeyError , dict , defaultdict , ordereddict } from '../../src' ;
 

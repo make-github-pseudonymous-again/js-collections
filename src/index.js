@@ -4,12 +4,12 @@ import {
 	NotImplementedError ,
 	TypeError ,
 	ValueError ,
-} from 'aureooms-js-error' ;
+} from '@aureooms/js-error' ;
 
-import chainmap from 'aureooms-js-collections-chainmap' ;
-import dict from 'aureooms-js-collections-dict' ;
-import ordereddict from 'aureooms-js-collections-ordereddict' ;
-import defaultdict from 'aureooms-js-collections-defaultdict' ;
+import chainmap from '@aureooms/js-collections-chainmap' ;
+import dict from '@aureooms/js-collections-dict' ;
+import ordereddict from '@aureooms/js-collections-ordereddict' ;
+import defaultdict from '@aureooms/js-collections-defaultdict' ;
 
 import {
 	deque ,
@@ -19,11 +19,11 @@ import {
 	EmptyDeque ,
 	SingleElementDeque ,
 	UnboundedDeque ,
-} from 'aureooms-js-collections-deque' ;
+} from '@aureooms/js-collections-deque' ;
 
-import namedtuple from 'aureooms-js-collections-namedtuple' ;
-import counter from 'aureooms-js-collections-counter' ;
-import set from 'aureooms-js-collections-set' ;
+import namedtuple from '@aureooms/js-collections-namedtuple' ;
+import counter from '@aureooms/js-collections-counter' ;
+import set from '@aureooms/js-collections-set' ;
 
 const collections = {
 

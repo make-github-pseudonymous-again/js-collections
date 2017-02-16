@@ -6,7 +6,7 @@ import {
 	chain as c ,
 	map as m ,
 	filter as f ,
-} from 'aureooms-js-itertools' ;
+} from '@aureooms/js-itertools' ;
 
 import {
 	IndexError ,

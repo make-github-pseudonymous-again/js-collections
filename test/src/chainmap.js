@@ -1,9 +1,9 @@
 import test from 'ava' ;
 
-import { increasing , lexicographical } from "aureooms-js-compare" ;
+import { increasing , lexicographical } from "@aureooms/js-compare" ;
 const lex = lexicographical( increasing ) ;
 
-import { sorted } from "aureooms-js-itertools" ;
+import { sorted } from "@aureooms/js-itertools" ;
 
 import { KeyError , dict , chainmap } from '../../src' ;
 
