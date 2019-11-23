@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@aureooms/js-collections-chainmap": "^3.0.0",
-    "@aureooms/js-collections-counter": "^3.0.0",
+    "@aureooms/js-collections-counter": "^4.0.0",
     "@aureooms/js-collections-defaultdict": "^3.0.1",
     "@aureooms/js-collections-deque": "^3.1.0",
     "@aureooms/js-collections-dict": "^3.0.0",
