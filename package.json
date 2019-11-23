@@ -34,18 +34,18 @@
     "@aureooms/js-error": "^3.0.0"
   },
   "devDependencies": {
-    "@aureooms/js-compare": "^1.4.5",
-    "@aureooms/js-functools": "^2.0.3",
-    "@aureooms/js-itertools": "^3.1.0",
-    "@aureooms/js-number": "^3.0.0",
-    "ava": "^0.19.1",
-    "babel-cli": "^6.18.0",
-    "babel-polyfill": "^6.16.0",
-    "babel-preset-latest": "^6.16.0",
-    "codeclimate-test-reporter": "^0.4.0",
-    "coveralls": "^2.11.15",
-    "esdoc": "^0.5.0",
-    "nyc": "^11.0.0"
+    "@aureooms/js-compare": "1.4.5",
+    "@aureooms/js-functools": "2.0.3",
+    "@aureooms/js-itertools": "3.4.0",
+    "@aureooms/js-number": "3.1.0",
+    "ava": "0.19.1",
+    "babel-cli": "6.26.0",
+    "babel-polyfill": "6.26.0",
+    "babel-preset-latest": "6.24.1",
+    "codeclimate-test-reporter": "0.4.1",
+    "coveralls": "2.13.3",
+    "esdoc": "0.5.2",
+    "nyc": "11.9.0"
   },
   "homepage": "http://aureooms.github.io/js-collections/",
   "keywords": [
