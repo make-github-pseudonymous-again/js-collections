@@ -38,7 +38,7 @@
     "@aureooms/js-functools": "2.0.3",
     "@aureooms/js-itertools": "3.4.0",
     "@aureooms/js-number": "3.1.0",
-    "ava": "0.25.0",
+    "ava": "3.8.1",
     "babel-cli": "6.26.0",
     "babel-polyfill": "6.26.0",
     "babel-preset-latest": "6.24.1",
