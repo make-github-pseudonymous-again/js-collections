@@ -27,15 +27,15 @@
     "url": "https://github.com/aureooms/js-collections/issues"
   },
   "dependencies": {
-    "@aureooms/js-collections-chainmap": "^3.0.0",
-    "@aureooms/js-collections-counter": "^4.0.0",
-    "@aureooms/js-collections-defaultdict": "^3.0.1",
-    "@aureooms/js-collections-deque": "^3.1.0",
-    "@aureooms/js-collections-dict": "^3.0.0",
-    "@aureooms/js-collections-namedtuple": "^3.0.0",
-    "@aureooms/js-collections-ordereddict": "^3.0.0",
-    "@aureooms/js-collections-set": "^3.0.0",
-    "@aureooms/js-error": "^3.0.0"
+    "@aureooms/js-collections-chainmap": "^4.0.0",
+    "@aureooms/js-collections-counter": "^5.0.0",
+    "@aureooms/js-collections-defaultdict": "^4.0.0",
+    "@aureooms/js-collections-deque": "^4.0.0",
+    "@aureooms/js-collections-dict": "^4.0.0",
+    "@aureooms/js-collections-namedtuple": "^4.0.0",
+    "@aureooms/js-collections-ordereddict": "^4.0.0",
+    "@aureooms/js-collections-set": "^4.0.0",
+    "@aureooms/js-error": "^4.0.0"
   },
   "devDependencies": {
     "@aureooms/js-compare": "1.4.5",
@@ -43,7 +43,7 @@
     "@aureooms/js-itertools": "3.4.0",
     "@aureooms/js-number": "3.1.0",
     "ava": "3.8.1",
-    "coveralls": "2.13.3",
+    "coveralls": "3.1.0",
     "esdoc": "1.1.0",
     "nyc": "15.0.1",
     "@babel/cli": "7.8.4",
@@ -54,7 +54,7 @@
     "esdoc-inject-script-plugin": "1.0.0",
     "esdoc-inject-style-plugin": "1.0.0",
     "esdoc-standard-plugin": "1.0.0",
-    "np": "6.2.1"
+    "np": "6.2.3"
   },
   "homepage": "http://aureooms.github.io/js-collections/",
   "keywords": [
