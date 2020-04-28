@@ -1,7 +1,7 @@
 {
   "name": "@aureooms/js-collections",
   "description": "Python's collections library for JavaScript",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "author": "Aurélien Ooms <aurelien.ooms@gmail.com>",
   "ava": {
     "require": [
