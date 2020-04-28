@@ -3,25 +3,20 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../">
-  <title data-ice="title">Manual</title>
+  <title data-ice="title">Manual | @aureooms/js-collections</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
-  
-  
   <script src="script/manual.js"></script>
-<script data-ice="userScript" src="user/script/0-header.js"></script>
-<link data-ice="userStyle" rel="stylesheet" href="user/css/0-style.css">
-</head>
-<body class="layout-container manual-root" data-ice="rootContainer">
+<link rel="stylesheet" href="./inject/css/0-style.css"><script src="./inject/script/0-header.js"></script><meta name="description" content="Python&apos;s collections library for JavaScript"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="@aureooms/js-collections"><meta property="twitter:description" content="Python&apos;s collections library for JavaScript"></head>
+<body class="layout-container manual-root manual-index" data-ice="rootContainer">
 
 <header>
   <a href="./">Home</a>
   <a href="./manual/index.html" data-ice="manualHeaderLink">Manual</a>
   <a href="identifiers.html">Reference</a>
   <a href="source.html">Source</a>
-  <a href="test.html" data-ice="testLink">Test</a>
-  <a data-ice="repoURL" href="https://github.com/aureooms/js-collections.git" class="repo-url-github">Repository</a>
+  
   <div class="search-box">
   <span>
     <img src="./image/search.png">
@@ -29,140 +24,119 @@
   </span>
     <ul class="search-result"></ul>
   </div>
-</header>
+<a style="position:relative; top:3px;" href="https://github.com/aureooms/js-collections.git"><img width="20px" src="./image/github.png"></a></header>
 
 <nav class="navigation" data-ice="nav"><div class="manual-toc-root">
   
-<div data-ice="manual" data-toc-name="overview">
-    <h1 class="manual-toc-title"><a href="manual/overview.html" data-ice="title">Overview</a></h1>
+<div data-ice="manual">
     <ul class="manual-toc">
       
-    </ul>
-  </div>
-<div data-ice="manual" data-toc-name="installation">
-    <h1 class="manual-toc-title"><a href="manual/installation.html" data-ice="title">Installation</a></h1>
-    <ul class="manual-toc">
-      
-    <li data-ice="manualNav" class="indent-h2"><span class="manual-dot"></span><a href="manual/installation.html#jspm" data-ice="link">jspm</a></li>
-<li data-ice="manualNav" class="indent-h2"><span class="manual-dot"></span><a href="manual/installation.html#npm" data-ice="link">npm</a></li>
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/overview.html"><a href="manual/overview.html" data-ice="link">Overview</a></li>
 </ul>
   </div>
-<div data-ice="manual" data-toc-name="usage">
-    <h1 class="manual-toc-title"><a href="manual/usage.html" data-ice="title">Usage</a></h1>
+<div data-ice="manual">
     <ul class="manual-toc">
       
-    </ul>
-  </div>
-<div data-ice="manual" data-toc-name="example">
-    <h1 class="manual-toc-title"><a href="manual/example.html" data-ice="title">Example</a></h1>
-    <ul class="manual-toc">
-      
-    <li data-ice="manualNav" class="indent-h1"><span class="manual-dot"></span><a href="manual/example.html#some-changes-w-r-t-python-s-api" data-ice="link">Some changes w.r.t. Python&apos;s API</a></li>
-<li data-ice="manualNav" class="indent-h2"><span class="manual-dot"></span><a href="manual/example.html#-set-" data-ice="link">set</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-iterable-null-this-" data-ice="link">set( iterable = null ) -&gt; this</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-inclusion-a-b-1-0-1-" data-ice="link">set.inclusion( A , B ) -&gt; {-1,0,1}</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-prototype-symbol-iterator-iterable-" data-ice="link">set.prototype[Symbol.iterator]( ) -&gt; iterable</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-prototype-keys-iterable-" data-ice="link">set.prototype.keys( ) -&gt; iterable</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-prototype-len-integer-" data-ice="link">set.prototype.len( ) -&gt; integer</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-prototype-has-key-boolean-" data-ice="link">set.prototype.has( key ) -&gt; boolean</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-prototype-isdisjoint-other-boolean-" data-ice="link">set.prototype.isdisjoint( other ) -&gt; boolean</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-prototype-isequal-other-boolean-" data-ice="link">set.prototype.isequal( other ) -&gt; boolean</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-prototype-issubset-other-boolean-" data-ice="link">set.prototype.issubset( other ) -&gt; boolean</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-prototype-ispropersubset-other-boolean-" data-ice="link">set.prototype.ispropersubset( other ) -&gt; boolean</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-prototype-issuperset-other-boolean-" data-ice="link">set.prototype.issuperset( other ) -&gt; boolean</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-prototype-ispropersuperset-other-boolean-" data-ice="link">set.prototype.ispropersuperset( other ) -&gt; boolean</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-prototype-union-others-set-" data-ice="link">set.prototype.union( ...others ) -&gt; set</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-prototype-intersection-others-set-" data-ice="link">set.prototype.intersection( ...others ) -&gt; set</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-prototype-difference-others-set-" data-ice="link">set.prototype.difference( ...others ) -&gt; set</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-prototype-symmetric_difference-other-set-" data-ice="link">set.prototype.symmetric_difference( other ) -&gt; set</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-prototype-copy-set-" data-ice="link">set.prototype.copy( ) -&gt; set</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-prototype-update-others-this-" data-ice="link">set.prototype.update( ...others ) -&gt; this</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-prototype-intersection_update-others-this-" data-ice="link">set.prototype.intersection_update( ...others ) -&gt; this</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-prototype-difference_update-others-this-" data-ice="link">set.prototype.difference_update( ...others ) -&gt; this</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-prototype-symmetric_difference_update-other-this-" data-ice="link">set.prototype.symmetric_difference_update( other ) -&gt; this</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-prototype-add-key-this-" data-ice="link">set.prototype.add( key ) -&gt; this</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-prototype-remove-key-this-" data-ice="link">set.prototype.remove( key ) -&gt; this</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-prototype-discard-key-this-" data-ice="link">set.prototype.discard( key ) -&gt; this</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-prototype-pop-key-" data-ice="link">set.prototype.pop( ) -&gt; key</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-prototype-clear-this-" data-ice="link">set.prototype.clear( ) -&gt; this</a></li>
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/installation.html"><a href="manual/installation.html" data-ice="link">Installation</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/installation.html"><a href="manual/installation.html#jspm" data-ice="link">jspm</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/installation.html"><a href="manual/installation.html#npm" data-ice="link">npm</a></li>
 </ul>
   </div>
-<div data-ice="manual" data-toc-name="reference">
-    <h1 class="manual-toc-title"><a href="identifiers.html" data-ice="title">Reference</a></h1>
+<div data-ice="manual">
     <ul class="manual-toc">
       
-    </ul>
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/usage.html"><a href="manual/usage.html" data-ice="link">Usage</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/example.html"><a href="manual/example.html" data-ice="link">Examples</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/example.html"><a href="manual/example.html#some-changes-w-r-t--python--39-s-api" data-ice="link">Some changes w.r.t. Python&apos;s API</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/example.html"><a href="manual/example.html#-code-set--code-" data-ice="link">set</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/example.html"><a href="manual/example.html#-code-set--iterable---null-----gt--this--code-" data-ice="link">set( iterable = null ) -&gt; this</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/example.html"><a href="manual/example.html#-code-set-inclusion--a---b-----gt----1-0-1---code-" data-ice="link">set.inclusion( A , B ) -&gt; {-1,0,1}</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/example.html"><a href="manual/example.html#-code-set-prototype-symbol-iterator-------gt--iterable--code-" data-ice="link">set.prototype[Symbol.iterator]( ) -&gt; iterable</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/example.html"><a href="manual/example.html#-code-set-prototype-keys------gt--iterable--code-" data-ice="link">set.prototype.keys( ) -&gt; iterable</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/example.html"><a href="manual/example.html#-code-set-prototype-len------gt--integer--code-" data-ice="link">set.prototype.len( ) -&gt; integer</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/example.html"><a href="manual/example.html#-code-set-prototype-has--key-----gt--boolean--code-" data-ice="link">set.prototype.has( key ) -&gt; boolean</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/example.html"><a href="manual/example.html#-code-set-prototype-isdisjoint--other-----gt--boolean--code-" data-ice="link">set.prototype.isdisjoint( other ) -&gt; boolean</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/example.html"><a href="manual/example.html#-code-set-prototype-isequal--other-----gt--boolean--code-" data-ice="link">set.prototype.isequal( other ) -&gt; boolean</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/example.html"><a href="manual/example.html#-code-set-prototype-issubset--other-----gt--boolean--code-" data-ice="link">set.prototype.issubset( other ) -&gt; boolean</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/example.html"><a href="manual/example.html#-code-set-prototype-ispropersubset--other-----gt--boolean--code-" data-ice="link">set.prototype.ispropersubset( other ) -&gt; boolean</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/example.html"><a href="manual/example.html#-code-set-prototype-issuperset--other-----gt--boolean--code-" data-ice="link">set.prototype.issuperset( other ) -&gt; boolean</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/example.html"><a href="manual/example.html#-code-set-prototype-ispropersuperset--other-----gt--boolean--code-" data-ice="link">set.prototype.ispropersuperset( other ) -&gt; boolean</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/example.html"><a href="manual/example.html#-code-set-prototype-union-----others-----gt--set--code-" data-ice="link">set.prototype.union( ...others ) -&gt; set</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/example.html"><a href="manual/example.html#-code-set-prototype-intersection-----others-----gt--set--code-" data-ice="link">set.prototype.intersection( ...others ) -&gt; set</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/example.html"><a href="manual/example.html#-code-set-prototype-difference-----others-----gt--set--code-" data-ice="link">set.prototype.difference( ...others ) -&gt; set</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/example.html"><a href="manual/example.html#-code-set-prototype-symmetric-difference--other-----gt--set--code-" data-ice="link">set.prototype.symmetric_difference( other ) -&gt; set</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/example.html"><a href="manual/example.html#-code-set-prototype-copy------gt--set--code-" data-ice="link">set.prototype.copy( ) -&gt; set</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/example.html"><a href="manual/example.html#-code-set-prototype-update-----others-----gt--this--code-" data-ice="link">set.prototype.update( ...others ) -&gt; this</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/example.html"><a href="manual/example.html#-code-set-prototype-intersection-update-----others-----gt--this--code-" data-ice="link">set.prototype.intersection_update( ...others ) -&gt; this</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/example.html"><a href="manual/example.html#-code-set-prototype-difference-update-----others-----gt--this--code-" data-ice="link">set.prototype.difference_update( ...others ) -&gt; this</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/example.html"><a href="manual/example.html#-code-set-prototype-symmetric-difference-update--other-----gt--this--code-" data-ice="link">set.prototype.symmetric_difference_update( other ) -&gt; this</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/example.html"><a href="manual/example.html#-code-set-prototype-add--key-----gt--this--code-" data-ice="link">set.prototype.add( key ) -&gt; this</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/example.html"><a href="manual/example.html#-code-set-prototype-remove--key-----gt--this--code-" data-ice="link">set.prototype.remove( key ) -&gt; this</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/example.html"><a href="manual/example.html#-code-set-prototype-discard--key-----gt--this--code-" data-ice="link">set.prototype.discard( key ) -&gt; this</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/example.html"><a href="manual/example.html#-code-set-prototype-pop------gt--key--code-" data-ice="link">set.prototype.pop( ) -&gt; key</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/example.html"><a href="manual/example.html#-code-set-prototype-clear------gt--this--code-" data-ice="link">set.prototype.clear( ) -&gt; this</a></li>
+</ul>
   </div>
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div class="github-markdown manual-toc-root">
+<div class="content" data-ice="content"><div class="github-markdown">
   
-<div data-ice="manual" data-toc-name="overview">
-    <h1 class="manual-toc-title"><a href="manual/overview.html" data-ice="title">Overview</a></h1>
-    <ul class="manual-toc">
-      
-    </ul>
-  </div>
-<div data-ice="manual" data-toc-name="installation">
-    <h1 class="manual-toc-title"><a href="manual/installation.html" data-ice="title">Installation</a></h1>
-    <ul class="manual-toc">
-      
-    <li data-ice="manualNav" class="indent-h2"><span class="manual-dot"></span><a href="manual/installation.html#jspm" data-ice="link">jspm</a></li>
-<li data-ice="manualNav" class="indent-h2"><span class="manual-dot"></span><a href="manual/installation.html#npm" data-ice="link">npm</a></li>
-</ul>
-  </div>
-<div data-ice="manual" data-toc-name="usage">
-    <h1 class="manual-toc-title"><a href="manual/usage.html" data-ice="title">Usage</a></h1>
-    <ul class="manual-toc">
-      
-    </ul>
-  </div>
-<div data-ice="manual" data-toc-name="example">
-    <h1 class="manual-toc-title"><a href="manual/example.html" data-ice="title">Example</a></h1>
-    <ul class="manual-toc">
-      
-    <li data-ice="manualNav" class="indent-h1"><span class="manual-dot"></span><a href="manual/example.html#some-changes-w-r-t-python-s-api" data-ice="link">Some changes w.r.t. Python&apos;s API</a></li>
-<li data-ice="manualNav" class="indent-h2"><span class="manual-dot"></span><a href="manual/example.html#-set-" data-ice="link">set</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-iterable-null-this-" data-ice="link">set( iterable = null ) -&gt; this</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-inclusion-a-b-1-0-1-" data-ice="link">set.inclusion( A , B ) -&gt; {-1,0,1}</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-prototype-symbol-iterator-iterable-" data-ice="link">set.prototype[Symbol.iterator]( ) -&gt; iterable</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-prototype-keys-iterable-" data-ice="link">set.prototype.keys( ) -&gt; iterable</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-prototype-len-integer-" data-ice="link">set.prototype.len( ) -&gt; integer</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-prototype-has-key-boolean-" data-ice="link">set.prototype.has( key ) -&gt; boolean</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-prototype-isdisjoint-other-boolean-" data-ice="link">set.prototype.isdisjoint( other ) -&gt; boolean</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-prototype-isequal-other-boolean-" data-ice="link">set.prototype.isequal( other ) -&gt; boolean</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-prototype-issubset-other-boolean-" data-ice="link">set.prototype.issubset( other ) -&gt; boolean</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-prototype-ispropersubset-other-boolean-" data-ice="link">set.prototype.ispropersubset( other ) -&gt; boolean</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-prototype-issuperset-other-boolean-" data-ice="link">set.prototype.issuperset( other ) -&gt; boolean</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-prototype-ispropersuperset-other-boolean-" data-ice="link">set.prototype.ispropersuperset( other ) -&gt; boolean</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-prototype-union-others-set-" data-ice="link">set.prototype.union( ...others ) -&gt; set</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-prototype-intersection-others-set-" data-ice="link">set.prototype.intersection( ...others ) -&gt; set</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-prototype-difference-others-set-" data-ice="link">set.prototype.difference( ...others ) -&gt; set</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-prototype-symmetric_difference-other-set-" data-ice="link">set.prototype.symmetric_difference( other ) -&gt; set</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-prototype-copy-set-" data-ice="link">set.prototype.copy( ) -&gt; set</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-prototype-update-others-this-" data-ice="link">set.prototype.update( ...others ) -&gt; this</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-prototype-intersection_update-others-this-" data-ice="link">set.prototype.intersection_update( ...others ) -&gt; this</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-prototype-difference_update-others-this-" data-ice="link">set.prototype.difference_update( ...others ) -&gt; this</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-prototype-symmetric_difference_update-other-this-" data-ice="link">set.prototype.symmetric_difference_update( other ) -&gt; this</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-prototype-add-key-this-" data-ice="link">set.prototype.add( key ) -&gt; this</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-prototype-remove-key-this-" data-ice="link">set.prototype.remove( key ) -&gt; this</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-prototype-discard-key-this-" data-ice="link">set.prototype.discard( key ) -&gt; this</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-prototype-pop-key-" data-ice="link">set.prototype.pop( ) -&gt; key</a></li>
-<li data-ice="manualNav" class="indent-h3"><span class="manual-dot"></span><a href="manual/example.html#-set-prototype-clear-this-" data-ice="link">set.prototype.clear( ) -&gt; this</a></li>
-</ul>
-  </div>
-<div data-ice="manual" data-toc-name="reference">
-    <h1 class="manual-toc-title"><a href="identifiers.html" data-ice="title">Reference</a></h1>
-    <ul class="manual-toc">
-      
-    </ul>
-  </div>
+
+  
+
+  <div class="manual-cards">
+    
+  <div class="manual-card-wrap" data-ice="cards">
+      <div class="manual-card">
+        <div data-ice="card"><h1>Overview</h1></div>
+        <a data-ice="link" href="manual/overview.html"></a>
+      </div>
+    </div>
+<div class="manual-card-wrap" data-ice="cards">
+      <div class="manual-card">
+        <div data-ice="card"><h1>Installation</h1><p>Can be managed using
+<a href="http://jspm.io">jspm</a>
+or <a href="https://github.com/npm/npm">npm</a>.</p><h3>jspm</h3><pre><code class="lang-terminal"><code class="source-code prettyprint">jspm install npm:@aureooms/js-collections</code>
+</code></pre><h3>npm</h3><pre><code class="lang-terminal"><code class="source-code prettyprint">npm install @aureooms/js-collections --save</code>
+</code></pre></div>
+        <a data-ice="link" href="manual/installation.html"></a>
+      </div>
+    </div>
+<div class="manual-card-wrap" data-ice="cards">
+      <div class="manual-card">
+        <div data-ice="card"><h1>Usage</h1><p>The code needs a ES2015+ polyfill to work, for example
+<a href="https://babeljs.io/docs/usage/polyfill">@babel/polyfill</a>.</p><pre><code class="lang-js"><code class="source-code prettyprint">require( &apos;@babel/polyfill&apos; ) ;
+// or
+import &apos;@babel/polyfill&apos; ;</code>
+</code></pre><p>Then</p><pre><code class="lang-js"><code class="source-code prettyprint">const number = require( &apos;@aureooms/js-collections&apos; ) ;
+// or
+import number from &apos;@aureooms/js-collections&apos; ;</code>
+</code></pre></div>
+        <a data-ice="link" href="manual/usage.html"></a>
+      </div>
+    </div>
+<div class="manual-card-wrap" data-ice="cards">
+      <div class="manual-card">
+        <div data-ice="card"><h1>Examples</h1><p>See Python&apos;s docs:</p><ul>
+<li><a href="https://docs.python.org/3.6/library/collections.html">collections</a></li>
+<li><a href="https://docs.python.org/3.6/library/heapq.html">set</a></li>
+<li><a href="https://docs.python.org/3.6/library/bisect.html">dict</a></li>
+</ul><h2>Some changes w.r.t. Python&apos;s API</h2><h3><code>set</code></h3><h4><code>set( iterable = null ) -&gt; this</code></h4><h4><code>set.inclusion( A , B ) -&gt; {-1,0,1}</code></h4><h4><code>set.prototype[Symbol.iterator]( ) -&gt; iterable</code></h4><h4><code>set.prototype.keys( ) -&gt; iterable</code></h4><h4><code>set.prototype.len( ) -&gt; integer</code></h4><h4><code>set.prototype.has( key ) -&gt; boolean</code></h4><h4><code>set.prototype.isdisjoint( other ) -&gt; boolean</code></h4><h4><code>set.prototype.isequal( other ) -&gt; boolean</code></h4><h4><code>set.prototype.issubset( other ) -&gt; boolean</code></h4><h4><code>set.prototype.ispropersubset( other ) -&gt; boolean</code></h4><h4><code>set.prototype.issuperset( other ) -&gt; boolean</code></h4><h4><code>set.prototype.ispropersuperset( other ) -&gt; boolean</code></h4><h4><code>set.prototype.union( ...others ) -&gt; set</code></h4><h4><code>set.prototype.intersection( ...others ) -&gt; set</code></h4><h4><code>set.prototype.difference( ...others ) -&gt; set</code></h4><h4><code>set.prototype.symmetric_difference( other ) -&gt; set</code></h4><h4><code>set.prototype.copy( ) -&gt; set</code></h4><h4><code>set.prototype.update( ...others ) -&gt; this</code></h4><h4><code>set.prototype.intersection_update( ...others ) -&gt; this</code></h4><h4><code>set.prototype.difference_update( ...others ) -&gt; this</code></h4><h4><code>set.prototype.symmetric_difference_update( other ) -&gt; this</code></h4><h4><code>set.prototype.add( key ) -&gt; this</code></h4><h4><code>set.prototype.remove( key ) -&gt; this</code></h4><h4><code>set.prototype.discard( key ) -&gt; this</code></h4><h4><code>set.prototype.pop( ) -&gt; key</code></h4><h4><code>set.prototype.clear( ) -&gt; this</code></h4></div>
+        <a data-ice="link" href="manual/example.html"></a>
+      </div>
+    </div>
+</div>
 </div>
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
 </footer>
 
 <script src="script/search_index.js"></script>

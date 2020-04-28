@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl" href>
-  <title data-ice="title">Source | @aureooms/js-collections</title>
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">src/index.js | @aureooms/js-collections</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -34,31 +34,89 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1>Source <img data-ice="coverageBadge" src="./badge.svg"><span data-ice="totalCoverageCount" class="total-coverage-count">0/1</span></h1>
+<div class="content" data-ice="content"><h1 data-ice="title">src/index.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import {
+	IndexError ,
+	KeyError ,
+	NotImplementedError ,
+	TypeError ,
+	ValueError ,
+} from &apos;@aureooms/js-error&apos; ;
 
-<table class="files-summary" data-ice="files" data-use-coverage="true">
-  <thead>
-    <tr>
-      <td>File</td>
-      <td>Identifier</td>
-      <td class="coverage">Document</td>
-      <td style="display: none;">Size</td>
-      <td style="display: none;">Lines</td>
-      <td style="display: none;">Updated</td>
-    </tr>
-  </thead>
-  <tbody>
-    
-  <tr data-ice="file">
-      <td data-ice="filePath"><span><a href="file/src/index.js.html#errorLines=28">src/index.js</a></span></td>
-      <td data-ice="identifier" class="identifiers"><span><a href="variable/index.html#static-variable-collections">collections</a></span></td>
-      <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/1</span></td>
-      <td style="display: none;" data-ice="size">1303 byte</td>
-      <td style="display: none;" data-ice="lines">80</td>
-      <td style="display: none;" data-ice="updated">2020-04-03 13:35:58 (UTC)</td>
-    </tr>
-</tbody>
-</table>
+import chainmap from &apos;@aureooms/js-collections-chainmap&apos; ;
+import dict from &apos;@aureooms/js-collections-dict&apos; ;
+import ordereddict from &apos;@aureooms/js-collections-ordereddict&apos; ;
+import defaultdict from &apos;@aureooms/js-collections-defaultdict&apos; ;
+
+import {
+	deque ,
+	ArbitrarySizeDeque ,
+	BoundedDeque ,
+	Deque ,
+	EmptyDeque ,
+	SingleElementDeque ,
+	UnboundedDeque ,
+} from &apos;@aureooms/js-collections-deque&apos; ;
+
+import namedtuple from &apos;@aureooms/js-collections-namedtuple&apos; ;
+import counter from &apos;@aureooms/js-collections-counter&apos; ;
+import set from &apos;@aureooms/js-collections-set&apos; ;
+
+const collections = {
+
+	chainmap ,
+	counter ,
+	deque ,
+	dict ,
+	ordereddict ,
+	defaultdict ,
+	namedtuple ,
+	set ,
+
+	ArbitrarySizeDeque ,
+	BoundedDeque ,
+	Deque ,
+	EmptyDeque ,
+	SingleElementDeque ,
+	UnboundedDeque ,
+
+	IndexError ,
+	KeyError ,
+	NotImplementedError ,
+	TypeError ,
+	ValueError ,
+
+} ;
+
+export default collections ;
+
+export {
+
+	chainmap ,
+	counter ,
+	deque ,
+	dict ,
+	ordereddict ,
+	defaultdict ,
+	namedtuple ,
+	set ,
+
+	ArbitrarySizeDeque ,
+	BoundedDeque ,
+	Deque ,
+	EmptyDeque ,
+	SingleElementDeque ,
+	UnboundedDeque ,
+
+	IndexError ,
+	KeyError ,
+	NotImplementedError ,
+	TypeError ,
+	ValueError ,
+
+} ;
+</code></pre>
+
 </div>
 
 <footer class="footer">
