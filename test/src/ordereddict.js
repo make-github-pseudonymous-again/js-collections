@@ -42,13 +42,13 @@ test( ordereddict.name , t => {
 
 	t.deepEqual( list( d.items( ) ) , [ [ "x" , -1 ] ] , "popitem items" ) ;
 
-	t.throws( d.clear( ).move_to_end.bind( d , "x" ) , KeyError , "move_to_end raises" ) ;
+	t.throws( d.clear( ).move_to_end.bind( d , "x" ) , { instanceOf: KeyError } , "move_to_end raises" ) ;
 
-	t.throws( d.clear( ).move_to_end.bind( d , "x" , false ) , KeyError , "move_to_end false raises" ) ;
+	t.throws( d.clear( ).move_to_end.bind( d , "x" , false ) , { instanceOf: KeyError } , "move_to_end false raises" ) ;
 
-	t.throws( d.clear( ).popitem.bind( d ) , KeyError , "popitem raises" ) ;
+	t.throws( d.clear( ).popitem.bind( d ) , { instanceOf: KeyError } , "popitem raises" ) ;
 
-	t.throws( d.clear( ).popitem.bind( d , false ) , KeyError , "popitem false raises" ) ;
+	t.throws( d.clear( ).popitem.bind( d , false ) , { instanceOf: KeyError } , "popitem false raises" ) ;
 
 	t.true( d.clear( ).isequal( d ) , "equal self" ) ;
 

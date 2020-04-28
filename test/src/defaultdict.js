@@ -122,13 +122,13 @@ test( defaultdict.name , t => {
 
 	d.clear( ) ;
 
-	t.throws( d.get.bind( d , "x" ) , KeyError , "get raises" ) ;
+	t.throws( d.get.bind( d , "x" ) , { instanceOf: KeyError } , "get raises" ) ;
 
-	t.throws( d.delete.bind( d , "x" ) , KeyError , "delete raises" ) ;
+	t.throws( d.delete.bind( d , "x" ) , { instanceOf: KeyError } , "delete raises" ) ;
 
-	t.throws( d.popitem.bind( d ) , KeyError , "popitem raises" ) ;
+	t.throws( d.popitem.bind( d ) , { instanceOf: KeyError } , "popitem raises" ) ;
 
-	t.throws( d.pop.bind( d , "x" ) , KeyError , "pop raises" ) ;
+	t.throws( d.pop.bind( d , "x" ) , { instanceOf: KeyError } , "pop raises" ) ;
 
 	t.deepEqual( defaultdict.fromkeys( "abc" , -1 , default_factory ).get( "b" ) , -1 , "fromkeys default -1" ) ;
 

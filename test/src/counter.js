@@ -45,8 +45,8 @@ test( "counter" , t => {
 	c = counter( [ "eggs" , "ham" ] ) ;
 	t.deepEqual( c.get( "bacon" ) , 0 , "count of a missing element is zero" ) ;
 
-	t.throws( counter.fromkeys.bind( null , "abc" ) , NotImplementedError , "fromkeys default" ) ;
-	t.throws( counter.fromkeys.bind( null , "abc" , 1 ) , NotImplementedError , "fromkeys" ) ;
+	t.throws( counter.fromkeys.bind( null , "abc" ) , { instanceOf: NotImplementedError } , "fromkeys default" ) ;
+	t.throws( counter.fromkeys.bind( null , "abc" , 1 ) , { instanceOf: NotImplementedError } , "fromkeys" ) ;
 
 	t.deepEqual( counter('aab').most_common(1) , [['a', 2]] , "most_common aab" ) ;
 	t.deepEqual( counter('abracadabra').most_common(0) , [] , "most_common 0" ) ;

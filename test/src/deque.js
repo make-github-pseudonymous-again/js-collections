@@ -24,28 +24,28 @@ test( deque.name , t => {
 
 	let d = new Deque( ) ;
 
-	t.throws( d.values.bind( d ) , NotImplementedError , "Deque values" ) ;
-	t.throws( l.bind( null , d ) , NotImplementedError , "list( Deque )" ) ;
-	t.throws( d.len.bind( d ) , NotImplementedError , "Deque len" ) ;
-	t.throws( d.capacity.bind( d ) , NotImplementedError , "Deque capacity" ) ;
-	t.throws( d.empty.bind( d ) , NotImplementedError , "Deque empty" ) ;
-	t.throws( d.append.bind( d , 0 ) , NotImplementedError , "Deque append" ) ;
-	t.throws( d.appendleft.bind( d , 0 ) , NotImplementedError , "Deque appendleft" ) ;
-	t.throws( d.clear.bind( d ) , NotImplementedError , "Deque clear" ) ;
-	t.throws( d.copy.bind( d ) , NotImplementedError , "Deque copy" ) ;
-	t.throws( d.count.bind( d , 0 ) , NotImplementedError , "Deque count" ) ;
-	t.throws( d.extend.bind( d , "a" ) , NotImplementedError , "Deque extend" ) ;
-	t.throws( d.extendleft.bind( d , "a" ) , NotImplementedError , "Deque extendleft" ) ;
-	t.throws( d._where.bind( d , 0 ) , NotImplementedError , "Deque _where" ) ;
-	t.throws( d.get.bind( d , 0 ) , NotImplementedError , "Deque get" ) ;
-	t.throws( d.set.bind( d , 0 , 0 ) , NotImplementedError , "Deque set" ) ;
-	t.throws( d.insert.bind( d , 0 , 0 ) , NotImplementedError , "Deque insert" ) ;
-	t.throws( d.pop.bind( d ) , NotImplementedError , "Deque pop" ) ;
-	t.throws( d.popleft.bind( d ) , NotImplementedError , "Deque popleft" ) ;
+	t.throws( d.values.bind( d ) , { instanceOf: NotImplementedError } , "Deque values" ) ;
+	t.throws( l.bind( null , d ) , { instanceOf: NotImplementedError } , "list( Deque )" ) ;
+	t.throws( d.len.bind( d ) , { instanceOf: NotImplementedError } , "Deque len" ) ;
+	t.throws( d.capacity.bind( d ) , { instanceOf: NotImplementedError } , "Deque capacity" ) ;
+	t.throws( d.empty.bind( d ) , { instanceOf: NotImplementedError } , "Deque empty" ) ;
+	t.throws( d.append.bind( d , 0 ) , { instanceOf: NotImplementedError } , "Deque append" ) ;
+	t.throws( d.appendleft.bind( d , 0 ) , { instanceOf: NotImplementedError } , "Deque appendleft" ) ;
+	t.throws( d.clear.bind( d ) , { instanceOf: NotImplementedError } , "Deque clear" ) ;
+	t.throws( d.copy.bind( d ) , { instanceOf: NotImplementedError } , "Deque copy" ) ;
+	t.throws( d.count.bind( d , 0 ) , { instanceOf: NotImplementedError } , "Deque count" ) ;
+	t.throws( d.extend.bind( d , "a" ) , { instanceOf: NotImplementedError } , "Deque extend" ) ;
+	t.throws( d.extendleft.bind( d , "a" ) , { instanceOf: NotImplementedError } , "Deque extendleft" ) ;
+	t.throws( d._where.bind( d , 0 ) , { instanceOf: NotImplementedError } , "Deque _where" ) ;
+	t.throws( d.get.bind( d , 0 ) , { instanceOf: NotImplementedError } , "Deque get" ) ;
+	t.throws( d.set.bind( d , 0 , 0 ) , { instanceOf: NotImplementedError } , "Deque set" ) ;
+	t.throws( d.insert.bind( d , 0 , 0 ) , { instanceOf: NotImplementedError } , "Deque insert" ) ;
+	t.throws( d.pop.bind( d ) , { instanceOf: NotImplementedError } , "Deque pop" ) ;
+	t.throws( d.popleft.bind( d ) , { instanceOf: NotImplementedError } , "Deque popleft" ) ;
 
-	t.throws( deque.bind( null , null , 1.2 ) , TypeError , "maxlen float" ) ;
-	t.throws( deque.bind( null , null , -1 ) , ValueError , "maxlen negative" ) ;
-	t.throws( deque.bind( null , null , { } ) , TypeError , "maxlen object" ) ;
+	t.throws( deque.bind( null , null , 1.2 ) , { instanceOf: TypeError } , "maxlen float" ) ;
+	t.throws( deque.bind( null , null , -1 ) , { instanceOf: ValueError } , "maxlen negative" ) ;
+	t.throws( deque.bind( null , null , { } ) , { instanceOf: TypeError } , "maxlen object" ) ;
 
 	t.true( deque( ).empty( ) , "empty" ) ;
 	t.true( !deque( "abc" ).empty( ) , "not empty" ) ;
@@ -86,9 +86,9 @@ test( deque.name , t => {
 	t.true( d.copy( ) !== d , "empty copy is different" ) ;
 	t.deepEqual( d.clear( ) , d , "empty clear" ) ;
 
-	t.throws( d.append( "a" ).get.bind( d , 0 ) , IndexError , "empty get" ) ;
-	t.throws( d.append( "a" ).set.bind( d , 0 , "b" ) , IndexError , "empty set" ) ;
-	t.throws( d.append( "a" ).pop.bind( d ) , IndexError , "empty pop" ) ;
+	t.throws( d.append( "a" ).get.bind( d , 0 ) , { instanceOf: IndexError } , "empty get" ) ;
+	t.throws( d.append( "a" ).set.bind( d , 0 , "b" ) , { instanceOf: IndexError } , "empty set" ) ;
+	t.throws( d.append( "a" ).pop.bind( d ) , { instanceOf: IndexError } , "empty pop" ) ;
 
 	d = deque( "abc" , 1 ) ;
 
@@ -98,12 +98,12 @@ test( deque.name , t => {
 	t.deepEqual( d.clear( ) , d , "single clear" ) ;
 	t.deepEqual( d.clear( ).len( ) , 0 , "single clear len" ) ;
 
-	t.throws( d.append( "a" ).get.bind( d , 1 ) , IndexError , "single get 1" ) ;
-	t.throws( d.append( "a" ).set.bind( d , 1 , "b" ) , IndexError , "single set 1" ) ;
-	t.throws( d.clear( ).pop.bind( d ) , IndexError , "single pop clear" ) ;
+	t.throws( d.append( "a" ).get.bind( d , 1 ) , { instanceOf: IndexError } , "single get 1" ) ;
+	t.throws( d.append( "a" ).set.bind( d , 1 , "b" ) , { instanceOf: IndexError } , "single set 1" ) ;
+	t.throws( d.clear( ).pop.bind( d ) , { instanceOf: IndexError } , "single pop clear" ) ;
 
-	t.throws( d.clear( ).get.bind( d , 0 ) , IndexError , "single empty get 0" ) ;
-	t.throws( d.clear( ).set.bind( d , 0 , "b" ) , IndexError , "single empty set 0" ) ;
+	t.throws( d.clear( ).get.bind( d , 0 ) , { instanceOf: IndexError } , "single empty get 0" ) ;
+	t.throws( d.clear( ).set.bind( d , 0 , "b" ) , { instanceOf: IndexError } , "single empty set 0" ) ;
 
 	d.extend( "abcdef" ) ;
 
@@ -221,11 +221,11 @@ test( deque.name , t => {
 	t.deepEqual( deque( "abc" ).index( "b" ) , 1 , "index abc" ) ;
 	t.deepEqual( deque( "abcb" ).index( "b" ) , 1 , "index abcb" ) ;
 	t.deepEqual( deque( "abcb" ).index( "b" , 2 ) , 3 , "index abcb 2" ) ;
-	t.throws( d.clear( ).extend( "abc" ).index.bind( d , "d" ) , ValueError , "index raises" ) ;
-	t.throws( d.clear( ).extend( "abc" ).index.bind( d , "b" , 2 , 3 ) , ValueError , "index raises range" ) ;
+	t.throws( d.clear( ).extend( "abc" ).index.bind( d , "d" ) , { instanceOf: ValueError } , "index raises" ) ;
+	t.throws( d.clear( ).extend( "abc" ).index.bind( d , "b" , 2 , 3 ) , { instanceOf: ValueError } , "index raises range" ) ;
 
-	t.throws( d.clear( ).extend( "abc" ).get.bind( d , -1 ) , IndexError , "get -1" ) ;
-	t.throws( d.clear( ).extend( "abc" ).get.bind( d , 4 ) , IndexError , "get out of bounds" ) ;
+	t.throws( d.clear( ).extend( "abc" ).get.bind( d , -1 ) , { instanceOf: IndexError } , "get -1" ) ;
+	t.throws( d.clear( ).extend( "abc" ).get.bind( d , 4 ) , { instanceOf: IndexError } , "get out of bounds" ) ;
 
 	t.deepEqual( l( deque( "abcde" ).rotate( 2 ) ) , l( "deabc" ) , "rotate 2" ) ;
 	t.deepEqual( l( deque( "abcde" ).rotate( 0 ) ) , l( "abcde" ) , "rotate 0" ) ;

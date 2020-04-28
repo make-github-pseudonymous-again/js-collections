@@ -195,11 +195,11 @@ test( set.name , t => {
 	s.clear( ) ;
 	t.true( s.isequal( "" ) , "clear" ) ;
 
-	t.throws( s.clear( ).pop.bind( s ) , KeyError , "pop raises" ) ;
-	t.throws( s.clear( ).pop.bind( s ) , KeyError , "pop raises" ) ;
+	t.throws( s.clear( ).pop.bind( s ) , { instanceOf: KeyError } , "pop raises" ) ;
+	t.throws( s.clear( ).pop.bind( s ) , { instanceOf: KeyError } , "pop raises" ) ;
 
-	t.throws( s.clear( ).add( "x" ).remove.bind( s , "y" ) , KeyError , "remove raises" ) ;
-	t.throws( s.clear( ).add( "x" ).remove.bind( s , "y" ) , KeyError , "remove raises" ) ;
+	t.throws( s.clear( ).add( "x" ).remove.bind( s , "y" ) , { instanceOf: KeyError } , "remove raises" ) ;
+	t.throws( s.clear( ).add( "x" ).remove.bind( s , "y" ) , { instanceOf: KeyError } , "remove raises" ) ;
 
 	t.deepEqual( s.clear( ) , s , "ref clear" ) ;
 	t.deepEqual( s.add( "x" ) , s , "ref add" ) ;
