@@ -21,16 +21,20 @@ let {
 } = collections ;
 ```
 
-[![License](https://img.shields.io/github/license/aureooms/js-collections.svg?style=flat)](https://raw.githubusercontent.com/aureooms/js-collections/master/LICENSE)
-[![NPM version](https://img.shields.io/npm/v/@aureooms/js-collections.svg?style=flat)](https://www.npmjs.org/package/@aureooms/js-collections)
-[![Build Status](https://img.shields.io/travis/aureooms/js-collections.svg?style=flat)](https://travis-ci.org/aureooms/js-collections)
-[![Coverage Status](https://img.shields.io/coveralls/aureooms/js-collections.svg?style=flat)](https://coveralls.io/r/aureooms/js-collections)
-[![Dependencies Status](https://img.shields.io/david/aureooms/js-collections.svg?style=flat)](https://david-dm.org/aureooms/js-collections#info=dependencies)
-[![devDependencies Status](https://img.shields.io/david/dev/aureooms/js-collections.svg?style=flat)](https://david-dm.org/aureooms/js-collections#info=devDependencies)
-[![Code Climate](https://img.shields.io/codeclimate/github/aureooms/js-collections.svg?style=flat)](https://codeclimate.com/github/aureooms/js-collections)
-[![NPM downloads per month](https://img.shields.io/npm/dm/@aureooms/js-collections.svg?style=flat)](https://www.npmjs.org/package/@aureooms/js-collections)
-[![GitHub issues](https://img.shields.io/github/issues/aureooms/js-collections.svg?style=flat)](https://github.com/aureooms/js-collections/issues)
-[![Documentation](https://aureooms.github.io/js-collections/badge.svg)](https://aureooms.github.io/js-collections/source.html)
+[![License](https://img.shields.io/github/license/aureooms/js-collections.svg)](https://raw.githubusercontent.com/aureooms/js-collections/master/LICENSE)
+[![Version](https://img.shields.io/npm/v/@aureooms/js-collections.svg)](https://www.npmjs.org/package/@aureooms/js-collections)
+[![Build](https://img.shields.io/travis/aureooms/js-collections/master.svg)](https://travis-ci.org/aureooms/js-collections/branches)
+[![Dependencies](https://img.shields.io/david/aureooms/js-collections.svg)](https://david-dm.org/aureooms/js-collections)
+[![Dev dependencies](https://img.shields.io/david/dev/aureooms/js-collections.svg)](https://david-dm.org/aureooms/js-collections?type=dev)
+[![GitHub issues](https://img.shields.io/github/issues/aureooms/js-collections.svg)](https://github.com/aureooms/js-collections/issues)
+[![Downloads](https://img.shields.io/npm/dm/@aureooms/js-collections.svg)](https://www.npmjs.org/package/@aureooms/js-collections)
+
+[![Code issues](https://img.shields.io/codeclimate/issues/aureooms/js-collections.svg)](https://codeclimate.com/github/aureooms/js-collections/issues)
+[![Code maintainability](https://img.shields.io/codeclimate/maintainability/aureooms/js-collections.svg)](https://codeclimate.com/github/aureooms/js-collections/trends/churn)
+[![Code coverage (cov)](https://img.shields.io/codecov/c/gh/aureooms/js-collections/master.svg)](https://codecov.io/gh/aureooms/js-collections)
+[![Code technical debt](https://img.shields.io/codeclimate/tech-debt/aureooms/js-collections.svg)](https://codeclimate.com/github/aureooms/js-collections/trends/technical_debt)
+[![Documentation](https://aureooms.github.io/js-collections//badge.svg)](https://aureooms.github.io/js-collections//source.html)
+[![Package size](https://img.shields.io/bundlephobia/minzip/@aureooms/js-collections)](https://bundlephobia.com/result?p=@aureooms/js-collections)
 
 ## Children
 The implementation of this package is split over several children packages:
