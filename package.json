@@ -44,7 +44,7 @@
     "babel-preset-latest": "6.24.1",
     "codeclimate-test-reporter": "0.5.1",
     "coveralls": "2.13.3",
-    "esdoc": "0.5.2",
+    "esdoc": "1.1.0",
     "nyc": "11.9.0",
     "@babel/cli": "7.8.4",
     "@babel/core": "7.9.0",
@@ -82,6 +82,7 @@
     "build": "rm -rf lib && babel src -d lib",
     "cover": "nyc --reporter=lcov npm test",
     "prepublish": "npm run build",
-    "test": "ava ./test/src"
+    "test": "ava ./test/src",
+    "esdoc": "esdoc"
   }
 }
