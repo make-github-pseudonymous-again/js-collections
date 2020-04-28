@@ -1,8 +1,8 @@
-[js-collections](http://aureooms.github.io/js-collections)
+[@aureooms/js-collections](https://aureooms.github.io/js-collections)
 ==
 
 Python's collections library for JavaScript. Parent is
-[js-data-structures](https://github.com/aureooms/js-data-structures).
+[@aureooms/js-data-structures](https://github.com/aureooms/js-data-structures).
 
 JavaScript version of
 [Python's collections library](https://docs.python.org/3.6/library/collections.html)
