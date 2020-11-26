@@ -1,4 +1,4 @@
-[@aureooms/js-collections](https://aureooms.github.io/js-collections)
+:school_satchel: [@aureooms/js-collections](https://aureooms.github.io/js-collections)
 ==
 
 Python's collections library for JavaScript.
@@ -37,7 +37,8 @@ let {
 [![Documentation](https://aureooms.github.io/js-collections//badge.svg)](https://aureooms.github.io/js-collections//source.html)
 [![Package size](https://img.shields.io/bundlephobia/minzip/@aureooms/js-collections)](https://bundlephobia.com/result?p=@aureooms/js-collections)
 
-## Children
+## :baby: Children
+
 The implementation of this package is split over several children packages:
 
   - [@aureooms/js-collections-chainmap](https://github.com/aureooms/js-collections-chainmap)
