@@ -5,7 +5,7 @@
   "author": "Aurélien Ooms <aurelien.ooms@gmail.com>",
   "ava": {
     "require": [
-      "@babel/polyfill",
+      "regenerator-runtime/runtime",
       "@babel/register"
     ],
     "files": [
@@ -93,7 +93,6 @@
     "@aureooms/js-number": "3.1.0",
     "@babel/cli": "7.12.8",
     "@babel/core": "7.12.9",
-    "@babel/polyfill": "7.12.1",
     "@babel/preset-env": "7.12.7",
     "@babel/register": "7.12.1",
     "ava": "3.13.0",
@@ -107,7 +106,8 @@
     "babel-plugin-transform-remove-console": "6.9.4",
     "babel-plugin-unassert": "3.0.1",
     "babel-preset-power-assert": "3.0.0",
-    "power-assert": "1.6.1"
+    "power-assert": "1.6.1",
+    "regenerator-runtime": "0.13.7"
   },
   "files": [
     "lib"
