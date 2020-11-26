@@ -142,6 +142,7 @@
     "release": "np",
     "test": "ava",
     "lint": "true",
-    "dev": "npm run lint -- --fix && npm run cover -- -- -st --fail-fast"
+    "dev": "npm run lint -- --fix && npm run cover -- -- -st --fail-fast",
+    "travis": "npm run lint && npm run cover"
   }
 }
