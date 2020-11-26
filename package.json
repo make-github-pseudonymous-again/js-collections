@@ -135,7 +135,7 @@
     "type": "git"
   },
   "scripts": {
-    "build": "rm -rf lib && babel src -d lib",
+    "build": "babel --delete-dir-on-start --env-name production src -d lib",
     "cover": "nyc --reporter=lcov npm test",
     "esdoc": "esdoc",
     "prepare": "npm run build",
