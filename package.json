@@ -141,6 +141,7 @@
     "prepare": "npm run build",
     "release": "np",
     "test": "ava",
-    "lint": "true"
+    "lint": "true",
+    "dev": "npm run lint -- --fix && npm run cover -- -- -st --fail-fast"
   }
 }
