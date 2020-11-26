@@ -96,6 +96,9 @@
     "@babel/preset-env": "7.12.7",
     "@babel/register": "7.12.1",
     "ava": "3.13.0",
+    "babel-plugin-transform-remove-console": "6.9.4",
+    "babel-plugin-unassert": "3.0.1",
+    "babel-preset-power-assert": "3.0.0",
     "coveralls": "3.1.0",
     "esdoc": "1.1.0",
     "esdoc-inject-script-plugin": "1.0.0",
@@ -103,9 +106,6 @@
     "esdoc-standard-plugin": "1.0.0",
     "np": "7.0.0",
     "nyc": "15.1.0",
-    "babel-plugin-transform-remove-console": "6.9.4",
-    "babel-plugin-unassert": "3.0.1",
-    "babel-preset-power-assert": "3.0.0",
     "power-assert": "1.6.1",
     "regenerator-runtime": "0.13.7"
   },
@@ -137,12 +137,12 @@
   "scripts": {
     "build": "babel --delete-dir-on-start --env-name production src -d lib",
     "cover": "nyc --reporter=lcov npm test",
+    "dev": "npm run lint -- --fix && npm run cover -- -- -st --fail-fast",
     "esdoc": "esdoc",
+    "lint": "true",
     "prepare": "npm run build",
     "release": "np",
     "test": "ava",
-    "lint": "true",
-    "dev": "npm run lint -- --fix && npm run cover -- -- -st --fail-fast",
     "travis": "npm run lint && npm run cover"
   },
   "sideEffects": false
