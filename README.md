@@ -11,7 +11,7 @@ together with
 [some of Python's built-in data structures](https://docs.python.org/3/library/stdtypes.html).
 
 ```js
-let {
+import {
 	set , dict ,
 	namedtuple ,
 	deque ,
@@ -19,7 +19,7 @@ let {
 	ordereddict ,
 	counter ,
 	chainmap
-} = collections ;
+} from '@aureooms/js-collections' ;
 ```
 
 [![License](https://img.shields.io/github/license/aureooms/js-collections.svg)](https://raw.githubusercontent.com/aureooms/js-collections/main/LICENSE)
