@@ -79,12 +79,12 @@
     "@aureooms/js-collections-chainmap": "^4.0.0",
     "@aureooms/js-collections-counter": "^5.0.0",
     "@aureooms/js-collections-defaultdict": "^4.0.0",
-    "@aureooms/js-collections-deque": "^4.0.0",
+    "@aureooms/js-collections-deque": "^4.0.1",
     "@aureooms/js-collections-dict": "^4.0.0",
     "@aureooms/js-collections-namedtuple": "^4.0.0",
     "@aureooms/js-collections-ordereddict": "^4.0.0",
     "@aureooms/js-collections-set": "^4.0.0",
-    "@aureooms/js-error": "^4.0.0"
+    "@aureooms/js-error": "^4.0.1"
   },
   "devDependencies": {
     "@aureooms/js-compare": "1.4.8",
