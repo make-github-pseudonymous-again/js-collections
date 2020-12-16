@@ -93,7 +93,7 @@
     "@aureooms/js-number": "3.1.0",
     "@babel/cli": "7.12.10",
     "@babel/core": "7.12.10",
-    "@babel/preset-env": "7.12.10",
+    "@babel/preset-env": "7.12.11",
     "@babel/register": "7.12.10",
     "ava": "3.14.0",
     "babel-plugin-transform-remove-console": "6.9.4",
