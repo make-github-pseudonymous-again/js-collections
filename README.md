@@ -1,8 +1,8 @@
-:school_satchel: [@aureooms/js-collections](https://aureooms.github.io/js-collections)
+:school_satchel: [@aureooms/js-collections](https://make-github-pseudonymous-again.github.io/js-collections)
 ==
 
 Python's collections library for JavaScript.
-See [docs](https://aureooms.github.io/js-collections).
+See [docs](https://make-github-pseudonymous-again.github.io/js-collections).
 Parent is [@aureooms/js-data-structures](https://github.com/aureooms/js-data-structures).
 
 JavaScript version of
@@ -34,7 +34,7 @@ import {
 [![Code maintainability](https://img.shields.io/codeclimate/maintainability/aureooms/js-collections.svg)](https://codeclimate.com/github/aureooms/js-collections/trends/churn)
 [![Code coverage (cov)](https://img.shields.io/codecov/c/gh/aureooms/js-collections/main.svg)](https://codecov.io/gh/aureooms/js-collections)
 [![Code technical debt](https://img.shields.io/codeclimate/tech-debt/aureooms/js-collections.svg)](https://codeclimate.com/github/aureooms/js-collections/trends/technical_debt)
-[![Documentation](https://aureooms.github.io/js-collections//badge.svg)](https://aureooms.github.io/js-collections//source.html)
+[![Documentation](https://make-github-pseudonymous-again.github.io/js-collections//badge.svg)](https://make-github-pseudonymous-again.github.io/js-collections//source.html)
 [![Package size](https://img.shields.io/bundlephobia/minzip/@aureooms/js-collections)](https://bundlephobia.com/result?p=@aureooms/js-collections)
 
 ## :baby: Children
