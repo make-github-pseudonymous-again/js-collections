@@ -20,7 +20,7 @@ domReady(function(){
 	header.insertBefore(projectname,header.firstChild);
 
 	var testlink = document.querySelector('header > a[data-ice="testLink"]') ;
-	testlink.href = 'https://coveralls.io/github/aureooms/js-collections' ;
+	testlink.href = 'https://coveralls.io/github/make-github-pseudonymous-again/js-collections' ;
 	testlink.target = '_BLANK' ;
 
 	var searchBox = document.querySelector('.search-box');
