@@ -87,7 +87,7 @@
     "@aureooms/js-error": "^4.0.1"
   },
   "devDependencies": {
-    "@aureooms/js-compare": "1.4.8",
+    "@aureooms/js-compare": "2.0.0",
     "@aureooms/js-functools": "2.0.3",
     "@aureooms/js-itertools": "5.0.1",
     "@aureooms/js-number": "3.1.0",
