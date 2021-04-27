@@ -37,14 +37,7 @@
   dependencies:
     "@aureooms/js-error" "^3.0.0"
 
-"@aureooms/js-collections-deque@^4.0.1":
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/@aureooms/js-collections-deque/-/js-collections-deque-4.0.1.tgz#bd8b827cdb597d061525c380dd704e338c77bd5f"
-  integrity sha512-dktRVLyep0sUKpqgtG/JseA232KMdlu9t9ePq2wHcng1dZ3+63qW2C+FlKXBktrT1dU92DDxIL6PqnV97kHA1Q==
-  dependencies:
-    "@aureooms/js-error" "^4.0.1"
-
-"@aureooms/js-collections-deque@^6.0.1":
+"@aureooms/js-collections-deque@^6.0.0", "@aureooms/js-collections-deque@^6.0.1":
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/@aureooms/js-collections-deque/-/js-collections-deque-6.0.1.tgz#ba89379ac826539047f768e1fb84ed4d2c1f829e"
   integrity sha512-GUhEIF6tmnxsGvUaPSR/7HbZETn04yHOcrt7swo5ftKRz+Pb/N9iuvGimBwmCTLDkJ60OZG2TWfoYPVNA2lutQ==

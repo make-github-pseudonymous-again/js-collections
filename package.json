@@ -79,7 +79,7 @@
     "@aureooms/js-collections-chainmap": "^4.0.0",
     "@aureooms/js-collections-counter": "^5.0.0",
     "@aureooms/js-collections-defaultdict": "^4.0.0",
-    "@aureooms/js-collections-deque": "^4.0.1",
+    "@aureooms/js-collections-deque": "^6.0.0",
     "@aureooms/js-collections-dict": "^4.0.0",
     "@aureooms/js-collections-namedtuple": "^4.0.0",
     "@aureooms/js-collections-ordereddict": "^4.0.0",
